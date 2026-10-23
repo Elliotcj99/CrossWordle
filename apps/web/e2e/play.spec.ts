@@ -19,20 +19,38 @@ test('shows every clue', async ({ page }) => {
   await expect(page.getByRole('region', { name: 'Clues' }).getByRole('button')).toHaveCount(9);
 });
 
-test('accepts any combination of letters as a guess', async ({ page }) => {
-  await guess(page, 'XQZVK');
-  await expect(panel(page).getByText('26 of 27 guesses left')).toBeVisible();
-  await expect(panel(page).getByText('XQZVK: 0 green, 1 yellow.')).toBeVisible();
+test('rejects words that are not in the word list without using a guess', async ({ page }) => {
+  await guess(page, 'LEVXL');
+  await expect(panel(page).getByText('Not in the word list.')).toBeVisible();
+  await expect(panel(page).getByText('27 of 27 guesses left')).toBeVisible();
+
+  // The letters stay so the player can fix them.
+  await page.keyboard.press('Backspace');
+  await page.keyboard.press('Backspace');
+  await guess(page, 'EL');
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
 });
 
-test("locks an entry's own greens into its next guess", async ({ page }) => {
-  await guess(page, 'EERIE'); // the second E is green
-  const next = panel(page).getByRole('listitem', { name: 'Current guess' });
-  await expect(next.getByLabel('E, locked')).toHaveCount(1);
+test('accepts newer words from the British list', async ({ page }) => {
+  // EMAIL and PODCAST are in the SCOWL British list but not in ENABLE.
+  await guess(page, 'EMAIL');
+  await expect(panel(page).getByText('26 of 27 guesses left')).toBeVisible();
+  await clue(page, 'Resolved, as a dispute').click();
+  await guess(page, 'PODCAST');
+  await expect(panel(page).getByText('25 of 27 guesses left')).toBeVisible();
+});
 
-  // Only the gaps need typing, and the lock can't be overwritten.
-  await guess(page, 'LVEL');
-  await expect(clue(page, 'Flat and even')).toContainText('Solved in 2');
+test('lets a guess fish with other letters, and the grid keeps its greens', async ({ page }) => {
+  await guess(page, 'EERIE'); // the second E is green
+  const grid = page.getByRole('group', { name: /Crossword grid/ });
+  await expect(grid.getByRole('button', { name: 'row 1, column 2, E' })).toBeVisible();
+
+  // The next guess starts empty, like Wordle, and can drop the green E.
+  const next = panel(page).getByRole('listitem', { name: 'Current guess' });
+  await expect(next).toHaveText('');
+  await guess(page, 'TABLE');
+  await expect(panel(page).getByText('25 of 27 guesses left')).toBeVisible();
+  await expect(grid.getByRole('button', { name: 'row 1, column 2, E' })).toBeVisible();
 });
 
 test('badges green and yellow tiles whose letter the answer repeats', async ({ page }) => {
@@ -43,9 +61,7 @@ test('badges green and yellow tiles whose letter the answer repeats', async ({ p
   await expect(row.getByLabel('E, not in the word')).toHaveCount(1);
 });
 
-test('locks greens into the crossing entry, and accepts the whole word typed over a lock', async ({
-  page,
-}) => {
+test('locks greens into the crossing entry', async ({ page }) => {
   await guess(page, 'LEVEL');
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
 
@@ -55,10 +71,18 @@ test('locks greens into the crossing entry, and accepts the whole word typed ove
   await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 1');
 });
 
-test('accepts only the open letters too', async ({ page }) => {
+test('never changes a solved answer on the grid', async ({ page }) => {
   await guess(page, 'LEVEL');
+  // 1 Down crosses LEVEL's first L; MATTE puts an M there instead.
+  await page.keyboard.type('M');
+  const grid = page.getByRole('group', { name: /Crossword grid/ });
+  const corner = grid.getByRole('button', { name: '1, row 1, column 1, L' });
+  await expect(corner).toBeVisible();
   await guess(page, 'ATTE');
-  await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 1');
+  await expect(corner).toBeVisible();
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+  // MATTE's greens plus the locked L complete 1 Down.
+  await expect(panel(page).getByText('1 Down solved: LATTE.')).toBeVisible();
 });
 
 test('keeps progress after a reload, and restart clears it', async ({ page }) => {
@@ -82,13 +106,6 @@ test('starts fresh when saved progress no longer fits the puzzle', async ({ page
   );
   await page.reload();
   await expect(panel(page).getByText('27 of 27 guesses left')).toBeVisible();
-});
-
-test('fills the gaps even when a gap letter matches the lock before it', async ({ page }) => {
-  await guess(page, 'LEVEL');
-  await clue(page, 'Andean pack animal').click();
-  await guess(page, 'LAMA'); // L locked, so LAMA fills L????
-  await expect(clue(page, 'Andean pack animal')).toContainText('Solved in 1');
 });
 
 test('tells the player what a guess found', async ({ page }) => {

@@ -21,7 +21,7 @@ export interface RuleSet {
    * times it appears.
    */
   readonly duplicateCounts: boolean;
-  /** Guesses must be in the word list. Off: any combination of letters is a guess. */
+  /** Guesses must be in the word list, as in Wordle. Off: any combination of letters is a guess. */
   readonly realWordsOnly: boolean;
 }
 
@@ -33,7 +33,7 @@ export const DEFAULT_RULES: RuleSet = {
   maxLength: 10,
   guessBudget: { kind: 'shared', guessesPerEntry: 3 },
   duplicateCounts: true,
-  realWordsOnly: false,
+  realWordsOnly: true,
 };
 
 export function resolveRules(overrides: RuleOverrides = {}): RuleSet {

@@ -23,7 +23,7 @@ const ring = (guessesPerEntry = 3) =>
 
 function play(puzzle: ReturnType<typeof ring>, moves: [string, string][]): GameState {
   return moves.reduce((state, [id, word]) => {
-    const result = submitGuess(puzzle, state, id, word);
+    const result = submitGuess(puzzle, state, id, word, () => true);
     if (!result.ok) throw new Error(result.error);
     return result.state;
   }, newGame(puzzle));

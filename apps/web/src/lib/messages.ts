@@ -7,6 +7,5 @@ export const guessErrorText: Record<GuessError, string> = {
   'no-guesses-left': 'No guesses left.',
   'wrong-length': 'Not enough letters.',
   'not-letters': 'Letters only.',
-  'conflicts-with-lock': 'That clashes with a locked letter.',
   'not-a-word': 'Not in the word list.',
 };

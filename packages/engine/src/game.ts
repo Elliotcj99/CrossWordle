@@ -20,7 +20,6 @@ export type GuessError =
   | 'no-guesses-left'
   | 'wrong-length'
   | 'not-letters'
-  | 'conflicts-with-lock'
   | 'not-a-word';
 
 export type GuessResult =
@@ -62,7 +61,10 @@ export function feedbackFor(puzzle: Puzzle, state: GameState, entry: Entry): Sco
   return guessesFor(state, entry).map((guess) => evaluateGuess(guess, entry.answer, puzzle.rules));
 }
 
-/** Cells confirmed by a green in any entry, keyed by `cellKey`. */
+/**
+ * Cells confirmed by a green in any entry, keyed by `cellKey`. A lock is for good: later guesses
+ * may put other letters there to fish for information, but they never undo it.
+ */
 export function lockedLetters(puzzle: Puzzle, state: GameState): Map<string, string> {
   const locks = new Map<string, string>();
   for (const entry of puzzle.entries) {
@@ -73,14 +75,6 @@ export function lockedLetters(puzzle: Puzzle, state: GameState): Map<string, str
     }
   }
   return locks;
-}
-
-/** The entry's letters as far as they are locked; `undefined` where a cell is still open. */
-export function lockedPattern(
-  entry: Entry,
-  locks: ReadonlyMap<string, string>,
-): (string | undefined)[] {
-  return entry.cells.map((cell) => locks.get(cellKey(cell)));
 }
 
 /** An entry is solved once every cell is locked, whether by its own guesses or by crossings. */
@@ -131,10 +125,6 @@ export function submitGuess(
   if (guess.length !== entry.answer.length) return { ok: false, error: 'wrong-length' };
   if (!/^[A-Z]+$/.test(guess)) return { ok: false, error: 'not-letters' };
 
-  const pattern = lockedPattern(entry, locks);
-  if (pattern.some((letter, i) => letter !== undefined && letter !== guess[i])) {
-    return { ok: false, error: 'conflicts-with-lock' };
-  }
   if (puzzle.rules.realWordsOnly && guess !== entry.answer) {
     if (isWord === undefined) throw new Error('This puzzle needs a word checker for its guesses.');
     if (!isWord(guess)) return { ok: false, error: 'not-a-word' };

@@ -19,7 +19,7 @@
   const loading = $derived(
     loadPuzzleFor(requested).then(async (puzzle) => ({
       puzzle,
-      // The word lists are only needed when the puzzle limits guesses to real words.
+      // The word lists are only needed when the puzzle limits guesses to real words (the default).
       isWord: puzzle.rules.realWordsOnly
         ? await loadWordChecker(puzzle.entries.map((entry) => entry.answer.length))
         : undefined,

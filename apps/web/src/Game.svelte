@@ -14,7 +14,6 @@
     guessLimit,
     isSolved,
     lockedLetters,
-    lockedPattern,
     newGame,
     shareText,
     submitGuess,
@@ -51,8 +50,8 @@
   const locks = $derived(lockedLetters(puzzle, game));
   const status = $derived(gameStatus(puzzle, game));
   const selected = $derived(entryById(selectedId));
-  const pattern = $derived(lockedPattern(selected, locks));
-  const cells = $derived(draftCells(draft, pattern));
+  const length = $derived(selected.answer.length);
+  const cells = $derived(draftCells(draft, length));
   const feedback = $derived(feedbackFor(puzzle, game, selected));
   const solvedIds = $derived(
     new Set(puzzle.entries.filter((e) => isSolved(e, locks)).map((e) => e.id)),
@@ -103,12 +102,12 @@
     } else if (key === 'Backspace') {
       draft = deleteLetter(draft);
     } else if (/^[A-Za-z]$/.test(key)) {
-      draft = typeLetter(draft, pattern, key.toUpperCase());
+      draft = typeLetter(draft, length, key.toUpperCase());
     }
   }
 
   function submit() {
-    const word = draftWord(draft, pattern);
+    const word = draftWord(draft, length);
     if (word === undefined) {
       message = guessErrorText['wrong-length'];
       return;
@@ -131,7 +130,8 @@
   /** What the guess found, in words, so screen reader users hear the result too. */
   function summary(entry: Entry, word: string, solved: boolean): string {
     const name = `${entry.number} ${entry.direction === 'across' ? 'Across' : 'Down'}`;
-    if (solved) return `${word} solves ${name}.`;
+    // Greens plus locked crossings can complete an entry, so name the answer, not the guess.
+    if (solved) return `${name} solved: ${entry.answer}.`;
     const marks = feedbackFor(puzzle, game, entry).at(-1) ?? [];
     const greens = marks.filter((l) => l.mark === 'correct').length;
     const yellows = marks.filter((l) => l.mark === 'present').length;
@@ -195,7 +195,6 @@
       entry={selected}
       {feedback}
       draft={cells}
-      {pattern}
       solved={solvedIds.has(selected.id)}
       remaining={guessesRemaining(puzzle, game, selected)}
       total={guessLimit(puzzle, selected)}

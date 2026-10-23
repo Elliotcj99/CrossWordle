@@ -27,7 +27,7 @@ source is added.
 
 ## What they're used for
 
-- **Guesses:** only for puzzles with the `realWordsOnly` rule; by default any letters are a
-  guess. `npm run words` writes one file per allowed length to `apps/web/public/words/`, plus
-  `NOTICE.md`, and the site loads only the lengths such a puzzle uses.
+- **Guesses:** must be in the lists, unless a puzzle turns the `realWordsOnly` rule off.
+  `npm run words` writes one file per allowed length to `apps/web/public/words/`, plus
+  `NOTICE.md`. The site loads only the lengths the day's puzzle uses.
 - **Answers:** `npm run validate-puzzles` rejects a puzzle whose answers aren't in the lists.

@@ -5,7 +5,6 @@
     entry: Entry;
     feedback: ScoredLetter[][];
     draft: DraftCells;
-    pattern: (string | undefined)[];
     solved: boolean;
     remaining: number;
     total: number;
@@ -13,8 +12,7 @@
     message: string;
   }
 
-  let { entry, feedback, draft, pattern, solved, remaining, total, budgetKind, message }: Props =
-    $props();
+  let { entry, feedback, draft, solved, remaining, total, budgetKind, message }: Props = $props();
 
   const markText: Record<Mark, string> = {
     correct: 'correct',
@@ -57,9 +55,7 @@
         {#each draft.letters as letter, i (i)}
           <span
             class="tile draft"
-            class:locked={pattern[i] !== undefined}
-            aria-label={pattern[i] === undefined ? undefined : `${pattern[i]}, locked`}
-            class:filled={letter !== undefined && pattern[i] === undefined}
+            class:filled={letter !== undefined}
             class:cursor={i === draft.cursor}>{letter ?? ''}</span
           >
         {/each}
@@ -155,13 +151,6 @@
   .tile.absent {
     background: var(--absent);
     border-color: var(--absent);
-  }
-
-  /* A locked letter is a saved green, so it looks like one, as it does in the grid. */
-  .tile.locked {
-    border-color: var(--correct);
-    background: var(--correct);
-    color: var(--on-mark);
   }
 
   .tile.filled {
