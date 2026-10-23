@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-10-23",
+  "title": "Friday 23 October 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "DIM",
+      "clue": "Lacking in light"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "across",
+      "answer": "DISABILITY",
+      "clue": "The condition of being unable to perform as a consequence of physical or mental unfitness"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "down",
+      "answer": "DEPARTMENT",
+      "clue": "A specialized division of a large organization"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "down",
+      "answer": "FOOD",
+      "clue": "Any substance that can be metabolized by an animal to give energy and build tissue"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "across",
+      "answer": "RAGE",
+      "clue": "A feeling of intense anger"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "REVEL",
+      "clue": "Take delight in"
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "direction": "down",
+      "answer": "GENTRY",
+      "clue": "The most powerful members of a society"
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "direction": "across",
+      "answer": "AWESOME",
+      "clue": "Inspiring awe or admiration or wonder"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "ENIGMA",
+      "clue": "Something that baffles understanding and cannot be explained"
+    },
+    {
+      "row": 6,
+      "col": 1,
+      "direction": "across",
+      "answer": "TWIDDLE",
+      "clue": "Turn in a twisting or spinning motion"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "EGO",
+      "clue": "An inflated feeling of pride in your superiority to others"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "ENLARGED",
+      "clue": "As of a photograph"
+    }
+  ]
+}

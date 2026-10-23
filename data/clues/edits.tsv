@@ -1,0 +1,14 @@
+# Hand edits to the clue lists. Overrides wordnet.tsv.
+#
+#   ANSWER<tab>New clue      replace a clue (or add an answer)
+#   ANSWER<tab>-             take the answer out of the pool
+#
+# Answers must be in the guess dictionary. A clue may not contain its answer.
+#
+# Rude words are welcome: they're real words. Slurs are not. The clue generator never uses a sense
+# WordNet labels as a slur, but these answers are mainly known today as slurs, so they're out even
+# though each has a neutral sense. They stay valid guesses.
+CHINK	-
+DYKE	-
+FAGGOT	-
+RETARD	-

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "id": "sample",
+  "title": "Sample puzzle",
+  "answerEncoding": "plain",
+  "entries": [
+    { "row": 0, "col": 0, "direction": "across", "answer": "LEVEL", "clue": "Flat and even" },
+    { "row": 0, "col": 0, "direction": "down", "answer": "LATTE", "clue": "Milky coffee order" },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "VALET",
+      "clue": "Attendant who parks your car"
+    },
+    { "row": 0, "col": 4, "direction": "down", "answer": "LLAMA", "clue": "Andean pack animal" },
+    { "row": 2, "col": 4, "direction": "across", "answer": "ABYSS", "clue": "Bottomless pit" },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "down",
+      "answer": "SETTLED",
+      "clue": "Resolved, as a dispute"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "EXTRA",
+      "clue": "Film background performer"
+    },
+    { "row": 6, "col": 6, "direction": "across", "answer": "HELLO", "clue": "Common greeting" },
+    { "row": 6, "col": 10, "direction": "down", "answer": "ODD", "clue": "Not even" }
+  ]
+}

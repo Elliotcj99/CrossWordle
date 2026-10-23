@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+*.log
+.DS_Store
+
+# Built by `npm run puzzles` and `npm run words`
+apps/web/public/puzzles/
+apps/web/public/words/
+
+# Cloudflare local state
+.wrangler/
+
+# Playwright
+test-results/
+playwright-report/

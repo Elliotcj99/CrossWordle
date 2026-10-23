@@ -1,0 +1,100 @@
+/*
+ * Layout: a printed crossword (ink blocks, numbered white cells) beside a Wordle board.
+ * Ink and paper are cool and neutral; colour is reserved for the green/yellow/grey feedback
+ * and the blue that marks the entry you are working on.
+ */
+:root {
+  --paper: #f3f5f8;
+  --surface: #ffffff;
+  --ink: #141a26;
+  --ink-muted: #5a6476;
+  --block: #141a26;
+  --rule: #d4dae3;
+  --select: #cfe0ff;
+  --cursor: #8db4ff;
+  --correct: #3a8a55;
+  --present: #c2971a;
+  --absent: #7a8392;
+  --on-mark: #ffffff;
+  --key: #dde2ea;
+  --reveal: #9aa3b2;
+
+  --font-display: 'Archivo Variable', 'Arial Narrow', Arial, sans-serif;
+  --font-body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --paper: #0f131a;
+    --surface: #222936;
+    --ink: #e7ebf2;
+    --ink-muted: #98a2b3;
+    --block: #05070a;
+    --rule: #2b3341;
+    --select: #233a63;
+    --cursor: #3d66b0;
+    --correct: #3f9a5e;
+    --present: #b58d17;
+    --absent: #3c4452;
+    --key: #353d4b;
+    --reveal: #6c7585;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme='dark'] {
+  --paper: #0f131a;
+  --surface: #222936;
+  --ink: #e7ebf2;
+  --ink-muted: #98a2b3;
+  --block: #05070a;
+  --rule: #2b3341;
+  --select: #233a63;
+  --cursor: #3d66b0;
+  --correct: #3f9a5e;
+  --present: #b58d17;
+  --absent: #3c4452;
+  --key: #353d4b;
+  --reveal: #6c7585;
+  color-scheme: dark;
+}
+
+/* High-contrast colours for colour-blind players: orange and blue, in both themes. */
+:root[data-high-contrast] {
+  --correct: #d8602a;
+  --present: #2f7fc1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--cursor);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

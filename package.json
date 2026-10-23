@@ -1,0 +1,45 @@
+{
+  "name": "crosswordle",
+  "private": true,
+  "type": "module",
+  "description": "A crossword where every entry is solved as its own Wordle.",
+  "license": "UNLICENSED",
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "generate": "tsx packages/generator/src/cli.ts generate --clues data/clues/wordnet.tsv --clues data/clues/edits.tsv --words data/wordlists --puzzles puzzles",
+    "puzzles": "tsx packages/generator/src/cli.ts publish --in puzzles --words data/wordlists --notice data/clues/NOTICE.md --out apps/web/public/puzzles",
+    "words": "tsx packages/generator/src/cli.ts words --in data/wordlists --out apps/web/public/words",
+    "validate-puzzles": "tsx packages/generator/src/cli.ts validate puzzles --words data/wordlists",
+    "dev": "npm run puzzles && npm run words && npm run dev -w @crosswordle/web",
+    "build": "npm run puzzles && npm run words && npm run build -w @crosswordle/web && node scripts/render-headers.mjs --format cloudflare --out apps/web/dist/_headers",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc -p tsconfig.json && npm run check -w @crosswordle/web",
+    "test:e2e": "playwright test",
+    "deploy:lab": "node scripts/deploy-lab.mjs"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^22.20.5",
+    "eslint": "^10.13.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-svelte": "^3.23.1",
+    "globals": "^17.13.0",
+    "prettier": "^3.9.10",
+    "prettier-plugin-svelte": "^4.1.1",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.72.0",
+    "vitest": "^5.0.5"
+  }
+}

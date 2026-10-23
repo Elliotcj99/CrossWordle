@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-11-04",
+  "title": "Wednesday 4 November 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "DUO",
+      "clue": "Two items of the same kind"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "across",
+      "answer": "MAD",
+      "clue": "Roused to anger"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "direction": "down",
+      "answer": "ARMISTICE",
+      "clue": "A state of peace agreed to between opponents so they can discuss peace terms"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "down",
+      "answer": "DARNED",
+      "clue": "Expletives used informally as intensifiers"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "direction": "across",
+      "answer": "COAT",
+      "clue": "An outer garment that has sleeves and covers the body from shoulder down"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "direction": "down",
+      "answer": "CYCLING",
+      "clue": "The sport of traveling on a bicycle or motorcycle"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "direction": "down",
+      "answer": "TRAVESTY",
+      "clue": "A comedy characterized by broad satire and improbable situations"
+    },
+    {
+      "row": 2,
+      "col": 9,
+      "direction": "down",
+      "answer": "MANUAL",
+      "clue": "Of or relating to the hands"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "RECREATION",
+      "clue": "An activity that diverts or amuses or stimulates"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "DONE",
+      "clue": "Having finished or arrived at completion"
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "direction": "across",
+      "answer": "SPILL",
+      "clue": "Cause or allow to run or flow from a container"
+    },
+    {
+      "row": 9,
+      "col": 3,
+      "direction": "across",
+      "answer": "PAY",
+      "clue": "Give money, usually in exchange for goods or services"
+    }
+  ]
+}

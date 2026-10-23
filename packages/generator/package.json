@@ -1,0 +1,10 @@
+{
+  "name": "@crosswordle/generator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Command line tools that validate, publish and (later) generate CrossWordle puzzles.",
+  "dependencies": {
+    "@crosswordle/engine": "*"
+  }
+}

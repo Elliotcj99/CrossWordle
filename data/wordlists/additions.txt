@@ -1,0 +1,1 @@
+# Words to accept that ENABLE lacks, one per line. See README.md.

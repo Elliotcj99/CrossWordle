@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-10-29",
+  "title": "Thursday 29 October 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "WRONGDOING",
+      "clue": "Departure from what is ethically acceptable"
+    },
+    {
+      "row": 1,
+      "col": 4,
+      "direction": "across",
+      "answer": "MERCURY",
+      "clue": "A heavy silvery toxic univalent and bivalent metallic element"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "direction": "down",
+      "answer": "ENDEARMENT",
+      "clue": "The act of showing affection"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "direction": "down",
+      "answer": "RICKSHAW",
+      "clue": "A small two-wheeled cart for one passenger"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "direction": "down",
+      "answer": "FLAUTIST",
+      "clue": "Someone who plays the flute"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "PIMPLY",
+      "clue": "Blemished by imperfections of the skin"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "FLICKERING",
+      "clue": "Shining unsteadily"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "OUTSTRIP",
+      "clue": "Be or do something to a greater degree"
+    },
+    {
+      "row": 7,
+      "col": 7,
+      "direction": "across",
+      "answer": "LOIN",
+      "clue": "A cut of meat taken from the side and back of an animal between the ribs and the rump"
+    },
+    {
+      "row": 9,
+      "col": 3,
+      "direction": "across",
+      "answer": "WAN",
+      "clue": "Lacking in intensity or brightness"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "across",
+      "answer": "AGO",
+      "clue": "In the past"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "across",
+      "answer": "TOW",
+      "clue": "The act of hauling something by means of a hitch or rope"
+    }
+  ]
+}

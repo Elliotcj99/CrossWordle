@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-10-24",
+  "title": "Saturday 24 October 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "REALISTIC",
+      "clue": "Aware or expressing awareness of things as they really are"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "MEAN",
+      "clue": "Approximating the statistical norm or average or expected value"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "across",
+      "answer": "DETACHMENT",
+      "clue": "Avoiding emotional involvement"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "down",
+      "answer": "HAT",
+      "clue": "Headdress that protects the head from bad weather"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "direction": "across",
+      "answer": "PLACATING",
+      "clue": "Intended to pacify by acceding to demands or granting concessions"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "down",
+      "answer": "CIRCUS",
+      "clue": "A travelling company of entertainers"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "down",
+      "answer": "NOTICED",
+      "clue": "Being perceived or observed"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "OBSERVANT",
+      "clue": "Paying close attention especially to details"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "LETUP",
+      "clue": "A pause during which things are calm or activities are diminished"
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "direction": "across",
+      "answer": "INUNDATE",
+      "clue": "Fill quickly beyond capacity"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "DUET",
+      "clue": "Two items of the same kind"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "across",
+      "answer": "ATTEMPT",
+      "clue": "Earnest and conscientious activity intended to do or accomplish something"
+    }
+  ]
+}

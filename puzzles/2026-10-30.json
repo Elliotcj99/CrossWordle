@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-10-30",
+  "title": "Friday 30 October 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "RATIONALE",
+      "clue": "An explanation of the fundamental reasons"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "DEFINITIVE",
+      "clue": "Clearly defined or formulated"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "VEGETATION",
+      "clue": "All the plant life in a particular region or period"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "across",
+      "answer": "STABLE",
+      "clue": "Resistant to change of position or condition"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "down",
+      "answer": "FRONTAGE",
+      "clue": "The extent of land abutting on a street or water"
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "direction": "across",
+      "answer": "DISCIPLE",
+      "clue": "Someone who believes and helps to spread the doctrine of another"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "RAW",
+      "clue": "Being unprocessed or manufactured using only simple or minimal processes"
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "direction": "across",
+      "answer": "CHALET",
+      "clue": "A Swiss house with a sloping roof and wide eaves or a house built in this style"
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "direction": "down",
+      "answer": "COO",
+      "clue": "Speak softly or lovingly"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "ABODE",
+      "clue": "Any address at which you dwell more than temporarily"
+    },
+    {
+      "row": 9,
+      "col": 7,
+      "direction": "across",
+      "answer": "EVEN",
+      "clue": "Divisible by two"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "EXCERPT",
+      "clue": "A passage selected from a larger work"
+    }
+  ]
+}

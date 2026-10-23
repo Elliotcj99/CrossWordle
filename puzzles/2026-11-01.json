@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-11-01",
+  "title": "Sunday 1 November 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "MAZE",
+      "clue": "Complex system of paths or tunnels in which it is easy to get lost"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "DEBTOR",
+      "clue": "A person who owes a creditor"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "TOLERATE",
+      "clue": "Put up with something or somebody unpleasant"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "TOGETHER",
+      "clue": "In contact with each other or in proximity"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "down",
+      "answer": "LEE",
+      "clue": "The side of something that is sheltered from the wind"
+    },
+    {
+      "row": 1,
+      "col": 9,
+      "direction": "down",
+      "answer": "ASSENTING",
+      "clue": "Agreeing with or consenting to"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "GREASE",
+      "clue": "A thick fatty oil"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "down",
+      "answer": "STOOPED",
+      "clue": "Having the back and shoulders rounded"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "across",
+      "answer": "OVER",
+      "clue": "At or to a point across intervening space etc."
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "AMPLY",
+      "clue": "Sufficiently"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "HEMLOCK",
+      "clue": "Poisonous drug derived from an Eurasian plant of the genus Conium"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "across",
+      "answer": "ERODING",
+      "clue": "The mechanical process of wearing or grinding something down , also figuratively"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "2026-11-05",
+  "title": "Thursday 5 November 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "FIG",
+      "clue": "A diagram or picture illustrating textual material"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "LEGISLATOR",
+      "clue": "Someone who makes or enacts laws"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "across",
+      "answer": "DISCOURSE",
+      "clue": "Extended verbal expression in speech or writing"
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "direction": "down",
+      "answer": "SUFFRAGE",
+      "clue": "A legal right guaranteed by the 15th amendment to the US Constitution"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "SCENIC",
+      "clue": "Used of locations"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "down",
+      "answer": "SPURRING",
+      "clue": "A verbalization that encourages you to attempt something"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "down",
+      "answer": "FIZZING",
+      "clue": "Hissing and bubbling"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "direction": "across",
+      "answer": "GULP",
+      "clue": "A large and hurried swallow"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "direction": "down",
+      "answer": "SURLY",
+      "clue": "Inclined to anger or bad feelings with overtones of menace"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "direction": "across",
+      "answer": "FORMULA",
+      "clue": "A group of symbols that make a mathematical statement"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "RACIAL",
+      "clue": "Of or related to genetically distinguished groups of people"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "GONE",
+      "clue": "Destroyed or killed"
+    }
+  ]
+}
