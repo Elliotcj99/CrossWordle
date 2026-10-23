@@ -74,7 +74,37 @@ describe('crossing locks', () => {
     expect(locks.get(cellKey({ row: 0, col: 0 }))).toBe('C');
     expect(locks.get(cellKey({ row: 0, col: 1 }))).toBe('A');
     expect(locks.get(cellKey({ row: 0, col: 2 }))).toBe('T');
-    expect(isSolved(entry(puzzle, '1A'), locks)).toBe(true);
+  });
+
+  it('only solves an entry when its exact word is guessed', () => {
+    const puzzle = ring();
+    // Every cell of 1A is green across these guesses, but CAT itself hasn't been guessed.
+    const state = play(puzzle, [
+      ['1A', 'COP'],
+      ['1A', 'BAT'],
+    ]);
+    expect(isSolved(state, entry(puzzle, '1A'))).toBe(false);
+    expect(gameStatus(puzzle, state)).toBe('playing');
+
+    const result = submitGuess(puzzle, state, '1A', 'CAT', anyWord);
+    expect(result.ok && isSolved(result.state, entry(puzzle, '1A'))).toBe(true);
+  });
+
+  it('does not solve an entry whose cells are all filled in by crossings and greens', () => {
+    const puzzle = ring();
+    // COD and TOE lock 1A's C and T; BAN turns its middle A green.
+    const state = play(puzzle, [
+      ['1D', 'COD'],
+      ['2D', 'TOE'],
+      ['1A', 'BAN'],
+    ]);
+    const locks = lockedLetters(puzzle, state);
+    expect(entry(puzzle, '1A').cells.map((cell) => locks.get(cellKey(cell)))).toEqual([
+      'C',
+      'A',
+      'T',
+    ]);
+    expect(isSolved(state, entry(puzzle, '1A'))).toBe(false);
   });
 
   it('keeps a solved entry solved when a crossing guess puts another letter in its cells', () => {
@@ -85,14 +115,14 @@ describe('crossing locks', () => {
     ]);
     const locks = lockedLetters(puzzle, state);
 
-    expect(isSolved(entry(puzzle, '1A'), locks)).toBe(true);
+    expect(isSolved(state, entry(puzzle, '1A'))).toBe(true);
     expect(locks.get(cellKey({ row: 0, col: 0 }))).toBe('C');
   });
 
   it('refuses guesses on a solved entry', () => {
     const puzzle = ring();
     const state = play(puzzle, [['1A', 'cat']]);
-    expect(isSolved(entry(puzzle, '1A'), lockedLetters(puzzle, state))).toBe(true);
+    expect(isSolved(state, entry(puzzle, '1A'))).toBe(true);
     expect(submitGuess(puzzle, state, '1A', 'CAT', anyWord)).toEqual({
       ok: false,
       error: 'entry-solved',

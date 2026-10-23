@@ -1,11 +1,4 @@
-import {
-  feedbackFor,
-  gameStatus,
-  guessesFor,
-  isSolved,
-  lockedLetters,
-  type GameState,
-} from './game';
+import { feedbackFor, gameStatus, guessesFor, isSolved, type GameState } from './game';
 import type { Puzzle } from './puzzle';
 
 /**
@@ -25,12 +18,11 @@ function squares(puzzle: Puzzle, state: GameState, entryIndex: number): string {
 }
 
 /**
- * The text a player shares: the puzzle, the result, then a line per entry. An entry filled in
- * entirely by its crossings shows ✳️; one never solved shows ❌ after its guesses.
+ * The text a player shares: the puzzle, the result, then a line per entry. An entry never solved
+ * shows ❌ after its guesses.
  */
 export function shareText(puzzle: Puzzle, state: GameState): string {
   const status = gameStatus(puzzle, state);
-  const locks = lockedLetters(puzzle, state);
   const used = puzzle.entries.reduce((sum, e) => sum + guessesFor(state, e).length, 0);
   const plural = used === 1 ? 'guess' : 'guesses';
   const headline =
@@ -42,8 +34,7 @@ export function shareText(puzzle: Puzzle, state: GameState): string {
 
   const lines = puzzle.entries.map((entry, i) => {
     const row = squares(puzzle, state, i);
-    const solved = isSolved(entry, locks);
-    const mark = solved ? (row === '' ? '✳️' : row) : `${row}${status === 'lost' ? '❌' : ''}`;
+    const mark = isSolved(state, entry) || status !== 'lost' ? row : `${row}❌`;
     return `${entry.id.padEnd(4)}${mark}`;
   });
   return [`CrossWordle · ${puzzle.title}`, headline, '', ...lines].join('\n');

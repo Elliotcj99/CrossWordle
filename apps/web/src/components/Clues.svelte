@@ -19,7 +19,7 @@
 
   function status(entry: Entry): string {
     const used = guessCounts.get(entry.id) ?? 0;
-    if (solvedIds.has(entry.id)) return used === 0 ? 'Filled by crossings' : `Solved in ${used}`;
+    if (solvedIds.has(entry.id)) return `Solved in ${used}`;
     return used === 0 ? '' : `${used} ${used === 1 ? 'guess' : 'guesses'}`;
   }
 </script>

@@ -54,7 +54,7 @@
   const cells = $derived(draftCells(draft, length));
   const feedback = $derived(feedbackFor(puzzle, game, selected));
   const solvedIds = $derived(
-    new Set(puzzle.entries.filter((e) => isSolved(e, locks)).map((e) => e.id)),
+    new Set(puzzle.entries.filter((e) => isSolved(game, e)).map((e) => e.id)),
   );
   const guessCounts = $derived(
     new Map(puzzle.entries.map((e) => [e.id, guessesFor(game, e).length])),
@@ -75,8 +75,7 @@
   }
 
   function firstUnsolved(state: GameState): Entry | undefined {
-    const current = lockedLetters(puzzle, state);
-    return puzzle.entries.find((e) => !isSolved(e, current));
+    return puzzle.entries.find((e) => !isSolved(state, e));
   }
 
   function select(entry: Entry) {
@@ -120,7 +119,7 @@
     const guessed = selected;
     game = result.state;
 
-    const solvedNow = isSolved(guessed, lockedLetters(puzzle, game));
+    const solvedNow = isSolved(game, guessed);
     const next = solvedNow ? firstUnsolved(game) : undefined;
     if (next !== undefined) select(next);
     else draft = emptyDraft();
@@ -130,8 +129,7 @@
   /** What the guess found, in words, so screen reader users hear the result too. */
   function summary(entry: Entry, word: string, solved: boolean): string {
     const name = `${entry.number} ${entry.direction === 'across' ? 'Across' : 'Down'}`;
-    // Greens plus locked crossings can complete an entry, so name the answer, not the guess.
-    if (solved) return `${name} solved: ${entry.answer}.`;
+    if (solved) return `${word} solves ${name}.`;
     const marks = feedbackFor(puzzle, game, entry).at(-1) ?? [];
     const greens = marks.filter((l) => l.mark === 'correct').length;
     const yellows = marks.filter((l) => l.mark === 'present').length;

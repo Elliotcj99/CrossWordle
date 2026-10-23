@@ -21,7 +21,7 @@
     <li>
       Greens lock their square on the grid for good, and the crossing entry gets that letter too.
       Your guesses are still your own: type any word, even one that drops a green, to fish for other
-      letters.
+      letters. An entry is solved when you guess its word.
     </li>
     <li>You share one pool of guesses across the whole puzzle. Spend it wisely.</li>
     <li>

@@ -79,10 +79,14 @@ test('never changes a solved answer on the grid', async ({ page }) => {
   const corner = grid.getByRole('button', { name: '1, row 1, column 1, L' });
   await expect(corner).toBeVisible();
   await guess(page, 'ATTE');
+  await expect(panel(page).getByText('MATTE: 4 green, 0 yellow.')).toBeVisible();
   await expect(corner).toBeVisible();
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
-  // MATTE's greens plus the locked L complete 1 Down.
-  await expect(panel(page).getByText('1 Down solved: LATTE.')).toBeVisible();
+
+  // Every cell of 1 Down is green now, but it's only solved by guessing the word itself.
+  await expect(clue(page, 'Milky coffee order')).not.toContainText('Solved');
+  await guess(page, 'LATTE');
+  await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 2');
 });
 
 test('keeps progress after a reload, and restart clears it', async ({ page }) => {
@@ -114,7 +118,6 @@ test('tells the player what a guess found', async ({ page }) => {
 });
 
 test('shows stats and a spoiler-free result when the puzzle ends', async ({ page }) => {
-  // Whole words, typed over whichever letters crossings have already locked.
   for (const word of [
     'LEVEL',
     'LATTE',

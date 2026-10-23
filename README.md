@@ -13,9 +13,10 @@ A crossword where every entry is solved as its own Wordle.
   answer shows how many times it appears. Grey tiles, and letters the answer has only once, show
   no number.
 - **Guesses** must be real words (in the word list), as in Wordle.
-- **Locks:** a green locks its cell on the grid for good, and the crossing entry shares it. An
-  entry is solved once every cell is locked. Guesses are never forced to use locked letters, so a
-  player can fish for other letters; that never changes the grid. Yellows and greys only apply
+- **Locks:** a green locks its cell on the grid for good, and the crossing entry shares it.
+  Guesses are never forced to use locked letters, so a player can fish for other letters; that
+  never changes the grid. An entry is solved only when its exact word is guessed, even if
+  crossings have already filled in every cell. Yellows and greys only apply
   within their own entry.
 - **Guess budget:** one shared pool of 3 guesses per entry. Win by solving every entry before the
   pool runs out.

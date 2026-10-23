@@ -77,9 +77,12 @@ export function lockedLetters(puzzle: Puzzle, state: GameState): Map<string, str
   return locks;
 }
 
-/** An entry is solved once every cell is locked, whether by its own guesses or by crossings. */
-export function isSolved(entry: Entry, locks: ReadonlyMap<string, string>): boolean {
-  return entry.cells.every((cell) => locks.has(cellKey(cell)));
+/**
+ * An entry is solved once its exact word has been guessed. Greens from crossings fill in its cells
+ * on the grid, but never solve it on their own.
+ */
+export function isSolved(state: GameState, entry: Entry): boolean {
+  return guessesFor(state, entry).includes(entry.answer);
 }
 
 /** The most guesses allowed: for the whole puzzle (shared budget) or for this entry. */
@@ -99,8 +102,7 @@ export function guessesRemaining(puzzle: Puzzle, state: GameState, entry: Entry)
 }
 
 export function gameStatus(puzzle: Puzzle, state: GameState): GameStatus {
-  const locks = lockedLetters(puzzle, state);
-  const unsolved = puzzle.entries.filter((entry) => !isSolved(entry, locks));
+  const unsolved = puzzle.entries.filter((entry) => !isSolved(state, entry));
   if (unsolved.length === 0) return 'won';
   return unsolved.some((entry) => guessesRemaining(puzzle, state, entry) <= 0) ? 'lost' : 'playing';
 }
@@ -117,8 +119,7 @@ export function submitGuess(
   const entry = puzzle.entries.find((e) => e.id === entryId);
   if (entry === undefined) return { ok: false, error: 'unknown-entry' };
 
-  const locks = lockedLetters(puzzle, state);
-  if (isSolved(entry, locks)) return { ok: false, error: 'entry-solved' };
+  if (isSolved(state, entry)) return { ok: false, error: 'entry-solved' };
   if (guessesRemaining(puzzle, state, entry) <= 0) return { ok: false, error: 'no-guesses-left' };
 
   const guess = rawGuess.toUpperCase();
