@@ -36,11 +36,9 @@ function ring(rules?: RuleOverrides): Puzzle {
   });
 }
 
-const anyWord = () => true;
-
 function play(puzzle: Puzzle, moves: [string, string][]): GameState {
   return moves.reduce((state, [entryId, guess]) => {
-    const result = submitGuess(puzzle, state, entryId, guess, anyWord);
+    const result = submitGuess(puzzle, state, entryId, guess);
     if (!result.ok) throw new Error(`${entryId} ${guess}: ${result.error}`);
     return result.state;
   }, newGame(puzzle));
@@ -62,10 +60,22 @@ describe('crossing locks', () => {
     expect(lockedPattern(entry(puzzle, '2D'), locks)).toEqual(['T', undefined, undefined]);
   });
 
+  it("locks greens in the guessed entry's own next guess", () => {
+    const puzzle = ring();
+    const state = play(puzzle, [['1A', 'COP']]);
+    const locks = lockedLetters(puzzle, state);
+
+    expect(lockedPattern(entry(puzzle, '1A'), locks)).toEqual(['C', undefined, undefined]);
+    expect(submitGuess(puzzle, state, '1A', 'BAT')).toEqual({
+      ok: false,
+      error: 'conflicts-with-lock',
+    });
+  });
+
   it('refuses a guess that overwrites a locked letter', () => {
     const puzzle = ring();
     const state = play(puzzle, [['1A', 'CAT']]);
-    expect(submitGuess(puzzle, state, '1D', 'DOC', anyWord)).toEqual({
+    expect(submitGuess(puzzle, state, '1D', 'DOC')).toEqual({
       ok: false,
       error: 'conflicts-with-lock',
     });
@@ -75,7 +85,7 @@ describe('crossing locks', () => {
     const puzzle = ring();
     const state = play(puzzle, [['1A', 'cat']]);
     expect(isSolved(entry(puzzle, '1A'), lockedLetters(puzzle, state))).toBe(true);
-    expect(submitGuess(puzzle, state, '1A', 'CAT', anyWord)).toEqual({
+    expect(submitGuess(puzzle, state, '1A', 'CAT')).toEqual({
       ok: false,
       error: 'entry-solved',
     });
@@ -87,22 +97,29 @@ describe('guess checks', () => {
   const start = newGame(puzzle);
 
   it('refuses words of the wrong length or with non-letters', () => {
-    expect(submitGuess(puzzle, start, '1A', 'CATS', anyWord)).toMatchObject({
+    expect(submitGuess(puzzle, start, '1A', 'CATS')).toMatchObject({
       error: 'wrong-length',
     });
-    expect(submitGuess(puzzle, start, '1A', 'C4T', anyWord)).toMatchObject({
+    expect(submitGuess(puzzle, start, '1A', 'C4T')).toMatchObject({
       error: 'not-letters',
     });
   });
 
-  it('refuses words the dictionary does not know, but always accepts the answer', () => {
+  it('accepts any combination of letters by default', () => {
+    expect(submitGuess(puzzle, start, '1A', 'XQZ').ok).toBe(true);
+  });
+
+  it('with realWordsOnly, refuses words the word list does not know but accepts the answer', () => {
+    const strict = ring({ realWordsOnly: true });
     const noWords = () => false;
-    expect(submitGuess(puzzle, start, '1A', 'XYZ', noWords)).toMatchObject({ error: 'not-a-word' });
-    expect(submitGuess(puzzle, start, '1A', 'CAT', noWords).ok).toBe(true);
+    const fresh = newGame(strict);
+    expect(submitGuess(strict, fresh, '1A', 'XYZ', noWords)).toMatchObject({ error: 'not-a-word' });
+    expect(submitGuess(strict, fresh, '1A', 'CAT', noWords).ok).toBe(true);
+    expect(() => submitGuess(strict, fresh, '1A', 'XYZ')).toThrow(/word checker/);
   });
 
   it('refuses unknown entries', () => {
-    expect(submitGuess(puzzle, start, '9A', 'CAT', anyWord)).toMatchObject({
+    expect(submitGuess(puzzle, start, '9A', 'CAT')).toMatchObject({
       error: 'unknown-entry',
     });
   });
@@ -127,7 +144,7 @@ describe('guess budget', () => {
       ['2D', 'TEE'],
     ]);
     expect(gameStatus(puzzle, state)).toBe('lost');
-    expect(submitGuess(puzzle, state, '1A', 'CAT', anyWord)).toMatchObject({ error: 'game-over' });
+    expect(submitGuess(puzzle, state, '1A', 'CAT')).toMatchObject({ error: 'game-over' });
   });
 
   it('can give each entry its own limit instead', () => {

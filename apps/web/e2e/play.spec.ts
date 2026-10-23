@@ -19,25 +19,20 @@ test('shows every clue', async ({ page }) => {
   await expect(page.getByRole('region', { name: 'Clues' }).getByRole('button')).toHaveCount(9);
 });
 
-test('rejects words that are not in the word list without using a guess', async ({ page }) => {
-  await guess(page, 'LEVXL');
-  await expect(panel(page).getByText('Not in the word list.')).toBeVisible();
-  await expect(panel(page).getByText('27 of 27 guesses left')).toBeVisible();
-
-  // The letters stay so the player can fix them.
-  await page.keyboard.press('Backspace');
-  await page.keyboard.press('Backspace');
-  await guess(page, 'EL');
-  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+test('accepts any combination of letters as a guess', async ({ page }) => {
+  await guess(page, 'XQZVK');
+  await expect(panel(page).getByText('26 of 27 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('XQZVK: 0 green, 1 yellow.')).toBeVisible();
 });
 
-test('accepts newer words from the British list', async ({ page }) => {
-  // EMAIL and PODCAST are in the SCOWL British list but not in ENABLE.
-  await guess(page, 'EMAIL');
-  await expect(panel(page).getByText('26 of 27 guesses left')).toBeVisible();
-  await clue(page, 'Resolved, as a dispute').click();
-  await guess(page, 'PODCAST');
-  await expect(panel(page).getByText('25 of 27 guesses left')).toBeVisible();
+test("locks an entry's own greens into its next guess", async ({ page }) => {
+  await guess(page, 'EERIE'); // the second E is green
+  const next = panel(page).getByRole('listitem', { name: 'Current guess' });
+  await expect(next.getByLabel('E, locked')).toHaveCount(1);
+
+  // Only the gaps need typing, and the lock can't be overwritten.
+  await guess(page, 'LVEL');
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 2');
 });
 
 test('badges green and yellow tiles whose letter the answer repeats', async ({ page }) => {

@@ -12,14 +12,16 @@ A crossword where every entry is solved as its own Wordle.
 - **Duplicate-count badge:** a green or yellow tile whose letter appears more than once in the
   answer shows how many times it appears. Grey tiles, and letters the answer has only once, show
   no number.
-- **Crossings:** a green locks its cell. The letter appears in the crossing entry and is
-  pre-filled in every guess there. Yellows and greys only apply within their own entry.
+- **Guesses** can be any combination of letters; they don't have to be real words.
+- **Locks:** a green locks its cell for good. The letter is pre-filled in every later guess, both
+  in its own entry and in the crossing one. Yellows and greys only apply within their own entry.
 - **Guess budget:** one shared pool of 3 guesses per entry. Win by solving every entry before the
   pool runs out.
 
 All of these rules are in `RuleSet` (`packages/engine/src/rules.ts`), and a puzzle file can
 override them. For example, `"rules": {"guessBudget": {"kind": "perEntry", "extraGuesses": 1}}`
-gives each entry its own limit of length + 1.
+gives each entry its own limit of length + 1, and `"rules": {"realWordsOnly": true}` only
+accepts guesses in the word list.
 
 ## Repository layout
 

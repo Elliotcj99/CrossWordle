@@ -320,7 +320,13 @@ function entryShapeProblems(entry: unknown, index: number): string[] {
 function ruleOverrideProblems(rules: unknown): string[] {
   if (!isRecord(rules)) return ['"rules" must be an object.'];
   const problems: string[] = [];
-  const known = new Set(['minLength', 'maxLength', 'guessBudget', 'duplicateCounts']);
+  const known = new Set([
+    'minLength',
+    'maxLength',
+    'guessBudget',
+    'duplicateCounts',
+    'realWordsOnly',
+  ]);
   for (const key of Object.keys(rules)) {
     if (!known.has(key)) problems.push(`"rules.${key}" is not a rule.`);
   }
@@ -336,6 +342,9 @@ function ruleOverrideProblems(rules: unknown): string[] {
   }
   if (rules.duplicateCounts !== undefined && typeof rules.duplicateCounts !== 'boolean') {
     problems.push('"rules.duplicateCounts" must be true or false.');
+  }
+  if (rules.realWordsOnly !== undefined && typeof rules.realWordsOnly !== 'boolean') {
+    problems.push('"rules.realWordsOnly" must be true or false.');
   }
   if (rules.guessBudget !== undefined && !isGuessBudget(rules.guessBudget)) {
     problems.push(

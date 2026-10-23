@@ -5,7 +5,10 @@
 <details>
   <summary>How to play</summary>
   <ul>
-    <li>Every Across and Down entry is its own Wordle. Pick any clue to start.</li>
+    <li>
+      Every Across and Down entry is its own Wordle. Pick any clue to start. Guesses can be any
+      letters; they don't have to be real words.
+    </li>
     <li>
       <b class="mark correct">Green</b> is the right letter in the right place.
       <b class="mark present">Yellow</b> is in this word but somewhere else.
@@ -16,8 +19,8 @@
       how many times.
     </li>
     <li>
-      Greens lock their square. Locked letters appear in the crossing entry too, already filled in.
-      Type the whole word or just the gaps.
+      Greens lock their square for good. Locked letters are already filled in on your next guess,
+      and in the crossing entry too. Type the whole word or just the gaps.
     </li>
     <li>You share one pool of guesses across the whole puzzle. Spend it wisely.</li>
     <li>

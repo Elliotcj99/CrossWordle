@@ -37,7 +37,7 @@
   import { loadResults, recordResult } from './lib/results';
   import { loadGame, saveGame } from './lib/storage';
 
-  let { puzzle, isWord }: { puzzle: Puzzle; isWord: WordChecker } = $props();
+  let { puzzle, isWord }: { puzzle: Puzzle; isWord: WordChecker | undefined } = $props();
 
   // A Game is created for one puzzle (App keys it by puzzle id), so the initial values are read
   // once on purpose. The engine returns new objects on every change, so raw state is enough.

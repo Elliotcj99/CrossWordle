@@ -27,7 +27,10 @@ export type GuessResult =
   | { readonly ok: true; readonly state: GameState }
   | { readonly ok: false; readonly error: GuessError };
 
-/** Answers whether a word may be guessed. The entry's own answer is always allowed. */
+/**
+ * Answers whether a word may be guessed, for puzzles with `realWordsOnly`. The entry's own answer
+ * is always allowed.
+ */
 export type WordChecker = (word: string) => boolean;
 
 export function newGame(puzzle: Puzzle): GameState {
@@ -113,7 +116,7 @@ export function submitGuess(
   state: GameState,
   entryId: string,
   rawGuess: string,
-  isWord: WordChecker,
+  isWord?: WordChecker,
 ): GuessResult {
   if (gameStatus(puzzle, state) !== 'playing') return { ok: false, error: 'game-over' };
 
@@ -132,7 +135,10 @@ export function submitGuess(
   if (pattern.some((letter, i) => letter !== undefined && letter !== guess[i])) {
     return { ok: false, error: 'conflicts-with-lock' };
   }
-  if (guess !== entry.answer && !isWord(guess)) return { ok: false, error: 'not-a-word' };
+  if (puzzle.rules.realWordsOnly && guess !== entry.answer) {
+    if (isWord === undefined) throw new Error('This puzzle needs a word checker for its guesses.');
+    if (!isWord(guess)) return { ok: false, error: 'not-a-word' };
+  }
 
   return {
     ok: true,

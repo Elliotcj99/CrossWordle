@@ -21,6 +21,8 @@ export interface RuleSet {
    * times it appears.
    */
   readonly duplicateCounts: boolean;
+  /** Guesses must be in the word list. Off: any combination of letters is a guess. */
+  readonly realWordsOnly: boolean;
 }
 
 /** What a puzzle file may override. Overrides replace whole fields. */
@@ -31,6 +33,7 @@ export const DEFAULT_RULES: RuleSet = {
   maxLength: 10,
   guessBudget: { kind: 'shared', guessesPerEntry: 3 },
   duplicateCounts: true,
+  realWordsOnly: false,
 };
 
 export function resolveRules(overrides: RuleOverrides = {}): RuleSet {

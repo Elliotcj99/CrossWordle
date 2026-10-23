@@ -58,6 +58,7 @@
           <span
             class="tile draft"
             class:locked={pattern[i] !== undefined}
+            aria-label={pattern[i] === undefined ? undefined : `${pattern[i]}, locked`}
             class:filled={letter !== undefined && pattern[i] === undefined}
             class:cursor={i === draft.cursor}>{letter ?? ''}</span
           >
@@ -156,9 +157,11 @@
     border-color: var(--absent);
   }
 
+  /* A locked letter is a saved green, so it looks like one, as it does in the grid. */
   .tile.locked {
     border-color: var(--correct);
-    color: var(--correct);
+    background: var(--correct);
+    color: var(--on-mark);
   }
 
   .tile.filled {
