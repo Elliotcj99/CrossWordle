@@ -1,4 +1,4 @@
-# Hand edits to the clue lists. Overrides wordnet.tsv.
+# Hand edits to the clue lists. Overrides quick.tsv.
 #
 #   ANSWER<tab>New clue      replace a clue (or add an answer)
 #   ANSWER<tab>-             take the answer out of the pool

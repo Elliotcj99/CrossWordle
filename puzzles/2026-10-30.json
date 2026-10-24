@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "MONGOOSE",
-      "clue": "Agile grizzled Old World viverrine"
-    },
-    {
-      "row": 0,
-      "col": 8,
+      "col": 2,
       "direction": "across",
-      "answer": "AWED",
-      "clue": "Inspired by a feeling of fearful wonderment or reverence"
+      "answer": "TART",
+      "clue": "Pastry – sour"
     },
     {
       "row": 0,
-      "col": 8,
+      "col": 5,
       "direction": "down",
-      "answer": "ANTICIPATE",
-      "clue": "Regard something as probable or likely"
+      "answer": "TRIGGER",
+      "clue": "Set off"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "JOLLY",
+      "clue": "Cheerful"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "SPIN",
+      "clue": "Twirl"
     },
     {
       "row": 1,
+      "col": 7,
+      "direction": "across",
+      "answer": "OPPOSE",
+      "clue": "Resist"
+    },
+    {
+      "row": 1,
+      "col": 11,
+      "direction": "down",
+      "answer": "SUBSTANCE",
+      "clue": "Matter"
+    },
+    {
+      "row": 2,
       "col": 1,
       "direction": "down",
-      "answer": "LABOURER",
-      "clue": "Someone who works with their hands"
-    },
-    {
-      "row": 1,
-      "col": 4,
-      "direction": "down",
-      "answer": "SKIRT",
-      "clue": "Cloth covering that forms the part of a garment below the waist"
-    },
-    {
-      "row": 1,
-      "col": 6,
-      "direction": "across",
-      "answer": "OWN",
-      "clue": "Belonging to or on behalf of a specified person"
-    },
-    {
-      "row": 1,
-      "col": 12,
-      "direction": "down",
-      "answer": "SAME",
-      "clue": "Closely similar or comparable in kind or quality or quantity or degree"
+      "answer": "TEAR",
+      "clue": "Rip – drop from the eye"
     },
     {
       "row": 2,
-      "col": 0,
+      "col": 3,
       "direction": "across",
-      "answer": "OAK",
-      "clue": "A deciduous tree of the genus Quercus"
+      "answer": "CHILL",
+      "clue": "Coldness"
     },
     {
       "row": 2,
-      "col": 8,
-      "direction": "across",
-      "answer": "TUB",
-      "clue": "A relatively large open container that you fill with water and use to wash the body"
-    },
-    {
-      "row": 2,
-      "col": 10,
+      "col": 3,
       "direction": "down",
-      "answer": "BADGE",
-      "clue": "An emblem that signifies your status"
+      "answer": "COMBINE",
+      "clue": "Merge"
     },
     {
       "row": 3,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "SING",
-      "clue": "Produce tones with the voice"
+      "answer": "HERO",
+      "clue": "Champion"
     },
     {
       "row": 4,
-      "col": 0,
+      "col": 3,
       "direction": "across",
-      "answer": "TOE",
-      "clue": "Drive obliquely"
+      "answer": "MUG",
+      "clue": "Cup – fool"
     },
     {
       "row": 4,
       "col": 10,
       "direction": "across",
-      "answer": "DIE",
-      "clue": "Suffer or face the pain of death"
+      "answer": "USE",
+      "clue": "Employ"
     },
     {
       "row": 5,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "STOOPING",
-      "clue": "Having the back and shoulders rounded"
-    },
-    {
-      "row": 5,
-      "col": 3,
-      "direction": "down",
-      "answer": "SCOOP",
-      "clue": "A hollow concave shape made by removing something"
+      "answer": "CRIB",
+      "clue": "Copy – Nativity scene"
     },
     {
       "row": 6,
-      "col": 10,
-      "direction": "across",
-      "answer": "ELM",
-      "clue": "Any of various trees of the genus Ulmus: important timber or shade trees"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "REJOICE",
-      "clue": "Feel happiness or joy"
-    },
-    {
-      "row": 7,
-      "col": 5,
+      "col": 7,
       "direction": "down",
-      "answer": "CONVOY",
-      "clue": "A procession of land vehicles traveling together"
+      "answer": "REGARD",
+      "clue": "Esteem"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "across",
+      "answer": "TRAP",
+      "clue": "Snare"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "TICK",
+      "clue": "Mark of approval – parasite"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "down",
+      "answer": "CANCEL",
+      "clue": "Call off"
     },
     {
       "row": 8,
-      "col": 12,
-      "direction": "down",
-      "answer": "PAP",
-      "clue": "Worthless or oversimplified ideas"
-    },
-    {
-      "row": 9,
-      "col": 2,
+      "col": 1,
       "direction": "across",
-      "answer": "SPANK",
-      "clue": "A slap with the flat of the hand"
+      "answer": "AGE",
+      "clue": "Era"
     },
     {
-      "row": 9,
-      "col": 2,
-      "direction": "down",
-      "answer": "SLAB",
-      "clue": "Block consisting of a thick piece of something"
-    },
-    {
-      "row": 9,
-      "col": 8,
+      "row": 8,
+      "col": 5,
       "direction": "across",
-      "answer": "EXTRA",
-      "clue": "A minor actor in crowd scenes"
+      "answer": "BAG",
+      "clue": "Sack"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "BIT",
+      "clue": "Small piece"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "KEEP",
+      "clue": "Retain – castle stronghold"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "down",
+      "answer": "EAT",
+      "clue": "Dine"
     },
     {
       "row": 10,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "GEL",
-      "clue": "A colloid in a more solid form than a sol"
+      "answer": "CHATTER",
+      "clue": "Natter"
     },
     {
       "row": 10,
-      "col": 0,
+      "col": 4,
       "direction": "down",
-      "answer": "GOD",
-      "clue": "A man of such superior qualities that he seems like a deity to other people"
+      "answer": "TIE",
+      "clue": "Draw – neckwear"
     },
     {
       "row": 11,
-      "col": 5,
+      "col": 7,
       "direction": "across",
-      "answer": "OPTIMUM",
-      "clue": "Most favorable conditions or greatest degree or amount possible under given circumstances"
+      "answer": "DIRTY",
+      "clue": "Filthy"
     },
     {
       "row": 12,
-      "col": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "BRAY",
-      "clue": "Reduce to small pieces or particles by pounding or abrading"
+      "answer": "CLOSE",
+      "clue": "Near – shut"
     }
   ]
 }

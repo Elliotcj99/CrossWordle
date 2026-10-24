@@ -191,6 +191,7 @@ function layoutProblems(entries: readonly EntryFile[], rules: RuleSet): string[]
 
   const seenStarts = new Set<string>();
   const seenAnswers = new Set<string>();
+  const seenClues = new Set<string>();
   for (const entry of entries) {
     const start = `${entry.direction}:${cellKey(entry)}`;
     if (seenStarts.has(start)) problems.push(`Two entries are the ${describe(entry)}.`);
@@ -198,6 +199,9 @@ function layoutProblems(entries: readonly EntryFile[], rules: RuleSet): string[]
     if (seenAnswers.has(entry.answer))
       problems.push(`An answer is used twice (${describe(entry)}).`);
     seenAnswers.add(entry.answer);
+    const clue = entry.clue.trim().toLowerCase();
+    if (seenClues.has(clue)) problems.push(`A clue is used twice (${describe(entry)}).`);
+    seenClues.add(clue);
   }
 
   const letters = new Map<string, string>();

@@ -6,171 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "DREAM",
+      "clue": "Fantasy"
+    },
+    {
+      "row": 0,
+      "col": 7,
       "direction": "across",
-      "answer": "SIGH",
-      "clue": "An utterance made by exhaling audibly"
+      "answer": "DUET",
+      "clue": "Song for two"
     },
     {
       "row": 0,
-      "col": 0,
+      "col": 7,
       "direction": "down",
-      "answer": "SKI",
-      "clue": "Narrow wood or metal or plastic runners used in pairs for gliding over snow"
-    },
-    {
-      "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "GAP",
-      "clue": "A conspicuous disparity or difference as between two figures"
-    },
-    {
-      "row": 0,
-      "col": 5,
-      "direction": "across",
-      "answer": "SEPARATE",
-      "clue": "Act as a barrier between"
-    },
-    {
-      "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "SEDAN",
-      "clue": "A car that is closed and that has front and rear seats and two or four doors"
+      "answer": "DRESSING",
+      "clue": "Vinaigrette – bandage"
     },
     {
       "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "EULOGY",
-      "clue": "A formal expression of praise for someone who has died recently"
+      "answer": "GUT",
+      "clue": "Belly – instinct"
     },
     {
-      "row": 2,
-      "col": 2,
-      "direction": "across",
-      "answer": "POWDERED",
-      "clue": "Consisting of fine particles"
-    },
-    {
-      "row": 2,
-      "col": 3,
+      "row": 1,
+      "col": 1,
       "direction": "down",
-      "answer": "OPPRESS",
-      "clue": "Come down on or keep down by unjust use of one's authority"
+      "answer": "NOTE",
+      "clue": "Memo – musical sound"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "direction": "across",
+      "answer": "JAR",
+      "clue": "Pot – jolt"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "TOKEN",
+      "clue": "Symbol – voucher"
     },
     {
       "row": 2,
       "col": 7,
-      "direction": "down",
-      "answer": "RYE",
-      "clue": "The seed of the cereal grass"
+      "direction": "across",
+      "answer": "EXPECT",
+      "clue": "Anticipate"
     },
     {
       "row": 2,
       "col": 9,
       "direction": "down",
-      "answer": "DIG",
-      "clue": "Turn up, loosen, or remove earth"
+      "answer": "PAINT",
+      "clue": "Coat – daub"
+    },
+    {
+      "row": 2,
+      "col": 11,
+      "direction": "down",
+      "answer": "COMPENSATE",
+      "clue": "Make up for"
     },
     {
       "row": 3,
-      "col": 1,
+      "col": 5,
       "direction": "down",
-      "answer": "DISRUPT",
-      "clue": "Make a break in"
+      "answer": "THUNDER",
+      "clue": "Rumble after lightning"
     },
     {
       "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "SIXPENCE",
-      "clue": "A small coin of the United Kingdom worth six pennies"
+      "answer": "BEAM",
+      "clue": "Shine – roof timber"
     },
     {
       "row": 4,
-      "col": 9,
-      "direction": "across",
-      "answer": "GANG",
-      "clue": "An association of criminals"
+      "col": 0,
+      "direction": "down",
+      "answer": "BOW",
+      "clue": "Ribbon knot – ship's front"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "direction": "down",
+      "answer": "AGREEMENT",
+      "clue": "Deal"
     },
     {
       "row": 5,
-      "col": 8,
-      "direction": "down",
-      "answer": "TONS",
-      "clue": "A large number or amount"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "FREE",
-      "clue": "Relieve from"
-    },
-    {
-      "row": 6,
       "col": 5,
       "direction": "across",
-      "answer": "THROB",
-      "clue": "Pulsate or pound with abnormal force"
+      "answer": "UNION",
+      "clue": "Merger – workers' body"
     },
     {
       "row": 6,
-      "col": 6,
-      "direction": "down",
-      "answer": "HUMMING",
-      "clue": "The act of singing with closed lips"
-    },
-    {
-      "row": 6,
-      "col": 11,
-      "direction": "down",
-      "answer": "POMPOUS",
-      "clue": "Puffed up with vanity"
+      "col": 9,
+      "direction": "across",
+      "answer": "THEN",
+      "clue": "Next"
     },
     {
       "row": 7,
-      "col": 10,
-      "direction": "across",
-      "answer": "ZOO",
-      "clue": "The facility where wild animals are housed for exhibition"
-    },
-    {
-      "row": 8,
       "col": 1,
       "direction": "across",
-      "answer": "PESSIMISM",
-      "clue": "The feeling that things will turn out badly"
+      "answer": "WET",
+      "clue": "Damp"
     },
     {
-      "row": 8,
-      "col": 4,
+      "row": 7,
+      "col": 5,
+      "direction": "across",
+      "answer": "DIG",
+      "clue": "Excavate – jibe"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "COMFORT",
+      "clue": "Console"
+    },
+    {
+      "row": 9,
+      "col": 0,
       "direction": "down",
-      "answer": "SEX",
-      "clue": "Either of the two categories into which most organisms are divided"
+      "answer": "COPY",
+      "clue": "Duplicate"
     },
     {
-      "row": 8,
+      "row": 9,
+      "col": 6,
+      "direction": "down",
+      "answer": "TOSS",
+      "clue": "Flip"
+    },
+    {
+      "row": 9,
       "col": 9,
-      "direction": "down",
-      "answer": "METRE",
-      "clue": "The basic unit of length adopted under the Systeme International d'Unites"
+      "direction": "across",
+      "answer": "SWAY",
+      "clue": "Rock – influence"
     },
     {
       "row": 10,
-      "col": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "PRY",
+      "clue": "Snoop"
+    },
+    {
+      "row": 11,
+      "col": 0,
       "direction": "across",
-      "answer": "EXTINCTION",
-      "clue": "No longer active"
+      "answer": "PONY",
+      "clue": "Small horse"
+    },
+    {
+      "row": 11,
+      "col": 8,
+      "direction": "across",
+      "answer": "REFER",
+      "clue": "Mention"
     },
     {
       "row": 12,
-      "col": 3,
+      "col": 6,
       "direction": "across",
-      "answer": "ROUGE",
-      "clue": "Makeup consisting of a pink or red powder applied to the cheeks"
+      "answer": "SHY",
+      "clue": "Bashful"
     }
   ]
 }

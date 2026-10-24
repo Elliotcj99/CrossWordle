@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 10,
       "direction": "across",
-      "answer": "EWE",
-      "clue": "Female sheep"
+      "answer": "SUN",
+      "clue": "Star at the centre of our system"
     },
     {
       "row": 0,
-      "col": 1,
+      "col": 10,
       "direction": "down",
-      "answer": "WORSTED",
-      "clue": "A woolen fabric with a hard textured surface and no nap"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "down",
-      "answer": "WEAR",
-      "clue": "Be dressed in"
-    },
-    {
-      "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "MUTT",
-      "clue": "An inferior dog or one of mixed breed"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "LEVY",
-      "clue": "A charge imposed and collected"
+      "answer": "STEP",
+      "clue": "Pace – stair"
     },
     {
       "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "SHOUT",
-      "clue": "Utter in a loud voice"
+      "answer": "NATURE",
+      "clue": "Character – the great outdoors"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "RAKE",
+      "clue": "Garden tool – libertine"
     },
     {
       "row": 1,
       "col": 3,
       "direction": "across",
-      "answer": "SEDUCE",
-      "clue": "Induce to have sex"
+      "answer": "PITCH",
+      "clue": "Sports field – tone"
     },
     {
       "row": 1,
-      "col": 10,
+      "col": 3,
       "direction": "down",
-      "answer": "GARB",
-      "clue": "Clothing of a distinctive style or for a particular occasion"
+      "answer": "PART",
+      "clue": "Portion – role"
     },
     {
-      "row": 3,
-      "col": 1,
+      "row": 1,
+      "col": 6,
+      "direction": "down",
+      "answer": "CUE",
+      "clue": "Prompt – snooker stick"
+    },
+    {
+      "row": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "SECRETLY",
-      "clue": "In secrecy"
+      "answer": "AREA",
+      "clue": "Region"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "across",
+      "answer": "QUEST",
+      "clue": "Search"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "down",
+      "answer": "QUINTET",
+      "clue": "Group of five"
     },
     {
       "row": 3,
       "col": 3,
-      "direction": "down",
-      "answer": "CARPET",
-      "clue": "Floor covering consisting of a piece of thick heavy fabric"
-    },
-    {
-      "row": 4,
-      "col": 9,
       "direction": "across",
-      "answer": "ABET",
-      "clue": "Assist or encourage, usually in some wrongdoing"
+      "answer": "RISE",
+      "clue": "Ascend – pay increase"
     },
     {
-      "row": 4,
-      "col": 9,
-      "direction": "down",
-      "answer": "ALLIANCE",
-      "clue": "The state of being allied or confederated"
-    },
-    {
-      "row": 4,
-      "col": 11,
-      "direction": "down",
-      "answer": "ERRONEOUS",
-      "clue": "Containing or characterized by error"
-    },
-    {
-      "row": 5,
-      "col": 3,
-      "direction": "across",
-      "answer": "REMOVAL",
-      "clue": "Dismissal from office"
-    },
-    {
-      "row": 5,
+      "row": 3,
       "col": 5,
       "direction": "down",
-      "answer": "MIX",
-      "clue": "Open to members of all races and ethnic groups"
+      "answer": "SPONSOR",
+      "clue": "Backer"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "across",
+      "answer": "BID",
+      "clue": "Offer at auction"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "JET",
+      "clue": "Aircraft – spurt"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "across",
+      "answer": "ONE",
+      "clue": "Single unit"
+    },
+    {
+      "row": 5,
+      "col": 11,
+      "direction": "down",
+      "answer": "NERVOUS",
+      "clue": "Edgy"
     },
     {
       "row": 6,
-      "col": 9,
+      "col": 1,
       "direction": "across",
-      "answer": "LARK",
-      "clue": "North American songbirds having a yellow breast"
+      "answer": "LEARN",
+      "clue": "Study"
     },
     {
       "row": 7,
-      "col": 7,
-      "direction": "down",
-      "answer": "SLOGAN",
-      "clue": "A favorite saying of a group, organization or individual"
-    },
-    {
-      "row": 8,
-      "col": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "EMIT",
-      "clue": "Give off, send forth, or discharge"
-    },
-    {
-      "row": 8,
-      "col": 0,
-      "direction": "down",
-      "answer": "EDGY",
-      "clue": "Being in a tense state"
+      "answer": "SPEED",
+      "clue": "Pace"
     },
     {
       "row": 9,
-      "col": 4,
+      "col": 1,
+      "direction": "across",
+      "answer": "REPORT",
+      "clue": "Account – bang"
+    },
+    {
+      "row": 9,
+      "col": 1,
       "direction": "down",
-      "answer": "HUNT",
-      "clue": "Pursue for food or sport"
+      "answer": "ROOT",
+      "clue": "Origin"
     },
     {
       "row": 9,
       "col": 6,
-      "direction": "across",
-      "answer": "COUNTER",
-      "clue": "Table consisting of a horizontal surface over which business is transacted"
-    },
-    {
-      "row": 10,
-      "col": 2,
-      "direction": "across",
-      "answer": "HAUL",
-      "clue": "The quantity that was caught"
-    },
-    {
-      "row": 10,
-      "col": 2,
       "direction": "down",
-      "answer": "HAT",
-      "clue": "Headdress that protects the head from bad weather"
+      "answer": "TREE",
+      "clue": "Oak, say"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "LOOK",
+      "clue": "Glance"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "down",
+      "answer": "LAME",
+      "clue": "Weak, as an excuse"
     },
     {
       "row": 11,
-      "col": 7,
+      "col": 0,
       "direction": "across",
-      "answer": "APE",
-      "clue": "Any of various primates with short tails or no tail at all"
+      "answer": "CONFINE",
+      "clue": "Restrict"
+    },
+    {
+      "row": 11,
+      "col": 9,
+      "direction": "across",
+      "answer": "MUSH",
+      "clue": "Pulp"
     },
     {
       "row": 12,
-      "col": 4,
+      "col": 6,
       "direction": "across",
-      "answer": "THEN",
-      "clue": "Subsequently or soon afterward"
+      "answer": "EDGE",
+      "clue": "Rim"
     }
   ]
 }

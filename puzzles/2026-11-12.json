@@ -6,185 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "MAROON",
+      "clue": "Strand – dark red"
+    },
+    {
+      "row": 0,
+      "col": 7,
       "direction": "across",
-      "answer": "HOG",
-      "clue": "A person regarded as greedy and pig-like"
+      "answer": "CLUTCH",
+      "clue": "Grab – car pedal"
     },
     {
       "row": 0,
-      "col": 0,
+      "col": 7,
       "direction": "down",
-      "answer": "HOOF",
-      "clue": "The foot of an ungulate mammal"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "down",
-      "answer": "FLY",
-      "clue": "Travel through the air"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "ASSERTIVE",
-      "clue": "Aggressively self-assured"
+      "answer": "CHEEK",
+      "clue": "Impudence"
     },
     {
       "row": 0,
       "col": 10,
-      "direction": "across",
-      "answer": "CAR",
-      "clue": "A motor vehicle with four wheels"
+      "direction": "down",
+      "answer": "TRUE",
+      "clue": "Accurate"
     },
     {
       "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "RUMP",
-      "clue": "The part of an animal that corresponds to the human buttocks"
+      "answer": "HONK",
+      "clue": "Toot"
     },
     {
       "row": 1,
       "col": 3,
       "direction": "across",
-      "answer": "SLYNESS",
-      "clue": "Shrewdness as demonstrated by being skilled in deception"
+      "answer": "SMASH",
+      "clue": "Shatter – big hit"
     },
     {
-      "row": 2,
+      "row": 1,
+      "col": 3,
+      "direction": "down",
+      "answer": "SCRAPE",
+      "clue": "Graze"
+    },
+    {
+      "row": 3,
       "col": 2,
-      "direction": "down",
-      "answer": "DRAMA",
-      "clue": "An episode that is turbulent or highly emotional"
-    },
-    {
-      "row": 2,
-      "col": 10,
       "direction": "across",
-      "answer": "HAM",
-      "clue": "Meat cut from the thigh of a hog"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "down",
-      "answer": "HEW",
-      "clue": "Make or shape as with an axe"
+      "answer": "GROOVE",
+      "clue": "Channel – rhythm"
     },
     {
       "row": 3,
-      "col": 0,
+      "col": 9,
       "direction": "across",
-      "answer": "FORD",
-      "clue": "The act of crossing a stream or river by wading or in a car or on a horse"
-    },
-    {
-      "row": 3,
-      "col": 6,
-      "direction": "down",
-      "answer": "CAPRICIOUS",
-      "clue": "Changeable"
+      "answer": "DECK",
+      "clue": "Floor of a ship – pack of cards"
     },
     {
       "row": 4,
-      "col": 4,
-      "direction": "across",
-      "answer": "SPARROW",
-      "clue": "Any of several small dull-colored singing birds feeding on seeds or insects"
-    },
-    {
-      "row": 4,
-      "col": 4,
+      "col": 1,
       "direction": "down",
-      "answer": "SIT",
-      "clue": "Be around, often idly or without specific purpose"
+      "answer": "PAT",
+      "clue": "Tap"
     },
     {
       "row": 5,
-      "col": 0,
+      "col": 9,
+      "direction": "across",
+      "answer": "BOIL",
+      "clue": "Heat to bubbling"
+    },
+    {
+      "row": 5,
+      "col": 9,
       "direction": "down",
-      "answer": "SCOUR",
-      "clue": "Examine minutely"
+      "answer": "BURNING",
+      "clue": "Fiery"
     },
     {
       "row": 5,
       "col": 11,
       "direction": "down",
-      "answer": "CREASE",
-      "clue": "Scrape gently"
+      "answer": "IMAGE",
+      "clue": "Picture"
     },
     {
       "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "CLATTER",
-      "clue": "A rattling noise"
+      "answer": "STEEL",
+      "clue": "Strong alloy – nerve"
     },
     {
       "row": 6,
-      "col": 3,
+      "col": 0,
       "direction": "down",
-      "answer": "TIME",
-      "clue": "An instance or single occasion for some event"
+      "answer": "SUNSET",
+      "clue": "Dusk"
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "direction": "down",
+      "answer": "ENJOY",
+      "clue": "Relish"
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "direction": "down",
+      "answer": "LULL",
+      "clue": "Calm spell"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "direction": "down",
+      "answer": "KID",
+      "clue": "Child – tease"
     },
     {
       "row": 7,
-      "col": 6,
+      "col": 4,
       "direction": "across",
-      "answer": "INVADE",
-      "clue": "To intrude upon, infringe, encroach on, violate"
+      "answer": "UNIVERSAL",
+      "clue": "Worldwide"
     },
     {
       "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "RIVET",
-      "clue": "Direct one's attention on something"
+      "answer": "SHOAL",
+      "clue": "Group of fish"
     },
     {
       "row": 9,
-      "col": 2,
-      "direction": "down",
-      "answer": "VEAL",
-      "clue": "Meat from a calf"
-    },
-    {
-      "row": 10,
-      "col": 8,
+      "col": 7,
       "direction": "across",
-      "answer": "BERET",
-      "clue": "A cap with no brim or bill"
+      "answer": "DRIVER",
+      "clue": "Chauffeur – golf club"
     },
     {
-      "row": 10,
-      "col": 10,
+      "row": 9,
+      "col": 7,
       "direction": "down",
-      "answer": "ROW",
-      "clue": "An arrangement of objects or people side by side in a line"
+      "answer": "DRUM",
+      "clue": "Percussion instrument"
     },
     {
-      "row": 10,
+      "row": 9,
       "col": 12,
       "direction": "down",
-      "answer": "TWO",
-      "clue": "The cardinal number that is the sum of one and one or a numeral representing this number"
+      "answer": "RUIN",
+      "clue": "Destroy"
     },
     {
       "row": 11,
-      "col": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "GRACEFUL",
-      "clue": "Characterized by beauty of movement, style, form, or execution"
+      "answer": "YOUNG",
+      "clue": "Youthful"
     },
     {
       "row": 12,
-      "col": 8,
+      "col": 10,
       "direction": "across",
-      "answer": "NOW",
-      "clue": "In the historical present"
+      "answer": "CAN",
+      "clue": "Tin"
     }
   ]
 }

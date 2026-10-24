@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
-      "direction": "across",
-      "answer": "FLAK",
-      "clue": "A slick spokesperson who can turn any criticism to the advantage of their employer"
-    },
-    {
-      "row": 0,
       "col": 3,
       "direction": "down",
-      "answer": "ADDICT",
-      "clue": "Someone who is physiologically dependent on a substance or activity"
+      "answer": "LONG",
+      "clue": "Lengthy – yearn"
     },
     {
       "row": 0,
-      "col": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "DISTANT",
+      "clue": "Far"
+    },
+    {
+      "row": 0,
+      "col": 10,
       "direction": "across",
-      "answer": "MARSH",
-      "clue": "Low-lying wet land with grassy vegetation"
+      "answer": "SIN",
+      "clue": "Wrongdoing"
     },
     {
       "row": 0,
       "col": 10,
       "direction": "down",
-      "answer": "RATE",
-      "clue": "A magnitude or frequency relative to a time unit"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "HANDY",
-      "clue": "Easy to reach"
+      "answer": "SERVE",
+      "clue": "Wait on – start a rally"
     },
     {
       "row": 1,
-      "col": 0,
+      "col": 1,
       "direction": "down",
-      "answer": "SWAB",
-      "clue": "Cleaning implement consisting of absorbent material fastened to a handle"
+      "answer": "POD",
+      "clue": "Peas' casing"
     },
     {
       "row": 1,
       "col": 5,
       "direction": "across",
-      "answer": "SON",
-      "clue": "A male human offspring"
+      "answer": "NIBBLE",
+      "clue": "Small bite"
     },
     {
       "row": 1,
-      "col": 5,
+      "col": 8,
       "direction": "down",
-      "answer": "SUM",
-      "clue": "A quantity of money"
+      "answer": "BOX",
+      "clue": "Carton – fight with gloves"
     },
     {
       "row": 2,
-      "col": 0,
+      "col": 10,
       "direction": "across",
-      "answer": "WARD",
-      "clue": "A person who is under the protection or in the custody of another"
+      "answer": "RAP",
+      "clue": "Knock – spoken music"
     },
     {
-      "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "IMMOBILE",
-      "clue": "Not capable of movement or of being moved"
-    },
-    {
-      "row": 3,
-      "col": 7,
+      "row": 2,
+      "col": 12,
       "direction": "down",
-      "answer": "BRIM",
-      "clue": "The top edge of a vessel or other container"
+      "answer": "POSITIVE",
+      "clue": "Optimistic – sure"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "direction": "across",
+      "answer": "DIGEST",
+      "clue": "Summary – process food"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "across",
+      "answer": "LESS",
+      "clue": "Fewer"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "down",
+      "answer": "LOOSEN",
+      "clue": "Slacken"
     },
     {
       "row": 5,
-      "col": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "DUMP",
+      "clue": "Tip"
+    },
+    {
+      "row": 5,
+      "col": 2,
       "direction": "across",
-      "answer": "WATERTIGHT",
-      "clue": "Without flaws or loopholes"
+      "answer": "SPRING",
+      "clue": "Coil – season"
     },
     {
       "row": 5,
       "col": 2,
       "direction": "down",
-      "answer": "ADD",
-      "clue": "State or say further"
-    },
-    {
-      "row": 5,
-      "col": 5,
-      "direction": "down",
-      "answer": "RESPECTS",
-      "clue": "A formal expression of esteem"
-    },
-    {
-      "row": 5,
-      "col": 10,
-      "direction": "down",
-      "answer": "TRINKET",
-      "clue": "Cheap showy jewelry or ornament on clothing"
+      "answer": "SCHOOL",
+      "clue": "Academy – group of fish"
     },
     {
       "row": 6,
-      "col": 0,
-      "direction": "down",
-      "answer": "ABOARD",
-      "clue": "On a ship, train, plane or other vehicle"
-    },
-    {
-      "row": 6,
-      "col": 12,
-      "direction": "down",
-      "answer": "JERSEY",
-      "clue": "A close-fitting pullover shirt"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "BUD",
-      "clue": "A partially opened flower"
-    },
-    {
-      "row": 7,
       "col": 8,
       "direction": "across",
-      "answer": "CHIME",
-      "clue": "A percussion instrument consisting of a set of tuned bells that are struck with a hammer"
+      "answer": "ROAST",
+      "clue": "Sunday lunch dish"
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "LAYER",
+      "clue": "Tier – hen"
     },
     {
       "row": 8,
-      "col": 3,
-      "direction": "across",
-      "answer": "APPAL",
-      "clue": "Strike with disgust or revulsion"
-    },
-    {
-      "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "AMP",
-      "clue": "The basic unit of electric current adopted under the Systeme International d'Unites"
+      "answer": "PROFANE",
+      "clue": "Blasphemous"
     },
     {
       "row": 9,
-      "col": 2,
+      "col": 7,
+      "direction": "across",
+      "answer": "RENT",
+      "clue": "Hire – tear"
+    },
+    {
+      "row": 9,
+      "col": 7,
       "direction": "down",
-      "answer": "PAST",
-      "clue": "The time that has elapsed"
+      "answer": "RUFF",
+      "clue": "Elizabethan collar"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "down",
+      "answer": "TUCK",
+      "clue": "Food at boarding school – fold in"
     },
     {
       "row": 10,
-      "col": 4,
-      "direction": "across",
-      "answer": "SCUFFLE",
-      "clue": "Disorderly fighting"
-    },
-    {
-      "row": 11,
       "col": 0,
       "direction": "across",
-      "answer": "DISK",
-      "clue": "Something with a round shape resembling a flat circular plate"
+      "answer": "HALTER",
+      "clue": "Horse's headgear"
+    },
+    {
+      "row": 10,
+      "col": 1,
+      "direction": "down",
+      "answer": "ACT",
+      "clue": "Law passed by Parliament"
     },
     {
       "row": 11,
       "col": 10,
       "direction": "across",
-      "answer": "TRY",
-      "clue": "Make an effort or attempt"
+      "answer": "CUP",
+      "clue": "Mug – trophy"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "STAY",
+      "clue": "Remain"
     },
     {
       "row": 12,
       "col": 5,
       "direction": "across",
-      "answer": "STOMP",
-      "clue": "A dance involving a rhythmical stamping step"
+      "answer": "LOFT",
+      "clue": "Attic"
     }
   ]
 }

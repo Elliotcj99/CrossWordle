@@ -84,6 +84,13 @@ describe('puzzle validation', () => {
     expect(problems).toContain('Every entry must connect to the others through crossings.');
   });
 
+  it('rejects two entries with the same clue', () => {
+    const problems = problemsOf(
+      withEntries([cat, { row: 0, col: 0, direction: 'down', answer: 'CUB', clue: 'pet' }]),
+    );
+    expect(problems.some((p) => p.includes('A clue is used twice'))).toBe(true);
+  });
+
   it('rejects entries outside the allowed lengths', () => {
     const problems = problemsOf(
       withEntries([{ row: 0, col: 0, direction: 'across', answer: 'OX', clue: 'Bovine' }]),

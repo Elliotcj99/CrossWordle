@@ -64,8 +64,8 @@
 
   <footer>
     <p>
-      Clues adapted from <a href="https://en-word.net">Open English WordNet</a> (CC BY 4.0) and
-      Princeton WordNet. Word lists from ENABLE and
+      Clues written for CrossWordle, with answers chosen using
+      <a href="https://en-word.net">Open English WordNet</a> (CC BY 4.0). Word lists from ENABLE and
       <a href="https://wordlist.aspell.net">SCOWL</a>. Licences:
       <a href="puzzles/NOTICE.md">clues</a>, <a href="words/NOTICE.md">word lists</a>.
     </p>

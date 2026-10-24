@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
+      "col": 2,
       "direction": "across",
-      "answer": "HARPOON",
-      "clue": "A spear with a shaft and barbed point for throwing"
+      "answer": "SNUB",
+      "clue": "Cold-shoulder"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 5,
       "direction": "down",
-      "answer": "ANT",
-      "clue": "Social insect living in organized colonies"
+      "answer": "BOWL",
+      "clue": "Dish – deliver at cricket"
     },
     {
       "row": 0,
-      "col": 6,
+      "col": 10,
       "direction": "down",
-      "answer": "PAIN",
-      "clue": "A symptom of some physical hurt or disorder"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "OPUS",
-      "clue": "A musical work that has been created"
+      "answer": "PAIR",
+      "clue": "Couple"
     },
     {
       "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "BRAZIER",
-      "clue": "Large metal container in which coal or charcoal is burned"
+      "answer": "LEFT",
+      "clue": "Port side – departed"
     },
     {
       "row": 1,
-      "col": 2,
-      "direction": "down",
-      "answer": "FAUNA",
-      "clue": "All the animal life in a particular region or period"
-    },
-    {
-      "row": 1,
-      "col": 10,
-      "direction": "across",
-      "answer": "FUR",
-      "clue": "The dressed hairy coat of a mammal"
-    },
-    {
-      "row": 1,
-      "col": 10,
-      "direction": "down",
-      "answer": "FELON",
-      "clue": "Someone who has committed a crime or has been legally convicted of a crime"
-    },
-    {
-      "row": 2,
       "col": 0,
       "direction": "down",
-      "answer": "UMBRELLA",
-      "clue": "A lightweight handheld collapsible canopy"
+      "answer": "WHIRL",
+      "clue": "Spin"
     },
     {
-      "row": 2,
-      "col": 2,
-      "direction": "across",
-      "answer": "ATTRIBUTE",
-      "clue": "A construct whereby objects or individuals can be distinguished"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "BANG",
-      "clue": "Strike violently"
-    },
-    {
-      "row": 4,
+      "row": 1,
       "col": 5,
-      "direction": "down",
-      "answer": "MOIST",
-      "clue": "Slightly wet"
-    },
-    {
-      "row": 5,
-      "col": 4,
       "direction": "across",
-      "answer": "TOLERANCE",
-      "clue": "The power or capacity of an organism to tolerate unfavorable environmental conditions"
+      "answer": "OFFSTAGE",
+      "clue": "In the wings"
     },
     {
-      "row": 5,
+      "row": 1,
       "col": 8,
       "direction": "down",
-      "answer": "RUSTIC",
-      "clue": "Characteristic of rural life"
+      "answer": "SAP",
+      "clue": "Drain – fool"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "HOLLOW",
+      "clue": "Empty"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "direction": "down",
+      "answer": "LENGTH",
+      "clue": "Extent"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "LIMP",
+      "clue": "Floppy – hobble"
+    },
+    {
+      "row": 3,
+      "col": 10,
+      "direction": "across",
+      "answer": "ROT",
+      "clue": "Decay – nonsense"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "RANK",
+      "clue": "Status – foul-smelling"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "down",
+      "answer": "BLOCKADE",
+      "clue": "Siege barrier"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "direction": "across",
+      "answer": "SHALLOW",
+      "clue": "Superficial"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "direction": "down",
+      "answer": "HIDE",
+      "clue": "Conceal – animal skin"
     },
     {
       "row": 6,
-      "col": 3,
-      "direction": "down",
-      "answer": "MERE",
-      "clue": "Being nothing more than specified"
-    },
-    {
-      "row": 7,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "LURE",
-      "clue": "Qualities that attract by seeming to promise some kind of reward"
+      "answer": "STAMP",
+      "clue": "Seal – postage label"
     },
     {
-      "row": 7,
-      "col": 10,
-      "direction": "down",
-      "answer": "NOTIFY",
-      "clue": "Inform of something"
-    },
-    {
-      "row": 8,
-      "col": 3,
-      "direction": "across",
-      "answer": "RETENTION",
-      "clue": "The act of retaining something"
-    },
-    {
-      "row": 8,
-      "col": 6,
-      "direction": "down",
-      "answer": "EVADE",
-      "clue": "Avoid or try to avoid fulfilling, answering, or performing"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "across",
-      "answer": "AIDE",
-      "clue": "An officer who acts as military assistant to a more senior officer"
-    },
-    {
-      "row": 9,
-      "col": 2,
-      "direction": "down",
-      "answer": "DIRT",
-      "clue": "The part of the earth's surface consisting of humus and disintegrated rock"
-    },
-    {
-      "row": 10,
+      "row": 6,
       "col": 5,
+      "direction": "down",
+      "answer": "PURPOSE",
+      "clue": "Aim"
+    },
+    {
+      "row": 7,
+      "col": 7,
       "direction": "across",
-      "answer": "HATCHING",
-      "clue": "The production of young from an egg"
+      "answer": "DECENT",
+      "clue": "Respectable"
+    },
+    {
+      "row": 7,
+      "col": 11,
+      "direction": "down",
+      "answer": "NUDE",
+      "clue": "Unclothed"
+    },
+    {
+      "row": 8,
+      "col": 3,
+      "direction": "down",
+      "answer": "NOISE",
+      "clue": "Din"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "across",
+      "answer": "STOOP",
+      "clue": "Bend – lower yourself"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "down",
+      "answer": "SLOW",
+      "clue": "Sluggish"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "across",
+      "answer": "BAND",
+      "clue": "Group of musicians"
     },
     {
       "row": 10,
-      "col": 12,
+      "col": 7,
       "direction": "down",
-      "answer": "GEE",
-      "clue": "Turn to the right side"
+      "answer": "DRY",
+      "clue": "Arid"
     },
     {
       "row": 11,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "BRAT",
-      "clue": "A very troublesome child"
+      "answer": "BOSS",
+      "clue": "Manager"
     },
     {
-      "row": 12,
+      "row": 11,
       "col": 5,
       "direction": "across",
-      "answer": "MEEKLY",
-      "clue": "In a submissive or spiritless manner"
+      "answer": "SURVEY",
+      "clue": "Questionnaire – inspect"
     }
   ]
 }

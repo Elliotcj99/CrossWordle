@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "MUSH",
-      "clue": "Any soft or soggy mass"
+      "answer": "RAT",
+      "clue": "Rodent – traitor"
+    },
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "READ",
+      "clue": "Peruse"
     },
     {
       "row": 0,
       "col": 2,
       "direction": "down",
-      "answer": "UPBEAT",
-      "clue": "A contented state of being happy and healthy and prosperous"
+      "answer": "TEST",
+      "clue": "Exam"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 8,
       "direction": "across",
-      "answer": "ALL",
-      "clue": "Completely given to or absorbed by"
+      "answer": "SNIPE",
+      "clue": "Criticise – marsh bird"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 9,
       "direction": "down",
-      "answer": "AMPHIBIOUS",
-      "clue": "Relating to or characteristic of animals of the class Amphibia"
+      "answer": "NEAR",
+      "clue": "Close"
     },
     {
-      "row": 1,
-      "col": 0,
+      "row": 0,
+      "col": 11,
       "direction": "down",
-      "answer": "USABLE",
-      "clue": "Capable of being put to use"
+      "answer": "PREDICATE",
+      "clue": "Base"
     },
     {
       "row": 1,
       "col": 5,
-      "direction": "down",
-      "answer": "MOWN",
-      "clue": "Cut down with a hand implement or machine"
+      "direction": "across",
+      "answer": "GUM",
+      "clue": "Chewy sweet – gingiva"
     },
     {
       "row": 1,
       "col": 7,
-      "direction": "across",
-      "answer": "PALM",
-      "clue": "The inner surface of the hand from the wrist to the base of the fingers"
-    },
-    {
-      "row": 1,
-      "col": 8,
       "direction": "down",
-      "answer": "ANIMATION",
-      "clue": "The condition of living or the state of being alive"
+      "answer": "MEASURE",
+      "clue": "Gauge – step"
     },
     {
       "row": 2,
-      "col": 0,
+      "col": 7,
       "direction": "across",
-      "answer": "SOB",
-      "clue": "Convulsive gasp made while weeping"
-    },
-    {
-      "row": 2,
-      "col": 4,
-      "direction": "across",
-      "answer": "DOT",
-      "clue": "Distribute loosely"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "across",
-      "answer": "POP",
-      "clue": "Bulge outward"
-    },
-    {
-      "row": 2,
-      "col": 12,
-      "direction": "down",
-      "answer": "PLAYER",
-      "clue": "A person who participates in or is skilled at some game"
+      "answer": "ENAMEL",
+      "clue": "Glossy paint – tooth coating"
     },
     {
       "row": 3,
-      "col": 7,
+      "col": 2,
       "direction": "across",
-      "answer": "NIGH",
-      "clue": "Not far distant in time or space or degree or circumstances"
+      "answer": "TYPE",
+      "clue": "Kind"
     },
     {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "BEARING",
-      "clue": "Relevant relation or interconnection"
-    },
-    {
-      "row": 4,
+      "row": 3,
       "col": 4,
       "direction": "down",
-      "answer": "IMPORTANT",
-      "clue": "Of great significance or value"
+      "answer": "PRIZE",
+      "clue": "Award"
     },
     {
       "row": 4,
-      "col": 6,
-      "direction": "down",
-      "answer": "GROOVY",
-      "clue": "Excellent"
+      "col": 10,
+      "direction": "across",
+      "answer": "HIT",
+      "clue": "Strike – chart-topper"
     },
     {
       "row": 5,
-      "col": 10,
+      "col": 0,
       "direction": "across",
-      "answer": "BUY",
-      "clue": "Obtain by purchase"
+      "answer": "WEB",
+      "clue": "Spider's trap – internet"
     },
     {
-      "row": 6,
-      "col": 3,
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "WORDS",
+      "clue": "Lyrics"
+    },
+    {
+      "row": 5,
+      "col": 6,
       "direction": "across",
-      "answer": "UPROOT",
-      "clue": "Move forcibly from their homeland into a new and foreign environment"
+      "answer": "BUFF",
+      "clue": "Enthusiast – polish"
     },
     {
       "row": 7,
-      "col": 2,
-      "direction": "down",
-      "answer": "TWIST",
-      "clue": "An unforeseen development"
-    },
-    {
-      "row": 9,
       "col": 0,
+      "direction": "across",
+      "answer": "RAISE",
+      "clue": "Lift – pay rise"
+    },
+    {
+      "row": 7,
+      "col": 3,
       "direction": "down",
-      "answer": "MUD",
-      "clue": "Water soaked soil"
+      "answer": "STABLE",
+      "clue": "Steady – horse's home"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "across",
+      "answer": "RESORT",
+      "clue": "Holiday spot – last option"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "ROLLER",
+      "clue": "Hair curler – lawn smoother"
     },
     {
       "row": 9,
-      "col": 4,
+      "col": 3,
       "direction": "across",
-      "answer": "TOY",
-      "clue": "An artifact designed to be played with"
+      "answer": "ANALYSIS",
+      "clue": "Close examination"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "down",
+      "answer": "SEND",
+      "clue": "Post"
     },
     {
       "row": 9,
       "col": 10,
-      "direction": "across",
-      "answer": "SLY",
-      "clue": "Marked by skill in deception"
+      "direction": "down",
+      "answer": "SIT",
+      "clue": "Be seated – pose"
     },
     {
       "row": 9,
-      "col": 11,
+      "col": 12,
       "direction": "down",
-      "answer": "LACY",
-      "clue": "Made of or resembling lace"
+      "answer": "BUY",
+      "clue": "Purchase"
     },
     {
       "row": 11,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "DOTING",
-      "clue": "Extravagantly or foolishly loving and indulgent"
+      "answer": "FILM",
+      "clue": "Movie"
+    },
+    {
+      "row": 11,
+      "col": 10,
+      "direction": "across",
+      "answer": "TOY",
+      "clue": "Plaything"
     },
     {
       "row": 12,
-      "col": 6,
+      "col": 5,
       "direction": "across",
-      "answer": "INFAMY",
-      "clue": "A state of extreme dishonor"
+      "answer": "GRADE",
+      "clue": "Mark – rank"
     }
   ]
 }

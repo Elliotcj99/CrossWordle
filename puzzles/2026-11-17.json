@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "across",
-      "answer": "CARD",
-      "clue": "A rectangular piece of stiff paper used to send messages"
-    },
-    {
-      "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "CUT",
-      "clue": "Separate with or as if with an instrument"
-    },
-    {
-      "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "REDO",
-      "clue": "Make new"
-    },
-    {
-      "row": 0,
       "col": 5,
       "direction": "down",
-      "answer": "HEN",
-      "clue": "Adult female chicken"
+      "answer": "LOOSE",
+      "clue": "Slack"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "PANEL",
+      "clue": "Board of experts"
     },
     {
       "row": 0,
       "col": 8,
       "direction": "down",
-      "answer": "RAT",
-      "clue": "Desert one's party or group of friends, for example, for one's personal advantage"
+      "answer": "PET",
+      "clue": "Darling – stroke"
     },
     {
       "row": 0,
-      "col": 11,
+      "col": 10,
       "direction": "down",
-      "answer": "INCISOR",
-      "clue": "A tooth for cutting or gnawing"
+      "answer": "NAP",
+      "clue": "Snooze"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "LIP",
+      "clue": "Cheek – rim"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "down",
+      "answer": "UNIFY",
+      "clue": "Combine"
     },
     {
       "row": 1,
       "col": 4,
       "direction": "across",
-      "answer": "TESTAMENT",
-      "clue": "A profession of belief"
+      "answer": "POISE",
+      "clue": "Composure"
     },
     {
-      "row": 3,
-      "col": 1,
+      "row": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "GOB",
-      "clue": "A man who serves as a sailor"
+      "answer": "BONE",
+      "clue": "Skeleton part"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "down",
+      "answer": "BUST",
+      "clue": "Broken – sculpted head and shoulders"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "across",
+      "answer": "TIP",
+      "clue": "Hint – gratuity"
     },
     {
       "row": 3,
-      "col": 1,
+      "col": 11,
       "direction": "down",
-      "answer": "GLEN",
-      "clue": "A narrow secluded valley"
-    },
-    {
-      "row": 3,
-      "col": 9,
-      "direction": "down",
-      "answer": "FOXY",
-      "clue": "Marked by skill in deception"
+      "answer": "FLARE",
+      "clue": "Distress signal"
     },
     {
       "row": 4,
+      "col": 2,
+      "direction": "across",
+      "answer": "FRIENDLY",
+      "clue": "Amiable"
+    },
+    {
+      "row": 4,
+      "col": 8,
+      "direction": "down",
+      "answer": "LOSE",
+      "clue": "Mislay"
+    },
+    {
+      "row": 6,
       "col": 4,
+      "direction": "down",
+      "answer": "SOLE",
+      "clue": "Only – flatfish"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "direction": "down",
+      "answer": "LIST",
+      "clue": "Inventory – lean"
+    },
+    {
+      "row": 6,
+      "col": 8,
       "direction": "across",
-      "answer": "GRIEVOUS",
-      "clue": "Causing fear or anxiety by threatening great harm"
-    },
-    {
-      "row": 4,
-      "col": 7,
-      "direction": "down",
-      "answer": "EDICT",
-      "clue": "A formal or authoritative proclamation"
-    },
-    {
-      "row": 5,
-      "col": 3,
-      "direction": "down",
-      "answer": "LIED",
-      "clue": "A German art song of the 19th century for voice and piano"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "INFIDELITY",
-      "clue": "The quality of being unfaithful"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "down",
-      "answer": "ICON",
-      "clue": "A visual representation produced on a surface"
-    },
-    {
-      "row": 6,
-      "col": 5,
-      "direction": "down",
-      "answer": "EMPLOY",
-      "clue": "Put into service"
+      "answer": "SNARL",
+      "clue": "Growl"
     },
     {
       "row": 7,
-      "col": 10,
-      "direction": "down",
-      "answer": "FINISH",
-      "clue": "A decorative texture or appearance of a surface"
+      "col": 3,
+      "direction": "across",
+      "answer": "NOTICE",
+      "clue": "Spot"
     },
     {
       "row": 8,
-      "col": 5,
-      "direction": "across",
-      "answer": "PETUNIA",
-      "clue": "Any of numerous tropical herbs having fluted funnel-shaped flowers"
+      "col": 1,
+      "direction": "down",
+      "answer": "BUNK",
+      "clue": "Bed – nonsense"
     },
     {
       "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "NAP",
-      "clue": "A period of time spent sleeping"
+      "answer": "PURGE",
+      "clue": "Clear out"
     },
     {
-      "row": 10,
-      "col": 3,
-      "direction": "across",
-      "answer": "SWORD",
-      "clue": "A cutting or thrusting weapon that has a long metal blade and a hilt with a hand guard"
-    },
-    {
-      "row": 10,
+      "row": 9,
       "col": 3,
       "direction": "down",
-      "answer": "SUN",
-      "clue": "A person considered as a source of warmth or energy or glory etc"
+      "answer": "GOOD",
+      "clue": "Fine – well-behaved"
+    },
+    {
+      "row": 9,
+      "col": 6,
+      "direction": "across",
+      "answer": "TIED",
+      "clue": "Bound – level"
+    },
+    {
+      "row": 9,
+      "col": 7,
+      "direction": "down",
+      "answer": "IDLE",
+      "clue": "Lazy"
     },
     {
       "row": 10,
-      "col": 9,
+      "col": 5,
+      "direction": "down",
+      "answer": "RIP",
+      "clue": "Tear"
+    },
+    {
+      "row": 10,
+      "col": 10,
       "direction": "across",
-      "answer": "VIEW",
-      "clue": "A way of regarding situations or topics etc."
+      "answer": "LUG",
+      "clue": "Drag"
     },
     {
       "row": 10,
       "col": 12,
       "direction": "down",
-      "answer": "WOK",
-      "clue": "Pan with a convex bottom"
+      "answer": "GUN",
+      "clue": "Firearm"
     },
     {
       "row": 12,
-      "col": 0,
+      "col": 3,
       "direction": "across",
-      "answer": "PLANT",
-      "clue": "Put or set into the ground"
-    },
-    {
-      "row": 12,
-      "col": 6,
-      "direction": "across",
-      "answer": "CATCH",
-      "clue": "Discover or come upon accidentally, suddenly, or unexpectedly"
+      "answer": "DEPRESSION",
+      "clue": "Slump"
     }
   ]
 }

@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
-      "direction": "down",
-      "answer": "SPEW",
-      "clue": "Expel or eject from the mouth"
+      "col": 3,
+      "direction": "across",
+      "answer": "STING",
+      "clue": "Bee's weapon – con"
     },
     {
       "row": 0,
       "col": 3,
       "direction": "down",
-      "answer": "OPTIC",
-      "clue": "Of or relating to or resembling the eye"
+      "answer": "SPIKE",
+      "clue": "Point"
     },
     {
       "row": 0,
       "col": 5,
       "direction": "down",
-      "answer": "FACT",
-      "clue": "A piece of information about circumstances that exist or events that have occurred"
-    },
-    {
-      "row": 0,
-      "col": 7,
-      "direction": "across",
-      "answer": "BURN",
-      "clue": "Destroy by fire"
-    },
-    {
-      "row": 0,
-      "col": 7,
-      "direction": "down",
-      "answer": "BORED",
-      "clue": "Tired of the world"
+      "answer": "INDUCTION",
+      "clue": "Initiation"
     },
     {
       "row": 0,
       "col": 10,
       "direction": "down",
-      "answer": "NOD",
-      "clue": "Lower and raise the head, as to indicate assent or agreement or confirmation"
+      "answer": "SEED",
+      "clue": "Pip – rank in a tournament"
     },
     {
-      "row": 2,
-      "col": 7,
-      "direction": "across",
-      "answer": "READER",
-      "clue": "A public lecturer at certain universities"
-    },
-    {
-      "row": 2,
+      "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "RELISH",
-      "clue": "Vigorous and enthusiastic enjoyment"
+      "answer": "GIFT",
+      "clue": "Present – talent"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "HARP",
+      "clue": "Angel's instrument"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "down",
+      "answer": "ADOPT",
+      "clue": "Take on as your own"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "down",
+      "answer": "LAND",
+      "clue": "Ground – touch down"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "direction": "across",
+      "answer": "DAMAGE",
+      "clue": "Harm"
     },
     {
       "row": 3,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "WHITTLE",
-      "clue": "Cut small bits or pare shavings from"
+      "answer": "BOOK",
+      "clue": "Reserve – novel"
+    },
+    {
+      "row": 3,
+      "col": 10,
+      "direction": "across",
+      "answer": "DOT",
+      "clue": "Spot"
+    },
+    {
+      "row": 3,
+      "col": 11,
+      "direction": "down",
+      "answer": "OIL",
+      "clue": "Crude – lubricant"
     },
     {
       "row": 4,
-      "col": 9,
-      "direction": "down",
-      "answer": "RABBIT",
-      "clue": "Any of various burrowing animals of the family Leporidae having long ears and short tails"
-    },
-    {
-      "row": 5,
-      "col": 4,
-      "direction": "down",
-      "answer": "JAR",
-      "clue": "Be incompatible"
-    },
-    {
-      "row": 5,
-      "col": 6,
-      "direction": "down",
-      "answer": "PUN",
-      "clue": "A humorous play on words"
-    },
-    {
-      "row": 5,
-      "col": 8,
+      "col": 3,
       "direction": "across",
-      "answer": "RABBI",
-      "clue": "Spiritual leader of a Jewish congregation"
+      "answer": "EXCLUDE",
+      "clue": "Leave out"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "across",
+      "answer": "PLY",
+      "clue": "Layer – travel regularly"
+    },
+    {
+      "row": 5,
+      "col": 12,
+      "direction": "down",
+      "answer": "YIELD",
+      "clue": "Give way – harvest"
     },
     {
       "row": 6,
-      "col": 1,
+      "col": 2,
       "direction": "across",
-      "answer": "MAMA",
-      "clue": "Informal terms for a mother"
+      "answer": "VARIABLE",
+      "clue": "Changeable"
     },
     {
-      "row": 7,
+      "row": 6,
+      "col": 2,
+      "direction": "down",
+      "answer": "VEIL",
+      "clue": "Bride's face covering"
+    },
+    {
+      "row": 8,
       "col": 4,
       "direction": "across",
-      "answer": "RING",
-      "clue": "A characteristic sound"
-    },
-    {
-      "row": 7,
-      "col": 5,
-      "direction": "down",
-      "answer": "INDEED",
-      "clue": "In truth"
-    },
-    {
-      "row": 7,
-      "col": 7,
-      "direction": "down",
-      "answer": "GREED",
-      "clue": "Excessive desire to acquire or possess more than one needs or deserves"
-    },
-    {
-      "row": 7,
-      "col": 9,
-      "direction": "across",
-      "answer": "BUSH",
-      "clue": "A low woody perennial plant usually having several major stems"
+      "answer": "ENDEMIC",
+      "clue": "Native to an area"
     },
     {
       "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "DEEP",
+      "clue": "Profound"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "MOLAR",
+      "clue": "Back tooth"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "across",
+      "answer": "OLD",
+      "clue": "Aged"
+    },
+    {
+      "row": 9,
       "col": 1,
       "direction": "down",
-      "answer": "ANNUL",
-      "clue": "Declare invalid"
+      "answer": "OVER",
+      "clue": "Finished – six balls"
     },
     {
-      "row": 8,
+      "row": 9,
       "col": 3,
       "direction": "down",
-      "answer": "CRUST",
-      "clue": "The outer layer of the Earth"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "across",
-      "answer": "INGREDIENT",
-      "clue": "A component of a mixture or compound"
-    },
-    {
-      "row": 9,
-      "col": 12,
-      "direction": "down",
-      "answer": "EXAM",
-      "clue": "A set of questions or exercises evaluating skill or knowledge"
+      "answer": "DASH",
+      "clue": "Sprint – punctuation mark"
     },
     {
       "row": 10,
-      "col": 10,
+      "col": 5,
       "direction": "across",
-      "answer": "FOX",
-      "clue": "Alert carnivorous mammal with pointed muzzle and ears and a bushy tail"
-    },
-    {
-      "row": 10,
-      "col": 10,
-      "direction": "down",
-      "answer": "FEW",
-      "clue": "A small elite group"
+      "answer": "DEFLECT",
+      "clue": "Divert"
     },
     {
       "row": 11,
       "col": 0,
       "direction": "across",
-      "answer": "DUDS",
-      "clue": "Informal terms for clothing"
+      "answer": "VERSE",
+      "clue": "Poetry"
     },
     {
-      "row": 11,
+      "row": 12,
       "col": 7,
       "direction": "across",
-      "answer": "DOSE",
-      "clue": "A measured portion of medicine taken at any one time"
+      "answer": "CREATE",
+      "clue": "Make"
     }
   ]
 }

@@ -8,169 +8,183 @@
       "row": 0,
       "col": 0,
       "direction": "across",
-      "answer": "TOBACCO",
-      "clue": "Aromatic annual or perennial herbs and shrubs"
+      "answer": "ESSENTIAL",
+      "clue": "Vital"
     },
     {
       "row": 0,
       "col": 1,
       "direction": "down",
-      "answer": "OVARY",
-      "clue": "The organ that bears the ovules of a flower"
+      "answer": "SPEAK",
+      "clue": "Talk"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 5,
       "direction": "down",
-      "answer": "CAREFREE",
-      "clue": "Cheerfully irresponsible"
+      "answer": "TANG",
+      "clue": "Zest"
     },
     {
       "row": 0,
-      "col": 8,
+      "col": 11,
       "direction": "down",
-      "answer": "CRAB",
-      "clue": "A quarrelsome grouch"
+      "answer": "EARLY",
+      "clue": "Ahead of time"
     },
     {
       "row": 1,
-      "col": 7,
+      "col": 9,
       "direction": "across",
-      "answer": "TRYOUT",
-      "clue": "Trying something to find out about it"
+      "answer": "LEAF",
+      "clue": "Page – frond"
     },
     {
       "row": 1,
-      "col": 10,
+      "col": 9,
       "direction": "down",
-      "answer": "OVERALL",
-      "clue": "Work clothing consisting of denim trousers"
-    },
-    {
-      "row": 1,
-      "col": 12,
-      "direction": "down",
-      "answer": "TUMBLER",
-      "clue": "A gymnast who performs rolls and somersaults and twists etc."
+      "answer": "LETTER",
+      "clue": "Character – post"
     },
     {
       "row": 2,
       "col": 0,
       "direction": "across",
-      "answer": "GAB",
-      "clue": "Light informal conversation for social occasions"
+      "answer": "LEGION",
+      "clue": "Roman army unit – vast"
     },
     {
       "row": 2,
-      "col": 6,
+      "col": 3,
       "direction": "down",
-      "answer": "PENAL",
-      "clue": "Of or relating to punishment"
+      "answer": "INPUT",
+      "clue": "Contribution"
+    },
+    {
+      "row": 2,
+      "col": 7,
+      "direction": "down",
+      "answer": "RECITE",
+      "clue": "Say from memory"
     },
     {
       "row": 3,
-      "col": 3,
+      "col": 5,
       "direction": "across",
-      "answer": "RESEMBLE",
-      "clue": "Appear like"
-    },
-    {
-      "row": 4,
-      "col": 10,
-      "direction": "across",
-      "answer": "ROB",
-      "clue": "Take something away by force or without the consent of the owner"
+      "answer": "GREAT",
+      "clue": "Excellent"
     },
     {
       "row": 5,
-      "col": 2,
-      "direction": "across",
-      "answer": "SURPASS",
-      "clue": "Distinguish oneself"
-    },
-    {
-      "row": 5,
-      "col": 8,
+      "col": 0,
       "direction": "down",
-      "answer": "SHOULDER",
-      "clue": "The part of the body between the neck and the upper arm"
+      "answer": "WHIP",
+      "clue": "Lash – party enforcer"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "across",
+      "answer": "SPICE",
+      "clue": "Pepper, say"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "down",
+      "answer": "SHOUT",
+      "clue": "Yell"
     },
     {
       "row": 6,
-      "col": 1,
-      "direction": "down",
-      "answer": "PREFER",
-      "clue": "Like better"
-    },
-    {
-      "row": 7,
       "col": 0,
       "direction": "across",
-      "answer": "DRAPE",
-      "clue": "Arrange in a particular way"
+      "answer": "HINT",
+      "clue": "Clue"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "across",
+      "answer": "REIN",
+      "clue": "Bridle strap – curb"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "down",
+      "answer": "ECHO",
+      "clue": "Reverberation"
     },
     {
       "row": 7,
-      "col": 7,
+      "col": 4,
       "direction": "across",
-      "answer": "ROLLER",
-      "clue": "A long heavy sea wave as it advances towards the shore"
+      "answer": "MOVE",
+      "clue": "Shift"
     },
     {
       "row": 8,
-      "col": 6,
+      "col": 2,
       "direction": "down",
-      "answer": "SNOOP",
-      "clue": "A spy who makes uninvited inquiries into the private affairs of others"
+      "answer": "PLAY",
+      "clue": "Drama – frolic"
+    },
+    {
+      "row": 8,
+      "col": 12,
+      "direction": "down",
+      "answer": "WELL",
+      "clue": "Healthy – spring"
     },
     {
       "row": 9,
-      "col": 3,
+      "col": 1,
       "direction": "across",
-      "answer": "BLINDLY",
-      "clue": "Without seeing or looking"
+      "answer": "BLISTER",
+      "clue": "Bubble on the skin"
     },
     {
       "row": 9,
-      "col": 3,
+      "col": 7,
       "direction": "down",
-      "answer": "BALM",
-      "clue": "Any of various aromatic resinous substances used for healing and soothing"
+      "answer": "ROOF",
+      "clue": "Ceiling"
     },
     {
       "row": 9,
-      "col": 11,
-      "direction": "down",
-      "answer": "YANK",
-      "clue": "Pull, or move with a sudden movement"
-    },
-    {
-      "row": 10,
-      "col": 10,
+      "col": 9,
       "direction": "across",
-      "answer": "GAY",
-      "clue": "Bright and pleasant"
+      "answer": "YOKE",
+      "clue": "Oxen's harness"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "down",
+      "answer": "YARD",
+      "clue": "Three feet – courtyard"
     },
     {
       "row": 11,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "JOKE",
-      "clue": "A humorous anecdote or remark intended to provoke laughter"
+      "answer": "WAY",
+      "clue": "Route – method"
+    },
+    {
+      "row": 11,
+      "col": 9,
+      "direction": "across",
+      "answer": "RAIL",
+      "clue": "Banister – train track"
     },
     {
       "row": 12,
-      "col": 2,
+      "col": 3,
       "direction": "across",
-      "answer": "IMP",
-      "clue": "Fairies that are somewhat mischievous"
-    },
-    {
-      "row": 12,
-      "col": 8,
-      "direction": "across",
-      "answer": "REEK",
-      "clue": "Have an element suggestive"
+      "answer": "FLUFF",
+      "clue": "Fuzz – bungle"
     }
   ]
 }

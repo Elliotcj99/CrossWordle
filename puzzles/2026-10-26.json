@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 9,
-      "direction": "down",
-      "answer": "FIFTH",
-      "clue": "Position five in a countable series of things"
+      "col": 3,
+      "direction": "across",
+      "answer": "SHORTNESS",
+      "clue": "Brevity"
     },
     {
       "row": 0,
-      "col": 11,
+      "col": 4,
       "direction": "down",
-      "answer": "PEDAL",
-      "clue": "A sustained bass note"
+      "answer": "HUM",
+      "clue": "Buzz"
     },
     {
-      "row": 1,
-      "col": 3,
-      "direction": "across",
-      "answer": "MOOT",
-      "clue": "Of no legal significance"
-    },
-    {
-      "row": 1,
-      "col": 6,
+      "row": 0,
+      "col": 7,
       "direction": "down",
-      "answer": "TRIPE",
-      "clue": "Lining of the stomach of a ruminant used as food"
+      "answer": "TRY",
+      "clue": "Attempt – rugby score"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "SQUARELY",
+      "clue": "Directly"
     },
     {
       "row": 1,
-      "col": 8,
-      "direction": "across",
-      "answer": "JIBE",
-      "clue": "Be compatible, similar or consistent"
+      "col": 0,
+      "direction": "down",
+      "answer": "PERIL",
+      "clue": "Danger"
     },
     {
       "row": 2,
-      "col": 0,
-      "direction": "down",
-      "answer": "SECURE",
-      "clue": "Get by special effort"
+      "col": 2,
+      "direction": "across",
+      "answer": "COME",
+      "clue": "Arrive"
     },
     {
       "row": 2,
       "col": 2,
       "direction": "down",
-      "answer": "SPANGLED",
-      "clue": "Covered with beads or jewels or sequins"
+      "answer": "CREW",
+      "clue": "Ship's company"
     },
     {
-      "row": 3,
-      "col": 4,
+      "row": 2,
+      "col": 5,
       "direction": "down",
-      "answer": "SNATCH",
-      "clue": "A small fragment"
+      "answer": "EYE",
+      "clue": "Organ of sight"
     },
     {
-      "row": 3,
+      "row": 2,
       "col": 9,
       "direction": "across",
-      "answer": "TZAR",
-      "clue": "A male monarch or emperor"
+      "answer": "GUY",
+      "clue": "Chap – bonfire effigy"
     },
     {
       "row": 4,
-      "col": 0,
+      "col": 4,
       "direction": "across",
-      "answer": "CHAIN",
-      "clue": "A series of things depending on each other as if linked together"
+      "answer": "FEATHER",
+      "clue": "Plume"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "direction": "down",
+      "answer": "FROZEN",
+      "clue": "Icy"
     },
     {
       "row": 4,
       "col": 6,
-      "direction": "across",
-      "answer": "PUSH",
-      "clue": "Move with force"
+      "direction": "down",
+      "answer": "ADDITION",
+      "clue": "Extension to a house"
     },
     {
       "row": 4,
-      "col": 8,
-      "direction": "down",
-      "answer": "STANZA",
-      "clue": "A fixed number of lines of verse forming a unit of a poem"
-    },
-    {
-      "row": 5,
-      "col": 4,
-      "direction": "across",
-      "answer": "ALE",
-      "clue": "A general name for beer made with a top fermenting yeast"
-    },
-    {
-      "row": 5,
       "col": 12,
       "direction": "down",
-      "answer": "TETHER",
-      "clue": "Restraint consisting of a rope used to restrain an animal"
+      "answer": "DARK",
+      "clue": "Unlit"
     },
     {
-      "row": 6,
+      "row": 5,
       "col": 0,
       "direction": "across",
-      "answer": "RUG",
-      "clue": "Floor covering consisting of a piece of thick heavy fabric"
+      "answer": "LOWER",
+      "clue": "Reduce"
     },
     {
       "row": 6,
-      "col": 10,
+      "col": 4,
       "direction": "across",
-      "answer": "DUE",
-      "clue": "Owed and payable immediately or on demand"
+      "answer": "ODD",
+      "clue": "Strange – like one, three and five"
     },
     {
       "row": 6,
-      "col": 10,
-      "direction": "down",
-      "answer": "DECIMAL",
-      "clue": "A proper fraction whose denominator is a power of 10"
+      "col": 9,
+      "direction": "across",
+      "answer": "BLUR",
+      "clue": "Smudge"
     },
     {
       "row": 7,
       "col": 2,
-      "direction": "across",
-      "answer": "LECTERN",
-      "clue": "Desk or stand with a slanted top used to hold a text at the proper height for a lecturer"
-    },
-    {
-      "row": 7,
-      "col": 6,
       "direction": "down",
-      "answer": "EVE",
-      "clue": "The day before"
+      "answer": "CLINCH",
+      "clue": "Seal the deal"
     },
     {
-      "row": 9,
+      "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "JADE",
-      "clue": "A semiprecious gemstone that takes a high polish"
+      "answer": "VALUE",
+      "clue": "Worth"
     },
     {
-      "row": 9,
-      "col": 1,
+      "row": 8,
+      "col": 0,
       "direction": "down",
-      "answer": "AWAY",
-      "clue": "From a particular thing or place or position"
+      "answer": "VIEW",
+      "clue": "Opinion – vista"
     },
     {
-      "row": 9,
+      "row": 8,
       "col": 6,
       "direction": "across",
-      "answer": "EVASIVE",
-      "clue": "Deliberately vague or ambiguous"
+      "answer": "TAB",
+      "clue": "Bill – label"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "BLACK",
+      "clue": "Colour of soot"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "across",
+      "answer": "LAST",
+      "clue": "Final – endure"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "down",
+      "answer": "SOIL",
+      "clue": "Earth – dirty"
     },
     {
       "row": 10,
-      "col": 4,
+      "col": 12,
       "direction": "down",
-      "answer": "WEE",
-      "clue": "Little or tiny"
+      "answer": "KEY",
+      "clue": "Crucial – piano lever"
     },
     {
       "row": 11,
-      "col": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "LAG",
-      "clue": "Hang or fall in movement, progress, development, etc."
+      "answer": "INSCRIBE",
+      "clue": "Engrave"
     },
     {
       "row": 12,
-      "col": 3,
+      "col": 1,
       "direction": "across",
-      "answer": "RECONCILED",
-      "clue": "Made compatible or consistent"
+      "answer": "SHOP",
+      "clue": "Store"
     }
   ]
 }

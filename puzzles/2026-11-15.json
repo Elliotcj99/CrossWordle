@@ -6,178 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "LAG",
+      "clue": "Fall behind"
+    },
+    {
+      "row": 0,
+      "col": 0,
       "direction": "down",
-      "answer": "THRICE",
-      "clue": "Three times"
+      "answer": "LATER",
+      "clue": "Afterwards"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "GAP",
+      "clue": "Space"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "across",
+      "answer": "BUCK",
+      "clue": "Male deer"
     },
     {
       "row": 0,
       "col": 4,
       "direction": "down",
-      "answer": "LET",
-      "clue": "Make it possible through a specific action or lack of action for something to happen"
+      "answer": "BOND",
+      "clue": "Tie – Ian Fleming's spy"
     },
     {
       "row": 0,
-      "col": 7,
-      "direction": "across",
-      "answer": "PLACID",
-      "clue": "Free from disturbance by heavy waves"
-    },
-    {
-      "row": 0,
-      "col": 8,
+      "col": 6,
       "direction": "down",
-      "answer": "LURK",
-      "clue": "Lie in wait, lie in ambush, behave in a sneaky and secretive manner"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "CARE",
-      "clue": "The work of providing treatment for or attending to someone or something"
+      "answer": "COTTON",
+      "clue": "Fabric – thread"
     },
     {
       "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "SHADE",
-      "clue": "Relative darkness caused by light rays being intercepted by an opaque body"
+      "col": 10,
+      "direction": "down",
+      "answer": "HEART",
+      "clue": "Core – ticker"
+    },
+    {
+      "row": 1,
+      "col": 12,
+      "direction": "down",
+      "answer": "DRAW",
+      "clue": "Sketch – tie"
     },
     {
       "row": 2,
-      "col": 6,
-      "direction": "down",
-      "answer": "WELT",
-      "clue": "A raised mark on the skin"
+      "col": 2,
+      "direction": "across",
+      "answer": "PENETRATE",
+      "clue": "Pierce"
     },
     {
-      "row": 3,
+      "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "KILO",
-      "clue": "One thousand grams"
+      "answer": "ROCK",
+      "clue": "Stone – sway"
     },
     {
-      "row": 3,
+      "row": 4,
+      "col": 1,
+      "direction": "down",
+      "answer": "OUT",
+      "clue": "Dismissed – not in"
+    },
+    {
+      "row": 4,
+      "col": 8,
+      "direction": "down",
+      "answer": "GAIN",
+      "clue": "Profit"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "across",
+      "answer": "RAW",
+      "clue": "Uncooked – sore"
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "direction": "across",
+      "answer": "CONTACT",
+      "clue": "Touch"
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "direction": "across",
+      "answer": "ARGUMENT",
+      "clue": "Row"
+    },
+    {
+      "row": 7,
       "col": 3,
       "direction": "down",
-      "answer": "ORIGINATOR",
-      "clue": "Someone who creates new things"
+      "answer": "REDUCE",
+      "clue": "Cut"
     },
     {
-      "row": 3,
-      "col": 5,
-      "direction": "across",
-      "answer": "RECKLESS",
-      "clue": "Marked by defiant disregard for danger or consequences"
-    },
-    {
-      "row": 3,
-      "col": 11,
+      "row": 8,
+      "col": 10,
       "direction": "down",
-      "answer": "SPOOF",
-      "clue": "A composition that imitates or misrepresents somebody's style, usually in a humorous way"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "RECITATION",
-      "clue": "Written matter that is recited from memory"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "down",
-      "answer": "REIGN",
-      "clue": "A period during which something or somebody is dominant or powerful"
-    },
-    {
-      "row": 5,
-      "col": 9,
-      "direction": "down",
-      "answer": "NINE",
-      "clue": "The cardinal number that is the sum of eight and one"
-    },
-    {
-      "row": 6,
-      "col": 9,
-      "direction": "across",
-      "answer": "IDOL",
-      "clue": "A material effigy that is worshipped"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "IRRIGATION",
-      "clue": "Supplying dry land with water by means of ditches etc"
-    },
-    {
-      "row": 7,
-      "col": 5,
-      "direction": "down",
-      "answer": "ABLY",
-      "clue": "With competence"
+      "answer": "REBEL",
+      "clue": "Rise up"
     },
     {
       "row": 8,
       "col": 12,
       "direction": "down",
-      "answer": "SMOG",
-      "clue": "Air pollution by a mixture of smoke and fog"
+      "answer": "REST",
+      "clue": "Relax – remainder"
     },
     {
       "row": 9,
-      "col": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "WALLOP",
-      "clue": "A forceful consequence"
+      "answer": "WORD",
+      "clue": "Promise – term"
     },
     {
       "row": 9,
-      "col": 10,
+      "col": 0,
+      "direction": "down",
+      "answer": "WALL",
+      "clue": "Barrier"
+    },
+    {
+      "row": 9,
+      "col": 5,
       "direction": "across",
-      "answer": "MUM",
-      "clue": "Of China"
+      "answer": "STAMPEDE",
+      "clue": "Panic rush"
     },
     {
       "row": 9,
-      "col": 10,
+      "col": 6,
       "direction": "down",
-      "answer": "MEEK",
-      "clue": "Humble in spirit or manner"
+      "answer": "TIME",
+      "clue": "Hour – occasion"
     },
     {
-      "row": 10,
-      "col": 1,
-      "direction": "down",
-      "answer": "WAD",
-      "clue": "A small mass of soft material"
-    },
-    {
-      "row": 10,
+      "row": 9,
       "col": 8,
       "direction": "down",
-      "answer": "BAN",
-      "clue": "A decree that prohibits something"
+      "answer": "MUTE",
+      "clue": "Silent"
     },
     {
       "row": 11,
-      "col": 8,
+      "col": 3,
       "direction": "across",
-      "answer": "AWE",
-      "clue": "An overwhelming feeling of wonder or admiration"
+      "answer": "COMMITMENT",
+      "clue": "Dedication"
     },
     {
       "row": 12,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "DURATION",
-      "clue": "The period of time during which something continues"
+      "answer": "LIME",
+      "clue": "Green citrus fruit"
     }
   ]
 }

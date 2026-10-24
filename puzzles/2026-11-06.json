@@ -6,171 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "SIR",
-      "clue": "Term of address for a man"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "BIB",
-      "clue": "Top part of an apron"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "FIGHTER",
-      "clue": "A high-speed military or naval airplane designed to destroy enemy aircraft in the air"
-    },
-    {
-      "row": 1,
       "col": 0,
       "direction": "down",
-      "answer": "PASSE",
-      "clue": "Out of fashion"
+      "answer": "BAD",
+      "clue": "Naughty"
     },
     {
-      "row": 1,
-      "col": 5,
+      "row": 0,
+      "col": 2,
       "direction": "across",
-      "answer": "VICINITY",
-      "clue": "A surrounding or nearby region"
+      "answer": "JUGGLE",
+      "clue": "Keep balls in the air"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "JAB",
+      "clue": "Poke – injection"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "LET",
+      "clue": "Allow – rent out"
     },
     {
       "row": 1,
-      "col": 12,
+      "col": 8,
       "direction": "down",
-      "answer": "YOGURT",
-      "clue": "A custard-like food made from curdled milk"
+      "answer": "WIND",
+      "clue": "Breeze – coil"
     },
     {
       "row": 2,
-      "col": 2,
-      "direction": "down",
-      "answer": "SASH",
-      "clue": "A framework that holds the panes of a window in the window frame"
-    },
-    {
-      "row": 3,
       "col": 0,
       "direction": "across",
-      "answer": "SHANTY",
-      "clue": "Small crude shelter used as a dwelling"
+      "answer": "DAB",
+      "clue": "Pat – flatfish"
     },
     {
-      "row": 3,
+      "row": 2,
       "col": 4,
+      "direction": "across",
+      "answer": "ENTAIL",
+      "clue": "Involve"
+    },
+    {
+      "row": 2,
+      "col": 5,
       "direction": "down",
-      "answer": "TAP",
-      "clue": "Draw from or dip into to get something"
+      "answer": "NARROW",
+      "clue": "Thin"
     },
     {
       "row": 3,
       "col": 10,
-      "direction": "across",
-      "answer": "HUG",
-      "clue": "Hold tightly in your arms, usually with fondness"
+      "direction": "down",
+      "answer": "JAM",
+      "clue": "Preserve – traffic snarl-up"
     },
     {
       "row": 4,
-      "col": 6,
+      "col": 1,
       "direction": "down",
-      "answer": "COW",
-      "clue": "Female of domestic cattle:"
+      "answer": "FREEZE",
+      "clue": "Turn to ice"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "IMPORTANT",
+      "clue": "Significant"
     },
     {
       "row": 4,
       "col": 8,
-      "direction": "down",
-      "answer": "VICTIMIZE",
-      "clue": "Punish unjustly"
+      "direction": "across",
+      "answer": "DRAB",
+      "clue": "Dreary"
     },
     {
       "row": 5,
-      "col": 2,
-      "direction": "across",
-      "answer": "HYPNOTIZE",
-      "clue": "Induce hypnosis in"
-    },
-    {
-      "row": 6,
-      "col": 1,
-      "direction": "down",
-      "answer": "SEAWEED",
-      "clue": "Plant growing in the sea, especially marine algae"
-    },
-    {
-      "row": 6,
-      "col": 10,
-      "direction": "across",
-      "answer": "RUT",
-      "clue": "A groove or furrow"
-    },
-    {
-      "row": 8,
       "col": 1,
       "direction": "across",
-      "answer": "ASSEMBLING",
-      "clue": "The act of gathering something together"
+      "answer": "RAM",
+      "clue": "Male sheep – butt"
     },
     {
-      "row": 8,
-      "col": 3,
+      "row": 5,
+      "col": 7,
       "direction": "down",
-      "answer": "SPRAY",
-      "clue": "A pesticide in suspension or solution"
+      "answer": "SLOP",
+      "clue": "Spill"
     },
     {
-      "row": 8,
-      "col": 6,
-      "direction": "down",
-      "answer": "BODY",
-      "clue": "The entire physical structure of an organism"
-    },
-    {
-      "row": 8,
-      "col": 10,
-      "direction": "down",
-      "answer": "GYM",
-      "clue": "Athletic facility equipped for sports or physical training"
-    },
-    {
-      "row": 9,
-      "col": 10,
-      "direction": "across",
-      "answer": "YAP",
-      "clue": "Informal terms for the mouth"
-    },
-    {
-      "row": 9,
+      "row": 5,
       "col": 12,
       "direction": "down",
-      "answer": "POOL",
-      "clue": "An excavation that is filled with water"
+      "answer": "BUM",
+      "clue": "Bottom"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "direction": "across",
+      "answer": "PEOPLE",
+      "clue": "Folk"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "ZERO",
+      "clue": "Nought"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "across",
+      "answer": "LOOM",
+      "clue": "Weaving frame – appear menacingly"
+    },
+    {
+      "row": 7,
+      "col": 11,
+      "direction": "down",
+      "answer": "ORGAN",
+      "clue": "Church instrument – liver, say"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "FEATURE",
+      "clue": "Characteristic – magazine article"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "down",
+      "answer": "FLUX",
+      "clue": "Constant change"
+    },
+    {
+      "row": 9,
+      "col": 5,
+      "direction": "down",
+      "answer": "RAID",
+      "clue": "Swoop"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "SIGN",
+      "clue": "Notice – omen"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "down",
+      "answer": "SKIP",
+      "clue": "Hop – miss out"
     },
     {
       "row": 10,
-      "col": 0,
-      "direction": "across",
-      "answer": "YEARS",
-      "clue": "A late time of life"
-    },
-    {
-      "row": 12,
-      "col": 1,
-      "direction": "across",
-      "answer": "DAY",
-      "clue": "Time for Earth to make a complete rotation on its axis"
-    },
-    {
-      "row": 12,
       "col": 7,
+      "direction": "down",
+      "answer": "MAT",
+      "clue": "Rug"
+    },
+    {
+      "row": 11,
+      "col": 2,
       "direction": "across",
-      "answer": "LEEK",
-      "clue": "Plant having a large slender white bulb and flat overlapping dark green leaves"
+      "answer": "INDICATION",
+      "clue": "Sign"
     }
   ]
 }

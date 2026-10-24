@@ -6,171 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
+      "col": 2,
       "direction": "down",
-      "answer": "CAN",
-      "clue": "Airtight sealed metal container for food or drink or paint etc."
-    },
-    {
-      "row": 0,
-      "col": 3,
-      "direction": "across",
-      "answer": "RIGGING",
-      "clue": "Gear consisting of ropes etc. supporting a ship's masts and sails"
-    },
-    {
-      "row": 0,
-      "col": 3,
-      "direction": "down",
-      "answer": "RAP",
-      "clue": "A reproach for some lapse or misdeed"
+      "answer": "FAKE",
+      "clue": "Counterfeit"
     },
     {
       "row": 0,
       "col": 5,
       "direction": "down",
-      "answer": "GAL",
-      "clue": "United States liquid unit equal to 4 quarts or 3.785 liters"
+      "answer": "HERE",
+      "clue": "Present"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "STUD",
+      "clue": "Stallion – earring"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "SLUMP",
+      "clue": "Collapse"
     },
     {
       "row": 1,
       "col": 0,
       "direction": "across",
-      "answer": "PAPA",
-      "clue": "An informal term for a father"
-    },
-    {
-      "row": 2,
-      "col": 3,
-      "direction": "across",
-      "answer": "PALACE",
-      "clue": "A large and stately mansion"
+      "answer": "STAPLE",
+      "clue": "Basic item – wire fastener"
     },
     {
       "row": 2,
       "col": 7,
-      "direction": "down",
-      "answer": "COLLECTING",
-      "clue": "The act of gathering something together"
+      "direction": "across",
+      "answer": "SUBDUE",
+      "clue": "Overcome"
     },
     {
       "row": 2,
-      "col": 12,
+      "col": 10,
       "direction": "down",
-      "answer": "COG",
-      "clue": "A subordinate who performs an important but routine function"
+      "answer": "DUMMY",
+      "clue": "Mannequin – baby's soother"
     },
     {
       "row": 3,
-      "col": 0,
-      "direction": "down",
-      "answer": "IRONS",
-      "clue": "Metal shackles"
-    },
-    {
-      "row": 3,
-      "col": 2,
-      "direction": "down",
-      "answer": "SIC",
-      "clue": "Urge to attack someone"
-    },
-    {
-      "row": 3,
-      "col": 9,
+      "col": 1,
       "direction": "across",
-      "answer": "MEMO",
-      "clue": "A written proposal or reminder"
+      "answer": "LEASE",
+      "clue": "Rental agreement"
     },
     {
       "row": 3,
-      "col": 9,
+      "col": 1,
       "direction": "down",
-      "answer": "MALTREATED",
-      "clue": "Subjected to cruel treatment"
+      "answer": "LAPSE",
+      "clue": "Slip"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "down",
+      "answer": "SUPPLY",
+      "clue": "Provide"
     },
     {
       "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "RUINED",
-      "clue": "Destroyed physically or morally"
+      "col": 6,
+      "direction": "down",
+      "answer": "STRENGTH",
+      "clue": "Power"
+    },
+    {
+      "row": 4,
+      "col": 12,
+      "direction": "down",
+      "answer": "FILLING",
+      "clue": "Sandwich contents"
     },
     {
       "row": 5,
-      "col": 11,
-      "direction": "down",
-      "answer": "JINGLE",
-      "clue": "A metallic sound"
+      "col": 1,
+      "direction": "across",
+      "answer": "PLOP",
+      "clue": "Splash softly"
     },
     {
       "row": 6,
-      "col": 5,
+      "col": 4,
       "direction": "across",
-      "answer": "SPELT",
-      "clue": "Hardy wheat grown mostly in Europe for livestock feed"
+      "answer": "PORTRAYAL",
+      "clue": "Depiction"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "AWAY",
+      "clue": "Not at home"
     },
     {
       "row": 7,
       "col": 0,
       "direction": "across",
-      "answer": "SUEDE",
-      "clue": "Leather with a napped surface"
+      "answer": "LEVEL",
+      "clue": "Flat – tier"
     },
     {
       "row": 7,
-      "col": 1,
+      "col": 0,
       "direction": "down",
-      "answer": "UNSAFE",
-      "clue": "Lacking in security or safety"
-    },
-    {
-      "row": 7,
-      "col": 3,
-      "direction": "down",
-      "answer": "DEAN",
-      "clue": "An administrator in charge of a division of a university or college"
-    },
-    {
-      "row": 7,
-      "col": 9,
-      "direction": "across",
-      "answer": "RENT",
-      "clue": "An opening made forcibly as by pulling apart"
+      "answer": "LUMP",
+      "clue": "Swelling"
     },
     {
       "row": 8,
-      "col": 5,
-      "direction": "down",
-      "answer": "SPOKE",
-      "clue": "Support consisting of a radial member of a wheel joining the hub to the rim"
+      "col": 8,
+      "direction": "across",
+      "answer": "BAY",
+      "clue": "Inlet"
     },
     {
       "row": 9,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "APPLICABLE",
-      "clue": "Capable of being applied"
+      "answer": "MIRE",
+      "clue": "Bog"
+    },
+    {
+      "row": 9,
+      "col": 2,
+      "direction": "down",
+      "answer": "RIPE",
+      "clue": "Ready to eat"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "down",
+      "answer": "RED",
+      "clue": "Colour of a pillar box"
+    },
+    {
+      "row": 10,
+      "col": 8,
+      "direction": "down",
+      "answer": "HOP",
+      "clue": "Jump on one leg"
+    },
+    {
+      "row": 10,
+      "col": 10,
+      "direction": "across",
+      "answer": "BUG",
+      "clue": "Insect – irritate"
+    },
+    {
+      "row": 10,
+      "col": 10,
+      "direction": "down",
+      "answer": "BIG",
+      "clue": "Large"
     },
     {
       "row": 11,
-      "col": 5,
+      "col": 1,
       "direction": "across",
-      "answer": "KEG",
-      "clue": "Small cask or barrel"
-    },
-    {
-      "row": 12,
-      "col": 0,
-      "direction": "across",
-      "answer": "PEBBLE",
-      "clue": "A small smooth rounded rock"
+      "answer": "SPEECH",
+      "clue": "Address"
     },
     {
       "row": 12,
       "col": 8,
       "direction": "across",
-      "answer": "UDDER",
-      "clue": "Mammary gland of bovids"
+      "answer": "PIG",
+      "clue": "Hog"
     }
   ]
 }

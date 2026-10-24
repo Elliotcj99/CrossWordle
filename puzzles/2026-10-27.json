@@ -7,184 +7,184 @@
     {
       "row": 0,
       "col": 1,
-      "direction": "down",
-      "answer": "CASH",
-      "clue": "Money in the form of bills or coins"
+      "direction": "across",
+      "answer": "ISOLATED",
+      "clue": "Remote"
     },
     {
       "row": 0,
-      "col": 11,
+      "col": 2,
       "direction": "down",
-      "answer": "SENSING",
-      "clue": "The perception that something has occurred or some state exists"
+      "answer": "SIZE",
+      "clue": "Dimensions"
     },
     {
-      "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "WAY",
-      "clue": "How something is done or how it happens"
-    },
-    {
-      "row": 1,
+      "row": 0,
       "col": 4,
       "direction": "down",
-      "answer": "CROSSING",
-      "clue": "Traveling across"
+      "answer": "LIFT",
+      "clue": "Elevator – raise"
     },
     {
-      "row": 1,
-      "col": 6,
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "EASY",
+      "clue": "Simple"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "ASK",
+      "clue": "Enquire"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "BORDER",
+      "clue": "Frontier"
+    },
+    {
+      "row": 2,
+      "col": 7,
       "direction": "across",
-      "answer": "HATCHET",
-      "clue": "Weapon consisting of a fighting ax"
-    },
-    {
-      "row": 1,
-      "col": 6,
-      "direction": "down",
-      "answer": "HEREBY",
-      "clue": "By means of this"
-    },
-    {
-      "row": 1,
-      "col": 8,
-      "direction": "down",
-      "answer": "TIN",
-      "clue": "A silvery malleable metallic element that resists corrosion"
+      "answer": "SEEK",
+      "clue": "Look for"
     },
     {
       "row": 3,
       "col": 1,
       "direction": "across",
-      "answer": "HONOURING",
-      "clue": "Conformity with law or custom or practice etc."
+      "answer": "RECTIFY",
+      "clue": "Put right"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "direction": "down",
+      "answer": "ROD",
+      "clue": "Pole"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "down",
+      "answer": "IMPULSIVE",
+      "clue": "Rash"
     },
     {
       "row": 4,
-      "col": 0,
-      "direction": "down",
-      "answer": "ONE",
-      "clue": "Used of a single unit or thing"
+      "col": 9,
+      "direction": "across",
+      "answer": "SAME",
+      "clue": "Identical"
     },
     {
       "row": 4,
-      "col": 10,
-      "direction": "across",
-      "answer": "LID",
-      "clue": "Either of two folds of skin that can be moved to cover or open the eye"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "NUT",
-      "clue": "Usually large hard-shelled seed"
-    },
-    {
-      "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "TERRIBLY",
-      "clue": "Used as intensifiers"
-    },
-    {
-      "row": 5,
-      "col": 6,
-      "direction": "across",
-      "answer": "BURR",
-      "clue": "Seed vessel having hooks or prickles"
-    },
-    {
-      "row": 5,
       "col": 9,
       "direction": "down",
-      "answer": "ROLLING",
-      "clue": "A deep prolonged sound"
+      "answer": "STORAGE",
+      "clue": "Warehousing"
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "direction": "across",
+      "answer": "DOG",
+      "clue": "Hound"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "down",
+      "answer": "GENTLE",
+      "clue": "Mild"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "across",
+      "answer": "PRINT",
+      "clue": "Publish"
     },
     {
       "row": 7,
       "col": 1,
       "direction": "across",
-      "answer": "TRUNK",
-      "clue": "The main stem of a tree"
+      "answer": "MANGLE",
+      "clue": "Crush – wringer"
     },
     {
-      "row": 8,
-      "col": 6,
+      "row": 7,
+      "col": 8,
       "direction": "across",
-      "answer": "APOLOGY",
-      "clue": "An expression of regret at having caused trouble for someone"
+      "answer": "PRIM",
+      "clue": "Prudish"
     },
     {
-      "row": 8,
-      "col": 6,
-      "direction": "down",
-      "answer": "AVOID",
-      "clue": "Stay clear from"
-    },
-    {
-      "row": 8,
+      "row": 7,
       "col": 11,
       "direction": "down",
-      "answer": "GEM",
-      "clue": "Art highly prized for its beauty or perfection"
+      "answer": "MOMENT",
+      "clue": "Instant"
+    },
+    {
+      "row": 8,
+      "col": 7,
+      "direction": "down",
+      "answer": "NEAT",
+      "clue": "Tidy – undiluted"
     },
     {
       "row": 9,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "BID",
-      "clue": "Propose a payment"
+      "answer": "FELL",
+      "clue": "Cut down – Lakeland hill"
     },
     {
-      "row": 10,
+      "row": 9,
       "col": 0,
       "direction": "down",
-      "answer": "USE",
-      "clue": "The act of using"
+      "answer": "FOLD",
+      "clue": "Crease – sheep pen"
     },
     {
-      "row": 10,
+      "row": 9,
       "col": 5,
       "direction": "across",
-      "answer": "FOG",
-      "clue": "Droplets of water vapor suspended in the air near the ground"
+      "answer": "ICE",
+      "clue": "Freeze – rink surface"
     },
     {
       "row": 10,
       "col": 9,
       "direction": "across",
-      "answer": "NAME",
-      "clue": "Charge with a function"
-    },
-    {
-      "row": 10,
-      "col": 12,
-      "direction": "down",
-      "answer": "EBB",
-      "clue": "Flow back or recede"
+      "answer": "EVEN",
+      "clue": "Level – like two, four and six"
     },
     {
       "row": 11,
+      "col": 4,
+      "direction": "across",
+      "answer": "TEXT",
+      "clue": "Words – mobile message"
+    },
+    {
+      "row": 12,
       "col": 0,
       "direction": "across",
-      "answer": "SALAD",
-      "clue": "Food mixtures either arranged on a plate or tossed and served with a moist dressing"
+      "answer": "DISK",
+      "clue": "Hard drive part"
     },
     {
       "row": 12,
-      "col": 5,
+      "col": 8,
       "direction": "across",
-      "answer": "IDLE",
-      "clue": "Not in action or at work"
-    },
-    {
-      "row": 12,
-      "col": 10,
-      "direction": "across",
-      "answer": "HUB",
-      "clue": "The central part of a car wheel through which the shaft or axle passes"
+      "answer": "EARTH",
+      "clue": "Soil – our planet"
     }
   ]
 }

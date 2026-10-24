@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
+      "col": 4,
       "direction": "down",
-      "answer": "PAR",
-      "clue": "A state of being essentially equal or equivalent"
-    },
-    {
-      "row": 0,
-      "col": 3,
-      "direction": "down",
-      "answer": "LOT",
-      "clue": "A large number or amount or extent"
-    },
-    {
-      "row": 0,
-      "col": 5,
-      "direction": "across",
-      "answer": "STACKS",
-      "clue": "A large number or amount"
+      "answer": "CONTROL",
+      "clue": "Command"
     },
     {
       "row": 0,
       "col": 8,
-      "direction": "down",
-      "answer": "CULT",
-      "clue": "Followers of an exclusive system of beliefs and practices"
+      "direction": "across",
+      "answer": "RAFT",
+      "clue": "Lilo – a lot"
     },
     {
       "row": 0,
       "col": 10,
       "direction": "down",
-      "answer": "SCORN",
-      "clue": "Lack of respect accompanied by a feeling of intense dislike"
+      "answer": "FIBRE",
+      "clue": "Roughage – thread"
     },
     {
       "row": 1,
-      "col": 10,
+      "col": 3,
       "direction": "across",
-      "answer": "COL",
-      "clue": "A pass between mountain peaks"
+      "answer": "WORLD",
+      "clue": "Earth"
     },
     {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "FRET",
-      "clue": "Worry unnecessarily or excessively"
-    },
-    {
-      "row": 2,
-      "col": 0,
+      "row": 1,
+      "col": 7,
       "direction": "down",
-      "answer": "FUND",
-      "clue": "Convert into long-term debt that bears fixed interest and is represented by bonds"
+      "answer": "DON",
+      "clue": "Put on – Oxford tutor"
     },
     {
-      "row": 2,
-      "col": 2,
-      "direction": "down",
-      "answer": "EJACULATE",
-      "clue": "Utter impulsively"
-    },
-    {
-      "row": 3,
-      "col": 4,
-      "direction": "across",
-      "answer": "CLUTTER",
-      "clue": "A confused multitude of things"
-    },
-    {
-      "row": 3,
-      "col": 4,
-      "direction": "down",
-      "answer": "COMPULSIVE",
-      "clue": "Strongly motivated to succeed"
-    },
-    {
-      "row": 3,
+      "row": 1,
       "col": 12,
       "direction": "down",
-      "answer": "RETROSPECT",
-      "clue": "Contemplation of things past"
+      "answer": "FOOT",
+      "clue": "Twelve inches"
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "direction": "down",
+      "answer": "PLACE",
+      "clue": "Spot"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "across",
+      "answer": "THING",
+      "clue": "Object"
+    },
+    {
+      "row": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "GAG",
+      "clue": "Joke – silence"
     },
     {
       "row": 4,
-      "col": 10,
+      "col": 0,
       "direction": "across",
-      "answer": "NEE",
-      "clue": "Used to indicate the maiden or family name of a married woman"
+      "answer": "WAVER",
+      "clue": "Hesitate"
     },
     {
-      "row": 5,
-      "col": 6,
-      "direction": "down",
-      "answer": "DEFY",
-      "clue": "Resist or confront with resistance"
-    },
-    {
-      "row": 5,
+      "row": 4,
       "col": 8,
+      "direction": "across",
+      "answer": "AGENT",
+      "clue": "Spy – representative"
+    },
+    {
+      "row": 4,
+      "col": 11,
       "direction": "down",
-      "answer": "GIG",
-      "clue": "Long and light rowing boat"
+      "answer": "NOD",
+      "clue": "Bow of the head"
     },
     {
       "row": 6,
-      "col": 4,
+      "col": 3,
       "direction": "across",
-      "answer": "PREDICTOR",
-      "clue": "Information that supports a probabilistic estimate of future events"
+      "answer": "GLARE",
+      "clue": "Dazzle – angry stare"
     },
     {
       "row": 6,
-      "col": 10,
+      "col": 3,
       "direction": "down",
-      "answer": "TOOL",
-      "clue": "An implement used in the practice of a vocation"
+      "answer": "GONE",
+      "clue": "Departed"
     },
     {
-      "row": 8,
-      "col": 1,
-      "direction": "across",
-      "answer": "WAYLAY",
-      "clue": "Wait in hiding to attack"
+      "row": 6,
+      "col": 7,
+      "direction": "down",
+      "answer": "EXTRA",
+      "clue": "Additional – walk-on actor"
     },
     {
-      "row": 8,
+      "row": 6,
       "col": 9,
       "direction": "across",
-      "answer": "TOSS",
-      "clue": "Lightly throw to see which side comes up"
+      "answer": "FADE",
+      "clue": "Dim"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "FUME",
+      "clue": "Seethe"
+    },
+    {
+      "row": 6,
+      "col": 12,
+      "direction": "down",
+      "answer": "ESTEEM",
+      "clue": "Respect"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "PAWN",
+      "clue": "Chessman – hock"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "down",
+      "answer": "PUFF",
+      "clue": "Gust – cream pastry"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "SPOT",
+      "clue": "Pimple – notice"
     },
     {
       "row": 9,
-      "col": 0,
+      "col": 3,
+      "direction": "across",
+      "answer": "EXPERIENCE",
+      "clue": "Know-how"
+    },
+    {
+      "row": 9,
+      "col": 10,
       "direction": "down",
-      "answer": "FIB",
-      "clue": "A trivial lie"
+      "answer": "NICE",
+      "clue": "Pleasant"
     },
     {
       "row": 10,
+      "col": 2,
+      "direction": "down",
+      "answer": "PIN",
+      "clue": "Brooch – fasten"
+    },
+    {
+      "row": 11,
       "col": 0,
       "direction": "across",
-      "answer": "IRE",
-      "clue": "A strong emotion"
-    },
-    {
-      "row": 10,
-      "col": 4,
-      "direction": "across",
-      "answer": "INDUCE",
-      "clue": "Cause to arise"
-    },
-    {
-      "row": 10,
-      "col": 6,
-      "direction": "down",
-      "answer": "DUO",
-      "clue": "Two items of the same kind"
-    },
-    {
-      "row": 10,
-      "col": 8,
-      "direction": "down",
-      "answer": "CON",
-      "clue": "An argument opposed to a proposal"
+      "answer": "FLIGHT",
+      "clue": "Air journey – stairs"
     },
     {
       "row": 12,
-      "col": 1,
+      "col": 8,
       "direction": "across",
-      "answer": "FOREGOING",
-      "clue": "Especially of writing or speech"
+      "answer": "KEEN",
+      "clue": "Eager"
     }
   ]
 }

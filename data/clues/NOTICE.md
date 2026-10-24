@@ -1,8 +1,8 @@
 # Clue sources and licences
 
-Puzzle clues are adapted from Open English WordNet definitions: the first clause of a definition,
-with bracketed asides removed and the first letter capitalised. Some clues are rewritten by hand.
-This notice is published with the site's puzzle files (`puzzles/NOTICE.md`).
+Puzzle clues are written for CrossWordle. The answers were chosen, and the clues checked for the
+right sense, using Open English WordNet, whose licence follows. This notice is published with the
+site's puzzle files (`puzzles/NOTICE.md`).
 
 ## Open English WordNet
 

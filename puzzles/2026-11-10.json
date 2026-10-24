@@ -7,184 +7,184 @@
     {
       "row": 0,
       "col": 0,
-      "direction": "across",
-      "answer": "COB",
-      "clue": "Nut of any of several trees of the genus Corylus"
-    },
-    {
-      "row": 0,
-      "col": 0,
       "direction": "down",
-      "answer": "CHANT",
-      "clue": "Recite with musical intonation"
+      "answer": "ACE",
+      "clue": "Serve that can't be returned"
     },
     {
       "row": 0,
       "col": 2,
       "direction": "down",
-      "answer": "BRAIN",
-      "clue": "That part of the central nervous system that includes all the higher nervous centers"
+      "answer": "COLOURED",
+      "clue": "Tinted"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "across",
+      "answer": "SOFT",
+      "clue": "Gentle"
     },
     {
       "row": 0,
       "col": 4,
       "direction": "down",
-      "answer": "STEER",
-      "clue": "Direct the course"
+      "answer": "STEW",
+      "clue": "Casserole – fret"
     },
     {
       "row": 0,
       "col": 6,
       "direction": "down",
-      "answer": "NAB",
-      "clue": "Tag the base runner to get them out"
-    },
-    {
-      "row": 0,
-      "col": 9,
-      "direction": "down",
-      "answer": "SENILE",
-      "clue": "Mentally or physically infirm with age"
+      "answer": "FEAR",
+      "clue": "Dread"
     },
     {
       "row": 1,
-      "col": 4,
-      "direction": "across",
-      "answer": "TRANCE",
-      "clue": "A psychological state induced by a magical incantation"
-    },
-    {
-      "row": 1,
-      "col": 11,
-      "direction": "down",
-      "answer": "FRENZY",
-      "clue": "State of violent mental agitation"
-    },
-    {
-      "row": 3,
       "col": 0,
       "direction": "across",
-      "answer": "NOISE",
-      "clue": "Sound of any kind"
+      "answer": "CLOUT",
+      "clue": "Influence"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "across",
+      "answer": "WALK",
+      "clue": "Stroll"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "down",
+      "answer": "LEAN",
+      "clue": "Thin – tilt"
     },
     {
       "row": 3,
-      "col": 7,
+      "col": 1,
+      "direction": "across",
+      "answer": "FORWARD",
+      "clue": "Ahead – striker"
+    },
+    {
+      "row": 3,
+      "col": 5,
       "direction": "down",
-      "answer": "WARN",
-      "clue": "Notify of danger, potential harm, or risk"
+      "answer": "AID",
+      "clue": "Help"
     },
     {
       "row": 4,
-      "col": 6,
-      "direction": "across",
-      "answer": "CALLING",
-      "clue": "The particular occupation for which you are trained"
-    },
-    {
-      "row": 6,
-      "col": 1,
-      "direction": "across",
-      "answer": "SPRAYING",
-      "clue": "The dispersion of fungicides or insecticides or fertilizer on growing crops"
-    },
-    {
-      "row": 6,
-      "col": 1,
+      "col": 0,
       "direction": "down",
-      "answer": "SODDEN",
-      "clue": "Wet through and through"
+      "answer": "RESPECT",
+      "clue": "Esteem"
+    },
+    {
+      "row": 4,
+      "col": 8,
+      "direction": "across",
+      "answer": "MIND",
+      "clue": "Intellect – look after"
+    },
+    {
+      "row": 4,
+      "col": 11,
+      "direction": "down",
+      "answer": "DAMN",
+      "clue": "Curse"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "SWELL",
+      "clue": "Grow – wave"
     },
     {
       "row": 6,
       "col": 4,
       "direction": "down",
-      "answer": "AXE",
-      "clue": "Chop or split with an ax"
+      "answer": "LIBRARY",
+      "clue": "Book lending place"
     },
     {
       "row": 6,
-      "col": 8,
+      "col": 6,
       "direction": "down",
-      "answer": "GUISE",
-      "clue": "An artful or simulated semblance"
+      "answer": "CROWD",
+      "clue": "Throng"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "POCKET",
+      "clue": "Pouch – snooker hole"
+    },
+    {
+      "row": 7,
+      "col": 8,
+      "direction": "across",
+      "answer": "POINT",
+      "clue": "Tip – purpose"
     },
     {
       "row": 7,
       "col": 12,
       "direction": "down",
-      "answer": "FEE",
-      "clue": "A fixed charge for a privilege or for professional services"
+      "answer": "TUG",
+      "clue": "Pull – small towing boat"
     },
     {
       "row": 8,
-      "col": 1,
+      "col": 4,
       "direction": "across",
-      "answer": "DELETE",
-      "clue": "Remove or make invisible"
+      "answer": "BOOT",
+      "clue": "Car's luggage space"
     },
     {
-      "row": 8,
-      "col": 5,
-      "direction": "down",
-      "answer": "TREND",
-      "clue": "A general direction in which something tends to move"
-    },
-    {
-      "row": 8,
-      "col": 8,
-      "direction": "across",
-      "answer": "ISSUE",
-      "clue": "An important question that is in dispute and must be settled"
-    },
-    {
-      "row": 8,
-      "col": 10,
-      "direction": "down",
-      "answer": "STARK",
-      "clue": "Devoid of any qualifications or disguise or adornment"
-    },
-    {
-      "row": 10,
+      "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "REMOTE",
-      "clue": "Located far away spatially"
+      "answer": "CRY",
+      "clue": "Weep"
     },
     {
       "row": 10,
       "col": 3,
-      "direction": "down",
-      "answer": "OPT",
-      "clue": "Select as an alternative over another"
-    },
-    {
-      "row": 10,
-      "col": 7,
       "direction": "across",
-      "answer": "MEDAL",
-      "clue": "An award for winning a championship or commemorating some other event"
+      "answer": "MANDATE",
+      "clue": "Authority"
     },
     {
       "row": 10,
       "col": 7,
       "direction": "down",
-      "answer": "MEN",
-      "clue": "The force of workers available"
+      "answer": "ARM",
+      "clue": "Limb"
     },
     {
-      "row": 12,
-      "col": 5,
-      "direction": "across",
-      "answer": "DON",
-      "clue": "Teacher at a university or college"
+      "row": 10,
+      "col": 11,
+      "direction": "down",
+      "answer": "FLY",
+      "clue": "Soar – zip"
     },
     {
-      "row": 12,
+      "row": 11,
       "col": 9,
       "direction": "across",
-      "answer": "AKIN",
-      "clue": "Similar in quality or character"
+      "answer": "TILT",
+      "clue": "Lean"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "PARTY",
+      "clue": "Celebration"
     }
   ]
 }

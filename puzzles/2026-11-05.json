@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 8,
       "direction": "across",
-      "answer": "LOBE",
-      "clue": "A somewhat rounded subdivision of a bodily organ or part"
-    },
-    {
-      "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "BASS",
-      "clue": "The lowest part of the musical range"
-    },
-    {
-      "row": 0,
-      "col": 7,
-      "direction": "across",
-      "answer": "OBOE",
-      "clue": "A slender double-reed instrument"
+      "answer": "DELAY",
+      "clue": "Hold-up"
     },
     {
       "row": 0,
       "col": 8,
       "direction": "down",
-      "answer": "BEFIT",
-      "clue": "Accord or comport with"
+      "answer": "DESERT",
+      "clue": "Sahara, for one"
     },
     {
       "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "ETHOS",
-      "clue": "The distinctive spirit of a culture or an era"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "GAME",
-      "clue": "A contest with rules to determine a winner"
-    },
-    {
-      "row": 1,
-      "col": 4,
-      "direction": "down",
-      "answer": "DELIRIUM",
-      "clue": "State of violent mental agitation"
-    },
-    {
-      "row": 1,
-      "col": 6,
-      "direction": "down",
-      "answer": "SIX",
-      "clue": "The cardinal number that is the sum of five and one"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "down",
-      "answer": "TUBA",
-      "clue": "The lowest brass wind instrument"
-    },
-    {
-      "row": 2,
-      "col": 2,
-      "direction": "across",
-      "answer": "SHERIFF",
-      "clue": "The principal law-enforcement officer in a county"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "across",
-      "answer": "HEM",
-      "clue": "The edge of a piece of cloth"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "ANTHRAX",
-      "clue": "A highly infectious animal disease"
-    },
-    {
-      "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "TORN",
-      "clue": "Having edges that are jagged from injury"
-    },
-    {
-      "row": 5,
       "col": 11,
       "direction": "down",
-      "answer": "HAMPER",
-      "clue": "A restraint that confines or restricts freedom"
+      "answer": "AIR",
+      "clue": "Tune – what we breathe"
     },
     {
-      "row": 6,
+      "row": 1,
+      "col": 1,
+      "direction": "down",
+      "answer": "SUBMIT",
+      "clue": "Hand in – yield"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "across",
+      "answer": "BEAT",
+      "clue": "Defeat"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "down",
+      "answer": "BITCH",
+      "clue": "Female dog"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "across",
+      "answer": "SEAR",
+      "clue": "Scorch"
+    },
+    {
+      "row": 2,
+      "col": 10,
+      "direction": "down",
+      "answer": "APPLY",
+      "clue": "Put in for a job"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "SAGE",
+      "clue": "Wise – herb"
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "direction": "down",
+      "answer": "APPROACH",
+      "clue": "Come near"
+    },
+    {
+      "row": 4,
+      "col": 8,
+      "direction": "across",
+      "answer": "REPEL",
+      "clue": "Drive back"
+    },
+    {
+      "row": 4,
+      "col": 12,
+      "direction": "down",
+      "answer": "LEAP",
+      "clue": "Jump"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "RIGHT",
+      "clue": "Correct – starboard"
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "direction": "down",
+      "answer": "TRAVERSE",
+      "clue": "Cross"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "direction": "across",
+      "answer": "PUT",
+      "clue": "Place"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "down",
+      "answer": "VISIT",
+      "clue": "Call on"
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "direction": "across",
+      "answer": "AROUSE",
+      "clue": "Stir"
+    },
+    {
+      "row": 7,
       "col": 8,
       "direction": "down",
-      "answer": "BOAR",
-      "clue": "An uncastrated male hog"
+      "answer": "SONG",
+      "clue": "Ballad"
     },
     {
-      "row": 6,
+      "row": 8,
+      "col": 2,
+      "direction": "down",
+      "answer": "COURT",
+      "clue": "Tribunal – woo"
+    },
+    {
+      "row": 8,
       "col": 10,
-      "direction": "across",
-      "answer": "BAY",
-      "clue": "An indentation of a shoreline larger than a cove but smaller than a gulf"
+      "direction": "down",
+      "answer": "GUARD",
+      "clue": "Sentry"
     },
     {
-      "row": 7,
+      "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "PERSUASION",
-      "clue": "The act of persuading"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "down",
-      "answer": "PULPIT",
-      "clue": "A platform raised above the surrounding level to give prominence to the person on it"
-    },
-    {
-      "row": 7,
-      "col": 6,
-      "direction": "down",
-      "answer": "SAG",
-      "clue": "Droop, sink, or settle from or as if from pressure or loss of tautness"
+      "answer": "SCORE",
+      "clue": "Twenty – tally"
     },
     {
       "row": 9,
       "col": 6,
       "direction": "across",
-      "answer": "GARAGE",
-      "clue": "An outbuilding for housing automobiles"
-    },
-    {
-      "row": 9,
-      "col": 7,
-      "direction": "down",
-      "answer": "ARCH",
-      "clue": "A curved shape in the vertical plane that spans an opening"
-    },
-    {
-      "row": 9,
-      "col": 9,
-      "direction": "down",
-      "answer": "AJAR",
-      "clue": "Slightly open"
+      "answer": "CON",
+      "clue": "Swindle"
     },
     {
       "row": 10,
-      "col": 0,
+      "col": 8,
       "direction": "across",
-      "answer": "PONY",
-      "clue": "A range horse of the western United States"
+      "answer": "GIANT",
+      "clue": "Huge – ogre"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 12,
       "direction": "down",
-      "answer": "TIE",
-      "clue": "A social or business relationship"
+      "answer": "TIN",
+      "clue": "Can"
     },
     {
       "row": 11,
-      "col": 7,
+      "col": 0,
       "direction": "across",
-      "answer": "CZAR",
-      "clue": "A male monarch or emperor"
+      "answer": "THRASH",
+      "clue": "Beat soundly"
     },
     {
       "row": 12,
-      "col": 0,
+      "col": 6,
       "direction": "across",
-      "answer": "TOFFEE",
-      "clue": "Caramelized sugar cooled in thin sheets"
+      "answer": "ABANDON",
+      "clue": "Desert"
     }
   ]
 }

@@ -8,176 +8,183 @@
       "row": 0,
       "col": 1,
       "direction": "across",
-      "answer": "CABLE",
-      "clue": "A telegram sent abroad"
+      "answer": "DOOR",
+      "clue": "Entrance"
     },
     {
       "row": 0,
       "col": 1,
       "direction": "down",
-      "answer": "CINDER",
-      "clue": "A fragment of incombustible matter left after a wood or coal or charcoal fire"
+      "answer": "DISTIL",
+      "clue": "Purify by boiling"
     },
     {
       "row": 0,
-      "col": 3,
+      "col": 4,
       "direction": "down",
-      "answer": "BUSHY",
-      "clue": "Used of hair"
+      "answer": "RUN",
+      "clue": "Sprint – manage"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "across",
+      "answer": "EGG",
+      "clue": "Hen's product"
     },
     {
       "row": 0,
       "col": 7,
       "direction": "down",
-      "answer": "OUTSKIRTS",
-      "clue": "Outlying areas"
+      "answer": "GRAB",
+      "clue": "Snatch"
     },
     {
-      "row": 1,
-      "col": 6,
-      "direction": "across",
-      "answer": "BUBBLY",
-      "clue": "Full of or showing high spirits"
-    },
-    {
-      "row": 1,
-      "col": 9,
-      "direction": "down",
-      "answer": "BIN",
-      "clue": "A container"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "ONUS",
-      "clue": "An onerous or difficult concern"
-    },
-    {
-      "row": 2,
-      "col": 12,
-      "direction": "down",
-      "answer": "ASS",
-      "clue": "The fleshy part of the human body that you sit on"
-    },
-    {
-      "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "HOARSENESS",
-      "clue": "A throaty harshness"
-    },
-    {
-      "row": 3,
+      "row": 0,
       "col": 10,
       "direction": "down",
-      "answer": "EXTANT",
-      "clue": "Still in existence"
+      "answer": "CLEAR",
+      "clue": "Transparent"
     },
     {
-      "row": 5,
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "MATE",
+      "clue": "Friend – checkmate"
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "direction": "across",
+      "answer": "SHUNT",
+      "clue": "Shove aside"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "direction": "down",
+      "answer": "TEE",
+      "clue": "Peg for a golf ball"
+    },
+    {
+      "row": 2,
+      "col": 7,
+      "direction": "across",
+      "answer": "ARREST",
+      "clue": "Nick"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "EBB",
+      "clue": "Recede"
+    },
+    {
+      "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "ERA",
-      "clue": "A period marked by distinctive character or reckoned from a fixed point or event"
+      "answer": "PIERCE",
+      "clue": "Puncture"
     },
     {
-      "row": 5,
-      "col": 0,
-      "direction": "down",
-      "answer": "ERGO",
-      "clue": "Therefore or consequently"
-    },
-    {
-      "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "AIRS",
-      "clue": "Affected manners intended to impress others"
-    },
-    {
-      "row": 5,
+      "row": 4,
       "col": 4,
+      "direction": "down",
+      "answer": "CHAMBER",
+      "clue": "Room"
+    },
+    {
+      "row": 4,
+      "col": 8,
       "direction": "across",
-      "answer": "HUMIDITY",
-      "clue": "Wetness in the atmosphere"
+      "answer": "CORN",
+      "clue": "Wheat – foot complaint"
+    },
+    {
+      "row": 4,
+      "col": 11,
+      "direction": "down",
+      "answer": "NEEDLE",
+      "clue": "Sewing tool – antagonise"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "direction": "down",
+      "answer": "SOD",
+      "clue": "Turf – unpleasant person"
     },
     {
       "row": 6,
-      "col": 12,
-      "direction": "down",
-      "answer": "TUNNEL",
-      "clue": "A passageway through or under something, usually underground"
-    },
-    {
-      "row": 7,
-      "col": 4,
+      "col": 3,
       "direction": "across",
-      "answer": "PLATOON",
-      "clue": "A military unit that is a subdivision of a company"
+      "answer": "SAVOUR",
+      "clue": "Relish"
     },
     {
-      "row": 7,
-      "col": 4,
+      "row": 6,
+      "col": 8,
       "direction": "down",
-      "answer": "PAPAYA",
-      "clue": "Large oval melon-like tropical fruit with yellowish flesh"
+      "answer": "REPRESS",
+      "clue": "Suppress"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "across",
+      "answer": "VET",
+      "clue": "Animal doctor – check"
     },
     {
       "row": 8,
       "col": 2,
       "direction": "across",
-      "answer": "SPA",
-      "clue": "A health resort near a spring or at the seaside"
+      "answer": "RIB",
+      "clue": "Tease – chest bone"
     },
     {
       "row": 8,
-      "col": 10,
+      "col": 7,
       "direction": "across",
-      "answer": "TON",
-      "clue": "A United States unit of weight equivalent to 2000 pounds"
+      "answer": "SPOIL",
+      "clue": "Ruin – pamper"
     },
     {
       "row": 9,
       "col": 1,
       "direction": "down",
-      "answer": "TOUR",
-      "clue": "A journey or route all the way around a particular place or area"
-    },
-    {
-      "row": 9,
-      "col": 8,
-      "direction": "down",
-      "answer": "DOLL",
-      "clue": "A small replica of a person"
+      "answer": "LEAD",
+      "clue": "Guide – pencil core"
     },
     {
       "row": 10,
-      "col": 4,
+      "col": 1,
       "direction": "across",
-      "answer": "ANCHOVY",
-      "clue": "Tiny fishes usually canned or salted"
+      "answer": "ENTRANCE",
+      "clue": "Doorway – enchant"
     },
     {
       "row": 10,
-      "col": 10,
+      "col": 3,
       "direction": "down",
-      "answer": "YEN",
-      "clue": "A yearning for something or to do something"
+      "answer": "TAP",
+      "clue": "Faucet – knock lightly"
     },
     {
-      "row": 11,
-      "col": 0,
-      "direction": "across",
-      "answer": "LUSTY",
-      "clue": "Vigorously passionate"
+      "row": 10,
+      "col": 6,
+      "direction": "down",
+      "answer": "NET",
+      "clue": "Mesh – after tax"
     },
     {
       "row": 12,
-      "col": 4,
+      "col": 3,
       "direction": "across",
-      "answer": "AURAL",
-      "clue": "Of or pertaining to hearing or the ear"
+      "answer": "PROTEST",
+      "clue": "Objection"
     }
   ]
 }

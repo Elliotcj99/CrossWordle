@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
-      "direction": "across",
-      "answer": "SPOOK",
-      "clue": "Someone unpleasantly strange or eccentric"
-    },
-    {
-      "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "PRODUCTIVE",
-      "clue": "Producing or capable of producing"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "down",
-      "answer": "OVAL",
-      "clue": "Rounded like an egg"
-    },
-    {
-      "row": 0,
-      "col": 7,
-      "direction": "across",
-      "answer": "GREENS",
-      "clue": "Any of various leafy plants or their leaves and stems eaten as vegetables"
-    },
-    {
-      "row": 0,
-      "col": 7,
-      "direction": "down",
-      "answer": "GRAVE",
-      "clue": "Death of a person"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "SOFA",
-      "clue": "An upholstered seat for more than one person"
-    },
-    {
-      "row": 2,
-      "col": 1,
-      "direction": "across",
-      "answer": "VOCAL",
-      "clue": "Relating to or designed for or using the singing voice"
-    },
-    {
-      "row": 2,
-      "col": 9,
-      "direction": "down",
-      "answer": "EVIL",
-      "clue": "Morally bad or wrong"
-    },
-    {
-      "row": 3,
-      "col": 9,
-      "direction": "across",
-      "answer": "VISA",
-      "clue": "Approve officially"
-    },
-    {
-      "row": 3,
-      "col": 11,
-      "direction": "down",
-      "answer": "SUCCOUR",
-      "clue": "Assistance in time of difficulty"
-    },
-    {
-      "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "PLUS",
-      "clue": "A useful or valuable quality"
+      "answer": "CROSS",
+      "clue": "Angry – kiss on a letter"
     },
     {
-      "row": 4,
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "COMB",
+      "clue": "Hair tidier"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "SHOT",
+      "clue": "Attempt – injection"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "SIDE",
+      "clue": "Edge – team"
+    },
+    {
+      "row": 1,
       "col": 5,
       "direction": "across",
-      "answer": "TEE",
-      "clue": "The starting place for each hole on a golf course"
+      "answer": "STRICT",
+      "clue": "Stern"
     },
     {
-      "row": 5,
+      "row": 1,
+      "col": 5,
+      "direction": "down",
+      "answer": "SOP",
+      "clue": "Concession"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "down",
+      "answer": "TALK",
+      "clue": "Chat"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "BEST",
+      "clue": "Finest"
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "direction": "down",
+      "answer": "SCATTERING",
+      "clue": "Sprinkling"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "across",
+      "answer": "SELL",
+      "clue": "Flog"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "SHAM",
+      "clue": "Fake"
+    },
+    {
+      "row": 4,
       "col": 4,
       "direction": "down",
-      "answer": "CHAFED",
-      "clue": "Painful from having the skin abraded"
+      "answer": "DEFEND",
+      "clue": "Protect"
     },
     {
       "row": 5,
-      "col": 8,
+      "col": 1,
       "direction": "across",
-      "answer": "CLACK",
-      "clue": "Make a rattling sound"
+      "answer": "SALE",
+      "clue": "Bargain event"
     },
     {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "WATCHDOG",
-      "clue": "A guardian or defender against theft or illegal practices or waste"
-    },
-    {
-      "row": 6,
-      "col": 0,
+      "row": 5,
+      "col": 12,
       "direction": "down",
-      "answer": "WRECKED",
-      "clue": "Destroyed in an accident"
+      "answer": "REEK",
+      "clue": "Stink"
     },
     {
       "row": 6,
-      "col": 7,
-      "direction": "down",
-      "answer": "GLAD",
-      "clue": "Showing or causing joy and pleasure"
+      "col": 4,
+      "direction": "across",
+      "answer": "FORM",
+      "clue": "Shape – class at school"
     },
     {
-      "row": 7,
-      "col": 7,
+      "row": 6,
+      "col": 9,
       "direction": "across",
-      "answer": "LOTION",
-      "clue": "Any of various cosmetic preparations that are applied to the skin"
+      "answer": "PAGE",
+      "clue": "Leaf – young attendant"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "PEN",
+      "clue": "Biro – enclosure"
     },
     {
       "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "QUEEN",
+      "clue": "Monarch – chess piece"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "PEDAL",
+      "clue": "Bike's foot lever"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "NICK",
+      "clue": "Steal – prison"
+    },
+    {
+      "row": 8,
+      "col": 11,
+      "direction": "down",
+      "answer": "CAT",
+      "clue": "Puss"
+    },
+    {
+      "row": 9,
       "col": 4,
       "direction": "across",
-      "answer": "FLEA",
-      "clue": "Any wingless bloodsucking parasitic insect noted for ability to leap"
+      "answer": "DUE",
+      "clue": "Owed"
     },
     {
       "row": 9,
-      "col": 2,
-      "direction": "across",
-      "answer": "EYE",
-      "clue": "The organ of sight"
-    },
-    {
-      "row": 9,
-      "col": 10,
-      "direction": "across",
-      "answer": "IRK",
-      "clue": "Irritate or vex"
-    },
-    {
-      "row": 9,
-      "col": 12,
+      "col": 8,
       "direction": "down",
-      "answer": "KIT",
-      "clue": "A case for containing a set of articles"
+      "answer": "NEED",
+      "clue": "Require"
     },
     {
       "row": 10,
-      "col": 4,
+      "col": 8,
       "direction": "across",
-      "answer": "DAM",
-      "clue": "A barrier constructed to contain the flow of water or to keep out the sea"
-    },
-    {
-      "row": 10,
-      "col": 5,
-      "direction": "down",
-      "answer": "ARM",
-      "clue": "A human limb"
+      "answer": "EXIT",
+      "clue": "Way out"
     },
     {
       "row": 11,
-      "col": 8,
+      "col": 1,
       "direction": "across",
-      "answer": "SCOOT",
-      "clue": "Run or move very quickly or hastily"
+      "answer": "INCREASE",
+      "clue": "Rise"
     },
     {
       "row": 12,
-      "col": 0,
+      "col": 8,
       "direction": "across",
-      "answer": "DIPLOMAT",
-      "clue": "An official engaged in international negotiations"
+      "answer": "DEAR",
+      "clue": "Expensive – beloved"
     }
   ]
 }

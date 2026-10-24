@@ -173,12 +173,14 @@ function buildBoard(pool: readonly Candidate[], options: LayoutOptions, random: 
   board.place(seed, { row: 0, col: 0, direction: random.int(2) === 0 ? 'across' : 'down' });
 
   const used = new Set([seed.answer]);
+  // Synonyms often share a clue, but one puzzle never shows the same clue twice.
+  const usedClues = new Set([seed.clue.toLowerCase()]);
   let placedThisPass = true;
   while (placedThisPass && board.entries.length < options.maxEntries) {
     placedThisPass = false;
     for (const candidate of order) {
       if (board.entries.length >= options.maxEntries) break;
-      if (used.has(candidate.answer)) continue;
+      if (used.has(candidate.answer) || usedClues.has(candidate.clue.toLowerCase())) continue;
       const spots = board.placements(candidate.answer, options.maxSize);
       if (spots.length === 0) continue;
       // Prefer more crossings, then the least growth of the grid; break ties at random.
@@ -193,6 +195,7 @@ function buildBoard(pool: readonly Candidate[], options: LayoutOptions, random: 
         .sort((a, b) => b.score - a.score)[0]!.spot;
       board.place(candidate, best);
       used.add(candidate.answer);
+      usedClues.add(candidate.clue.toLowerCase());
       placedThisPass = true;
     }
   }

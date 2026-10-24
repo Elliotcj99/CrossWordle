@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "IGNORANCE",
-      "clue": "The lack of knowledge or education"
+      "answer": "STEM",
+      "clue": "Stalk – stop"
     },
     {
       "row": 0,
       "col": 1,
       "direction": "down",
-      "answer": "GUT",
-      "clue": "The part of the alimentary canal between the stomach and the anus"
+      "answer": "SAFE",
+      "clue": "Secure – strongbox"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 8,
       "direction": "down",
-      "answer": "RUN",
-      "clue": "Move fast by using one's feet, with one foot off the ground at any given time"
+      "answer": "SAVE",
+      "clue": "Rescue – keep"
     },
     {
-      "row": 0,
-      "col": 7,
-      "direction": "down",
-      "answer": "CARGO",
-      "clue": "Goods carried by a large vehicle"
-    },
-    {
-      "row": 0,
-      "col": 10,
+      "row": 1,
+      "col": 5,
       "direction": "across",
-      "answer": "CUE",
-      "clue": "Evidence that helps to solve a problem"
+      "answer": "STRANGLE",
+      "clue": "Throttle"
     },
     {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "CRY",
-      "clue": "Shed tears because of sadness, rage, or pain"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "STRANGER",
-      "clue": "Anyone who does not belong in the environment in which they are found"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "down",
-      "answer": "SORT",
-      "clue": "A category of things distinguished by some common characteristic or quality"
-    },
-    {
-      "row": 2,
-      "col": 3,
-      "direction": "down",
-      "answer": "ASK",
-      "clue": "Make a request or demand for something to somebody"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "across",
-      "answer": "YES",
-      "clue": "An affirmative"
-    },
-    {
-      "row": 2,
+      "row": 1,
       "col": 12,
       "direction": "down",
-      "answer": "SURROUND",
-      "clue": "Extend on all sides of simultaneously"
+      "answer": "ELEMENT",
+      "clue": "Component"
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "direction": "across",
+      "answer": "FISH",
+      "clue": "Angle"
+    },
+    {
+      "row": 2,
+      "col": 4,
+      "direction": "down",
+      "answer": "HAIL",
+      "clue": "Frozen rain – greet"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "across",
+      "answer": "AGGREGATE",
+      "clue": "Total score over two legs"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "RIVET",
+      "clue": "Fascinate – metal pin"
     },
     {
       "row": 3,
       "col": 9,
       "direction": "down",
-      "answer": "ESPECIALLY",
-      "clue": "To a distinctly greater extent or degree than is common"
+      "answer": "GUESS",
+      "clue": "Estimate"
     },
     {
       "row": 4,
-      "col": 6,
-      "direction": "across",
-      "answer": "BOOST",
-      "clue": "Increase"
+      "col": 2,
+      "direction": "down",
+      "answer": "OBJECT",
+      "clue": "Thing – protest"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "REPRIEVE",
+      "clue": "Stay of execution"
     },
     {
       "row": 5,
       "col": 2,
-      "direction": "down",
-      "answer": "UNITING",
-      "clue": "The combination of two or more commercial companies"
+      "direction": "across",
+      "answer": "BULL",
+      "clue": "Male cow"
     },
     {
       "row": 5,
-      "col": 5,
-      "direction": "down",
-      "answer": "RETURN",
-      "clue": "Go or come back to place, condition, or activity where one has been before"
+      "col": 9,
+      "direction": "across",
+      "answer": "EASE",
+      "clue": "Comfort"
     },
     {
       "row": 6,
-      "col": 4,
+      "col": 6,
       "direction": "across",
-      "answer": "HEATHEN",
-      "clue": "A person who does not acknowledge your god"
+      "answer": "NEWS",
+      "clue": "Bulletin"
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "direction": "down",
+      "answer": "PELT",
+      "clue": "Animal skin – rain hard"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "across",
+      "answer": "SHUT",
+      "clue": "Closed"
     },
     {
       "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "ZETA",
-      "clue": "The 6th letter of the Greek alphabet"
+      "answer": "RECOVER",
+      "clue": "Get better"
     },
     {
       "row": 8,
       "col": 8,
+      "direction": "down",
+      "answer": "HOT",
+      "clue": "Spicy – very warm"
+    },
+    {
+      "row": 9,
+      "col": 8,
       "direction": "across",
-      "answer": "RISEN",
-      "clue": "Above the horizon"
+      "answer": "OLIVE",
+      "clue": "Martini garnish"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "down",
+      "answer": "ITEM",
+      "clue": "Article"
+    },
+    {
+      "row": 9,
+      "col": 12,
+      "direction": "down",
+      "answer": "END",
+      "clue": "Finish"
     },
     {
       "row": 10,
-      "col": 1,
+      "col": 4,
       "direction": "across",
-      "answer": "INVENT",
-      "clue": "Come up with after a mental effort"
+      "answer": "STINT",
+      "clue": "Spell of duty"
     },
     {
       "row": 10,
       "col": 4,
       "direction": "down",
-      "answer": "EAR",
-      "clue": "The sense organ for hearing and equilibrium"
+      "answer": "SEE",
+      "clue": "Look – bishop's area"
     },
     {
-      "row": 10,
-      "col": 6,
-      "direction": "down",
-      "answer": "TAG",
-      "clue": "A label associated with something for the purpose of identification"
-    },
-    {
-      "row": 10,
-      "col": 8,
+      "row": 11,
+      "col": 9,
       "direction": "across",
-      "answer": "CLOG",
-      "clue": "Become or cause to become obstructed"
-    },
-    {
-      "row": 10,
-      "col": 11,
-      "direction": "down",
-      "answer": "GUN",
-      "clue": "A weapon that discharges a missile at high velocity"
+      "answer": "DEAD",
+      "clue": "Lifeless"
     },
     {
       "row": 12,
-      "col": 4,
+      "col": 0,
       "direction": "across",
-      "answer": "RAG",
-      "clue": "Treat cruelly"
-    },
-    {
-      "row": 12,
-      "col": 8,
-      "direction": "across",
-      "answer": "HYENA",
-      "clue": "Doglike nocturnal mammal of Africa and southern Asia that feeds chiefly on carrion"
+      "answer": "EXTREMITY",
+      "clue": "Furthest point"
     }
   ]
 }

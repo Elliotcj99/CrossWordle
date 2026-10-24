@@ -1,0 +1,2994 @@
+# Clues written for CrossWordle in the style of a British quick crossword (the Guardian Quick,
+# the Times Quick): short definitions and synonyms, a few fill-in-the-blanks, two meanings joined
+# by a dash, the odd playful one. Original work, not copied from any newspaper.
+#
+# The answers are about 3,000 of the most familiar words in the pool, ranked by how many senses
+# Open English WordNet gives them. Daily puzzles only use answers clued here. See README.md for the
+# style guide. Hand edits and exclusions go in edits.tsv, which overrides this file.
+ABANDON	Desert
+ABOUT	Roughly
+ABSOLUTE	Total, utter
+ABSORB	Soak up
+ABSORPTION	Soaking up – deep engagement
+ABSTRACT	Summary of an academic paper
+ABUSE	Mistreat
+ACCENT	Regional way of speaking
+ACCEPT	Take on board
+ACCEPTANCE	Approval – saying yes to an offer
+ACCESS	Way in
+ACCORD	Agreement
+ACCOUNT	Report – bank holding
+ACE	Serve that can't be returned
+ACQUIRE	Obtain
+ACT	Law passed by Parliament
+ACTION	Deed
+ACTIVE	Energetic
+ACTIVITY	Busy movement
+ACUTE	Sharp, severe
+ADD	Total up
+ADDITION	Extension to a house
+ADDRESS	Speech – where you live
+ADHERE	Stick
+ADMIT	Confess
+ADOPT	Take on as your own
+ADVANCE	Move forward
+ADVANCED	Far ahead in development
+AFFECT	Influence
+AFFINITY	Natural liking
+AGE	Era
+AGED	Elderly
+AGENT	Spy – representative
+AGGREGATE	Total score over two legs
+AGITATE	Stir up
+AGREE	See eye to eye
+AGREEMENT	Deal
+AHEAD	In front
+AID	Help
+AIM	Goal
+AIR	Tune – what we breathe
+ALARM	Wake-up call?
+ALERT	Watchful
+ALIEN	Visitor from outer space
+ALIVE	Living
+ALLOW	Permit
+ALLOWANCE	Pocket money
+ALONE	On your own
+ALTERNATE	Every other
+ALTO	Voice between soprano and tenor
+AMOUNT	Quantity
+ANALYSIS	Close examination
+ANGLE	Fish with rod and line
+ANIMATE	Bring to life
+ANIMATION	Cartoon-making
+ANSWER	Reply
+ANTEATER	Long-snouted termite hunter
+ANTICIPATE	Expect
+ANTIQUE	Valuable old object
+APART	Separated
+APPEAL	Charm – request to a higher court
+APPEAR	Turn up
+APPEARANCE	Look
+APPLY	Put in for a job
+APPROACH	Come near
+ARCH	Curved structure – mischievous
+AREA	Region
+ARGUMENT	Row
+ARISE	Get up
+ARM	Limb
+AROUND	Approximately
+AROUSE	Stir
+AROUSED	Excited
+ARRANGE	Organise
+ARRAY	Range, display
+ARREST	Nick
+ARTICULATE	Well-spoken
+ASCEND	Climb
+ASIDE	Stage whisper
+ASK	Enquire
+ASSAULT	Attack
+ASSEMBLY	School gathering
+ASSIGN	Allocate
+ASSIGNMENT	Task
+ASSOCIATE	Colleague
+ASSUME	Take for granted
+ASSUMPTION	Supposition
+ATMOSPHERE	Mood – layer of air
+ATTACHMENT	Fondness – file sent with an email
+ATTACK	Offensive
+ATTENTION	Notice
+AUTHORITY	Power
+AVERAGE	Mean
+AWAY	Not at home
+AWFUL	Dreadful
+AWKWARD	Clumsy
+AXIS	Line a planet spins around
+BABY	Infant
+BACK	Support
+BACKFIRE	Go wrong for its maker
+BACKGROUND	Upbringing – scenery behind
+BACKWARD	Behind the times
+BAD	Naughty
+BADLY	Poorly
+BAG	Sack
+BAIL	Money for temporary release
+BALANCE	Equilibrium
+BALL	Formal dance
+BALLAST	Weight carried for stability
+BAN	Prohibit
+BAND	Group of musicians
+BANG	Loud noise
+BANK	Riverside – money lender
+BAR	Pub counter
+BARE	Naked
+BARK	Dog's call – tree's outer layer
+BARREL	Beer cask
+BASE	Headquarters
+BASIC	Fundamental
+BASS	Low singer
+BAT	Cricket blade – flying mammal
+BATTERY	Power cell
+BAY	Inlet
+BEAD	Drop of sweat
+BEAM	Shine – roof timber
+BEAR	Endure
+BEARD	Facial hair
+BEARING	Posture – compass direction
+BEAT	Defeat
+BEAVER	Busy dam builder
+BED	Place to sleep
+BEETLE	Scurry – insect
+BEGIN	Start
+BEGINNING	Start
+BEHIND	Late – rear
+BELL	Ringer
+BELLY	Tummy
+BELONG	Fit in
+BELT	Strap around the waist
+BENCH	Long seat
+BEND	Curve
+BENT	Crooked
+BERTH	Bunk – mooring
+BEST	Finest
+BETRAY	Double-cross
+BETTER	Improved
+BID	Offer at auction
+BIG	Large
+BILL	Beak – invoice
+BIND	Tie
+BINDING	Legally obliging
+BIRD	Feathered creature
+BIRTH	Arrival of a baby
+BIT	Small piece
+BITCH	Female dog
+BITE	Nip
+BITTER	Pub ale – resentful
+BLACK	Colour of soot
+BLADE	Sword's cutting part
+BLAME	Hold responsible
+BLANK	Empty
+BLANKET	Bed cover
+BLAST	Explosion
+BLAZE	Fire
+BLEND	Mix
+BLESSED	Holy
+BLIND	Window shade – unseeing
+BLISTER	Bubble on the skin
+BLOCK	Obstruct
+BLOCKADE	Siege barrier
+BLOOD	Red stuff in your veins
+BLOOM	Flower
+BLOW	Puff – setback
+BLUE	Sad – sky colour
+BLUFF	Cliff – deceive
+BLUNT	Not sharp – outspoken
+BLUR	Smudge
+BLUSTER	Bluff and bombast
+BOARD	Plank – get on a train
+BOAT	Vessel
+BOB	Old shilling – bounce
+BODY	Torso
+BOIL	Heat to bubbling
+BOLT	Lock – dash
+BOND	Tie – Ian Fleming's spy
+BONE	Skeleton part
+BOOK	Reserve – novel
+BOOM	Rapid growth
+BOOST	Lift
+BOOSTER	Follow-up vaccine dose
+BOOT	Car's luggage space
+BORDER	Frontier
+BORE	Tire – dull person
+BOSOM	Chest
+BOSS	Manager
+BOTHER	Trouble
+BOTTOM	Lowest point
+BOUNCE	Rebound
+BOUND	Leap – tied up
+BOW	Ribbon knot – ship's front
+BOWL	Dish – deliver at cricket
+BOX	Carton – fight with gloves
+BRACE	Pair – prepare for impact
+BRACKET	Shelf support – income band
+BRAIN	Grey matter
+BRAKE	Slow down
+BRANCH	Bough – local office
+BRAND	Trademark
+BRASS	Cheek – money
+BRAVE	Courageous
+BREAK	Snap – rest
+BREAKDOWN	Collapse – itemised list
+BREAST	Chest
+BREATHE	Inhale and exhale
+BREED	Variety of dog
+BREEDING	Good manners
+BRIDGE	Card game – span
+BRIEF	Short
+BRIGHT	Clever – shining
+BRILLIANT	Superb
+BRING	Fetch
+BRISTLE	Stiff hair – take offence
+BROAD	Wide
+BROADSIDE	Fierce verbal attack
+BROKEN	Bust
+BRONZE	Third place medal
+BROOD	Sulk – family of chicks
+BROWSE	Look idly
+BRUSH	Sweep
+BUBBLE	Fizz
+BUCK	Male deer
+BUFF	Enthusiast – polish
+BUFFER	Cushion – shock absorber
+BUG	Insect – irritate
+BUILD	Construct
+BULB	Lamp – daffodil starter
+BULK	Majority – mass
+BULL	Male cow
+BUM	Bottom
+BUMP	Knock
+BUNDLE	Package
+BUNK	Bed – nonsense
+BUNKER	Golf course sand trap
+BURDEN	Load
+BURN	Scorch
+BURNING	Fiery
+BURST	Pop
+BURY	Inter
+BUS	Double-decker
+BUSH	Shrub
+BUSINESS	Firm
+BUST	Broken – sculpted head and shoulders
+BUSY	Hard at work
+BUTT	Target of a joke
+BUTTON	Shirt fastener
+BUY	Purchase
+BUZZ	Hum – thrill
+CABLE	Wire
+CACKLE	Hen's laugh
+CALCULATE	Work out
+CALL	Ring – name
+CALLER	Visitor
+CALM	Serene
+CAMP	Site for tents
+CAMPAIGN	Election drive
+CAN	Tin
+CANCEL	Call off
+CANNON	Big gun
+CANON	Cathedral clergyman – body of works
+CANT	Hypocritical talk
+CANVAS	Tent fabric – painter's surface
+CANVASS	Seek votes door to door
+CAP	Peaked hat – upper limit
+CAPACITY	Volume
+CAPER	Prank – pickled flower bud
+CAPITAL	London, for one
+CAPITALISE	Cash in
+CAPSULE	Pill
+CAPTAIN	Skipper
+CAPTURE	Seize
+CARD	Postcard – joker
+CARDINAL	Red-robed churchman
+CARE	Look after
+CARRIER	Aircraft ship – courier
+CARRY	Bear
+CASE	Suitcase – court action
+CAST	Throw – actors in a play
+CASUAL	Informal
+CAT	Puss
+CATCH	Hook – snag
+CAUSE	Reason
+CELL	Prison room
+CEMENT	Mortar ingredient
+CENTRE	Middle
+CERTAIN	Sure
+CHAFE	Rub sore
+CHAIN	Linked shops
+CHAIR	Seat – preside over
+CHALLENGE	Dare
+CHAMBER	Room
+CHAMPION	Winner
+CHANCE	Luck
+CHANGE	Alter – loose coins
+CHANNEL	TV station – the sea between England and France
+CHAPTER	Section of a book
+CHAR	Scorch – cuppa
+CHARACTER	Role in a play
+CHARCOAL	Barbecue fuel
+CHARGE	Fee – rush at
+CHARITY	Good cause
+CHARM	Allure – lucky trinket
+CHART	Graph – hit parade
+CHARTER	Founding document – hire
+CHASE	Pursue
+CHATTER	Natter
+CHEAT	Swindle
+CHECK	Verify
+CHECKER	Inspector
+CHEEK	Impudence
+CHEER	Applaud
+CHERRY	Stone fruit
+CHESTNUT	Conker – old joke
+CHICKEN	Coward – hen
+CHILL	Coldness
+CHIP	Fried potato strip
+CHOICE	Selection
+CHOKE	Gag
+CHOP	Cut – pork cut
+CHORUS	Refrain
+CHUCK	Throw
+CHURCH	Place of worship
+CINCH	Doddle
+CIPHER	Code
+CIRCLE	Ring
+CIRCUIT	Lap
+CIRCULATE	Mingle
+CIRCUS	Big top show
+CITATION	Quotation – honour
+CITE	Quote
+CIVIL	Polite
+CLACK	Clatter
+CLAIM	Assert
+CLAP	Applaud
+CLASH	Conflict
+CLASP	Grip – fastener
+CLASS	Form at school
+CLASSIC	Timeless
+CLASSICAL	Of Ancient Greece and Rome
+CLAW	Talon
+CLEAN	Spotless
+CLEAR	Transparent
+CLEAT	Stud
+CLEAVAGE	Split – neckline view
+CLICK	Mouse action
+CLIMAX	Peak
+CLIMB	Ascend
+CLIMBER	Mountaineer – ivy, say
+CLINCH	Seal the deal
+CLIP	Video excerpt – paper fastener
+CLOAK	Cape
+CLOG	Wooden shoe – block
+CLOISTER	Covered walkway in a monastery
+CLOSE	Near – shut
+CLOSED	Shut
+CLOSENESS	Intimacy
+CLOSET	Cupboard
+CLOSING	Final
+CLOSURE	Shutdown
+CLOT	Fool – thicken
+CLOUD	Mist up
+CLOUT	Influence
+CLUB	Society – golf iron
+CLUMP	Cluster
+CLUTCH	Grab – car pedal
+COACH	Trainer – long-distance bus
+COAL	Black fuel
+COAST	Shoreline
+COAT	Overcoat – layer of paint
+COCK	Rooster
+COD	Fish for chips
+CODE	Cipher
+COIL	Spiral
+COLD	Chilly – sniffles
+COLLAPSE	Fall down
+COLLAR	Shirt neckband
+COLLATERAL	Security for a loan
+COLLECT	Gather
+COLONY	Settlement
+COLOUR	Hue
+COLOURED	Tinted
+COLUMN	Pillar – newspaper feature
+COMB	Hair tidier
+COMBINE	Merge
+COME	Arrive
+COMFORT	Console
+COMING	Arrival
+COMMAND	Order
+COMMEND	Praise
+COMMENT	Remark
+COMMERCIAL	TV advert
+COMMISSION	Agent's cut
+COMMIT	Carry out, as a crime
+COMMITMENT	Dedication
+COMMON	Ordinary – village green
+COMMUNITY	Neighbourhood
+COMMUTE	Journey to work
+COMPACT	Dense – powder case
+COMPANY	Firm
+COMPARE	Contrast
+COMPASS	Direction finder
+COMPENSATE	Make up for
+COMPLAINT	Grievance
+COMPLEMENT	Go well with
+COMPLETE	Whole
+COMPLEX	Intricate
+COMPLEXION	Skin tone
+COMPOSE	Write music
+COMPOUND	Enclosure – worsen
+COMPROMISE	Meet halfway
+CON	Swindle
+CONCEIT	Vanity
+CONCERN	Worry
+CONCLUDE	Finish
+CONCLUSION	End
+CONCORD	Harmony
+CONCRETE	Solid – path material
+CONDEMN	Denounce
+CONDENSE	Abridge
+CONDITION	State
+CONDUCT	Behaviour
+CONE	Ice cream holder
+CONFESSION	Admission
+CONFIDENCE	Self-belief
+CONFINE	Restrict
+CONFIRM	Verify
+CONFLICT	War
+CONFORMITY	Compliance
+CONFUSE	Baffle
+CONFUSED	Muddled
+CONFUSION	Chaos
+CONJUGATE	List the forms of a verb
+CONNECT	Link
+CONNECTED	Linked
+CONNECTION	Link
+CONSECRATE	Make holy
+CONSERVE	Preserve – jam
+CONSIDER	Ponder
+CONSOLE	Comfort – games machine
+CONSORT	Spouse of a monarch
+CONSTANT	Unchanging
+CONSTRUCT	Build
+CONSUME	Eat – use up
+CONSUMMATE	Supremely skilled
+CONTACT	Touch
+CONTAIN	Hold
+CONTEND	Compete
+CONTENT	Happy
+CONTINGENT	Group of delegates
+CONTINUE	Carry on
+CONTRACT	Agreement – shrink
+CONTRARY	Awkward
+CONTRAST	Difference
+CONTROL	Command
+CONVENTION	Custom – conference
+CONVERSION	Loft makeover – rugby kick
+CONVERT	Change
+CONVEY	Carry
+CONVEYANCE	Vehicle
+CONVULSE	Shake violently
+COOK	Chef
+COOL	Chilly – trendy
+COORDINATE	Organise
+COPPER	Policeman – penny metal
+COPY	Duplicate
+CORAL	Reef material
+CORD	String
+CORE	Apple's centre
+CORK	Bottle stopper
+CORN	Wheat – foot complaint
+CORNER	Nook – kick from the flag
+CORRECT	Right
+CORRECTION	Amendment
+CORRUPT	Crooked
+CORRUPTION	Bribery
+COST	Price
+COSTUME	Outfit
+COTTON	Fabric – thread
+COUNT	Tally – nobleman
+COUNTER	Shop surface – token
+COUNTRY	Nation
+COUPLE	Pair
+COURSE	Route – part of a meal
+COURT	Tribunal – woo
+COVER	Lid
+COVERING	Layer
+CRAB	Shellfish with pincers
+CRACK	Split
+CRACKER	Christmas novelty
+CRACKLE	Snap and pop
+CRADLE	Baby's rocking bed
+CRAFT	Skill – boat
+CRAMP	Muscle spasm
+CRANK	Eccentric – starting handle
+CRASH	Collision
+CRAWL	Creep – swimming stroke
+CRAZE	Fad
+CRAZY	Mad
+CREAM	Top of the milk – the elite
+CREASE	Fold – batting line
+CREATE	Make
+CREATION	Invention
+CREDIT	Praise – buy now, pay later
+CREEP	Inch along – toady
+CREST	Summit – coat of arms
+CREW	Ship's company
+CRIB	Copy – Nativity scene
+CRIMSON	Deep red
+CRISP	Packet snack – brittle
+CRISSCROSS	Lattice pattern
+CRITICAL	Crucial – fault-finding
+CROCK	Old banger – earthenware pot
+CROP	Harvest – riding whip
+CROSS	Angry – kiss on a letter
+CROSSING	Zebra, for one
+CROW	Rook's black cousin – boast
+CROWD	Throng
+CROWN	Monarch's headgear
+CRUDE	Rough – unrefined oil
+CRUISE	Holiday at sea
+CRUMB	Morsel
+CRUNCH	Munch noisily – critical moment
+CRUSH	Squash – infatuation
+CRY	Weep
+CRYSTAL	Fine glassware – clear as this
+CUBE	Dice shape
+CUE	Prompt – snooker stick
+CUFF	Sleeve end – clip round the ear
+CULMINATE	Reach a climax
+CULT	Sect
+CULTURE	Arts – yoghurt bacteria
+CUNNING	Crafty
+CUP	Mug – trophy
+CURB	Restrain
+CURE	Remedy
+CURED	Healed – smoked or salted
+CURL	Ringlet
+CURSE	Swear word – hex
+CURVE	Bend
+CUSTOM	Tradition
+CUT	Slice
+CUTTER	Small sailing boat
+CUTTING	Snipped shoot – hurtful
+CYCLE	Ride a bike
+CYCLIC	Recurring
+DAB	Pat – flatfish
+DAILY	Every day – cleaner
+DAMAGE	Harm
+DAMN	Curse
+DAMP	Moist
+DAMPEN	Moisten – deaden
+DANCE	Waltz, say
+DARK	Unlit
+DARKNESS	Gloom
+DART	Flighted missile – dash
+DASH	Sprint – punctuation mark
+DATE	Day – romantic evening
+DAUB	Smear
+DAWN	Daybreak
+DAY	Twenty-four hours
+DEAD	Lifeless
+DEADEN	Numb
+DEADLY	Lethal
+DEAL	Bargain – hand out cards
+DEALER	Trader
+DEAR	Expensive – beloved
+DEATH	Demise
+DEBATE	Discuss
+DEBUT	First appearance
+DECAY	Rot
+DECENT	Respectable
+DECISION	Verdict
+DECK	Floor of a ship – pack of cards
+DECLARE	Announce
+DECLINE	Refuse – fall away
+DECREASE	Reduce
+DEDICATION	Commitment
+DEDUCTION	Inference – subtraction
+DEEP	Profound
+DEFAULT	Fail to repay
+DEFECT	Flaw – change sides
+DEFENCE	Back four
+DEFEND	Protect
+DEFINE	Explain the meaning of
+DEFLATE	Let down
+DEFLECT	Divert
+DEFLECTION	Swerve
+DEFORM	Distort
+DEGREE	Level – university award
+DELAY	Hold-up
+DELIBERATE	Intentional
+DELICACY	Tact – treat
+DELICATE	Fragile
+DELIGHT	Joy
+DELIVER	Hand over
+DELIVERY	Bowler's ball – drop-off
+DELUGE	Flood
+DEMAND	Insist on
+DENIAL	Refusal
+DENSE	Thick
+DENY	Refute
+DEPART	Leave
+DEPENDENT	Reliant
+DEPOSIT	Down payment
+DEPRESS	Sadden – push down
+DEPRESSION	Slump
+DEPTH	Profundity
+DERELICT	Abandoned
+DERIVATION	Origin
+DERIVATIVE	Unoriginal
+DERIVE	Obtain
+DESCENT	Ancestry – way down
+DESERT	Sahara, for one
+DESIGN	Plan
+DESIGNATE	Name
+DESIGNER	Fashion creator
+DESIRE	Longing
+DESOLATE	Bleak
+DESPATCH	Send off
+DESPERATE	Frantic
+DETACHED	Aloof – standing alone, as a house
+DETACHMENT	Objectivity
+DETAIL	Particular
+DETERMINE	Decide
+DETERMINED	Resolute
+DEVELOP	Grow
+DEVIATE	Stray
+DEVIATION	Departure from the norm
+DEVICE	Gadget
+DEVIL	Satan
+DEVISE	Think up
+DIAGONAL	Slanting
+DIAL	Clock face
+DIAMOND	Gem – baseball field
+DICTATE	Order
+DIE	Perish – cube for games
+DIET	Weight-loss plan
+DIFFERENCE	Disparity
+DIFFUSE	Spread out
+DIG	Excavate – jibe
+DIGEST	Summary – process food
+DIM	Faint – thick
+DIMENSION	Aspect
+DIMPLE	Cheek hollow
+DIP	Dunk – brief swim
+DIRECT	Straight
+DIRECTION	Way
+DIRECTOR	Film boss
+DIRT	Muck
+DIRTY	Filthy
+DISCHARGE	Release
+DISCIPLINE	Self-control
+DISCORD	Strife
+DISCOUNT	Reduction
+DISCOURSE	Discussion
+DISCOVER	Find
+DISCRETION	Tact
+DISH	Plate
+DISHONOUR	Disgrace
+DISJOINT	Separate
+DISK	Hard drive part
+DISMISS	Sack
+DISORDER	Chaos
+DISPATCH	Send
+DISPERSE	Scatter
+DISPLAY	Show
+DISPOSE	Get rid
+DISREGARD	Ignore
+DISSENT	Disagreement
+DISSOLVE	Melt away
+DISTANCE	Gap
+DISTANT	Far
+DISTIL	Purify by boiling
+DISTINCT	Clear
+DISTORT	Twist
+DISTORTION	Misrepresentation
+DISTRESS	Anguish
+DISTRIBUTE	Hand out
+DISTURB	Interrupt
+DITCH	Trench – dump
+DIVE	Plunge
+DIVIDE	Split
+DIVINE	Heavenly
+DIVISION	League tier
+DOCK	Wharf – courtroom stand
+DOCTOR	GP
+DOCUMENT	Paper
+DODGE	Evade
+DOG	Hound
+DOMAIN	Realm
+DOMESTIC	Household
+DOMINANT	Ruling
+DOMINATE	Rule
+DON	Put on – Oxford tutor
+DOOMED	Ill-fated
+DOOR	Entrance
+DOPE	Idiot – drugs
+DOSE	Measure of medicine
+DOT	Spot
+DOUBLE	Twofold – lookalike
+DOUSE	Drench
+DOWN	Glum – soft feathers
+DOWNHILL	Getting worse
+DRAB	Dreary
+DRAFT	Rough version
+DRAG	Haul – bore
+DRAIN	Plughole
+DRAPE	Hang loosely
+DRAUGHT	Cold air current
+DRAW	Sketch – tie
+DRAWING	Sketch
+DREAM	Fantasy
+DRESS	Frock
+DRESSER	Kitchen cabinet
+DRESSING	Vinaigrette – bandage
+DRIBBLE	Drool – run with the ball
+DRIFT	Snowbank – gist
+DRILL	Bore – practice routine
+DRINK	Beverage
+DRIP	Leak – wet person
+DRIVE	Motor – ambition
+DRIVER	Chauffeur – golf club
+DRONE	Male bee – monotone
+DROP	Fall
+DROWN	Swamp
+DRUM	Percussion instrument
+DRY	Arid
+DUCK	Zero at cricket – dodge
+DUE	Owed
+DUET	Song for two
+DULL	Boring
+DULLNESS	Tedium
+DUMMY	Mannequin – baby's soother
+DUMP	Tip
+DUPLEX	Two-storey flat
+DUPLICATE	Copy
+DUST	Fine powder
+DWARF	One of Snow White's seven
+DWELL	Reside
+EAGLE	Bird of prey – two under par
+EAR	Organ of hearing
+EARLY	Ahead of time
+EARTH	Soil – our planet
+EARTHY	Unpretentious – crude
+EASE	Comfort
+EAST	Where the sun rises
+EASY	Simple
+EAT	Dine
+EBB	Recede
+ECHO	Reverberation
+ECONOMIC	Financial
+EDGE	Rim
+EDUCATION	Schooling
+EFFECT	Result
+EFFECTIVE	Successful
+EGG	Hen's product
+ELABORATE	Intricate
+ELBOW	Arm joint – nudge aside
+ELECT	Vote in
+ELEMENT	Component
+ELEVATION	Height
+ELIMINATE	Remove
+EMBRACE	Hug
+EMERGE	Come out
+EMISSION	Discharge
+EMPIRE	Realm
+EMPTY	Vacant
+ENAMEL	Glossy paint – tooth coating
+ENCOUNTER	Meeting
+END	Finish
+ENDEMIC	Native to an area
+ENDING	Conclusion
+ENDURE	Bear
+ENERGY	Vigour
+ENGAGE	Employ – occupy
+ENGAGED	Betrothed – busy, as a phone
+ENGAGEMENT	Appointment – betrothal
+ENJOY	Relish
+ENSEMBLE	Outfit – group of players
+ENTAIL	Involve
+ENTER	Go in
+ENTIRE	Whole
+ENTRANCE	Doorway – enchant
+ENTRY	Way in
+ENVELOPE	Letter's cover
+EQUAL	Match
+ERROR	Mistake
+ERUPT	Blow up
+ERUPTION	Volcanic outburst
+ESCAPE	Break out
+ESCORT	Accompany
+ESSENTIAL	Vital
+ESTABLISH	Set up
+ESTEEM	Respect
+ESTIMATE	Guess
+ETCH	Engrave
+EVACUATE	Clear out
+EVEN	Level – like two, four and six
+EVIDENCE	Proof
+EVIL	Wicked
+EVOKE	Conjure up
+EXACT	Precise
+EXAMINE	Inspect
+EXAMPLE	Instance
+EXCESS	Surplus
+EXCHANGE	Swap
+EXCITE	Thrill
+EXCLUDE	Leave out
+EXCUSE	Pretext – forgive
+EXECUTE	Carry out
+EXECUTION	Performance – capital punishment
+EXERCISE	Workout
+EXHAUST	Tire out – car's tailpipe
+EXHIBIT	Display
+EXIT	Way out
+EXPAND	Grow
+EXPECT	Anticipate
+EXPEDITION	Journey of exploration
+EXPERIENCE	Know-how
+EXPERIMENT	Trial
+EXPLODE	Go off
+EXPLOSION	Blast
+EXPOSE	Reveal
+EXPOSURE	Publicity
+EXPRESS	Fast train – put into words
+EXPRESSION	Phrase – look on a face
+EXTEND	Lengthen
+EXTENDED	Prolonged
+EXTENSION	Annexe – more time
+EXTERNAL	Outer
+EXTINCTION	Dying out
+EXTINGUISH	Put out
+EXTRA	Additional – walk-on actor
+EXTRACT	Pull out
+EXTREME	Utmost
+EXTREMITY	Furthest point
+EYE	Organ of sight
+FACE	Visage – confront
+FACILITY	Amenity
+FACTOR	Element
+FADE	Dim
+FAIL	Flunk
+FAILURE	Flop
+FAINT	Pass out
+FAIR	Just – funfair
+FAITHFUL	Loyal
+FAKE	Counterfeit
+FALL	Drop – autumn, in America
+FALSE	Untrue
+FALSIFY	Fake
+FALTER	Waver
+FAMILIAR	Well known
+FAMILY	Relatives
+FAN	Supporter
+FANCY	Elaborate – take a shine to
+FANTASTIC	Terrific
+FAR	Distant
+FARE	Ticket price
+FASHION	Style
+FAST	Quick – go without food
+FAT	Plump
+FATHER	Dad
+FATIGUE	Weariness
+FAULT	Flaw
+FAVOUR	Good turn
+FAVOURITE	Best-loved
+FAWN	Young deer – grovel
+FEAR	Dread
+FEARFUL	Afraid
+FEAST	Banquet
+FEATHER	Plume
+FEATURE	Characteristic – magazine article
+FEDERAL	National, in the US
+FEED	Nourish
+FEEDER	Bird table
+FEEL	Touch
+FEELING	Emotion
+FELL	Cut down – Lakeland hill
+FELLOW	Chap
+FEMALE	Woman
+FEMININE	Ladylike
+FENCE	Barrier – sword fight
+FERMENT	Brew – unrest
+FERRET	Rummage – polecat's cousin
+FERRY	Cross-Channel boat
+FIBRE	Roughage – thread
+FIDDLE	Violin – swindle
+FIELD	Meadow – area of study
+FIFTH	Ordinal after fourth
+FIGHT	Battle
+FIGURE	Number – physique
+FILE	Folder – rasp
+FILL	Top up
+FILLER	Padding
+FILLET	Boneless cut
+FILLING	Sandwich contents
+FILM	Movie
+FILTER	Sieve
+FIN	Shark's swimming aid
+FINAL	Last
+FINANCE	Money matters
+FIND	Discover
+FINE	Penalty – OK
+FINGER	Digit
+FINISH	End
+FINISHED	Done
+FIRE	Blaze – sack
+FIRM	Solid – company
+FIRST	Initial
+FISH	Angle
+FIT	Healthy – suit
+FITTING	Appropriate
+FIX	Mend
+FLAG	Banner – tire
+FLAKE	Snow crystal
+FLANK	Side
+FLAP	Panic – wing movement
+FLARE	Distress signal
+FLASH	Instant – camera light
+FLAT	Apartment – level
+FLATNESS	Evenness
+FLEECE	Sheep's coat – rip off
+FLEET	Navy – swift
+FLEX	Bend – electric cable
+FLEXIBLE	Supple
+FLICK	Movie – flip
+FLICKER	Waver
+FLIGHT	Air journey – stairs
+FLING	Hurl – affair
+FLIP	Toss
+FLOAT	Bob – parade vehicle
+FLOATING	Adrift
+FLOCK	Herd of sheep
+FLOOD	Deluge
+FLOOR	Storey
+FLOP	Failure
+FLOURISH	Thrive
+FLOW	Stream
+FLUFF	Fuzz – bungle
+FLUID	Liquid
+FLUKE	Lucky break
+FLUSH	Blush – level
+FLUTTER	Flap – small bet
+FLUX	Constant change
+FLY	Soar – zip
+FOCUS	Concentrate
+FOIL	Thwart – thin fencing sword
+FOLD	Crease – sheep pen
+FOLLOW	Pursue
+FOLLOWING	Next – fan base
+FOOL	Idiot
+FOOT	Twelve inches
+FORCE	Compel
+FOREMOST	Leading
+FORFEIT	Lose as a penalty
+FORGE	Smithy – fake
+FORK	Pronged utensil
+FORM	Shape – class at school
+FORMAL	Official
+FORMAT	Layout
+FORMATION	Arrangement
+FORMER	Previous
+FORMULA	Recipe – racing category
+FORTE	Strong point
+FORTIFY	Strengthen
+FORWARD	Ahead – striker
+FOUL	Disgusting – illegal tackle
+FOUND	Establish
+FOUNDATION	Base – make-up layer
+FOUNDER	Creator – sink
+FOURTH	Quarter
+FOX	Reynard – baffle
+FRACTURE	Break
+FRAIL	Weak
+FRAME	Border – set up
+FRANK	Candid
+FREE	Gratis
+FREEZE	Turn to ice
+FREIGHT	Cargo
+FRESH	New
+FRESHNESS	Novelty
+FRET	Worry – guitar ridge
+FRIEND	Pal
+FRIENDLY	Amiable
+FRINGE	Edge – haircut
+FRONT	Face – cheek
+FRONTAL	Head-on
+FROST	Rime
+FROZEN	Icy
+FRUIT	Apple or pear, say
+FUEL	Petrol, for one
+FULL	Packed
+FUMBLE	Drop clumsily
+FUME	Seethe
+FUNCTION	Purpose – reception
+FUNCTIONAL	Working
+FUND	Finance
+FUNNY	Amusing
+FURROW	Plough line – frown
+FURTHER	More distant – promote
+FUSE	Merge – electrical safety device
+FUSION	Merger
+FUSS	Commotion
+FUTURE	Days to come
+GAG	Joke – silence
+GAIN	Profit
+GALL	Nerve
+GALLANT	Chivalrous
+GALLERY	Art museum – the gods, in a theatre
+GAME	Match – willing
+GANG	Crew
+GAP	Space
+GARDEN	Plot with lawn and beds
+GAS	Fuel for a hob
+GATE	Entrance in a fence – crowd size
+GATHER	Collect
+GAUGE	Measure
+GAY	Homosexual – merry, once
+GEAR	Kit – bike cog
+GEL	Hair product – set
+GEM	Jewel
+GENERAL	Overall – army officer
+GENERATION	Age group
+GENERIC	Unbranded
+GENIUS	Brilliant mind
+GENTILE	Non-Jew
+GENTLE	Mild
+GET	Obtain
+GHOST	Phantom
+GIANT	Huge – ogre
+GIFT	Present – talent
+GIG	Concert
+GIN	Spirit with tonic
+GINGER	Spice – redhead
+GIRDLE	Corset
+GIRL	Lass
+GIVE	Donate
+GLAD	Pleased
+GLARE	Dazzle – angry stare
+GLASS	Tumbler
+GLAZE	Shiny coating
+GLEAM	Shine
+GLIDE	Slide smoothly
+GLOSS	Sheen
+GLOSSY	Shiny – magazine
+GLOW	Radiance
+GOAD	Prod
+GOLD	First place medal
+GOLDEN	Gilded
+GONE	Departed
+GOOD	Fine – well-behaved
+GOOSE	Gander's mate
+GOPHER	Errand runner – burrowing rodent
+GORE	Blood – pierce with a horn
+GOSPEL	Absolute truth
+GOSSIP	Tittle-tattle
+GOUGE	Scoop out – overcharge
+GOWN	Evening dress
+GRAB	Snatch
+GRACE	Elegance – prayer before a meal
+GRADE	Mark – rank
+GRADUATE	Former student
+GRAFT	Hard work – transplant
+GRAIN	Cereal – wood pattern
+GRAND	Magnificent – a thousand pounds
+GRANT	Award
+GRAPH	Chart
+GRAPHIC	Vivid
+GRAPPLE	Wrestle
+GRASP	Grip – understanding
+GRASS	Lawn – inform on
+GRATE	Shred cheese – fireplace
+GRAVE	Serious – tomb
+GRAZE	Scrape – eat grass
+GREAT	Excellent
+GREEN	Colour of grass – eco-friendly
+GREY	Silver-haired
+GRID	Network – crossword's frame
+GRIM	Bleak
+GRIND	Crush – slog
+GRIP	Hold
+GROOM	Bridegroom – stable hand
+GROOVE	Channel – rhythm
+GROSS	Disgusting – before tax
+GROUND	Earth
+GROUNDS	Reasons – coffee dregs
+GROUP	Band
+GROW	Increase
+GROWTH	Expansion
+GRUMBLE	Moan
+GUARANTEE	Warranty
+GUARD	Sentry
+GUESS	Estimate
+GUIDE	Leader – handbook
+GUM	Chewy sweet – gingiva
+GUN	Firearm
+GURGLE	Babble like a brook
+GUSH	Spout
+GUT	Belly – instinct
+GUTTER	Roadside drain
+GUY	Chap – bonfire effigy
+HABIT	Routine – nun's garb
+HACK	Hired writer – chop
+HAIL	Frozen rain – greet
+HAIR	Locks
+HALF	Fifty per cent
+HALL	Corridor – venue
+HALT	Stop
+HALTER	Horse's headgear
+HAMMER	Mallet
+HAND	Help – worker
+HANDICAP	Disadvantage
+HANDLE	Knob – manage
+HANG	Suspend
+HAPPEN	Occur
+HARBOUR	Port – shelter
+HARD	Difficult – solid
+HARDEN	Toughen
+HARDENED	Seasoned
+HARMONIC	Musical – tuneful
+HARMONISE	Blend
+HARMONY	Accord
+HARNESS	Exploit – rigging for a horse
+HARP	Angel's instrument
+HARSH	Severe
+HARVEST	Crop gathering
+HATCH	Trapdoor – emerge from an egg
+HAVE	Own
+HAWK	Bird of prey – peddle
+HAZARD	Danger
+HAZEL	Nut tree – greenish brown
+HEAD	Leader – noggin
+HEADER	Goal from the forehead
+HEADLONG	Hasty
+HEALTHY	Fit
+HEAP	Pile
+HEAR	Listen
+HEARING	Trial session
+HEART	Core – ticker
+HEARTY	Robust
+HEAT	Warmth – qualifying race
+HEAVE	Haul
+HEAVILY	Weightily
+HEAVINESS	Weight
+HEAVY	Weighty
+HEDGE	Privet border – stall
+HEEL	Back of the foot – cad
+HEIGHTEN	Intensify
+HELL	Inferno
+HELP	Assist
+HERALD	Messenger – announce
+HERD	Drove
+HERE	Present
+HEREAFTER	Afterlife
+HERO	Champion
+HEROIC	Brave
+HIDE	Conceal – animal skin
+HIGH	Lofty
+HIKE	Trek
+HINT	Clue
+HIP	Trendy – joint
+HIRE	Rent
+HISS	Snake's sound
+HISTORY	The past
+HIT	Strike – chart-topper
+HITCH	Snag
+HIVE	Bees' home
+HOBBLE	Limp
+HOLD	Grasp
+HOLE	Pit
+HOLLER	Yell
+HOLLOW	Empty
+HOME	Residence
+HONEST	Truthful
+HONEYCOMB	Wax cells of a hive
+HONK	Toot
+HONOUR	Integrity – award
+HOOD	Cowl – thug
+HOOK	Fish catcher
+HOOP	Ring
+HOOT	Owl's call – laugh
+HOP	Jump on one leg
+HOPE	Wish
+HOPPER	Funnel – grasshopper
+HORN	Bull's spike – car's warning
+HORSE	Steed
+HOST	Presenter – crowd
+HOSTILE	Unfriendly
+HOT	Spicy – very warm
+HOUSE	Home
+HOVER	Float in the air
+HOWL	Wail
+HUM	Buzz
+HUMANIST	Non-religious thinker
+HUMBLE	Modest
+HUMOUR	Comedy
+HUNGER	Appetite
+HUNT	Search
+HURRY	Rush
+HURT	Injured
+HUSH	Silence
+HUSTLE	Bustle – con
+HYBRID	Cross – electric and petrol car
+ICE	Freeze – rink surface
+IDEA	Notion
+IDEAL	Perfect
+IDENTICAL	Alike
+IDENTIFY	Recognise
+IDLE	Lazy
+ILL	Unwell
+IMAGE	Picture
+IMITATION	Copy
+IMMATERIAL	Irrelevant
+IMMATURE	Childish
+IMMEDIATE	Instant
+IMMERSION	Dunking – electric water heater
+IMMOBILISE	Freeze
+IMMUNE	Resistant
+IMPACT	Effect – collision
+IMPAIRMENT	Disability
+IMPERATIVE	Vital
+IMPERIAL	Regal
+IMPLY	Suggest
+IMPORT	Bring in from abroad
+IMPORTANT	Significant
+IMPRESS	Wow
+IMPRESSION	Feeling – mimicry
+IMPRINT	Publisher's name
+IMPULSE	Urge
+IMPULSIVE	Rash
+INACTIVE	Dormant
+INCENDIARY	Fire-starting
+INCIDENTAL	Minor
+INCLINE	Slope
+INCREASE	Rise
+INDENT	Start a line further in
+INDEX	List at the back of a book
+INDICATE	Signal
+INDICATION	Sign
+INDIRECT	Roundabout
+INDIVIDUAL	Single – person
+INDUCE	Bring on
+INDUCT	Formally admit
+INDUCTION	Initiation
+INDULGENCE	Treat
+INFECTION	Contagion
+INFER	Deduce
+INFERIOR	Second-rate
+INFINITE	Endless
+INFLAME	Provoke
+INFLATE	Blow up
+INFLUENCE	Sway
+INFUSE	Steep, as tea
+INITIATE	Begin
+INJECT	Give a jab
+INJURY	Wound
+INK	Pen fluid – tattoo
+INNER	Interior
+INNOCENT	Not guilty
+INOCULATE	Vaccinate
+INPUT	Contribution
+INSCRIBE	Engrave
+INSERT	Put in
+INSIDE	Within – in prison
+INSPIRE	Motivate
+INSTANT	Moment
+INSTRUMENT	Tool – violin, say
+INTANGIBLE	Elusive
+INTEREST	Hobby – bank's charge
+INTERIOR	Inside
+INTERLOCK	Mesh together
+INTERNAL	Inner
+INTERPRET	Translate
+INTERRUPT	Butt in
+INTERVIEW	Job meeting
+INTIMATE	Close – hint
+INTRODUCE	Present
+INTRUSION	Invasion
+INVALID	Void – patient
+INVENTORY	Stocklist
+INVERSION	Reversal
+INVEST	Put money in
+INVESTMENT	Stake
+INVITE	Ask over
+INVOLVE	Include
+INVOLVED	Complicated
+IRON	Press – golf club
+IRREGULAR	Uneven
+IRRITATION	Annoyance
+ISOLATED	Remote
+ISOLATION	Solitude
+ISSUE	Matter – edition
+ITALIC	Slanted type
+ITCH	Tickle – yearn
+ITEM	Article
+JAB	Poke – injection
+JACK	Car lifter – knave
+JACKAL	African scavenger
+JACKET	Short coat
+JADE	Green gemstone
+JAM	Preserve – traffic snarl-up
+JAR	Pot – jolt
+JAW	Chin – chat
+JAZZ	Swing music
+JERK	Tug – idiot
+JET	Aircraft – spurt
+JIG	Lively dance
+JOB	Post
+JOCKEY	Rider
+JOG	Run gently – nudge
+JOIN	Connect
+JOINT	Knee, say – shared
+JOKE	Gag
+JOLLY	Cheerful
+JOURNAL	Diary
+JUDGE	Referee – magistrate
+JUDGEMENT	Verdict
+JUGGLE	Keep balls in the air
+JUMBLE	Muddle – sale of bric-a-brac
+JUMP	Leap
+JUMPER	Pullover
+JUNCTION	Crossroads
+JUNIOR	Younger
+JUNKET	Freebie trip
+JUST	Fair – merely
+KEEN	Eager
+KEEP	Retain – castle stronghold
+KEY	Crucial – piano lever
+KEYNOTE	Main theme
+KICK	Boot
+KID	Child – tease
+KILL	Slay
+KING	Monarch
+KINGDOM	Realm
+KINK	Twist
+KISS	Peck
+KITE	Flying toy on a string
+KNIT	Make a jumper
+KNOCK	Rap
+KNOCKER	Door rapper
+KNOT	Tie – nautical mile per hour
+KNOW	Understand
+KNOWING	Shrewd
+LABEL	Tag
+LABOUR	Toil – childbirth
+LACE	Shoelace – delicate fabric
+LAG	Fall behind
+LAMB	Young sheep
+LAME	Weak, as an excuse
+LAMENT	Mourn
+LANCE	Knight's spear
+LAND	Ground – touch down
+LANDSCAPE	Scenery
+LANGUAGE	Tongue
+LAP	Circuit – knees, when seated
+LAPSE	Slip
+LARGE	Big
+LARK	Songbird – prank
+LASH	Whip – eyelash
+LAST	Final – endure
+LATE	Tardy – deceased
+LATER	Afterwards
+LATHER	Foam – sweat
+LAUNCH	Start – motorboat
+LAW	Rule
+LAY	Put down – non-clerical
+LAYER	Tier – hen
+LEAD	Guide – pencil core
+LEADEN	Heavy and grey
+LEADING	Foremost
+LEAF	Page – frond
+LEAK	Drip – reveal
+LEAN	Thin – tilt
+LEANING	Tendency
+LEAP	Jump
+LEARN	Study
+LEASE	Rental agreement
+LEAVE	Depart – holiday
+LECTURE	Talk
+LEFT	Port side – departed
+LEG	Limb – stage of a journey
+LEGAL	Lawful
+LEGION	Roman army unit – vast
+LEGITIMATE	Lawful
+LEMON	Citrus fruit – dud
+LENGTH	Extent
+LESS	Fewer
+LET	Allow – rent out
+LETTER	Character – post
+LEVEL	Flat – tier
+LEVERAGE	Clout
+LIBERAL	Tolerant – generous
+LIBERTY	Freedom
+LIBRARY	Book lending place
+LICENSE	Authorise
+LICK	Lap up
+LIE	Fib – recline
+LIFE	Existence
+LIFT	Elevator – raise
+LIGHT	Lamp – not heavy
+LIGHTEN	Brighten
+LIGHTLY	Gently
+LIGHTNESS	Weightlessness
+LIKE	Similar – enjoy
+LIMB	Arm or leg
+LIMBER	Supple
+LIME	Green citrus fruit
+LIMIT	Cap
+LIMITATION	Restriction
+LIMITED	Restricted
+LIMP	Floppy – hobble
+LINE	Queue
+LINEAGE	Ancestry
+LINEAR	Straight
+LINGER	Hang around
+LINK	Connection
+LIP	Cheek – rim
+LIQUID	Fluid
+LIST	Inventory – lean
+LITERAL	Word for word
+LITTER	Rubbish – brood of puppies
+LITTLE	Small
+LIVE	Exist – not recorded
+LIVELY	Energetic
+LIVER	Organ – onion's partner
+LIVING	Alive – income
+LOAD	Burden
+LOADED	Rich
+LOADING	Extra charge
+LOCAL	Neighbourhood pub
+LOCK	Bolt – canal gate
+LODGE	Cabin – stay
+LOFT	Attic
+LOG	Record – piece of firewood
+LOGIC	Reasoning
+LONG	Lengthy – yearn
+LOOK	Glance
+LOOM	Weaving frame – appear menacingly
+LOOP	Ring
+LOOSE	Slack
+LOOSEN	Slacken
+LOSE	Mislay
+LOSS	Defeat
+LOST	Missing
+LOT	Auction item – destiny
+LOVE	Adore – zero at tennis
+LOW	Moo – down
+LOWER	Reduce
+LUG	Drag
+LULL	Calm spell
+LUMP	Swelling
+LURCH	Stagger
+LUSH	Luxuriant
+LYRIC	Song words
+MACHINE	Mechanism
+MADNESS	Lunacy
+MAGAZINE	Periodical
+MAGNETIC	Attractive
+MAIL	Post – chain armour
+MAIN	Chief
+MAINTAIN	Keep up
+MAJOR	Significant – army rank
+MAKE	Create – brand
+MALE	Masculine
+MALT	Whisky grain
+MAN	Chap – staff
+MANAGE	Cope – run
+MANDATE	Authority
+MANGLE	Crush – wringer
+MANIFEST	Obvious – cargo list
+MANIFOLD	Many and varied
+MANIPULATE	Control deviously
+MANOEUVRE	Move – military exercise
+MANTLE	Cloak – role
+MANUAL	Handbook – by hand
+MAP	Chart
+MARCH	Parade – third month
+MARGIN	Edge
+MARINE	Of the sea
+MARK	Stain – score
+MARKET	Bazaar
+MAROON	Strand – dark red
+MARROW	Large squash – bone tissue
+MARSHAL	Steward – organise
+MASH	Crushed potato
+MASK	Disguise
+MASQUERADE	Pretence – costume ball
+MASS	Bulk – church service
+MASTER	Expert – learn thoroughly
+MAT	Rug
+MATCH	Game – lucifer
+MATE	Friend – checkmate
+MATERIAL	Fabric – relevant
+MATRIX	Mould – grid of numbers
+MATTER	Substance – be important
+MATURE	Grown-up
+MEAN	Stingy – average
+MEASURE	Gauge – step
+MECHANISM	Workings
+MEDICINE	Remedy
+MEDIUM	Average – psychic
+MEET	Encounter – fitting
+MEETING	Gathering
+MELANCHOLY	Gloomy
+MELLOW	Laid-back
+MELT	Thaw
+MEMBER	Belonger to a club
+MEMORY	Recollection
+MENACE	Threat
+MENTAL	Of the mind
+MENTION	Refer to
+MERCY	Clemency
+MESH	Netting
+MESS	Muddle – army canteen
+MESSAGE	Note
+METER	Gas gauge
+METRIC	Decimal measuring system
+MIDDLE	Centre
+MILE	Furlong times eight
+MILK	Dairy drink – exploit
+MILL	Grinder – factory
+MIND	Intellect – look after
+MINDLESS	Thoughtless
+MINISTER	Cabinet member – vicar
+MINOR	Lesser – child, legally
+MINT	Herb – where coins are made
+MINUSCULE	Tiny
+MINUTE	Tiny – sixty seconds
+MIRE	Bog
+MISERABLE	Wretched
+MISS	Fail to hit – young lady
+MISSION	Task
+MISTAKE	Error
+MIX	Blend
+MIXTURE	Blend
+MOBILE	Movable – cot hanging
+MODE	Manner
+MODEL	Catwalk walker – replica
+MODERATE	Reasonable
+MODERN	Contemporary
+MODEST	Humble
+MODULATE	Vary in pitch
+MODULATION	Change of key
+MOLAR	Back tooth
+MOLE	Spy – burrowing animal
+MOMENT	Instant
+MONITOR	Screen – watch
+MONSTER	Beast
+MOON	Earth's satellite
+MOOR	Heath – tie up a boat
+MORTAL	Human
+MOSAIC	Tiled picture
+MOST	Majority
+MOTHER	Mum
+MOTION	Movement – proposal
+MOTIVE	Reason
+MOTLEY	Varied – jester's costume
+MOTOR	Engine
+MOULD	Fungus – cast
+MOUND	Hillock
+MOUNT	Climb – horse
+MOUSE	Computer pointer – rodent
+MOUTH	River's end
+MOUTHPIECE	Spokesperson
+MOVE	Shift
+MOVEMENT	Motion – part of a symphony
+MUCH	A lot
+MUCK	Dirt
+MUDDY	Cloudy – boggy
+MUG	Cup – fool
+MULTIPLY	Increase in number
+MURMUR	Whisper
+MUSCLE	Biceps, say
+MUSH	Pulp
+MUSHROOM	Fungus – grow rapidly
+MUSIC	Melody
+MUSICAL	Tuneful – stage show
+MUTE	Silent
+MUZZLE	Gag – snout
+NAG	Pester – old horse
+NAIL	Pin – fingertip
+NAIVE	Innocent
+NAKED	Bare
+NAME	Title
+NAP	Snooze
+NARROW	Thin
+NARROWING	Tapering
+NATIONAL	Countrywide
+NATIVE	Local
+NATURAL	Normal – innate
+NATURALIZE	Make a citizen
+NATURE	Character – the great outdoors
+NEAR	Close
+NEAT	Tidy – undiluted
+NECK	Throat – kiss and cuddle
+NEED	Require
+NEEDLE	Sewing tool – antagonise
+NEGATIVE	Pessimistic
+NEGLECT	Disregard
+NERVOUS	Edgy
+NEST	Bird's home
+NET	Mesh – after tax
+NETWORK	System
+NEUTRAL	Impartial – out of gear
+NEUTRALIZE	Counteract
+NEW	Fresh
+NEWS	Bulletin
+NEXT	Following
+NIBBLE	Small bite
+NICE	Pleasant
+NICK	Steal – prison
+NIGHT	Darkness
+NIP	Pinch – tot of whisky
+NOBLE	Aristocrat
+NOD	Bow of the head
+NODE	Junction point
+NOISE	Din
+NOMINAL	Token
+NORMAL	Usual
+NORTH	Direction of the Pole Star
+NOSE	Hooter
+NOTCH	Groove
+NOTE	Memo – musical sound
+NOTICE	Spot
+NOW	At present
+NUCLEUS	Core
+NUDE	Unclothed
+NUMBER	Figure
+NURSE	Carer – tend
+NURTURE	Raise
+NUT	Kernel – loony
+OBJECT	Thing – protest
+OBJECTIVE	Goal – impartial
+OBLIGATION	Duty
+OBLITERATE	Wipe out
+OBSCURE	Little-known
+OBSERVE	Watch
+OCCASION	Event
+OCCUPATION	Job
+OCCUPY	Live in – keep busy
+ODD	Strange – like one, three and five
+OFF	Gone bad – away
+OFFENCE	Crime
+OFFENSIVE	Insulting – attack
+OFFER	Proposal
+OFFICE	Workplace
+OFFICER	Police constable
+OFFICIAL	Formal
+OFFSET	Counterbalance
+OFFSTAGE	In the wings
+OIL	Crude – lubricant
+OLD	Aged
+OLIVE	Martini garnish
+ONE	Single unit
+ONLY	Sole
+OPEN	Ajar
+OPENING	Gap – vacancy
+OPERATE	Work – perform surgery
+OPERATION	Surgery
+OPERATIVE	Working – agent
+OPERATOR	Switchboard worker
+OPINION	View
+OPPOSE	Resist
+OPPOSITE	Facing – contrary
+OPPOSITION	Rival party
+ORAL	Spoken
+ORANGE	Citrus fruit
+ORBIT	Path of a satellite
+ORDER	Command – tidiness
+ORDINARY	Normal
+ORGAN	Church instrument – liver, say
+ORGANIC	Natural, as food
+ORGANISE	Arrange
+ORIENT	The East
+ORIGIN	Source
+ORIGINAL	First
+ORPHAN	Parentless child
+OUT	Dismissed – not in
+OUTLINE	Sketch
+OUTPUT	Production
+OUTRAGE	Fury
+OUTRIGHT	Total
+OUTSIDE	Exterior
+OVER	Finished – six balls
+OVERCAST	Cloudy
+OVERHEAD	Above
+OVERLAP	Coincide in part
+OVERLOAD	Burden with too much
+OVERLOOK	Miss – have a view of
+OVERRIDE	Cancel
+OVERRUN	Infest – go past time
+OVERTURN	Capsize – reverse
+PACE	Speed – stride
+PACK	Bundle – wolves together
+PAD	Notebook – flat
+PADDLE	Canoe oar – wade
+PAGE	Leaf – young attendant
+PAIN	Ache
+PAINT	Coat – daub
+PAIR	Couple
+PALE	Wan
+PALL	Coffin cover – lose appeal
+PALM	Tropical tree – hand's inner side
+PAN	Saucepan – criticise
+PANEL	Board of experts
+PANT	Gasp
+PAPER	Newspaper – sheet
+PARADE	Procession
+PARALLEL	Never meeting – similar
+PARCEL	Package
+PARDON	Forgive
+PARITY	Equality
+PARK	Green space – leave the car
+PART	Portion – role
+PARTIAL	Incomplete – biased
+PARTICULAR	Specific – fussy
+PARTITION	Divider
+PARTNER	Spouse – colleague
+PARTRIDGE	Bird in a pear tree
+PARTY	Celebration
+PASS	Mountain route – go by
+PASSAGE	Corridor – extract
+PASSING	Fleeting
+PASSION	Ardour
+PAST	History
+PASTE	Glue
+PASTORAL	Rural
+PAT	Tap
+PATCH	Repair – plot of land
+PATENT	Obvious – invention right
+PATRONAGE	Sponsorship
+PATTERN	Design
+PAWN	Chessman – hock
+PAY	Wages
+PEACE	Calm – end of war
+PEACH	Downy fruit – stunner
+PEAK	Summit
+PEANUT	Monkey nut
+PECK	Beak strike – quick kiss
+PEDAL	Bike's foot lever
+PEEP	Peek
+PEG	Clothes clip – hook
+PELT	Animal skin – rain hard
+PEN	Biro – enclosure
+PENCIL	Writing stick with lead
+PENETRATE	Pierce
+PEOPLE	Folk
+PEPPER	Spice – bombard
+PERCEPTION	Insight
+PERCH	Roost – freshwater fish
+PERCOLATE	Seep through
+PERFECT	Flawless
+PERIL	Danger
+PERIOD	Era
+PERMIT	Allow – licence
+PERSONALLY	Face to face
+PET	Darling – stroke
+PHASE	Stage
+PHRASE	Expression
+PHYSICAL	Bodily
+PICK	Choose – mining tool
+PICKET	Striker at the gates
+PICKUP	Small truck – revival
+PICTURE	Image – film
+PIECE	Bit
+PIERCE	Puncture
+PIG	Hog
+PIGGYBACK	Ride on someone's shoulders
+PIGMENT	Colouring
+PIKE	Fish – old spear
+PILE	Heap
+PILL	Tablet
+PILLAR	Column – stalwart
+PILOT	Aviator – trial episode
+PIN	Brooch – fasten
+PINCH	Nip – steal
+PINION	Small cog – restrain
+PINK	Rosy
+PINNACLE	Peak
+PIONEER	Trailblazer
+PIPE	Tube – smoker's bowl
+PIRATE	Buccaneer
+PIT	Mine – fruit stone
+PITCH	Sports field – tone
+PITCHER	Jug
+PLACE	Spot
+PLAGUE	Pestilence – pester
+PLAIN	Simple – prairie
+PLAN	Scheme
+PLANE	Aircraft – carpenter's tool
+PLANK	Board
+PLANT	Flower – factory
+PLASTER	Wound dressing – wall coating
+PLASTIC	Credit cards, informally
+PLATE	Dish
+PLATFORM	Stage – station ledge
+PLAY	Drama – frolic
+PLAYER	Participant
+PLEASURE	Delight
+PLEDGE	Vow
+PLOP	Splash softly
+PLOT	Scheme – storyline
+PLUCK	Courage – pick
+PLUG	Stopper – free advert
+PLUM	Fruit – desirable
+PLUME	Feather – column of smoke
+PLUMP	Chubby
+PLUNDER	Loot
+PLUNGE	Dive
+PLY	Layer – travel regularly
+POCKET	Pouch – snooker hole
+POD	Peas' casing
+POINT	Tip – purpose
+POISE	Composure
+POISON	Toxin
+POKE	Prod
+POLAR	Arctic
+POLE	Staff – Warsaw native
+POLISH	Shine
+POLITICS	Affairs of state
+POLL	Vote – survey
+PONY	Small horse
+POOL	Puddle – game with cues
+POOR	Needy
+POP	Fizzy drink – burst
+POPULATION	Inhabitants
+PORT	Harbour – fortified wine
+PORTER	Doorman – dark beer
+PORTION	Helping
+PORTRAYAL	Depiction
+POSE	Model's stance – put, as a question
+POSITION	Location – job
+POSITIVE	Optimistic – sure
+POSSESSION	Ownership
+POST	Mail – job
+POSTURE	Stance
+POT	Pan – jackpot
+POUCH	Small bag
+POUND	Sterling – hit hard
+POUR	Rain heavily
+POUT	Sulky look
+POWDER	Dust
+POWER	Might
+POWERFUL	Mighty
+PRACTICE	Rehearsal – surgery
+PRANCE	Strut
+PRAYER	Plea to God
+PRECEDE	Come before
+PRECEDENT	Previous example
+PRECIOUS	Valuable
+PREDICATE	Base
+PREEMPT	Forestall
+PREMIER	Prime minister – leading
+PREMIUM	Bonus – insurance fee
+PREPARE	Get ready
+PRESENCE	Attendance
+PRESENT	Gift – current
+PRESERVE	Conserve – jam
+PRESIDENT	Head of state
+PRESS	Media – iron
+PRESSURE	Stress
+PRETENCE	Sham
+PRETEND	Make believe
+PREVAIL	Win through
+PREVENTIVE	Precautionary
+PRICE	Cost
+PRICK	Jab with a needle
+PRIDE	Lions together – self-respect
+PRIM	Prudish
+PRIMARY	Main – first school
+PRIME	Best – get ready
+PRIMITIVE	Crude
+PRINCIPAL	Head teacher – main
+PRINCIPLE	Rule – moral
+PRINT	Publish
+PRIVATE	Secret – lowest army rank
+PRIZE	Award
+PROBE	Investigation
+PROCEED	Go on
+PROCESS	Method
+PROD	Poke
+PRODUCE	Make – fruit and veg
+PRODUCT	Commodity
+PRODUCTION	Output – stage show
+PROFANE	Blasphemous
+PROFESS	Claim
+PROFILE	Side view – biography
+PROFOUND	Deep
+PROGRAM	Software
+PROGRAMME	Broadcast – schedule
+PROGRESS	Advance
+PROJECT	Scheme – stick out
+PROJECTION	Forecast – ledge
+PROMENADE	Seafront walkway
+PROMISE	Vow
+PROMOTE	Advertise – upgrade
+PROMPT	Punctual – cue
+PROOF	Evidence
+PROPAGATE	Spread
+PROPERTY	Possessions – real estate
+PROPORTION	Ratio
+PROPOSE	Suggest – pop the question
+PROSPECT	Outlook
+PROSTRATE	Lying flat
+PROTECTION	Defence
+PROTEST	Objection
+PROVE	Demonstrate
+PROVIDE	Supply
+PROVISION	Supply – condition
+PRY	Snoop
+PUDDLE	Pool after rain
+PUFF	Gust – cream pastry
+PULL	Tug
+PULP	Mush – trashy fiction
+PULSE	Heartbeat – lentil
+PUMP	Inflate – plimsoll
+PUNCH	Blow – fruit drink
+PUNCTURE	Flat tyre
+PUNK	Rocker with a mohican
+PUNT	Flat-bottomed boat – gamble
+PURCHASE	Buy
+PURE	Unadulterated
+PURGE	Clear out
+PURPLE	Violet – royal colour
+PURPOSE	Aim
+PURSE	Handbag – prize money
+PUSH	Shove
+PUSHER	Drug dealer
+PUT	Place
+PUTTER	Golf club for the green
+PYRAMID	Egyptian tomb
+QUACK	Charlatan – duck's call
+QUADRUPLE	Fourfold
+QUALIFIED	Certified
+QUALIFY	Get through
+QUALITY	Calibre
+QUARTER	Fourth – district
+QUARTET	Group of four
+QUEEN	Monarch – chess piece
+QUEER	Strange – LGBTQ+ umbrella term
+QUENCH	Satisfy, as thirst
+QUEST	Search
+QUESTION	Query
+QUICK	Fast
+QUICKEN	Speed up
+QUIET	Silent
+QUINTET	Group of five
+QUIT	Leave
+QUIVER	Tremble – arrow case
+QUOTE	Cite – estimate
+RACE	Sprint – people
+RACK	Shelf – torture frame
+RACKET	Din – tennis bat
+RADIAL	Spreading from the centre
+RADIATE	Emit
+RADIATION	Rays
+RADICAL	Extreme
+RADIO	Wireless
+RADISH	Peppery salad root
+RADIUS	Half a diameter
+RAFT	Lilo – a lot
+RAG	Cloth – student charity event
+RAGE	Fury
+RAID	Swoop
+RAIL	Banister – train track
+RAILROAD	Force through
+RAISE	Lift – pay rise
+RAKE	Garden tool – libertine
+RALLY	Recover – long exchange at tennis
+RAM	Male sheep – butt
+RAMP	Slope
+RANGE	Scope – cooker
+RANK	Status – foul-smelling
+RAP	Knock – spoken music
+RAPE	Oilseed crop
+RARE	Uncommon – undercooked
+RAT	Rodent – traitor
+RATE	Speed – assess
+RATIONAL	Sensible
+RATTLE	Baby's toy – unsettle
+RAVE	All-night party
+RAVEN	Large black bird
+RAW	Uncooked – sore
+RAY	Beam – flat fish
+REACH	Arrive at – stretch
+REACTION	Response
+READ	Peruse
+READER	Bookworm
+READING	Interpretation – Berkshire town
+READY	Prepared
+REAL	Genuine
+REALISE	Understand – cash in
+REALISM	Lifelike quality
+REAM	Five hundred sheets
+REAR	Back – bring up
+REASON	Cause
+REBATE	Refund
+REBEL	Rise up
+REBOUND	Bounce back
+RECALL	Remember
+RECAPTURE	Retake
+RECEIVE	Get
+RECEIVER	Handset – administrator of a failed firm
+RECEPTION	Front desk – party after a wedding
+RECESS	Alcove – break
+RECESSION	Slump
+RECIPROCAL	Mutual
+RECITE	Say from memory
+RECKON	Think
+RECLAIM	Take back
+RECOGNISE	Know again
+RECOIL	Flinch
+RECORD	Disc – best ever
+RECOVER	Get better
+RECREATE	Reproduce
+RECRUIT	New member – enlist
+RECTIFY	Put right
+RED	Colour of a pillar box
+REDEEM	Cash in – save
+REDUCE	Cut
+REEF	Coral ridge
+REEK	Stink
+REEL	Spool – Scottish dance
+REFER	Mention
+REFEREE	Match official
+REFERENCE	Mention – testimonial
+REFINE	Purify
+REFINED	Cultured
+REFINEMENT	Polish
+REFLECT	Mirror – ponder
+REFLECTION	Image – thought
+REFORM	Improve
+REFUSE	Decline – rubbish
+REGARD	Esteem
+REGENERATE	Renew
+REGION	Area
+REGISTER	Roll – sign up
+REGRESS	Go backwards
+REGRET	Remorse
+REGULAR	Routine – frequent customer
+REGULATION	Rule
+REIGN	Rule
+REIN	Bridle strap – curb
+REJECT	Turn down
+REJUVENATE	Make young again
+RELATE	Tell – connect
+RELATION	Kinsman
+RELAX	Unwind
+RELAXATION	Leisure
+RELAY	Team race – pass on
+RELEASE	Free
+RELIEF	Respite – raised carving
+RELIEVE	Ease
+RELIGIOUS	Devout
+REMAINDER	Rest
+REMEMBER	Recall
+REMIT	Area of responsibility
+REMOTE	Distant – TV controller
+REMOVE	Take away
+RENDER	Make – give
+RENDERING	Interpretation
+RENT	Hire – tear
+REPAIR	Fix
+REPEAT	Rerun
+REPEL	Drive back
+REPELLENT	Insect spray – repulsive
+REPLAY	Rematch
+REPORT	Account – bang
+REPOSE	Rest
+REPRESENT	Stand for
+REPRESS	Suppress
+REPRIEVE	Stay of execution
+REQUEST	Ask for
+RESERVE	Book – substitute
+RESIST	Withstand
+RESISTANCE	Opposition
+RESISTANT	Impervious
+RESOLUTION	Determination – picture sharpness
+RESOLVE	Settle
+RESONANCE	Echo – significance
+RESORT	Holiday spot – last option
+RESPECT	Esteem
+RESPITE	Breather
+RESPONSE	Reply
+REST	Relax – remainder
+RESTORE	Renovate
+RESTRAINED	Muted
+RESTRAINT	Self-control
+RESULT	Outcome
+RESUME	Restart
+RETIRE	Stop working – go to bed
+RETREAT	Withdraw – hideaway
+RETROGRADE	Backward-looking
+RETURN	Come back
+REVERSAL	U-turn
+REVERSE	Back up – opposite
+REVERSIBLE	Can be worn inside out
+REVERSION	Return to a former state
+REVIEW	Critique
+REVIVE	Bring round
+REWARD	Prize
+RHYTHM	Beat
+RIB	Tease – chest bone
+RICH	Wealthy
+RICHNESS	Opulence
+RIDDLE	Puzzle – perforate
+RIDE	Trip – sit astride
+RIDGE	Crest
+RIG	Fix dishonestly – oil platform
+RIGHT	Correct – starboard
+RIGID	Stiff
+RIM	Edge
+RING	Circle – phone
+RINSE	Wash out
+RIOT	Uprising – scream
+RIP	Tear
+RIPE	Ready to eat
+RISE	Ascend – pay increase
+RISING	Revolt
+RISK	Danger – gamble
+RITUAL	Ceremony
+RIVET	Fascinate – metal pin
+ROACH	Freshwater fish – cockroach
+ROAR	Lion's call
+ROAST	Sunday lunch dish
+ROCK	Stone – sway
+ROCKER	Chair that tips – heavy metal fan
+ROCKET	Space vehicle – salad leaf
+ROD	Pole
+ROLL	Bread bun – register
+ROLLER	Hair curler – lawn smoother
+ROMANCE	Love affair
+ROMANTIC	Dreamy
+ROMP	Easy win – frolic
+ROOF	Ceiling
+ROOM	Chamber – space
+ROOT	Origin
+ROT	Decay – nonsense
+ROTATE	Revolve
+ROUGH	Uneven
+ROUGHNESS	Coarseness
+ROUND	Circular – drinks for all
+ROUT	Crushing defeat
+ROUTE	Way
+ROW	Line – argument
+ROYAL	Regal
+RUB	Massage
+RUBBER	Eraser – decider in bridge
+RUBRIC	Instructions
+RUDE	Impolite
+RUE	Regret
+RUFF	Elizabethan collar
+RUFFLE	Tousle
+RUIN	Destroy
+RULE	Govern – regulation
+RUMBLE	Low roll of thunder – find out
+RUN	Sprint – manage
+RUNNER	Athlete – sled blade
+RUNNING	Consecutive – in charge of
+RUSH	Hurry – marsh plant
+RUST	Corrosion
+RUT	Groove
+SACK	Fire – bag
+SACRED	Holy
+SACRIFICE	Give up
+SADDLE	Rider's seat – lumber with
+SAFE	Secure – strongbox
+SAFETY	Security
+SAGE	Wise – herb
+SAIL	Canvas – voyage
+SAINT	Holy person
+SALE	Bargain event
+SALT	Season – sailor
+SALUTE	Military greeting
+SALVAGE	Rescue
+SAME	Identical
+SANCTION	Approve – penalty
+SANDBAG	Flood barrier
+SAP	Drain – fool
+SATELLITE	Moon
+SAVAGE	Fierce
+SAVE	Rescue – keep
+SAVING	Economy
+SAVOUR	Relish
+SAVOURY	Not sweet
+SAY	Utter
+SCALD	Burn with hot liquid
+SCALE	Climb – fish skin plate
+SCALLOP	Shellfish
+SCAN	Skim – hospital image
+SCARF	Neckwear – wolf down
+SCATTER	Disperse
+SCATTERING	Sprinkling
+SCENE	Setting – fuss
+SCENT	Perfume
+SCHEME	Plan
+SCHOOL	Academy – group of fish
+SCOOP	Exclusive story – ladle
+SCOOTER	Moped
+SCORCH	Singe
+SCORE	Twenty – tally
+SCOTCH	Whisky – thwart
+SCOUR	Scrub
+SCOURGE	Plague
+SCOUT	Lookout – talent spotter
+SCRAMBLE	Muddle – clamber
+SCRAP	Fragment – fight
+SCRAPE	Graze
+SCRATCH	Scrape
+SCREAM	Shriek – hoot
+SCREAMING	Shrieking
+SCREEN	Monitor – shield
+SCREW	Fixing – prison officer, slangily
+SCRUB	Clean hard
+SCRUPLE	Qualm
+SCUFF	Scrape
+SCUFFLE	Brawl
+SEAL	Close – marine mammal
+SEALED	Closed tight
+SEAR	Scorch
+SEARCH	Hunt
+SEASON	Spring, for one – flavour
+SEAT	Chair – constituency
+SECOND	Moment – runner-up
+SECONDARY	Lesser
+SECRET	Hidden
+SECTION	Part
+SECTOR	Area
+SECULAR	Non-religious
+SECURE	Safe
+SECURITY	Safety
+SEE	Look – bishop's area
+SEED	Pip – rank in a tournament
+SEEK	Look for
+SEIZE	Grab
+SELECTION	Choice
+SELL	Flog
+SEND	Post
+SENIOR	Older
+SENSATION	Feeling – hit
+SENSE	Feel – logic
+SENSITIVE	Touchy
+SEPARATE	Apart – divide
+SEPARATION	Parting
+SEQUENCE	Order
+SERIAL	Story in instalments
+SERIES	Run – TV programme
+SERIOUS	Grave
+SERVE	Wait on – start a rally
+SERVICE	Church ceremony – car check-up
+SET	Put – group
+SETTING	Backdrop
+SETTLE	Resolve – sofa
+SETTLEMENT	Agreement – village
+SEVERE	Harsh
+SEX	Gender
+SHADE	Tint – cool spot under a tree
+SHADOW	Tail
+SHAFT	Pole – mine passage
+SHAKE	Tremble – milky drink
+SHALLOW	Superficial
+SHAM	Fake
+SHAME	Disgrace
+SHAPE	Form
+SHARE	Portion – stake in a firm
+SHARING	Communal
+SHARK	Swindler – sea predator
+SHARP	Keen
+SHARPEN	Hone
+SHARPNESS	Keenness
+SHAVE	Close call – trim
+SHEAR	Clip a sheep
+SHED	Outbuilding – cast off
+SHEER	Utter – steep
+SHEET	Bed linen – page
+SHELL	Casing – bomb
+SHELTER	Refuge
+SHIELD	Guard
+SHIFT	Move – work period
+SHIN	Lower leg front – climb
+SHINE	Gleam
+SHIP	Vessel
+SHIPWRECK	Sunken vessel
+SHOAL	Group of fish
+SHOCK	Surprise
+SHOE	Footwear
+SHOOT	Fire – sprout
+SHOP	Store
+SHORE	Coast
+SHORT	Brief
+SHORTEN	Abbreviate
+SHORTLY	Soon
+SHORTNESS	Brevity
+SHOT	Attempt – injection
+SHOULDER	Hard verge – bear
+SHOUT	Yell
+SHOVEL	Spade
+SHOW	Display – performance
+SHOWER	Brief rain – wash
+SHRINK	Contract – psychiatrist
+SHROUD	Winding sheet – veil
+SHUFFLE	Mix cards – drag the feet
+SHUNT	Shove aside
+SHUT	Closed
+SHY	Bashful
+SICK	Ill
+SIDE	Edge – team
+SIDEWAYS	Crabwise
+SIEVE	Strainer
+SIGHT	Vision – spectacle
+SIGN	Notice – omen
+SIGNAL	Gesture
+SIGNATURE	Autograph
+SILENCE	Quiet
+SILENT	Quiet
+SILLY	Foolish
+SILVER	Second place metal
+SIMILAR	Alike
+SIMPLE	Easy
+SIMPLICITY	Ease
+SIN	Wrongdoing
+SING	Croon
+SINGLE	Unmarried – one-way ticket
+SINGULAR	Remarkable
+SINK	Basin – go under
+SIREN	Alarm – seductress
+SIT	Be seated – pose
+SITTING	Session
+SITUATION	Circumstances
+SIZE	Dimensions
+SKETCH	Drawing – comic scene
+SKID	Slide
+SKIM	Glide over – read quickly
+SKIN	Hide – peel
+SKINNY	Thin
+SKIP	Hop – miss out
+SKIRT	Kilt, say – go round
+SKUNK	Smelly animal
+SLACK	Loose – idle
+SLAM	Bang shut
+SLANG	Informal language
+SLANT	Slope – bias
+SLAP	Smack
+SLASH	Cut – stroke
+SLATE	Roof tile – criticise
+SLAUGHTER	Massacre
+SLEEP	Slumber
+SLEEPER	Railway beam – overnight train
+SLICE	Piece
+SLICK	Glib – oil spill
+SLIDE	Slip – playground chute
+SLIGHT	Small – snub
+SLING	Catapult – arm support
+SLIP	Error – petticoat
+SLIT	Narrow opening
+SLIVER	Splinter
+SLOP	Spill
+SLOPPY	Careless
+SLOT	Groove – time window
+SLOW	Sluggish
+SLUG	Shell-less snail – swig
+SLUMP	Collapse
+SLUR	Insult – mumble
+SMACK	Slap
+SMALL	Little
+SMART	Clever – sting
+SMASH	Shatter – big hit
+SMEAR	Smudge – slander
+SMELL	Odour
+SMOKE	Fumes
+SMOOTH	Even
+SMOOTHNESS	Evenness
+SMOTHER	Suffocate
+SMUT	Filth
+SNAG	Hitch
+SNAKE	Serpent
+SNAP	Break – card game
+SNAPPY	Stylish – irritable
+SNARE	Trap – drum
+SNARL	Growl
+SNATCH	Grab
+SNEAK	Creep
+SNIPE	Criticise – marsh bird
+SNORT	Grunt
+SNOW	Winter flakes
+SNOWBALL	Grow rapidly – winter missile
+SNUB	Cold-shoulder
+SNUFF	Put out – powdered tobacco
+SNUG	Cosy
+SOAK	Drench
+SOAR	Fly high
+SOBER	Not drunk
+SOCIAL	Gathering
+SOD	Turf – unpleasant person
+SOFT	Gentle
+SOFTEN	Mellow
+SOFTNESS	Tenderness
+SOIL	Earth – dirty
+SOLE	Only – flatfish
+SOLICIT	Ask for
+SOLID	Firm
+SOLITARY	Lone
+SOLO	Alone
+SOLUTION	Answer
+SONG	Ballad
+SOP	Concession
+SORROW	Grief
+SORT	Kind – arrange
+SOUL	Spirit
+SOUND	Noise – healthy
+SOUNDING	Depth measurement
+SOUR	Tart
+SOURCE	Origin
+SOUTH	Antarctic direction
+SPACE	Room – cosmos
+SPAN	Extent – bridge
+SPAR	Box – mast
+SPARE	Extra
+SPARK	Flash
+SPARKLE	Glitter
+SPAT	Squabble
+SPATTER	Splash
+SPEAK	Talk
+SPECIAL	Exceptional
+SPECIALISE	Focus on one area
+SPECIFIC	Precise
+SPECIFY	State
+SPEECH	Address
+SPEED	Pace
+SPELL	Charm – period
+SPHERE	Globe
+SPICE	Pepper, say
+SPIKE	Point
+SPILL	Slop – tumble
+SPIN	Twirl
+SPINE	Backbone
+SPIRAL	Coil
+SPIRIT	Ghost – vodka, say
+SPIRITUAL	Religious
+SPIT	Saliva – roasting rod
+SPLASH	Spray
+SPLAT	Wet slap sound
+SPLICE	Join
+SPLIT	Divide
+SPOIL	Ruin – pamper
+SPONGE	Cake – freeload
+SPONSOR	Backer
+SPOON	Utensil for soup
+SPORT	Game
+SPOT	Pimple – notice
+SPRAY	Mist – bunch of flowers
+SPREAD	Expand – feast
+SPRING	Coil – season
+SPRINKLE	Scatter
+SPRUCE	Smart – fir
+SPUR	Incentive
+SPUTTER	Splutter
+SPY	Agent
+SQUARE	Plaza – fair
+SQUARELY	Directly
+SQUAT	Stocky – crouch
+SQUEEZE	Crush
+SQUELCH	Squash noisily
+SQUINT	Peer
+STAB	Attempt – knife
+STABLE	Steady – horse's home
+STACK	Pile
+STAFF	Workers
+STAG	Male deer
+STAGE	Platform – phase
+STAGGER	Totter – astonish
+STAIN	Blot
+STAKE	Post – bet
+STALK	Stem – shadow
+STALL	Kiosk – delay
+STAMP	Seal – postage label
+STAMPEDE	Panic rush
+STAND	Bear – stall
+STANDARD	Norm – flag
+STANDING	Reputation
+STAPLE	Basic item – wire fastener
+STAR	Celebrity – sun
+STARK	Bare – utter
+START	Begin
+STARTER	First course
+STARVE	Go hungry
+STATE	Condition – say
+STATEMENT	Declaration – bank summary
+STATIC	Motionless – crackle
+STATION	Rail stop – rank
+STAVE	Barrel strip – ward off
+STAY	Remain
+STEADY	Stable
+STEAL	Pinch – bargain
+STEAM	Vapour
+STEEL	Strong alloy – nerve
+STEEP	Sheer – soak
+STEER	Guide – young bullock
+STEM	Stalk – stop
+STEP	Pace – stair
+STERN	Strict – back of a boat
+STEW	Casserole – fret
+STEWARD	Cabin attendant
+STICK	Twig – glue
+STICKY	Tacky – awkward
+STIFF	Rigid
+STIFFNESS	Rigidity
+STIFLE	Smother
+STILL	Motionless – yet
+STIMULATE	Stir up
+STING	Bee's weapon – con
+STINGER	Bee's barb
+STINT	Spell of duty
+STIR	Mix – commotion
+STOCK	Supply – soup base
+STOMACH	Tummy – tolerate
+STONE	Rock – fourteen pounds
+STOOL	Bar seat
+STOOP	Bend – lower yourself
+STOP	Halt
+STOPPER	Bung
+STORAGE	Warehousing
+STORE	Shop – keep
+STORM	Tempest
+STORY	Tale
+STOUT	Portly – dark beer
+STRADDLE	Sit astride
+STRAIGHT	Direct – honest
+STRAIGHTEN	Unbend
+STRAIN	Stress – sieve
+STRAND	Thread – maroon
+STRANGLE	Throttle
+STRAP	Band
+STRATIFY	Arrange in layers
+STRAW	Hay – drinking tube
+STRAY	Wander
+STREAK	Stripe – run
+STREAM	Brook
+STREET	Road
+STRENGTH	Power
+STRESS	Pressure – emphasis
+STRETCH	Extend
+STRICT	Stern
+STRIKE	Hit – walkout
+STRIKER	Centre forward
+STRING	Twine
+STRIP	Undress – band
+STRIPE	Band – sergeant's badge
+STROKE	Pat – medical emergency
+STRONG	Powerful
+STRUCTURAL	Load-bearing
+STRUCTURE	Framework
+STRUGGLE	Strive
+STUB	Ticket remnant – bump a toe
+STUD	Stallion – earring
+STUDY	Learn – home office
+STUFF	Things – cram
+STUMBLE	Trip
+STUMP	Tree remnant – baffle
+STUNT	Daredevil feat
+STYLE	Flair
+SUBDUE	Overcome
+SUBDUED	Muted
+SUBJECT	Topic
+SUBLIME	Glorious
+SUBMARINE	U-boat
+SUBMISSION	Entry – yielding
+SUBMIT	Hand in – yield
+SUBSCRIBE	Sign up
+SUBSTANCE	Matter
+SUBSTITUTE	Replacement
+SUCCESSION	Series – inheritance
+SUCK	Draw through a straw
+SUCKER	Dupe – lolly
+SUFFER	Endure
+SUFFERING	Agony
+SUFFOCATE	Smother
+SUGGESTION	Proposal
+SUIT	Outfit – hearts, say
+SUM	Total
+SUMMON	Send for
+SUN	Star at the centre of our system
+SUNSET	Dusk
+SUPER	Terrific
+SUPERIOR	Better – boss
+SUPPLEMENT	Add-on – magazine insert
+SUPPLY	Provide
+SUPPORT	Back
+SUPPORTER	Fan
+SUPPOSE	Assume
+SUPPRESS	Quell
+SURCHARGE	Extra fee
+SURE	Certain
+SURFACE	Exterior
+SURGE	Rush
+SURPRISE	Shock
+SURRENDER	Give in
+SURROUND	Encircle
+SURVEY	Questionnaire – inspect
+SUSPECT	Fishy – accused
+SUSPEND	Hang – bar for a while
+SUSPENSION	Car springs – ban
+SUSTAIN	Maintain
+SWAGGER	Strut
+SWALLOW	Gulp – migratory bird
+SWAY	Rock – influence
+SWEAR	Curse – vow
+SWEAT	Perspire
+SWEEP	Brush
+SWEET	Sugary – pudding
+SWEETHEART	Darling
+SWELL	Grow – wave
+SWIM	Bathe
+SWING	Sway – playground seat
+SWITCH	Change – light control
+SWOOP	Dive
+SYNDICATE	Group
+SYNTHETIC	Man-made
+SYSTEM	Method
+TAB	Bill – label
+TABLE	Desk – chart
+TABLET	Pill – touchscreen device
+TABOO	Forbidden
+TACK	Pin – course
+TACKLE	Gear – challenge
+TAG	Label – chasing game
+TAIL	Follow – rear
+TAKE	Grab
+TALK	Chat
+TALL	High
+TALLY	Count
+TAME	Docile
+TAN	Bronze – brown
+TANG	Zest
+TANGLE	Knot
+TANK	Armoured vehicle – reservoir
+TAP	Faucet – knock lightly
+TAPE	Ribbon
+TAPER	Narrow – thin candle
+TARGET	Goal – bullseye
+TART	Pastry – sour
+TASTE	Flavour
+TAX	Levy
+TEAR	Rip – drop from the eye
+TEASE	Mock playfully
+TEASING	Banter
+TECHNICAL	Specialist
+TEE	Peg for a golf ball
+TELL	Inform
+TELLING	Revealing
+TEMPER	Mood – rage
+TEMPORAL	Worldly
+TEMPT	Lure
+TENDER	Sore – loving
+TENDERNESS	Affection
+TENOR	High male voice
+TENSE	Taut – past or present, say
+TENSION	Strain
+TERM	Word – school period
+TERMINAL	Fatal – airport building
+TERMINUS	End of the line
+TERRACE	Row of houses – patio
+TEST	Exam
+TEXT	Words – mobile message
+TEXTURE	Feel
+THEME	Topic
+THEN	Next
+THICK	Dense
+THICKENING	Swelling
+THICKLY	Densely
+THIN	Slim
+THING	Object
+THINK	Ponder
+THIRD	Bronze position
+THONG	Flip-flop
+THOUGHTFUL	Considerate
+THRASH	Beat soundly
+THREAD	Yarn – chain of posts online
+THRESHOLD	Doorstep – limit
+THRILL	Excitement
+THROB	Pulse
+THRONE	Royal seat
+THROTTLE	Strangle – accelerator
+THROUGH	Via
+THROW	Toss
+THROWAWAY	Disposable – offhand
+THRUST	Shove – gist
+THUMB	Digit – hitch-hiker's signal
+THUMP	Punch
+THUNDER	Rumble after lightning
+TICK	Mark of approval – parasite
+TICKET	Pass
+TICKLE	Tease lightly with fingers
+TIDE	Ebb and flow
+TIDY	Neat
+TIE	Draw – neckwear
+TIED	Bound – level
+TIER	Layer
+TIGHT	Taut – stingy
+TIGHTNESS	Constriction
+TILT	Lean
+TIMBER	Wood
+TIME	Hour – occasion
+TIN	Can
+TINKER	Fiddle about
+TINSEL	Christmas glitter
+TIP	Hint – gratuity
+TIRE	Weary
+TITLE	Name – championship
+TOAST	Browned bread – drink to
+TOE	Foot digit
+TOGETHER	Jointly
+TOGGLE	Switch back and forth
+TOKEN	Symbol – voucher
+TOLERANCE	Acceptance
+TOLERANT	Broad-minded
+TOLL	Road charge – ring slowly
+TONE	Pitch – shade
+TONGUE	Language
+TONIC	Pick-me-up – gin's partner
+TOOL	Implement
+TOOTH	Molar, say
+TOP	Summit – lid
+TORCH	Flashlight
+TORMENT	Agony
+TORPEDO	Underwater missile
+TORTURE	Agony
+TOSS	Flip
+TOTAL	Sum
+TOUCH	Feel
+TOUGH	Hardy – difficult
+TOY	Plaything
+TRACE	Hint – copy through thin paper
+TRACK	Path – song on an album
+TRADE	Commerce
+TRAFFIC	Cars on the road
+TRAIL	Path – lag behind
+TRAIN	Coach – railway service
+TRAMP	Vagrant – trudge
+TRANSCRIBE	Write out
+TRANSFER	Move
+TRANSFORM	Change
+TRANSIT	Passage
+TRANSITION	Changeover
+TRANSLATE	Interpret
+TRANSPIRE	Happen
+TRANSPLANT	Organ replacement
+TRANSPORT	Carry – enrapture
+TRANSPOSE	Swap round
+TRAP	Snare
+TRASH	Rubbish
+TRAVEL	Journey
+TRAVERSE	Cross
+TREAD	Step – tyre grip
+TREASURE	Riches – cherish
+TREASURY	Finance ministry
+TREAT	Indulgence – deal with
+TREATMENT	Therapy
+TREBLE	Triple – choirboy's voice
+TREE	Oak, say
+TRENCH	Ditch
+TREND	Fashion
+TRESPASS	Intrude
+TRIAL	Court case – test
+TRICK	Ruse – conjuring feat
+TRIFLE	Layered pudding – small matter
+TRIGGER	Set off
+TRILLION	Million million
+TRIM	Neat – cut
+TRIO	Threesome
+TRIP	Outing – stumble
+TRIPLE	Threefold
+TRIUMPH	Victory
+TROLL	Internet stirrer – bridge dweller of fairy tales
+TROOP	Unit of soldiers
+TROT	Jog
+TROUBLE	Bother
+TROUGH	Feeding container – dip
+TRUE	Accurate
+TRUMP	Outdo – winning suit
+TRUNK	Elephant's nose – big chest
+TRUST	Faith – charity fund
+TRY	Attempt – rugby score
+TUBE	Pipe – the Underground
+TUCK	Food at boarding school – fold in
+TUG	Pull – small towing boat
+TUMBLE	Fall
+TUNE	Melody
+TURN	Rotate – go
+TURNAROUND	Recovery
+TURNING	Side road
+TURNOUT	Attendance
+TWANG	Nasal accent
+TWEAK	Adjust slightly
+TWEET	Chirp – social media post
+TWIN	One of two born together
+TWINE	String
+TWINGE	Pang
+TWIST	Turn – plot surprise
+TWITCH	Jerk – birdwatching
+TYPE	Kind
+UNBROKEN	Intact
+UNCERTAIN	Unsure
+UNCUT	Full-length, as a film
+UNDER	Beneath
+UNDERCUT	Sell more cheaply than
+UNDERSTAND	Grasp
+UNDERTAKE	Embark on
+UNDO	Unfasten – reverse
+UNEASINESS	Disquiet
+UNEASY	Anxious
+UNEVEN	Bumpy
+UNIFORM	Constant – school clothes
+UNIFY	Combine
+UNION	Merger – workers' body
+UNIT	Single item
+UNITE	Join
+UNIVERSAL	Worldwide
+UNKNOWN	Anonymous
+UNLAWFUL	Illegal
+UNSOUND	Faulty
+UNSTABLE	Shaky
+UPDATE	Refresh
+UPGRADE	Improve
+UPLIFT	Boost
+UPPER	Higher
+UPRIGHT	Vertical – honest
+UPSET	Distressed – overturn
+URGE	Impulse – press
+USE	Employ
+UTILITY	Usefulness – gas company
+UTTER	Say – complete
+VACUUM	Void – hoover
+VAGABOND	Wanderer
+VALUE	Worth
+VALVE	Tap
+VAN	Delivery vehicle
+VANILLA	Plain – ice cream flavour
+VANISH	Disappear
+VARIABLE	Changeable
+VARIANCE	Discrepancy
+VARIANT	Version
+VARIATION	Change
+VARIETY	Range
+VAULT	Strongroom – leap
+VEIL	Bride's face covering
+VEIN	Blood vessel
+VENT	Outlet
+VENTILATE	Air
+VENTURE	Enterprise
+VERBAL	Spoken
+VERGE	Brink – roadside strip
+VERSE	Poetry
+VERSION	Edition
+VERTICAL	Upright
+VEST	Singlet
+VET	Animal doctor – check
+VEX	Annoy
+VIBRATE	Quiver
+VIEW	Opinion – vista
+VIOLATE	Breach
+VIOLATION	Breach
+VIOLENT	Brutal
+VISION	Sight – dream
+VISIT	Call on
+VOCAL	Outspoken – sung
+VOICE	Speech
+VOID	Empty – invalid
+VOLATILE	Unpredictable
+VOLLEY	Shot before the bounce
+VOLUME	Loudness – book
+VOLUNTEER	Offer
+VOTE	Ballot
+WAD	Bundle of notes
+WAIT	Hang on
+WAKE	Rouse – vigil
+WALK	Stroll
+WALL	Barrier
+WALLOW	Wade in self-pity
+WAN	Pale
+WANDER	Roam
+WANT	Desire
+WANTON	Gratuitous
+WAR	Conflict
+WARD	Hospital room – charge
+WARM	Cosy
+WARMTH	Heat – affection
+WARP	Distort
+WARRANT	Justify – search document
+WASH	Clean
+WASTE	Squander
+WATCH	Observe – timepiece
+WATER	Rain, essentially
+WAVE	Breaker – greet
+WAVER	Hesitate
+WAY	Route – method
+WEAK	Feeble
+WEAKEN	Sap
+WEAKENED	Sapped
+WEAKNESS	Frailty
+WEAR	Have on
+WEATHER	Climate – survive
+WEAVE	Interlace
+WEB	Spider's trap – internet
+WEDGE	Doorstop – jam
+WEIGH	Consider
+WEIGHT	Heaviness
+WEIGHTY	Serious
+WELCOME	Greeting
+WELL	Healthy – spring
+WEST	Where the sun sets
+WESTERLY	Prevailing UK wind
+WET	Damp
+WHARF	Quay
+WHEEL	Tyre holder – rotate
+WHIFF	Sniff
+WHINE	Whimper
+WHIP	Lash – party enforcer
+WHIPPING	Flogging
+WHIRL	Spin
+WHISK	Beat eggs
+WHISTLE	Referee's signal
+WHITE	Snowy
+WHITEWASH	Cover-up – series won without loss
+WHOLE	Entire
+WHOLESALE	Bulk
+WICKED	Evil – brilliant, in slang
+WICKEDNESS	Sin
+WIDE	Broad – cricket extra
+WILD	Untamed
+WILDCAT	Unofficial, as a strike
+WILL	Determination – testament
+WIN	Victory
+WIND	Breeze – coil
+WINDOW	Pane – opportunity
+WING	Flank – hospital section
+WINK	Signal with one eye
+WIRE	Cable
+WISE	Sage
+WISH	Desire
+WITCH	Sorceress
+WITHDRAW	Pull back
+WITHDRAWAL	Retreat
+WITNESS	Observer
+WONDER	Marvel
+WORD	Promise – term
+WORDS	Lyrics
+WORK	Labour
+WORKING	Functioning
+WORLD	Earth
+WORM	Wriggler in the soil
+WORRY	Fret
+WORSHIP	Adore
+WORST	Poorest
+WOUND	Injury
+WRAP	Envelop – tortilla sandwich
+WRECK	Ruin
+WRENCH	Spanner – yank
+WRESTLE	Grapple
+WRETCHED	Miserable
+WRING	Squeeze dry
+WRINKLE	Crease
+WRITE	Pen
+WRITING	Prose – penmanship
+WRONG	Incorrect
+YARD	Three feet – courtyard
+YELLOW	Colour of a lemon – cowardly
+YET	Still – so far
+YIELD	Give way – harvest
+YIELDING	Soft
+YOKE	Oxen's harness
+YOUNG	Youthful
+YOUTH	Adolescence
+ZERO	Nought
+ZIP	Fastener – nothing
+ZOMBIE	Walking dead
+ZONE	Area
+ZOOM	Speed – video call app

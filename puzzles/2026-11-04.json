@@ -7,184 +7,184 @@
     {
       "row": 0,
       "col": 0,
+      "direction": "down",
+      "answer": "CHORUS",
+      "clue": "Refrain"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "UNLAWFUL",
+      "clue": "Illegal"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "LAW",
+      "clue": "Rule"
+    },
+    {
+      "row": 0,
+      "col": 9,
       "direction": "across",
-      "answer": "SHEET",
-      "clue": "Any broad thin expanse or surface"
-    },
-    {
-      "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "SPRY",
-      "clue": "Moving quickly and lightly"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "PILOT",
-      "clue": "Someone who is licensed to operate an aircraft in flight"
+      "answer": "KNIT",
+      "clue": "Make a jumper"
     },
     {
       "row": 0,
       "col": 10,
-      "direction": "across",
-      "answer": "DAB",
-      "clue": "Apply to a surface"
+      "direction": "down",
+      "answer": "NODE",
+      "clue": "Junction point"
     },
     {
       "row": 0,
-      "col": 11,
-      "direction": "down",
-      "answer": "ACE",
-      "clue": "The smallest whole number or a numeral representing this number"
-    },
-    {
-      "row": 1,
-      "col": 5,
-      "direction": "across",
-      "answer": "AUDIT",
-      "clue": "An inspection of the accounting procedures and records by a trained accountant or CPA"
-    },
-    {
-      "row": 1,
-      "col": 5,
-      "direction": "down",
-      "answer": "ALIEN",
-      "clue": "A person who comes from a foreign country"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "REVEAL",
-      "clue": "Make manifest"
-    },
-    {
-      "row": 2,
-      "col": 2,
-      "direction": "down",
-      "answer": "VOW",
-      "clue": "A solemn pledge to do something or to behave in a certain manner"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "across",
-      "answer": "LEG",
-      "clue": "A human limb"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "down",
-      "answer": "LYRE",
-      "clue": "A harp used by ancient Greeks for accompaniment"
-    },
-    {
-      "row": 2,
       "col": 12,
       "direction": "down",
-      "answer": "GAG",
-      "clue": "Prevent from speaking out"
+      "answer": "TIDY",
+      "clue": "Neat"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "across",
+      "answer": "CANVASS",
+      "clue": "Seek votes door to door"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "down",
+      "answer": "COMMISSION",
+      "clue": "Agent's cut"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "down",
+      "answer": "SKID",
+      "clue": "Slide"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "RIM",
+      "clue": "Edge"
     },
     {
       "row": 3,
       "col": 7,
       "direction": "across",
-      "answer": "GORY",
-      "clue": "Covered with blood"
+      "answer": "LIVELY",
+      "clue": "Energetic"
     },
     {
-      "row": 4,
-      "col": 2,
-      "direction": "across",
-      "answer": "WAVER",
-      "clue": "Pause or hold back in uncertainty or unwillingness"
-    },
-    {
-      "row": 4,
-      "col": 3,
+      "row": 3,
+      "col": 11,
       "direction": "down",
-      "answer": "ASSISTANT",
-      "clue": "Of or relating to a person who is subordinate to another"
+      "answer": "LIMBER",
+      "clue": "Supple"
     },
     {
       "row": 4,
-      "col": 10,
+      "col": 4,
       "direction": "across",
-      "answer": "RIG",
-      "clue": "Gear for a particular enterprise"
+      "answer": "WAD",
+      "clue": "Bundle of notes"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "down",
+      "answer": "DAY",
+      "clue": "Twenty-four hours"
     },
     {
       "row": 5,
-      "col": 1,
-      "direction": "down",
-      "answer": "MUFFLED",
-      "clue": "Being or made softer or less loud or clear"
-    },
-    {
-      "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "FUSSY",
-      "clue": "Annoyed and irritable"
+      "answer": "STIFF",
+      "clue": "Rigid"
     },
     {
-      "row": 6,
-      "col": 6,
+      "row": 5,
+      "col": 9,
       "direction": "across",
-      "answer": "KNIT",
-      "clue": "Tie or link together"
-    },
-    {
-      "row": 6,
-      "col": 6,
-      "direction": "down",
-      "answer": "KICK",
-      "clue": "Drive or propel with the foot"
-    },
-    {
-      "row": 6,
-      "col": 12,
-      "direction": "down",
-      "answer": "GODLY",
-      "clue": "Showing great reverence for god"
+      "answer": "NAME",
+      "clue": "Title"
     },
     {
       "row": 7,
-      "col": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "GAS",
+      "clue": "Fuel for a hob"
+    },
+    {
+      "row": 7,
+      "col": 7,
       "direction": "down",
-      "answer": "MIRE",
-      "clue": "Be unable to move further"
+      "answer": "MUSIC",
+      "clue": "Melody"
     },
     {
       "row": 8,
-      "col": 3,
+      "col": 9,
       "direction": "across",
-      "answer": "SANCTIFIED",
-      "clue": "Made or declared or believed to be holy"
+      "answer": "BARK",
+      "clue": "Dog's call – tree's outer layer"
+    },
+    {
+      "row": 8,
+      "col": 12,
+      "direction": "down",
+      "answer": "KINK",
+      "clue": "Twist"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "across",
+      "answer": "CONDENSE",
+      "clue": "Abridge"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "down",
+      "answer": "DIET",
+      "clue": "Weight-loss plan"
     },
     {
       "row": 10,
       "col": 0,
-      "direction": "across",
-      "answer": "RECAP",
-      "clue": "A summary at the end that repeats the substance of a longer discussion"
+      "direction": "down",
+      "answer": "BUS",
+      "clue": "Double-decker"
     },
     {
       "row": 10,
+      "col": 9,
+      "direction": "down",
+      "answer": "ILL",
+      "clue": "Unwell"
+    },
+    {
+      "row": 11,
       "col": 7,
       "direction": "across",
-      "answer": "JUTE",
-      "clue": "A plant fiber used in making rope or sacks"
+      "answer": "CALL",
+      "clue": "Ring – name"
     },
     {
       "row": 12,
-      "col": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "STARVING",
-      "clue": "The act of depriving of food or subjecting to famine"
+      "answer": "SHORT",
+      "clue": "Brief"
     }
   ]
 }

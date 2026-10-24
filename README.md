@@ -34,7 +34,7 @@ any combination of letters as a guess.
 | `packages/generator` | Command line: generate daily puzzles, build clue and word lists, validate, publish.     |
 | `apps/web`           | The game: Svelte 5 + Vite, built to static files.                                       |
 | `data/wordlists/`    | Guess dictionary sources (ENABLE, public domain, plus additions).                       |
-| `data/clues/`        | Answers and clues for daily puzzles (Open English WordNet, CC BY 4.0, plus hand edits). |
+| `data/clues/`        | Answers and clues for daily puzzles, written in quick-crossword style, plus hand edits. |
 | `puzzles/`           | Puzzle source files (plain answers), one per id.                                        |
 | `deploy/`            | Security headers (one source for both hosts), nginx site, lab hosting guide.            |
 | `scripts/`           | Header rendering and the lab deploy, both run locally.                                  |
@@ -92,5 +92,5 @@ and `npm run test:e2e` before each commit.
 
 ## Known gaps
 
-- Clues are adapted dictionary definitions, so some are flat or use an odd sense. Fix them in
-  `data/clues/edits.tsv` (see `data/clues/README.md`).
+- About 3,000 answers have hand-written clues, enough for about 120 days without repeating an
+  answer. Add more in `data/clues/quick.tsv` (see `data/clues/README.md`).

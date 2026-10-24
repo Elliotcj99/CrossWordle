@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
+      "col": 1,
+      "direction": "down",
+      "answer": "URGE",
+      "clue": "Impulse – press"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "APPEAR",
+      "clue": "Turn up"
+    },
+    {
+      "row": 1,
       "col": 0,
-      "direction": "down",
-      "answer": "TACO",
-      "clue": "A tortilla rolled cupped around a filling"
-    },
-    {
-      "row": 0,
-      "col": 4,
       "direction": "across",
-      "answer": "MANUAL",
-      "clue": "Of or relating to the hands"
+      "answer": "PROPOSE",
+      "clue": "Suggest – pop the question"
     },
     {
-      "row": 0,
-      "col": 4,
-      "direction": "down",
-      "answer": "MITT",
-      "clue": "The extremity of the superior limb"
-    },
-    {
-      "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "NEWSPAPER",
-      "clue": "A daily or weekly publication on folded sheets"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "AMBER",
-      "clue": "A deep yellow color"
-    },
-    {
-      "row": 0,
+      "row": 1,
       "col": 12,
       "direction": "down",
-      "answer": "AWRY",
-      "clue": "Turned or twisted toward one side"
-    },
-    {
-      "row": 1,
-      "col": 10,
-      "direction": "across",
-      "answer": "TOW",
-      "clue": "The act of hauling something by means of a hitch or rope"
-    },
-    {
-      "row": 1,
-      "col": 10,
-      "direction": "down",
-      "answer": "TEN",
-      "clue": "The cardinal number that is the sum of nine and one"
+      "answer": "LAY",
+      "clue": "Put down – non-clerical"
     },
     {
       "row": 2,
-      "col": 3,
-      "direction": "across",
-      "answer": "STOW",
-      "clue": "Fill by packing tightly"
+      "col": 7,
+      "direction": "down",
+      "answer": "CONJUGATE",
+      "clue": "List the forms of a verb"
     },
     {
       "row": 3,
       "col": 0,
       "direction": "across",
-      "answer": "OFF",
-      "clue": "Not in operation or operational"
+      "answer": "REVERSION",
+      "clue": "Return to a former state"
     },
     {
       "row": 3,
-      "col": 1,
+      "col": 0,
       "direction": "down",
-      "answer": "FADE",
-      "clue": "Become less clearly visible or distinguishable"
+      "answer": "RUST",
+      "clue": "Corrosion"
     },
     {
       "row": 3,
-      "col": 6,
-      "direction": "across",
-      "answer": "SKEIN",
-      "clue": "Coils of worsted yarn"
-    },
-    {
-      "row": 4,
-      "col": 3,
-      "direction": "down",
-      "answer": "CAGE",
-      "clue": "An enclosure made or wire or metal bars in which birds or animals can be kept"
-    },
-    {
-      "row": 4,
-      "col": 11,
-      "direction": "down",
-      "answer": "GUSTY",
-      "clue": "Blowing in puffs or short intermittent blasts"
-    },
-    {
-      "row": 5,
-      "col": 1,
-      "direction": "across",
-      "answer": "DIAGRAM",
-      "clue": "A drawing intended to explain how something works"
-    },
-    {
-      "row": 5,
       "col": 10,
       "direction": "across",
-      "answer": "HUE",
-      "clue": "Take on color or become colored"
+      "answer": "SPY",
+      "clue": "Agent"
+    },
+    {
+      "row": 3,
+      "col": 11,
+      "direction": "down",
+      "answer": "PLASTIC",
+      "clue": "Credit cards, informally"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "SCARF",
+      "clue": "Neckwear – wolf down"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "ADHERE",
+      "clue": "Stick"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "across",
+      "answer": "SLAP",
+      "clue": "Smack"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "down",
+      "answer": "SHIELD",
+      "clue": "Guard"
     },
     {
       "row": 6,
-      "col": 9,
-      "direction": "down",
-      "answer": "DESPAIR",
-      "clue": "A state in which all hope is lost or absent"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "down",
-      "answer": "DIGIT",
-      "clue": "One of the elements that collectively form a system of numeration"
+      "col": 6,
+      "direction": "across",
+      "answer": "PUSH",
+      "clue": "Shove"
     },
     {
       "row": 7,
       "col": 2,
       "direction": "across",
-      "answer": "BETTERMENT",
-      "clue": "An improvement that adds to the value of a property or facility"
+      "answer": "HAIR",
+      "clue": "Locks"
     },
     {
-      "row": 7,
-      "col": 2,
-      "direction": "down",
-      "answer": "BEAT",
-      "clue": "Come out better in a competition, race, or conflict"
-    },
-    {
-      "row": 9,
+      "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "GRAND",
-      "clue": "Of behavior that is impressive and ambitious in scale or scope"
+      "answer": "DIE",
+      "clue": "Perish – cube for games"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "down",
+      "answer": "DITCH",
+      "clue": "Trench – dump"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "across",
+      "answer": "RAVE",
+      "clue": "All-night party"
     },
     {
       "row": 9,
       "col": 4,
       "direction": "down",
-      "answer": "DOE",
-      "clue": "Mature female of mammals of which the male is called ‘buck’"
+      "answer": "MAIL",
+      "clue": "Post – chain armour"
     },
     {
       "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "LACE",
+      "clue": "Shoelace – delicate fabric"
+    },
+    {
+      "row": 9,
+      "col": 12,
+      "direction": "down",
+      "answer": "EAST",
+      "clue": "Where the sun rises"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "TOE",
+      "clue": "Foot digit"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "across",
+      "answer": "ASCEND",
+      "clue": "Climb"
+    },
+    {
+      "row": 10,
+      "col": 8,
+      "direction": "down",
+      "answer": "NUT",
+      "clue": "Kernel – loony"
+    },
+    {
+      "row": 12,
+      "col": 2,
+      "direction": "across",
+      "answer": "SALT",
+      "clue": "Season – sailor"
+    },
+    {
+      "row": 12,
       "col": 8,
       "direction": "across",
-      "answer": "APT",
-      "clue": "Naturally disposed toward"
-    },
-    {
-      "row": 10,
-      "col": 6,
-      "direction": "down",
-      "answer": "LEE",
-      "clue": "The side of something that is sheltered from the wind"
-    },
-    {
-      "row": 10,
-      "col": 11,
-      "direction": "down",
-      "answer": "DUB",
-      "clue": "Give a nickname to"
-    },
-    {
-      "row": 11,
-      "col": 3,
-      "direction": "across",
-      "answer": "REBELLIOUS",
-      "clue": "Resisting control or authority"
+      "answer": "TAG",
+      "clue": "Label – chasing game"
     }
   ]
 }

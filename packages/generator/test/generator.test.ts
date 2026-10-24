@@ -7,8 +7,8 @@ import { DEFAULT_LAYOUT, generateLayout, type Candidate } from '../src/layout';
 import { seededRandom } from '../src/random';
 import { clueFor, givesAway, type WordNet } from '../src/wordnet';
 
-const clueFile = new URL('../../../data/clues/wordnet.tsv', import.meta.url);
-const { clues } = parseClueLists([{ name: 'wordnet.tsv', text: readFileSync(clueFile, 'utf8') }]);
+const clueFile = new URL('../../../data/clues/quick.tsv', import.meta.url);
+const { clues } = parseClueLists([{ name: 'quick.tsv', text: readFileSync(clueFile, 'utf8') }]);
 // Every clued answer, treated as a dictionary word: the tests don't need the full word lists.
 const pool: Candidate[] = candidatePool(clues, new Set(clues.keys()));
 
