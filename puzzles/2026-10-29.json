@@ -6,87 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 9,
+      "col": 0,
       "direction": "down",
-      "answer": "WRONGDOING",
-      "clue": "Departure from what is ethically acceptable"
+      "answer": "TACO",
+      "clue": "A tortilla rolled cupped around a filling"
     },
     {
-      "row": 1,
+      "row": 0,
       "col": 4,
       "direction": "across",
-      "answer": "MERCURY",
-      "clue": "A heavy silvery toxic univalent and bivalent metallic element"
+      "answer": "MANUAL",
+      "clue": "Of or relating to the hands"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "MITT",
+      "clue": "The extremity of the superior limb"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "NEWSPAPER",
+      "clue": "A daily or weekly publication on folded sheets"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "AMBER",
+      "clue": "A deep yellow color"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "AWRY",
+      "clue": "Turned or twisted toward one side"
     },
     {
       "row": 1,
-      "col": 5,
+      "col": 10,
+      "direction": "across",
+      "answer": "TOW",
+      "clue": "The act of hauling something by means of a hitch or rope"
+    },
+    {
+      "row": 1,
+      "col": 10,
       "direction": "down",
-      "answer": "ENDEARMENT",
-      "clue": "The act of showing affection"
+      "answer": "TEN",
+      "clue": "The cardinal number that is the sum of nine and one"
     },
     {
       "row": 2,
       "col": 3,
-      "direction": "down",
-      "answer": "RICKSHAW",
-      "clue": "A small two-wheeled cart for one passenger"
+      "direction": "across",
+      "answer": "STOW",
+      "clue": "Fill by packing tightly"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "OFF",
+      "clue": "Not in operation or operational"
     },
     {
       "row": 3,
       "col": 1,
       "direction": "down",
-      "answer": "FLAUTIST",
-      "clue": "Someone who plays the flute"
+      "answer": "FADE",
+      "clue": "Become less clearly visible or distinguishable"
     },
     {
       "row": 3,
-      "col": 7,
-      "direction": "down",
-      "answer": "PIMPLY",
-      "clue": "Blemished by imperfections of the skin"
+      "col": 6,
+      "direction": "across",
+      "answer": "SKEIN",
+      "clue": "Coils of worsted yarn"
     },
     {
       "row": 4,
-      "col": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "CAGE",
+      "clue": "An enclosure made or wire or metal bars in which birds or animals can be kept"
+    },
+    {
+      "row": 4,
+      "col": 11,
+      "direction": "down",
+      "answer": "GUSTY",
+      "clue": "Blowing in puffs or short intermittent blasts"
+    },
+    {
+      "row": 5,
+      "col": 1,
       "direction": "across",
-      "answer": "FLICKERING",
-      "clue": "Shining unsteadily"
+      "answer": "DIAGRAM",
+      "clue": "A drawing intended to explain how something works"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "across",
+      "answer": "HUE",
+      "clue": "Take on color or become colored"
     },
     {
       "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "OUTSTRIP",
-      "clue": "Be or do something to a greater degree"
+      "col": 9,
+      "direction": "down",
+      "answer": "DESPAIR",
+      "clue": "A state in which all hope is lost or absent"
     },
     {
       "row": 7,
-      "col": 7,
+      "col": 0,
+      "direction": "down",
+      "answer": "DIGIT",
+      "clue": "One of the elements that collectively form a system of numeration"
+    },
+    {
+      "row": 7,
+      "col": 2,
       "direction": "across",
-      "answer": "LOIN",
-      "clue": "A cut of meat taken from the side and back of an animal between the ribs and the rump"
+      "answer": "BETTERMENT",
+      "clue": "An improvement that adds to the value of a property or facility"
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "direction": "down",
+      "answer": "BEAT",
+      "clue": "Come out better in a competition, race, or conflict"
     },
     {
       "row": 9,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "WAN",
-      "clue": "Lacking in intensity or brightness"
+      "answer": "GRAND",
+      "clue": "Of behavior that is impressive and ambitious in scale or scope"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "down",
+      "answer": "DOE",
+      "clue": "Mature female of mammals of which the male is called ‘buck’"
     },
     {
       "row": 9,
       "col": 8,
       "direction": "across",
-      "answer": "AGO",
-      "clue": "In the past"
+      "answer": "APT",
+      "clue": "Naturally disposed toward"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 6,
+      "direction": "down",
+      "answer": "LEE",
+      "clue": "The side of something that is sheltered from the wind"
+    },
+    {
+      "row": 10,
+      "col": 11,
+      "direction": "down",
+      "answer": "DUB",
+      "clue": "Give a nickname to"
+    },
+    {
+      "row": 11,
+      "col": 3,
       "direction": "across",
-      "answer": "TOW",
-      "clue": "The act of hauling something by means of a hitch or rope"
+      "answer": "REBELLIOUS",
+      "clue": "Resisting control or authority"
     }
   ]
 }

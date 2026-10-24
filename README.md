@@ -18,7 +18,7 @@ A crossword where every entry is solved as its own Wordle.
   never changes the grid. An entry is solved only when its exact word is guessed, even if
   crossings have already filled in every cell. Yellows and greys only apply
   within their own entry.
-- **Guess budget:** one shared pool of 3 guesses per entry. Win by solving every entry before the
+- **Guess budget:** one shared pool of 4 guesses per entry. Win by solving every entry before the
   pool runs out.
 
 All of these rules are in `RuleSet` (`packages/engine/src/rules.ts`), and a puzzle file can
@@ -73,6 +73,9 @@ and `npm run test:e2e` before each commit.
 
 - The file name must be `<id>.json`. Daily puzzles use the date as the id. The site plays today's
   puzzle, or the latest one before today.
+- Daily puzzles are newspaper size, like a British quick crossword: up to 13 × 13 with 24 to 26
+  entries (`DEFAULT_LAYOUT` in `packages/generator/src/layout.ts`). Each takes about 15 seconds to
+  generate.
 - Entry numbers (1A, 2D, ...) are worked out from the layout.
 - `npm run validate-puzzles` checks the following: letters agree where entries cross, no stray
   words where entries touch, every entry connects to the rest, lengths are allowed and no

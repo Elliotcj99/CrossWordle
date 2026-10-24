@@ -31,7 +31,9 @@ export type RuleOverrides = Partial<RuleSet>;
 export const DEFAULT_RULES: RuleSet = {
   minLength: 3,
   maxLength: 10,
-  guessBudget: { kind: 'shared', guessesPerEntry: 3 },
+  // A simulated player who ignores the clues needs about 3.3 guesses an entry on newspaper-size
+  // puzzles and wins about 90% of the time with 4, so players using the clues have room to spare.
+  guessBudget: { kind: 'shared', guessesPerEntry: 4 },
   duplicateCounts: true,
   realWordsOnly: true,
 };

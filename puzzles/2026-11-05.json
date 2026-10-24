@@ -6,87 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "FIG",
-      "clue": "A diagram or picture illustrating textual material"
+      "col": 0,
+      "direction": "across",
+      "answer": "LOBE",
+      "clue": "A somewhat rounded subdivision of a bodily organ or part"
     },
     {
       "row": 0,
-      "col": 9,
+      "col": 2,
       "direction": "down",
-      "answer": "LEGISLATOR",
-      "clue": "Someone who makes or enacts laws"
+      "answer": "BASS",
+      "clue": "The lowest part of the musical range"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "across",
+      "answer": "OBOE",
+      "clue": "A slender double-reed instrument"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "BEFIT",
+      "clue": "Accord or comport with"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "ETHOS",
+      "clue": "The distinctive spirit of a culture or an era"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "GAME",
+      "clue": "A contest with rules to determine a winner"
     },
     {
       "row": 1,
-      "col": 1,
-      "direction": "across",
-      "answer": "DISCOURSE",
-      "clue": "Extended verbal expression in speech or writing"
-    },
-    {
-      "row": 3,
-      "col": 3,
+      "col": 4,
       "direction": "down",
-      "answer": "SUFFRAGE",
-      "clue": "A legal right guaranteed by the 15th amendment to the US Constitution"
+      "answer": "DELIRIUM",
+      "clue": "State of violent mental agitation"
     },
     {
-      "row": 3,
-      "col": 5,
-      "direction": "across",
-      "answer": "SCENIC",
-      "clue": "Used of locations"
-    },
-    {
-      "row": 3,
-      "col": 5,
+      "row": 1,
+      "col": 6,
       "direction": "down",
-      "answer": "SPURRING",
-      "clue": "A verbalization that encourages you to attempt something"
+      "answer": "SIX",
+      "clue": "The cardinal number that is the sum of five and one"
     },
     {
-      "row": 4,
+      "row": 2,
       "col": 0,
       "direction": "down",
-      "answer": "FIZZING",
-      "clue": "Hissing and bubbling"
+      "answer": "TUBA",
+      "clue": "The lowest brass wind instrument"
     },
     {
-      "row": 4,
+      "row": 2,
       "col": 2,
       "direction": "across",
-      "answer": "GULP",
-      "clue": "A large and hurried swallow"
+      "answer": "SHERIFF",
+      "clue": "The principal law-enforcement officer in a county"
+    },
+    {
+      "row": 2,
+      "col": 10,
+      "direction": "across",
+      "answer": "HEM",
+      "clue": "The edge of a piece of cloth"
     },
     {
       "row": 5,
-      "col": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "ANTHRAX",
+      "clue": "A highly infectious animal disease"
+    },
+    {
+      "row": 5,
+      "col": 2,
       "direction": "down",
-      "answer": "SURLY",
-      "clue": "Inclined to anger or bad feelings with overtones of menace"
+      "answer": "TORN",
+      "clue": "Having edges that are jagged from injury"
+    },
+    {
+      "row": 5,
+      "col": 11,
+      "direction": "down",
+      "answer": "HAMPER",
+      "clue": "A restraint that confines or restricts freedom"
     },
     {
       "row": 6,
-      "col": 3,
-      "direction": "across",
-      "answer": "FORMULA",
-      "clue": "A group of symbols that make a mathematical statement"
+      "col": 8,
+      "direction": "down",
+      "answer": "BOAR",
+      "clue": "An uncastrated male hog"
     },
     {
-      "row": 8,
-      "col": 2,
+      "row": 6,
+      "col": 10,
       "direction": "across",
-      "answer": "RACIAL",
-      "clue": "Of or related to genetically distinguished groups of people"
+      "answer": "BAY",
+      "clue": "An indentation of a shoreline larger than a cove but smaller than a gulf"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "PERSUASION",
+      "clue": "The act of persuading"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "down",
+      "answer": "PULPIT",
+      "clue": "A platform raised above the surrounding level to give prominence to the person on it"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "SAG",
+      "clue": "Droop, sink, or settle from or as if from pressure or loss of tautness"
+    },
+    {
+      "row": 9,
+      "col": 6,
+      "direction": "across",
+      "answer": "GARAGE",
+      "clue": "An outbuilding for housing automobiles"
+    },
+    {
+      "row": 9,
+      "col": 7,
+      "direction": "down",
+      "answer": "ARCH",
+      "clue": "A curved shape in the vertical plane that spans an opening"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "down",
+      "answer": "AJAR",
+      "clue": "Slightly open"
     },
     {
       "row": 10,
       "col": 0,
       "direction": "across",
-      "answer": "GONE",
-      "clue": "Destroyed or killed"
+      "answer": "PONY",
+      "clue": "A range horse of the western United States"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "down",
+      "answer": "TIE",
+      "clue": "A social or business relationship"
+    },
+    {
+      "row": 11,
+      "col": 7,
+      "direction": "across",
+      "answer": "CZAR",
+      "clue": "A male monarch or emperor"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "TOFFEE",
+      "clue": "Caramelized sugar cooled in thin sheets"
     }
   ]
 }

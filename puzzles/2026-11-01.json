@@ -6,87 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "MAZE",
-      "clue": "Complex system of paths or tunnels in which it is easy to get lost"
+      "col": 0,
+      "direction": "across",
+      "answer": "EWE",
+      "clue": "Female sheep"
     },
     {
       "row": 0,
-      "col": 7,
+      "col": 1,
       "direction": "down",
-      "answer": "DEBTOR",
-      "clue": "A person who owes a creditor"
+      "answer": "WORSTED",
+      "clue": "A woolen fabric with a hard textured surface and no nap"
     },
     {
-      "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "TOLERATE",
-      "clue": "Put up with something or somebody unpleasant"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "down",
-      "answer": "TOGETHER",
-      "clue": "In contact with each other or in proximity"
-    },
-    {
-      "row": 1,
-      "col": 2,
-      "direction": "down",
-      "answer": "LEE",
-      "clue": "The side of something that is sheltered from the wind"
-    },
-    {
-      "row": 1,
-      "col": 9,
-      "direction": "down",
-      "answer": "ASSENTING",
-      "clue": "Agreeing with or consenting to"
-    },
-    {
-      "row": 3,
-      "col": 0,
-      "direction": "across",
-      "answer": "GREASE",
-      "clue": "A thick fatty oil"
-    },
-    {
-      "row": 3,
+      "row": 0,
       "col": 4,
       "direction": "down",
-      "answer": "STOOPED",
-      "clue": "Having the back and shoulders rounded"
+      "answer": "WEAR",
+      "clue": "Be dressed in"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "MUTT",
+      "clue": "An inferior dog or one of mixed breed"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "LEVY",
+      "clue": "A charge imposed and collected"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "SHOUT",
+      "clue": "Utter in a loud voice"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "across",
+      "answer": "SEDUCE",
+      "clue": "Induce to have sex"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "down",
+      "answer": "GARB",
+      "clue": "Clothing of a distinctive style or for a particular occasion"
+    },
+    {
+      "row": 3,
+      "col": 1,
+      "direction": "across",
+      "answer": "SECRETLY",
+      "clue": "In secrecy"
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "direction": "down",
+      "answer": "CARPET",
+      "clue": "Floor covering consisting of a piece of thick heavy fabric"
     },
     {
       "row": 4,
-      "col": 7,
+      "col": 9,
       "direction": "across",
-      "answer": "OVER",
-      "clue": "At or to a point across intervening space etc."
+      "answer": "ABET",
+      "clue": "Assist or encourage, usually in some wrongdoing"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "down",
+      "answer": "ALLIANCE",
+      "clue": "The state of being allied or confederated"
+    },
+    {
+      "row": 4,
+      "col": 11,
+      "direction": "down",
+      "answer": "ERRONEOUS",
+      "clue": "Containing or characterized by error"
     },
     {
       "row": 5,
-      "col": 2,
+      "col": 3,
+      "direction": "across",
+      "answer": "REMOVAL",
+      "clue": "Dismissal from office"
+    },
+    {
+      "row": 5,
+      "col": 5,
       "direction": "down",
-      "answer": "AMPLY",
-      "clue": "Sufficiently"
+      "answer": "MIX",
+      "clue": "Open to members of all races and ethnic groups"
     },
     {
       "row": 6,
-      "col": 0,
+      "col": 9,
       "direction": "across",
-      "answer": "HEMLOCK",
-      "clue": "Poisonous drug derived from an Eurasian plant of the genus Conium"
+      "answer": "LARK",
+      "clue": "North American songbirds having a yellow breast"
+    },
+    {
+      "row": 7,
+      "col": 7,
+      "direction": "down",
+      "answer": "SLOGAN",
+      "clue": "A favorite saying of a group, organization or individual"
     },
     {
       "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "EMIT",
+      "clue": "Give off, send forth, or discharge"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "down",
+      "answer": "EDGY",
+      "clue": "Being in a tense state"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "down",
+      "answer": "HUNT",
+      "clue": "Pursue for food or sport"
+    },
+    {
+      "row": 9,
+      "col": 6,
+      "direction": "across",
+      "answer": "COUNTER",
+      "clue": "Table consisting of a horizontal surface over which business is transacted"
+    },
+    {
+      "row": 10,
+      "col": 2,
+      "direction": "across",
+      "answer": "HAUL",
+      "clue": "The quantity that was caught"
+    },
+    {
+      "row": 10,
+      "col": 2,
+      "direction": "down",
+      "answer": "HAT",
+      "clue": "Headdress that protects the head from bad weather"
+    },
+    {
+      "row": 11,
+      "col": 7,
+      "direction": "across",
+      "answer": "APE",
+      "clue": "Any of various primates with short tails or no tail at all"
+    },
+    {
+      "row": 12,
       "col": 4,
       "direction": "across",
-      "answer": "ERODING",
-      "clue": "The mechanical process of wearing or grinding something down , also figuratively"
+      "answer": "THEN",
+      "clue": "Subsequently or soon afterward"
     }
   ]
 }

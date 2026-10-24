@@ -6,87 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
-      "direction": "across",
-      "answer": "AMUSED",
-      "clue": "Pleasantly occupied"
-    },
-    {
-      "row": 0,
-      "col": 3,
-      "direction": "down",
-      "answer": "METALLURGY",
-      "clue": "The science and technology of metals"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "SUBSIDISED",
-      "clue": "Having partial financial support from public funds"
-    },
-    {
-      "row": 1,
       "col": 1,
-      "direction": "down",
-      "answer": "TOWELLING",
-      "clue": "Any of various fabrics used to make towels"
-    },
-    {
-      "row": 2,
-      "col": 0,
       "direction": "across",
-      "answer": "SOUTHWARD",
-      "clue": "The cardinal compass point that is at 180 degrees"
+      "answer": "SPOOK",
+      "clue": "Someone unpleasantly strange or eccentric"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "PRODUCTIVE",
+      "clue": "Producing or capable of producing"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "OVAL",
+      "clue": "Rounded like an egg"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "across",
+      "answer": "GREENS",
+      "clue": "Any of various leafy plants or their leaves and stems eaten as vegetables"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "GRAVE",
+      "clue": "Death of a person"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "SOFA",
+      "clue": "An upholstered seat for more than one person"
     },
     {
       "row": 2,
-      "col": 6,
+      "col": 1,
+      "direction": "across",
+      "answer": "VOCAL",
+      "clue": "Relating to or designed for or using the singing voice"
+    },
+    {
+      "row": 2,
+      "col": 9,
       "direction": "down",
-      "answer": "APPRAISE",
-      "clue": "Evaluate or estimate the nature, quality, ability, extent, or significance of"
+      "answer": "EVIL",
+      "clue": "Morally bad or wrong"
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "direction": "across",
+      "answer": "VISA",
+      "clue": "Approve officially"
+    },
+    {
+      "row": 3,
+      "col": 11,
+      "direction": "down",
+      "answer": "SUCCOUR",
+      "clue": "Assistance in time of difficulty"
     },
     {
       "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "FELL",
-      "clue": "The dressed skin of an animal"
+      "answer": "PLUS",
+      "clue": "A useful or valuable quality"
     },
     {
       "row": 4,
-      "col": 8,
-      "direction": "down",
-      "answer": "FACTORY",
-      "clue": "A plant consisting of one or more buildings with facilities for manufacturing"
+      "col": 5,
+      "direction": "across",
+      "answer": "TEE",
+      "clue": "The starting place for each hole on a golf course"
     },
     {
       "row": 5,
-      "col": 5,
+      "col": 4,
+      "direction": "down",
+      "answer": "CHAFED",
+      "clue": "Painful from having the skin abraded"
+    },
+    {
+      "row": 5,
+      "col": 8,
       "direction": "across",
-      "answer": "ERRAND",
-      "clue": "A short trip that is taken in the performance of a necessary task or mission"
+      "answer": "CLACK",
+      "clue": "Make a rattling sound"
     },
     {
       "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "FLOUT",
-      "clue": "Treat with contemptuous disregard"
+      "answer": "WATCHDOG",
+      "clue": "A guardian or defender against theft or illegal practices or waste"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "down",
+      "answer": "WRECKED",
+      "clue": "Destroyed in an accident"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "down",
+      "answer": "GLAD",
+      "clue": "Showing or causing joy and pleasure"
+    },
+    {
+      "row": 7,
+      "col": 7,
+      "direction": "across",
+      "answer": "LOTION",
+      "clue": "Any of various cosmetic preparations that are applied to the skin"
     },
     {
       "row": 8,
-      "col": 6,
+      "col": 4,
       "direction": "across",
-      "answer": "SMOKE",
-      "clue": "A cloud of fine particles suspended in a gas"
+      "answer": "FLEA",
+      "clue": "Any wingless bloodsucking parasitic insect noted for ability to leap"
+    },
+    {
+      "row": 9,
+      "col": 2,
+      "direction": "across",
+      "answer": "EYE",
+      "clue": "The organ of sight"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "across",
+      "answer": "IRK",
+      "clue": "Irritate or vex"
+    },
+    {
+      "row": 9,
+      "col": 12,
+      "direction": "down",
+      "answer": "KIT",
+      "clue": "A case for containing a set of articles"
     },
     {
       "row": 10,
-      "col": 7,
+      "col": 4,
       "direction": "across",
-      "answer": "DYE",
-      "clue": "Color for microscopic study"
+      "answer": "DAM",
+      "clue": "A barrier constructed to contain the flow of water or to keep out the sea"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "down",
+      "answer": "ARM",
+      "clue": "A human limb"
+    },
+    {
+      "row": 11,
+      "col": 8,
+      "direction": "across",
+      "answer": "SCOOT",
+      "clue": "Run or move very quickly or hastily"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "DIPLOMAT",
+      "clue": "An official engaged in international negotiations"
     }
   ]
 }

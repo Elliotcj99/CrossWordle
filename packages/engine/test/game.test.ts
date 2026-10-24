@@ -163,13 +163,13 @@ describe('guess checks', () => {
 });
 
 describe('guess budget', () => {
-  it('shares 3 guesses per entry across the puzzle by default', () => {
+  it('shares 4 guesses per entry across the puzzle by default', () => {
     const puzzle = ring();
     const state = play(puzzle, [
       ['1A', 'COT'],
       ['3A', 'DYE'],
     ]);
-    expect(guessesRemaining(puzzle, state, entry(puzzle, '2D'))).toBe(4 * 3 - 2);
+    expect(guessesRemaining(puzzle, state, entry(puzzle, '2D'))).toBe(4 * 4 - 2);
   });
 
   it('is lost when the shared pool runs out', () => {

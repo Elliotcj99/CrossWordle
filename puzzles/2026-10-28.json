@@ -6,87 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
+      "col": 0,
       "direction": "down",
-      "answer": "DOUBLY",
-      "clue": "In a twofold manner"
+      "answer": "NUDE",
+      "clue": "A painting of a naked human figure"
     },
     {
       "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "ANON",
-      "clue": "At another time"
-    },
-    {
-      "row": 1,
-      "col": 1,
+      "col": 4,
       "direction": "across",
-      "answer": "WOMANKIND",
-      "clue": "Women as distinguished from men"
+      "answer": "GOAL",
+      "clue": "The place designated as the end"
     },
     {
-      "row": 1,
-      "col": 7,
+      "row": 0,
+      "col": 4,
       "direction": "down",
-      "answer": "IDIOCY",
-      "clue": "Extreme mental retardation"
+      "answer": "GRAFT",
+      "clue": "Tissue or organ transplanted from a donor to a recipient"
     },
     {
-      "row": 3,
-      "col": 1,
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "AID",
+      "clue": "A person or thing that is a resource that helps make something easier or possible to do"
+    },
+    {
+      "row": 0,
+      "col": 10,
       "direction": "across",
-      "answer": "ABOUNDING",
-      "clue": "Existing in abundance"
+      "answer": "BOW",
+      "clue": "A knot with two loops and loose ends"
     },
     {
-      "row": 3,
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "BOA",
+      "clue": "A long thin fluffy scarf of feathers or fur"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "DISCARD",
+      "clue": "Getting rid of something that is regarded as useless or undesirable"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "direction": "down",
+      "answer": "SOUNDING",
+      "clue": "Appearing to be as specified"
+    },
+    {
+      "row": 2,
+      "col": 9,
+      "direction": "across",
+      "answer": "SALE",
+      "clue": "A particular instance of selling"
+    },
+    {
+      "row": 2,
       "col": 9,
       "direction": "down",
-      "answer": "GENUS",
-      "clue": "A general kind of something"
+      "answer": "SLEDDING",
+      "clue": "Advancing toward a goal"
+    },
+    {
+      "row": 2,
+      "col": 12,
+      "direction": "down",
+      "answer": "EVENT",
+      "clue": "Something that happens at a given place and time"
     },
     {
       "row": 4,
+      "col": 1,
+      "direction": "across",
+      "answer": "CULTIVATED",
+      "clue": "Prepared for raising crops by plowing or fertilizing"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "WIDTH",
+      "clue": "The extent of something from side to side"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "direction": "across",
+      "answer": "SAWDUST",
+      "clue": "Fine particles of wood made by sawing wood"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "direction": "down",
+      "answer": "SEND",
+      "clue": "Cause to go somewhere"
+    },
+    {
+      "row": 6,
+      "col": 11,
+      "direction": "down",
+      "answer": "SPIKE",
+      "clue": "A transient variation in voltage or current"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "CONFOUND",
+      "clue": "Be confusing or perplexing to"
+    },
+    {
+      "row": 8,
       "col": 0,
       "direction": "down",
-      "answer": "TRAFFIC",
-      "clue": "Buying and selling"
+      "answer": "COVER",
+      "clue": "Span an interval of distance, space or time"
     },
     {
-      "row": 5,
-      "col": 0,
+      "row": 8,
+      "col": 4,
+      "direction": "down",
+      "answer": "OUNCE",
+      "clue": "A unit of apothecary weight equal to 480 grains or one twelfth of a troy pound"
+    },
+    {
+      "row": 8,
+      "col": 9,
       "direction": "across",
-      "answer": "RHYTHMIC",
-      "clue": "Recurring with measured regularity"
+      "answer": "NAIL",
+      "clue": "Take into custody"
     },
     {
-      "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "FIREFLY",
-      "clue": "Tropical American click beetle having bright luminous spots"
-    },
-    {
-      "row": 7,
+      "row": 10,
       "col": 3,
-      "direction": "down",
-      "answer": "ERR",
-      "clue": "To make a mistake or be incorrect"
+      "direction": "across",
+      "answer": "INN",
+      "clue": "A hotel providing overnight lodging for travelers"
     },
     {
-      "row": 7,
-      "col": 5,
+      "row": 10,
+      "col": 7,
       "direction": "down",
-      "answer": "LINT",
-      "clue": "Fine ravellings of cotton or linen fibers"
+      "answer": "WOE",
+      "clue": "Misery resulting from affliction"
     },
     {
-      "row": 9,
+      "row": 10,
+      "col": 10,
+      "direction": "across",
+      "answer": "FEN",
+      "clue": "Low-lying wet land with grassy vegetation"
+    },
+    {
+      "row": 10,
+      "col": 10,
+      "direction": "down",
+      "answer": "FIN",
+      "clue": "The cardinal number that is the sum of four and one"
+    },
+    {
+      "row": 12,
       "col": 0,
       "direction": "across",
-      "answer": "IMPRINT",
-      "clue": "A distinctive influence"
+      "answer": "REFLECTED",
+      "clue": "Bent or sent back"
     }
   ]
 }

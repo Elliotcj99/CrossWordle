@@ -12,7 +12,10 @@ const { clues } = parseClueLists([{ name: 'wordnet.tsv', text: readFileSync(clue
 // Every clued answer, treated as a dictionary word: the tests don't need the full word lists.
 const pool: Candidate[] = candidatePool(clues, new Set(clues.keys()));
 
-const quick = { ...DEFAULT_LAYOUT, attempts: 40 };
+// Full newspaper size, with fewer attempts so the tests stay quick.
+const quick = { ...DEFAULT_LAYOUT, attempts: 8 };
+// Smaller puzzles for tests about which answers are used, not about size.
+const small = { ...quick, minEntries: 8, maxEntries: 12, maxSize: 11 };
 
 describe('seededRandom', () => {
   it('repeats for the same seed and differs between seeds', () => {
@@ -64,16 +67,16 @@ describe('daily puzzles', () => {
   });
 
   it('does not reuse answers from nearby days', () => {
-    const first = generateDaily('2026-10-24', pool, [], quick)!;
-    const second = generateDaily('2026-10-25', pool, [first], quick)!;
+    const first = generateDaily('2026-10-24', pool, [], small)!;
+    const second = generateDaily('2026-10-25', pool, [first], small)!;
     const used = new Set(first.entries.map((e) => e.answer));
     expect(second.entries.some((e) => used.has(e.answer))).toBe(false);
     expect(recentAnswers('2027-03-01', [first]).size).toBe(0);
   });
 
   it('is repeatable for a date', () => {
-    const a: PuzzleFile = generateDaily('2026-11-05', pool, [], quick)!;
-    expect(generateDaily('2026-11-05', pool, [], quick)).toEqual(a);
+    const a: PuzzleFile = generateDaily('2026-11-05', pool, [], small)!;
+    expect(generateDaily('2026-11-05', pool, [], small)).toEqual(a);
   });
 });
 

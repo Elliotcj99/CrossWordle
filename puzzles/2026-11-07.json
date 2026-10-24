@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "id": "2026-11-07",
+  "title": "Saturday 7 November 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "BIPED",
+      "clue": "An animal with two feet"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "across",
+      "answer": "LEAF",
+      "clue": "The main organ of photosynthesis and transpiration in higher plants"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "LEND",
+      "clue": "Bestow a quality on"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "FLU",
+      "clue": "An acute febrile highly contagious viral disease"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "HEAPS",
+      "clue": "A large number or amount"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "SOD",
+      "clue": "Surface layer of ground containing a mat of grass and grass roots"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "direction": "down",
+      "answer": "HEREDITY",
+      "clue": "The total of inherited attributes"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "PUNCTURED",
+      "clue": "Having a hole cut through"
+    },
+    {
+      "row": 2,
+      "col": 10,
+      "direction": "across",
+      "answer": "END",
+      "clue": "Either extremity of something that has length"
+    },
+    {
+      "row": 2,
+      "col": 11,
+      "direction": "down",
+      "answer": "NAPE",
+      "clue": "The back side of the neck"
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "direction": "down",
+      "answer": "RAIL",
+      "clue": "Complain bitterly"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "MORTALITY",
+      "clue": "The ratio of deaths in an area to the population of that area"
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "direction": "down",
+      "answer": "FONDLE",
+      "clue": "Touch or stroke lightly in a loving or endearing manner"
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "direction": "down",
+      "answer": "SHY",
+      "clue": "Lacking self-confidence"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "across",
+      "answer": "ORDAINED",
+      "clue": "Fixed or established especially by order or command"
+    },
+    {
+      "row": 5,
+      "col": 12,
+      "direction": "down",
+      "answer": "DAWDLING",
+      "clue": "The deliberate act of delaying and playing instead of working"
+    },
+    {
+      "row": 6,
+      "col": 1,
+      "direction": "across",
+      "answer": "HERON",
+      "clue": "Grey or white wading bird with long neck and long legs and long bill"
+    },
+    {
+      "row": 7,
+      "col": 10,
+      "direction": "down",
+      "answer": "GOLDEN",
+      "clue": "Marked by peace and prosperity"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "down",
+      "answer": "CUBIC",
+      "clue": "Involving the cube and no higher power of a quantity or variable"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "FAULTY",
+      "clue": "Having a defect"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "LOAD",
+      "clue": "Weight to be borne or conveyed"
+    },
+    {
+      "row": 10,
+      "col": 6,
+      "direction": "down",
+      "answer": "NUN",
+      "clue": "A woman religious"
+    },
+    {
+      "row": 11,
+      "col": 3,
+      "direction": "across",
+      "answer": "TROUGH",
+      "clue": "A narrow depression"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "COSY",
+      "clue": "Enjoying or affording comforting warmth and shelter especially in a small space"
+    },
+    {
+      "row": 12,
+      "col": 10,
+      "direction": "across",
+      "answer": "NAG",
+      "clue": "Bother persistently with trivial complaints"
+    }
+  ]
+}

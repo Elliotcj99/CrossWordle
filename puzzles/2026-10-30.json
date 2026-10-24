@@ -6,87 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 4,
+      "col": 6,
       "direction": "down",
-      "answer": "RATIONALE",
-      "clue": "An explanation of the fundamental reasons"
+      "answer": "MONGOOSE",
+      "clue": "Agile grizzled Old World viverrine"
     },
     {
       "row": 0,
-      "col": 7,
-      "direction": "down",
-      "answer": "DEFINITIVE",
-      "clue": "Clearly defined or formulated"
+      "col": 8,
+      "direction": "across",
+      "answer": "AWED",
+      "clue": "Inspired by a feeling of fearful wonderment or reverence"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 8,
       "direction": "down",
-      "answer": "VEGETATION",
-      "clue": "All the plant life in a particular region or period"
+      "answer": "ANTICIPATE",
+      "clue": "Regard something as probable or likely"
     },
     {
       "row": 1,
-      "col": 2,
-      "direction": "across",
-      "answer": "STABLE",
-      "clue": "Resistant to change of position or condition"
+      "col": 1,
+      "direction": "down",
+      "answer": "LABOURER",
+      "clue": "Someone who works with their hands"
     },
     {
-      "row": 3,
-      "col": 0,
+      "row": 1,
+      "col": 4,
       "direction": "down",
-      "answer": "FRONTAGE",
-      "clue": "The extent of land abutting on a street or water"
+      "answer": "SKIRT",
+      "clue": "Cloth covering that forms the part of a garment below the waist"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "across",
+      "answer": "OWN",
+      "clue": "Belonging to or on behalf of a specified person"
+    },
+    {
+      "row": 1,
+      "col": 12,
+      "direction": "down",
+      "answer": "SAME",
+      "clue": "Closely similar or comparable in kind or quality or quantity or degree"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "OAK",
+      "clue": "A deciduous tree of the genus Quercus"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "across",
+      "answer": "TUB",
+      "clue": "A relatively large open container that you fill with water and use to wash the body"
+    },
+    {
+      "row": 2,
+      "col": 10,
+      "direction": "down",
+      "answer": "BADGE",
+      "clue": "An emblem that signifies your status"
     },
     {
       "row": 3,
       "col": 3,
       "direction": "across",
-      "answer": "DISCIPLE",
-      "clue": "Someone who believes and helps to spread the doctrine of another"
+      "answer": "SING",
+      "clue": "Produce tones with the voice"
     },
     {
       "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "RAW",
-      "clue": "Being unprocessed or manufactured using only simple or minimal processes"
+      "answer": "TOE",
+      "clue": "Drive obliquely"
     },
     {
-      "row": 6,
-      "col": 2,
+      "row": 4,
+      "col": 10,
       "direction": "across",
-      "answer": "CHALET",
-      "clue": "A Swiss house with a sloping roof and wide eaves or a house built in this style"
+      "answer": "DIE",
+      "clue": "Suffer or face the pain of death"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "across",
+      "answer": "STOOPING",
+      "clue": "Having the back and shoulders rounded"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "down",
+      "answer": "SCOOP",
+      "clue": "A hollow concave shape made by removing something"
     },
     {
       "row": 6,
-      "col": 2,
+      "col": 10,
+      "direction": "across",
+      "answer": "ELM",
+      "clue": "Any of various trees of the genus Ulmus: important timber or shade trees"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "REJOICE",
+      "clue": "Feel happiness or joy"
+    },
+    {
+      "row": 7,
+      "col": 5,
       "direction": "down",
-      "answer": "COO",
-      "clue": "Speak softly or lovingly"
+      "answer": "CONVOY",
+      "clue": "A procession of land vehicles traveling together"
     },
     {
       "row": 8,
-      "col": 0,
-      "direction": "across",
-      "answer": "ABODE",
-      "clue": "Any address at which you dwell more than temporarily"
+      "col": 12,
+      "direction": "down",
+      "answer": "PAP",
+      "clue": "Worthless or oversimplified ideas"
     },
     {
       "row": 9,
-      "col": 7,
+      "col": 2,
       "direction": "across",
-      "answer": "EVEN",
-      "clue": "Divisible by two"
+      "answer": "SPANK",
+      "clue": "A slap with the flat of the hand"
+    },
+    {
+      "row": 9,
+      "col": 2,
+      "direction": "down",
+      "answer": "SLAB",
+      "clue": "Block consisting of a thick piece of something"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "across",
+      "answer": "EXTRA",
+      "clue": "A minor actor in crowd scenes"
     },
     {
       "row": 10,
       "col": 0,
       "direction": "across",
-      "answer": "EXCERPT",
-      "clue": "A passage selected from a larger work"
+      "answer": "GEL",
+      "clue": "A colloid in a more solid form than a sol"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "down",
+      "answer": "GOD",
+      "clue": "A man of such superior qualities that he seems like a deity to other people"
+    },
+    {
+      "row": 11,
+      "col": 5,
+      "direction": "across",
+      "answer": "OPTIMUM",
+      "clue": "Most favorable conditions or greatest degree or amount possible under given circumstances"
+    },
+    {
+      "row": 12,
+      "col": 2,
+      "direction": "across",
+      "answer": "BRAY",
+      "clue": "Reduce to small pieces or particles by pounding or abrading"
     }
   ]
 }

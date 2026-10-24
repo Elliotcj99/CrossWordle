@@ -6,87 +6,178 @@
   "entries": [
     {
       "row": 0,
+      "col": 1,
+      "direction": "down",
+      "answer": "PAR",
+      "clue": "A state of being essentially equal or equivalent"
+    },
+    {
+      "row": 0,
       "col": 3,
-      "direction": "across",
-      "answer": "SPANGLE",
-      "clue": "Adornment consisting of a small piece of shiny material used to decorate clothing"
+      "direction": "down",
+      "answer": "LOT",
+      "clue": "A large number or amount or extent"
     },
     {
       "row": 0,
       "col": 5,
-      "direction": "down",
-      "answer": "AVARICIOUS",
-      "clue": "Immoderately desirous of acquiring e.g. wealth"
+      "direction": "across",
+      "answer": "STACKS",
+      "clue": "A large number or amount"
     },
     {
       "row": 0,
       "col": 8,
       "direction": "down",
-      "answer": "LATE",
-      "clue": "Being or occurring at an advanced period of time or after a usual or expected time"
+      "answer": "CULT",
+      "clue": "Followers of an exclusive system of beliefs and practices"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "SCORN",
+      "clue": "Lack of respect accompanied by a feeling of intense dislike"
     },
     {
       "row": 1,
-      "col": 1,
-      "direction": "down",
-      "answer": "CRUTCH",
-      "clue": "A wooden or metal staff that fits under the armpit and reaches to the ground"
+      "col": 10,
+      "direction": "across",
+      "answer": "COL",
+      "clue": "A pass between mountain peaks"
     },
     {
       "row": 2,
       "col": 0,
       "direction": "across",
-      "answer": "TRIVIALITY",
-      "clue": "The quality of being unimportant and petty or frivolous"
+      "answer": "FRET",
+      "clue": "Worry unnecessarily or excessively"
     },
     {
-      "row": 4,
+      "row": 2,
       "col": 0,
-      "direction": "across",
-      "answer": "STOPPING",
-      "clue": "Fastener consisting of a narrow strip of welded metal used to join steel members"
+      "direction": "down",
+      "answer": "FUND",
+      "clue": "Convert into long-term debt that bears fixed interest and is represented by bonds"
     },
     {
-      "row": 4,
-      "col": 7,
+      "row": 2,
+      "col": 2,
       "direction": "down",
-      "answer": "GARGLE",
-      "clue": "Rinse one's mouth and throat with mouthwash"
+      "answer": "EJACULATE",
+      "clue": "Utter impulsively"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "across",
+      "answer": "CLUTTER",
+      "clue": "A confused multitude of things"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "down",
+      "answer": "COMPULSIVE",
+      "clue": "Strongly motivated to succeed"
+    },
+    {
+      "row": 3,
+      "col": 12,
+      "direction": "down",
+      "answer": "RETROSPECT",
+      "clue": "Contemplation of things past"
     },
     {
       "row": 4,
       "col": 10,
+      "direction": "across",
+      "answer": "NEE",
+      "clue": "Used to indicate the maiden or family name of a married woman"
+    },
+    {
+      "row": 5,
+      "col": 6,
       "direction": "down",
-      "answer": "WINGS",
-      "clue": "A means of flight or ascent"
+      "answer": "DEFY",
+      "clue": "Resist or confront with resistance"
+    },
+    {
+      "row": 5,
+      "col": 8,
+      "direction": "down",
+      "answer": "GIG",
+      "clue": "Long and light rowing boat"
     },
     {
       "row": 6,
-      "col": 3,
-      "direction": "down",
-      "answer": "NEWLY",
-      "clue": "Very recently"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "down",
-      "answer": "AWAY",
-      "clue": "From a particular thing or place or position"
-    },
-    {
-      "row": 7,
-      "col": 2,
+      "col": 4,
       "direction": "across",
-      "answer": "BELONGING",
-      "clue": "Happiness felt in a secure relationship"
+      "answer": "PREDICTOR",
+      "clue": "Information that supports a probabilistic estimate of future events"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "down",
+      "answer": "TOOL",
+      "clue": "An implement used in the practice of a vocation"
+    },
+    {
+      "row": 8,
+      "col": 1,
+      "direction": "across",
+      "answer": "WAYLAY",
+      "clue": "Wait in hiding to attack"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "TOSS",
+      "clue": "Lightly throw to see which side comes up"
     },
     {
       "row": 9,
       "col": 0,
+      "direction": "down",
+      "answer": "FIB",
+      "clue": "A trivial lie"
+    },
+    {
+      "row": 10,
+      "col": 0,
       "direction": "across",
-      "answer": "ADOLESCENT",
-      "clue": "Being of the age 13 through 19"
+      "answer": "IRE",
+      "clue": "A strong emotion"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "across",
+      "answer": "INDUCE",
+      "clue": "Cause to arise"
+    },
+    {
+      "row": 10,
+      "col": 6,
+      "direction": "down",
+      "answer": "DUO",
+      "clue": "Two items of the same kind"
+    },
+    {
+      "row": 10,
+      "col": 8,
+      "direction": "down",
+      "answer": "CON",
+      "clue": "An argument opposed to a proposal"
+    },
+    {
+      "row": 12,
+      "col": 1,
+      "direction": "across",
+      "answer": "FOREGOING",
+      "clue": "Especially of writing or speech"
     }
   ]
 }

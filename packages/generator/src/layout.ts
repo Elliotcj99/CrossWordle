@@ -15,13 +15,20 @@ export interface LayoutOptions {
   readonly maxSize: number;
   /** Layouts to try; the best one wins. */
   readonly attempts: number;
+  /** Answers each attempt draws from the pool at random. Fewer is faster; too few can't fill. */
+  readonly candidatesPerAttempt: number;
 }
 
+/**
+ * Newspaper size: British quick crosswords (the Guardian Quick, the Times Quick Cryptic) use a
+ * 13 × 13 grid with usually 24 to 26 clues.
+ */
 export const DEFAULT_LAYOUT: LayoutOptions = {
-  minEntries: 8,
-  maxEntries: 12,
-  maxSize: 11,
-  attempts: 400,
+  minEntries: 24,
+  maxEntries: 26,
+  maxSize: 13,
+  attempts: 100,
+  candidatesPerAttempt: 2000,
 };
 
 interface BoardCell {
@@ -160,7 +167,7 @@ class Board {
 /** One layout attempt: a seed word, then crossing words added greedily until full or stuck. */
 function buildBoard(pool: readonly Candidate[], options: LayoutOptions, random: Random): Board {
   const board = new Board();
-  const order = random.shuffle(pool);
+  const order = random.shuffle(pool).slice(0, options.candidatesPerAttempt);
   const seed = order.find((c) => c.answer.length >= 6 && c.answer.length <= options.maxSize);
   if (seed === undefined) return board;
   board.place(seed, { row: 0, col: 0, direction: random.int(2) === 0 ? 'across' : 'down' });

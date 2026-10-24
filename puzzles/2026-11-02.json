@@ -6,87 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "REPAY",
-      "clue": "Pay back"
-    },
-    {
-      "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "ILLUMINATE",
-      "clue": "Introduce light into"
-    },
-    {
-      "row": 0,
-      "col": 9,
-      "direction": "down",
-      "answer": "LEVEE",
-      "clue": "A formal reception of visitors or guests"
-    },
-    {
-      "row": 1,
       "col": 1,
       "direction": "across",
-      "answer": "DEMOLISHED",
-      "clue": "Torn down and broken up"
+      "answer": "CABLE",
+      "clue": "A telegram sent abroad"
+    },
+    {
+      "row": 0,
+      "col": 1,
+      "direction": "down",
+      "answer": "CINDER",
+      "clue": "A fragment of incombustible matter left after a wood or coal or charcoal fire"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "BUSHY",
+      "clue": "Used of hair"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "OUTSKIRTS",
+      "clue": "Outlying areas"
     },
     {
       "row": 1,
-      "col": 7,
+      "col": 6,
+      "direction": "across",
+      "answer": "BUBBLY",
+      "clue": "Full of or showing high spirits"
+    },
+    {
+      "row": 1,
+      "col": 9,
       "direction": "down",
-      "answer": "SWALLOW",
-      "clue": "Pass through the esophagus as part of eating or drinking"
+      "answer": "BIN",
+      "clue": "A container"
     },
     {
       "row": 2,
       "col": 0,
+      "direction": "across",
+      "answer": "ONUS",
+      "clue": "An onerous or difficult concern"
+    },
+    {
+      "row": 2,
+      "col": 12,
       "direction": "down",
-      "answer": "FICTION",
-      "clue": "A literary work based on the imagination and not necessarily on fact"
+      "answer": "ASS",
+      "clue": "The fleshy part of the human body that you sit on"
     },
     {
       "row": 3,
+      "col": 3,
+      "direction": "across",
+      "answer": "HOARSENESS",
+      "clue": "A throaty harshness"
+    },
+    {
+      "row": 3,
+      "col": 10,
+      "direction": "down",
+      "answer": "EXTANT",
+      "clue": "Still in existence"
+    },
+    {
+      "row": 5,
       "col": 0,
       "direction": "across",
-      "answer": "INAUGURATE",
-      "clue": "Commence officially"
+      "answer": "ERA",
+      "clue": "A period marked by distinctive character or reckoned from a fixed point or event"
     },
     {
       "row": 5,
-      "col": 3,
-      "direction": "across",
-      "answer": "CHILLY",
-      "clue": "Not characterized by emotion"
-    },
-    {
-      "row": 5,
-      "col": 3,
+      "col": 0,
       "direction": "down",
-      "answer": "CAMEO",
-      "clue": "Engraving or carving in low relief on a stone"
+      "answer": "ERGO",
+      "clue": "Therefore or consequently"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "AIRS",
+      "clue": "Affected manners intended to impress others"
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "direction": "across",
+      "answer": "HUMIDITY",
+      "clue": "Wetness in the atmosphere"
     },
     {
       "row": 6,
-      "col": 9,
+      "col": 12,
       "direction": "down",
-      "answer": "FORTH",
-      "clue": "From a particular thing or place or position"
+      "answer": "TUNNEL",
+      "clue": "A passageway through or under something, usually underground"
     },
     {
       "row": 7,
-      "col": 7,
+      "col": 4,
       "direction": "across",
-      "answer": "WOO",
-      "clue": "Seek someone's favor"
+      "answer": "PLATOON",
+      "clue": "A military unit that is a subdivision of a company"
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "PAPAYA",
+      "clue": "Large oval melon-like tropical fruit with yellowish flesh"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "SPA",
+      "clue": "A health resort near a spring or at the seaside"
+    },
+    {
+      "row": 8,
+      "col": 10,
+      "direction": "across",
+      "answer": "TON",
+      "clue": "A United States unit of weight equivalent to 2000 pounds"
     },
     {
       "row": 9,
-      "col": 2,
+      "col": 1,
+      "direction": "down",
+      "answer": "TOUR",
+      "clue": "A journey or route all the way around a particular place or area"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "down",
+      "answer": "DOLL",
+      "clue": "A small replica of a person"
+    },
+    {
+      "row": 10,
+      "col": 4,
       "direction": "across",
-      "answer": "DOPE",
-      "clue": "Street names for marijuana"
+      "answer": "ANCHOVY",
+      "clue": "Tiny fishes usually canned or salted"
+    },
+    {
+      "row": 10,
+      "col": 10,
+      "direction": "down",
+      "answer": "YEN",
+      "clue": "A yearning for something or to do something"
+    },
+    {
+      "row": 11,
+      "col": 0,
+      "direction": "across",
+      "answer": "LUSTY",
+      "clue": "Vigorously passionate"
+    },
+    {
+      "row": 12,
+      "col": 4,
+      "direction": "across",
+      "answer": "AURAL",
+      "clue": "Of or pertaining to hearing or the ear"
     }
   ]
 }

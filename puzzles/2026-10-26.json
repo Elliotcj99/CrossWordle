@@ -6,87 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 7,
+      "col": 9,
       "direction": "down",
-      "answer": "PROCEEDING",
-      "clue": "The institution of a sequence of steps by which legal judgments are invoked"
+      "answer": "FIFTH",
+      "clue": "Position five in a countable series of things"
     },
     {
       "row": 0,
-      "col": 9,
+      "col": 11,
       "direction": "down",
-      "answer": "CHEAPEN",
-      "clue": "Lower the grade of something"
+      "answer": "PEDAL",
+      "clue": "A sustained bass note"
     },
     {
       "row": 1,
+      "col": 3,
+      "direction": "across",
+      "answer": "MOOT",
+      "clue": "Of no legal significance"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "down",
+      "answer": "TRIPE",
+      "clue": "Lining of the stomach of a ruminant used as food"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "across",
+      "answer": "JIBE",
+      "clue": "Be compatible, similar or consistent"
+    },
+    {
+      "row": 2,
       "col": 0,
       "direction": "down",
-      "answer": "STIMULANT",
-      "clue": "A drug that temporarily quickens some vital process"
-    },
-    {
-      "row": 1,
-      "col": 5,
-      "direction": "across",
-      "answer": "PORCH",
-      "clue": "A structure attached to the exterior of a building often forming a covered entrance"
-    },
-    {
-      "row": 1,
-      "col": 5,
-      "direction": "down",
-      "answer": "PLATING",
-      "clue": "A thin coating of metal deposited on a surface"
-    },
-    {
-      "row": 2,
-      "col": 2,
-      "direction": "across",
-      "answer": "COAL",
-      "clue": "Burn to charcoal"
+      "answer": "SECURE",
+      "clue": "Get by special effort"
     },
     {
       "row": 2,
       "col": 2,
       "direction": "down",
-      "answer": "CURTSEY",
-      "clue": "Bending the knees"
+      "answer": "SPANGLED",
+      "clue": "Covered with beads or jewels or sequins"
     },
     {
       "row": 3,
-      "col": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "SNATCH",
+      "clue": "A small fragment"
+    },
+    {
+      "row": 3,
+      "col": 9,
       "direction": "across",
-      "answer": "CLAM",
-      "clue": "Burrowing marine mollusk living on sand or mud"
+      "answer": "TZAR",
+      "clue": "A male monarch or emperor"
     },
     {
       "row": 4,
-      "col": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "RUSTLE",
-      "clue": "Make a dry crackling sound"
+      "answer": "CHAIN",
+      "clue": "A series of things depending on each other as if linked together"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "across",
+      "answer": "PUSH",
+      "clue": "Move with force"
+    },
+    {
+      "row": 4,
+      "col": 8,
+      "direction": "down",
+      "answer": "STANZA",
+      "clue": "A fixed number of lines of verse forming a unit of a poem"
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "direction": "across",
+      "answer": "ALE",
+      "clue": "A general name for beer made with a top fermenting yeast"
+    },
+    {
+      "row": 5,
+      "col": 12,
+      "direction": "down",
+      "answer": "TETHER",
+      "clue": "Restraint consisting of a rope used to restrain an animal"
     },
     {
       "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "LESION",
-      "clue": "Any localized abnormal structural change in a bodily part"
+      "answer": "RUG",
+      "clue": "Floor covering consisting of a piece of thick heavy fabric"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "across",
+      "answer": "DUE",
+      "clue": "Owed and payable immediately or on demand"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "down",
+      "answer": "DECIMAL",
+      "clue": "A proper fraction whose denominator is a power of 10"
     },
     {
       "row": 7,
-      "col": 5,
+      "col": 2,
       "direction": "across",
-      "answer": "GRID",
-      "clue": "A pattern of regularly spaced horizontal and vertical lines"
+      "answer": "LECTERN",
+      "clue": "Desk or stand with a slanted top used to hold a text at the proper height for a lecturer"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "EVE",
+      "clue": "The day before"
     },
     {
       "row": 9,
-      "col": 4,
+      "col": 0,
       "direction": "across",
-      "answer": "KNIGHT",
-      "clue": "Originally a person of noble birth trained to arms and chivalry"
+      "answer": "JADE",
+      "clue": "A semiprecious gemstone that takes a high polish"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "down",
+      "answer": "AWAY",
+      "clue": "From a particular thing or place or position"
+    },
+    {
+      "row": 9,
+      "col": 6,
+      "direction": "across",
+      "answer": "EVASIVE",
+      "clue": "Deliberately vague or ambiguous"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "down",
+      "answer": "WEE",
+      "clue": "Little or tiny"
+    },
+    {
+      "row": 11,
+      "col": 0,
+      "direction": "across",
+      "answer": "LAG",
+      "clue": "Hang or fall in movement, progress, development, etc."
+    },
+    {
+      "row": 12,
+      "col": 3,
+      "direction": "across",
+      "answer": "RECONCILED",
+      "clue": "Made compatible or consistent"
     }
   ]
 }

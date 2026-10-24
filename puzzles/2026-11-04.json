@@ -6,87 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
-      "direction": "down",
-      "answer": "DUO",
-      "clue": "Two items of the same kind"
-    },
-    {
-      "row": 1,
-      "col": 6,
+      "col": 0,
       "direction": "across",
-      "answer": "MAD",
-      "clue": "Roused to anger"
+      "answer": "SHEET",
+      "clue": "Any broad thin expanse or surface"
+    },
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "SPRY",
+      "clue": "Moving quickly and lightly"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "PILOT",
+      "clue": "Someone who is licensed to operate an aircraft in flight"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "across",
+      "answer": "DAB",
+      "clue": "Apply to a surface"
+    },
+    {
+      "row": 0,
+      "col": 11,
+      "direction": "down",
+      "answer": "ACE",
+      "clue": "The smallest whole number or a numeral representing this number"
     },
     {
       "row": 1,
-      "col": 7,
+      "col": 5,
+      "direction": "across",
+      "answer": "AUDIT",
+      "clue": "An inspection of the accounting procedures and records by a trained accountant or CPA"
+    },
+    {
+      "row": 1,
+      "col": 5,
       "direction": "down",
-      "answer": "ARMISTICE",
-      "clue": "A state of peace agreed to between opponents so they can discuss peace terms"
+      "answer": "ALIEN",
+      "clue": "A person who comes from a foreign country"
     },
     {
       "row": 2,
       "col": 0,
-      "direction": "down",
-      "answer": "DARNED",
-      "clue": "Expletives used informally as intensifiers"
-    },
-    {
-      "row": 2,
-      "col": 2,
       "direction": "across",
-      "answer": "COAT",
-      "clue": "An outer garment that has sleeves and covers the body from shoulder down"
+      "answer": "REVEAL",
+      "clue": "Make manifest"
     },
     {
       "row": 2,
       "col": 2,
       "direction": "down",
-      "answer": "CYCLING",
-      "clue": "The sport of traveling on a bicycle or motorcycle"
+      "answer": "VOW",
+      "clue": "A solemn pledge to do something or to behave in a certain manner"
     },
     {
       "row": 2,
-      "col": 5,
-      "direction": "down",
-      "answer": "TRAVESTY",
-      "clue": "A comedy characterized by broad satire and improbable situations"
+      "col": 10,
+      "direction": "across",
+      "answer": "LEG",
+      "clue": "A human limb"
     },
     {
       "row": 2,
-      "col": 9,
+      "col": 10,
       "direction": "down",
-      "answer": "MANUAL",
-      "clue": "Of or relating to the hands"
+      "answer": "LYRE",
+      "clue": "A harp used by ancient Greeks for accompaniment"
+    },
+    {
+      "row": 2,
+      "col": 12,
+      "direction": "down",
+      "answer": "GAG",
+      "clue": "Prevent from speaking out"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "across",
+      "answer": "GORY",
+      "clue": "Covered with blood"
     },
     {
       "row": 4,
+      "col": 2,
+      "direction": "across",
+      "answer": "WAVER",
+      "clue": "Pause or hold back in uncertainty or unwillingness"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "ASSISTANT",
+      "clue": "Of or relating to a person who is subordinate to another"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "across",
+      "answer": "RIG",
+      "clue": "Gear for a particular enterprise"
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "direction": "down",
+      "answer": "MUFFLED",
+      "clue": "Being or made softer or less loud or clear"
+    },
+    {
+      "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "RECREATION",
-      "clue": "An activity that diverts or amuses or stimulates"
+      "answer": "FUSSY",
+      "clue": "Annoyed and irritable"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "direction": "across",
+      "answer": "KNIT",
+      "clue": "Tie or link together"
+    },
+    {
+      "row": 6,
+      "col": 6,
+      "direction": "down",
+      "answer": "KICK",
+      "clue": "Drive or propel with the foot"
+    },
+    {
+      "row": 6,
+      "col": 12,
+      "direction": "down",
+      "answer": "GODLY",
+      "clue": "Showing great reverence for god"
     },
     {
       "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "DONE",
-      "clue": "Having finished or arrived at completion"
+      "col": 10,
+      "direction": "down",
+      "answer": "MIRE",
+      "clue": "Be unable to move further"
     },
     {
-      "row": 7,
-      "col": 5,
-      "direction": "across",
-      "answer": "SPILL",
-      "clue": "Cause or allow to run or flow from a container"
-    },
-    {
-      "row": 9,
+      "row": 8,
       "col": 3,
       "direction": "across",
-      "answer": "PAY",
-      "clue": "Give money, usually in exchange for goods or services"
+      "answer": "SANCTIFIED",
+      "clue": "Made or declared or believed to be holy"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "RECAP",
+      "clue": "A summary at the end that repeats the substance of a longer discussion"
+    },
+    {
+      "row": 10,
+      "col": 7,
+      "direction": "across",
+      "answer": "JUTE",
+      "clue": "A plant fiber used in making rope or sacks"
+    },
+    {
+      "row": 12,
+      "col": 2,
+      "direction": "across",
+      "answer": "STARVING",
+      "clue": "The act of depriving of food or subjecting to famine"
     }
   ]
 }

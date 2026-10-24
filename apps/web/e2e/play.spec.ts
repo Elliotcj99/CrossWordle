@@ -22,7 +22,7 @@ test('shows every clue', async ({ page }) => {
 test('rejects words that are not in the word list without using a guess', async ({ page }) => {
   await guess(page, 'LEVXL');
   await expect(panel(page).getByText('Not in the word list.')).toBeVisible();
-  await expect(panel(page).getByText('27 of 27 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('36 of 36 guesses left')).toBeVisible();
 
   // The letters stay so the player can fix them.
   await page.keyboard.press('Backspace');
@@ -34,10 +34,10 @@ test('rejects words that are not in the word list without using a guess', async 
 test('accepts newer words from the British list', async ({ page }) => {
   // EMAIL and PODCAST are in the SCOWL British list but not in ENABLE.
   await guess(page, 'EMAIL');
-  await expect(panel(page).getByText('26 of 27 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('35 of 36 guesses left')).toBeVisible();
   await clue(page, 'Resolved, as a dispute').click();
   await guess(page, 'PODCAST');
-  await expect(panel(page).getByText('25 of 27 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('34 of 36 guesses left')).toBeVisible();
 });
 
 test('lets a guess fish with other letters, and the grid keeps its greens', async ({ page }) => {
@@ -49,7 +49,7 @@ test('lets a guess fish with other letters, and the grid keeps its greens', asyn
   const next = panel(page).getByRole('listitem', { name: 'Current guess' });
   await expect(next).toHaveText('');
   await guess(page, 'TABLE');
-  await expect(panel(page).getByText('25 of 27 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('34 of 36 guesses left')).toBeVisible();
   await expect(grid.getByRole('button', { name: 'row 1, column 2, E' })).toBeVisible();
 });
 
@@ -109,7 +109,7 @@ test('starts fresh when saved progress no longer fits the puzzle', async ({ page
     ),
   );
   await page.reload();
-  await expect(panel(page).getByText('27 of 27 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('36 of 36 guesses left')).toBeVisible();
 });
 
 test('tells the player what a guess found', async ({ page }) => {

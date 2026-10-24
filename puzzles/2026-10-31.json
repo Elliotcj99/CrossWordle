@@ -6,87 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 7,
+      "col": 3,
       "direction": "down",
-      "answer": "VENISON",
-      "clue": "Meat from a deer used as food"
+      "answer": "QUIET",
+      "clue": "Characterized by an absence or near absence of agitation or activity"
     },
     {
-      "row": 1,
-      "col": 3,
+      "row": 0,
+      "col": 8,
       "direction": "across",
-      "answer": "REDEEMED",
-      "clue": "Saved from the bondage of sin"
+      "answer": "CHI",
+      "clue": "The 22nd letter of the Greek alphabet"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "HEAT",
+      "clue": "A form of energy that is transferred by a difference in temperature"
     },
     {
       "row": 1,
-      "col": 3,
+      "col": 0,
       "direction": "down",
-      "answer": "RECIPROCAL",
-      "clue": "Something that has an inverse relation to something else"
+      "answer": "GUPPY",
+      "clue": "Small freshwater fish of South America and the West Indies"
     },
     {
       "row": 1,
-      "col": 5,
+      "col": 6,
       "direction": "down",
-      "answer": "DRAWN",
-      "clue": "Showing the wearing effects of overwork or care or suffering"
+      "answer": "BRUISING",
+      "clue": "Causing mental or emotional injury"
     },
     {
       "row": 2,
-      "col": 1,
-      "direction": "down",
-      "answer": "FRUITLESS",
-      "clue": "Unproductive of success"
+      "col": 2,
+      "direction": "across",
+      "answer": "WIZARD",
+      "clue": "Someone who is dazzlingly skilled in any field"
     },
     {
-      "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "CLARINET",
-      "clue": "A single-reed instrument with a straight tube"
+      "row": 2,
+      "col": 11,
+      "direction": "down",
+      "answer": "MISLAY",
+      "clue": "Place where one cannot find it again"
     },
     {
       "row": 3,
       "col": 9,
+      "direction": "across",
+      "answer": "THIN",
+      "clue": "Of relatively small extent from one surface to the opposite or in cross section"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "POSTURING",
+      "clue": "Adopting a vain conceited posture"
+    },
+    {
+      "row": 4,
+      "col": 2,
       "direction": "down",
-      "answer": "EXAMINE",
-      "clue": "Observe, check out, and look over carefully or inspect"
+      "answer": "SEGREGATE",
+      "clue": "Separate by race or religion"
     },
     {
       "row": 5,
-      "col": 0,
+      "col": 9,
       "direction": "across",
-      "answer": "PIGPEN",
-      "clue": "A pen for swine"
+      "answer": "SELL",
+      "clue": "Exchange or deliver for money or its equivalent"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "down",
+      "answer": "SUITING",
+      "clue": "A fabric used for suits"
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "direction": "across",
+      "answer": "AVID",
+      "clue": "Ardently or excessively desirous"
     },
     {
       "row": 7,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "BLOODY",
-      "clue": "Informal intensifiers"
+      "answer": "FRY",
+      "clue": "Be excessively hot"
+    },
+    {
+      "row": 7,
+      "col": 8,
+      "direction": "across",
+      "answer": "TINY",
+      "clue": "Very small"
     },
     {
       "row": 8,
-      "col": 6,
+      "col": 0,
+      "direction": "down",
+      "answer": "LUSH",
+      "clue": "Produced or growing in extreme abundance"
+    },
+    {
+      "row": 8,
+      "col": 4,
       "direction": "across",
-      "answer": "SOON",
-      "clue": "In the near future"
+      "answer": "SAGA",
+      "clue": "A narrative telling the adventures of a hero or a family"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "down",
+      "answer": "SIN",
+      "clue": "Estrangement from god"
+    },
+    {
+      "row": 8,
+      "col": 7,
+      "direction": "down",
+      "answer": "ARID",
+      "clue": "Lacking sufficient water or rainfall"
+    },
+    {
+      "row": 8,
+      "col": 12,
+      "direction": "down",
+      "answer": "INEPT",
+      "clue": "Not elegant or graceful in expression"
     },
     {
       "row": 9,
-      "col": 1,
+      "col": 9,
       "direction": "across",
-      "answer": "SPA",
-      "clue": "A health resort near a spring or at the seaside"
+      "answer": "IKON",
+      "clue": "A visual representation produced on a surface"
     },
     {
       "row": 10,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "LIKING",
-      "clue": "A feeling of pleasure and enjoyment"
+      "answer": "STAGNATION",
+      "clue": "A state of inactivity"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "down",
+      "answer": "AIL",
+      "clue": "Be ill or unwell"
+    },
+    {
+      "row": 12,
+      "col": 1,
+      "direction": "across",
+      "answer": "MEASLY",
+      "clue": "Contemptibly small in amount"
+    },
+    {
+      "row": 12,
+      "col": 10,
+      "direction": "across",
+      "answer": "LIT",
+      "clue": "Provided with artificial light"
     }
   ]
 }
