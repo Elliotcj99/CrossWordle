@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 1,
       "direction": "down",
-      "answer": "CHORUS",
-      "clue": "Refrain"
+      "answer": "PAIL",
+      "clue": "Bucket"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 3,
       "direction": "down",
-      "answer": "UNLAWFUL",
-      "clue": "Illegal"
+      "answer": "FUSS",
+      "clue": "Commotion"
     },
     {
       "row": 0,
       "col": 6,
       "direction": "down",
-      "answer": "LAW",
-      "clue": "Rule"
+      "answer": "FLEET",
+      "clue": "Navy – swift"
     },
     {
       "row": 0,
-      "col": 9,
-      "direction": "across",
-      "answer": "KNIT",
-      "clue": "Make a jumper"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "NODE",
-      "clue": "Junction point"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "TIDY",
-      "clue": "Neat"
-    },
-    {
-      "row": 1,
-      "col": 2,
-      "direction": "across",
-      "answer": "CANVASS",
-      "clue": "Seek votes door to door"
-    },
-    {
-      "row": 1,
-      "col": 2,
-      "direction": "down",
-      "answer": "COMMISSION",
-      "clue": "Agent's cut"
-    },
-    {
-      "row": 1,
       "col": 8,
-      "direction": "down",
-      "answer": "SKID",
-      "clue": "Slide"
-    },
-    {
-      "row": 3,
-      "col": 0,
       "direction": "across",
-      "answer": "RIM",
-      "clue": "Edge"
+      "answer": "OFFER",
+      "clue": "Proposal"
     },
     {
-      "row": 3,
-      "col": 7,
-      "direction": "across",
-      "answer": "LIVELY",
-      "clue": "Energetic"
-    },
-    {
-      "row": 3,
-      "col": 11,
-      "direction": "down",
-      "answer": "LIMBER",
-      "clue": "Supple"
-    },
-    {
-      "row": 4,
-      "col": 4,
-      "direction": "across",
-      "answer": "WAD",
-      "clue": "Bundle of notes"
-    },
-    {
-      "row": 4,
-      "col": 6,
-      "direction": "down",
-      "answer": "DAY",
-      "clue": "Twenty-four hours"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "STIFF",
-      "clue": "Rigid"
-    },
-    {
-      "row": 5,
+      "row": 0,
       "col": 9,
-      "direction": "across",
-      "answer": "NAME",
-      "clue": "Title"
+      "direction": "down",
+      "answer": "FUNCTION",
+      "clue": "Purpose – reception"
     },
     {
-      "row": 7,
+      "row": 1,
       "col": 0,
       "direction": "across",
-      "answer": "GAS",
-      "clue": "Fuel for a hob"
+      "answer": "VAGUE",
+      "clue": "Hazy"
     },
     {
-      "row": 7,
-      "col": 7,
-      "direction": "down",
-      "answer": "MUSIC",
-      "clue": "Melody"
-    },
-    {
-      "row": 8,
-      "col": 9,
+      "row": 2,
+      "col": 5,
       "direction": "across",
-      "answer": "BARK",
-      "clue": "Dog's call – tree's outer layer"
+      "answer": "BELONG",
+      "clue": "Fit in"
     },
     {
-      "row": 8,
+      "row": 2,
       "col": 12,
       "direction": "down",
-      "answer": "KINK",
-      "clue": "Twist"
+      "answer": "CONTEND",
+      "clue": "Compete"
     },
     {
-      "row": 9,
+      "row": 3,
       "col": 1,
       "direction": "across",
-      "answer": "CONDENSE",
-      "clue": "Abridge"
+      "answer": "LOSS",
+      "clue": "Defeat"
+    },
+    {
+      "row": 3,
+      "col": 4,
+      "direction": "down",
+      "answer": "SAGA",
+      "clue": "Long story"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "direction": "across",
+      "answer": "ATTENTION",
+      "clue": "Notice"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "down",
+      "answer": "EBB",
+      "clue": "Recede"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "HOP",
+      "clue": "Jump on one leg"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "HEAP",
+      "clue": "Pile"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "PRINCESS",
+      "clue": "Royal daughter"
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "direction": "across",
+      "answer": "READ",
+      "clue": "Peruse"
+    },
+    {
+      "row": 6,
+      "col": 5,
+      "direction": "down",
+      "answer": "DECOY",
+      "clue": "Lure"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "across",
+      "answer": "BLOUSE",
+      "clue": "Woman's shirt"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "PINE",
+      "clue": "Conifer – yearn"
+    },
+    {
+      "row": 8,
+      "col": 10,
+      "direction": "down",
+      "answer": "WRECK",
+      "clue": "Ruin"
     },
     {
       "row": 9,
       "col": 4,
+      "direction": "across",
+      "answer": "PORT",
+      "clue": "Harbour – fortified wine"
+    },
+    {
+      "row": 9,
+      "col": 7,
       "direction": "down",
-      "answer": "DIET",
-      "clue": "Weight-loss plan"
+      "answer": "TAG",
+      "clue": "Label – chasing game"
     },
     {
       "row": 10,
       "col": 0,
-      "direction": "down",
-      "answer": "BUS",
-      "clue": "Double-decker"
+      "direction": "across",
+      "answer": "KEEL",
+      "clue": "Hull's backbone"
     },
     {
       "row": 10,
-      "col": 9,
-      "direction": "down",
-      "answer": "ILL",
-      "clue": "Unwell"
-    },
-    {
-      "row": 11,
       "col": 7,
       "direction": "across",
-      "answer": "CALL",
-      "clue": "Ring – name"
+      "answer": "AFFECT",
+      "clue": "Influence"
     },
     {
       "row": 12,
       "col": 0,
       "direction": "across",
-      "answer": "SHORT",
-      "clue": "Brief"
+      "answer": "CUSHION",
+      "clue": "Soft pad"
+    },
+    {
+      "row": 12,
+      "col": 8,
+      "direction": "across",
+      "answer": "JOKE",
+      "clue": "Gag"
     }
   ]
 }

@@ -7,184 +7,177 @@
     {
       "row": 0,
       "col": 0,
-      "direction": "across",
-      "answer": "PALE",
-      "clue": "Wan"
-    },
-    {
-      "row": 0,
-      "col": 0,
       "direction": "down",
-      "answer": "PECK",
-      "clue": "Beak strike – quick kiss"
+      "answer": "ASK",
+      "clue": "Enquire"
     },
     {
       "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "QUACK",
-      "clue": "Charlatan – duck's call"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "across",
-      "answer": "ALTO",
-      "clue": "Voice between soprano and tenor"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "ALERT",
-      "clue": "Watchful"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "CLUB",
-      "clue": "Society – golf iron"
-    },
-    {
-      "row": 2,
       "col": 3,
       "direction": "down",
-      "answer": "BAT",
-      "clue": "Willow – flying mammal"
+      "answer": "REFINE",
+      "clue": "Purify"
     },
     {
-      "row": 2,
-      "col": 6,
-      "direction": "across",
-      "answer": "AVERAGE",
-      "clue": "Mean"
-    },
-    {
-      "row": 2,
-      "col": 11,
-      "direction": "down",
-      "answer": "GRIM",
-      "clue": "Bleak"
-    },
-    {
-      "row": 4,
-      "col": 3,
-      "direction": "across",
-      "answer": "TICKET",
-      "clue": "Pass"
-    },
-    {
-      "row": 4,
+      "row": 0,
       "col": 5,
       "direction": "down",
-      "answer": "CHARACTER",
-      "clue": "Role in a play"
+      "answer": "VEIN",
+      "clue": "Blood vessel"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "PASS",
+      "clue": "Mountain route – go by"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "MESS",
+      "clue": "Muddle – army canteen"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "BABY",
+      "clue": "Infant"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "SPHERE",
+      "clue": "Globe"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "direction": "across",
+      "answer": "CAKE",
+      "clue": "Gateau"
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "direction": "across",
+      "answer": "WITNESS",
+      "clue": "Observer"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "SPIDER",
+      "clue": "Web spinner"
+    },
+    {
+      "row": 3,
+      "col": 10,
+      "direction": "across",
+      "answer": "SPY",
+      "clue": "Agent"
+    },
+    {
+      "row": 3,
+      "col": 11,
+      "direction": "down",
+      "answer": "PYTHON",
+      "clue": "Constrictor"
     },
     {
       "row": 4,
-      "col": 10,
-      "direction": "across",
-      "answer": "GIG",
-      "clue": "Concert"
+      "col": 1,
+      "direction": "down",
+      "answer": "MONOTONY",
+      "clue": "Tedium"
     },
     {
       "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "SPAR",
-      "clue": "Box – mast"
-    },
-    {
-      "row": 6,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "MAP",
-      "clue": "Chart"
+      "answer": "OPEN",
+      "clue": "Ajar"
     },
     {
-      "row": 6,
-      "col": 0,
-      "direction": "down",
-      "answer": "MISS",
-      "clue": "Fail to hit – young lady"
-    },
-    {
-      "row": 6,
-      "col": 4,
+      "row": 5,
+      "col": 9,
       "direction": "across",
-      "answer": "TAPE",
-      "clue": "Ribbon"
+      "answer": "BATH",
+      "clue": "Tub – Somerset city"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "down",
+      "answer": "BUTT",
+      "clue": "Target of a joke"
     },
     {
       "row": 7,
-      "col": 8,
+      "col": 3,
       "direction": "across",
-      "answer": "DAMP",
-      "clue": "Moist"
+      "answer": "SUBJECT",
+      "clue": "Topic"
     },
     {
       "row": 7,
-      "col": 8,
-      "direction": "down",
-      "answer": "DEVICE",
-      "clue": "Gadget"
-    },
-    {
-      "row": 7,
-      "col": 10,
-      "direction": "down",
-      "answer": "MEET",
-      "clue": "Encounter – fitting"
-    },
-    {
-      "row": 8,
-      "col": 0,
-      "direction": "across",
-      "answer": "SURCHARGE",
-      "clue": "Extra fee"
-    },
-    {
-      "row": 8,
       "col": 3,
       "direction": "down",
-      "answer": "CROWN",
-      "clue": "Monarch's headgear"
+      "answer": "SPRAY",
+      "clue": "Mist – bunch of flowers"
     },
     {
-      "row": 10,
-      "col": 1,
+      "row": 8,
+      "col": 0,
       "direction": "across",
-      "answer": "SCOUT",
-      "clue": "Lookout – talent spotter"
+      "answer": "STEP",
+      "clue": "Pace – stair"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "TIN",
+      "clue": "Can"
     },
     {
       "row": 10,
-      "col": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "INFAMOUS",
+      "clue": "Notorious"
+    },
+    {
+      "row": 10,
+      "col": 5,
       "direction": "down",
-      "answer": "SUM",
-      "clue": "Total"
+      "answer": "OAK",
+      "clue": "Hearty tree"
     },
     {
       "row": 10,
       "col": 7,
-      "direction": "across",
-      "answer": "FIFTH",
-      "clue": "Next after fourth"
+      "direction": "down",
+      "answer": "SIT",
+      "clue": "Be seated – pose"
+    },
+    {
+      "row": 10,
+      "col": 11,
+      "direction": "down",
+      "answer": "HEN",
+      "clue": "Female chicken"
     },
     {
       "row": 12,
-      "col": 1,
+      "col": 5,
       "direction": "across",
-      "answer": "MINOR",
-      "clue": "Lesser – child, legally"
-    },
-    {
-      "row": 12,
-      "col": 7,
-      "direction": "across",
-      "answer": "FEEDER",
-      "clue": "Bird table"
+      "answer": "KITCHEN",
+      "clue": "Galley"
     }
   ]
 }

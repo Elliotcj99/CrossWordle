@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
+      "col": 0,
+      "direction": "across",
+      "answer": "IDENTIFY",
+      "clue": "Recognise"
+    },
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "IGLOO",
+      "clue": "Snow house"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "EGG",
+      "clue": "Hen's product"
+    },
+    {
+      "row": 0,
       "col": 4,
       "direction": "down",
-      "answer": "CONTROL",
-      "clue": "Command"
+      "answer": "TEA",
+      "clue": "Cuppa"
     },
     {
       "row": 0,
-      "col": 8,
-      "direction": "across",
-      "answer": "RAFT",
-      "clue": "Floating platform – a lot"
+      "col": 9,
+      "direction": "down",
+      "answer": "SWIM",
+      "clue": "Bathe"
     },
     {
       "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "FIBRE",
-      "clue": "Roughage – thread"
-    },
-    {
-      "row": 1,
-      "col": 3,
-      "direction": "across",
-      "answer": "WORLD",
-      "clue": "Earth"
-    },
-    {
-      "row": 1,
-      "col": 7,
-      "direction": "down",
-      "answer": "DON",
-      "clue": "Put on – Oxford tutor"
-    },
-    {
-      "row": 1,
       "col": 12,
       "direction": "down",
-      "answer": "FOOT",
-      "clue": "Twelve inches"
+      "answer": "SHARK",
+      "clue": "Swindler – sea predator"
     },
     {
       "row": 2,
-      "col": 1,
-      "direction": "down",
-      "answer": "PLACE",
-      "clue": "Spot"
+      "col": 0,
+      "direction": "across",
+      "answer": "LOG",
+      "clue": "Record – piece of firewood"
     },
     {
       "row": 3,
-      "col": 4,
-      "direction": "across",
-      "answer": "THING",
-      "clue": "Object"
-    },
-    {
-      "row": 3,
-      "col": 8,
-      "direction": "down",
-      "answer": "GAG",
-      "clue": "Joke – silence"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "WAVER",
-      "clue": "Hesitate"
-    },
-    {
-      "row": 4,
-      "col": 8,
-      "direction": "across",
-      "answer": "AGENT",
-      "clue": "Spy – representative"
-    },
-    {
-      "row": 4,
-      "col": 11,
-      "direction": "down",
-      "answer": "NOD",
-      "clue": "Bow of the head"
-    },
-    {
-      "row": 6,
-      "col": 3,
-      "direction": "across",
-      "answer": "GLARE",
-      "clue": "Dazzle – angry stare"
-    },
-    {
-      "row": 6,
-      "col": 3,
-      "direction": "down",
-      "answer": "GONE",
-      "clue": "Departed"
-    },
-    {
-      "row": 6,
-      "col": 7,
-      "direction": "down",
-      "answer": "EXTRA",
-      "clue": "Additional – walk-on actor"
-    },
-    {
-      "row": 6,
-      "col": 9,
-      "direction": "across",
-      "answer": "FADE",
-      "clue": "Dim"
-    },
-    {
-      "row": 6,
-      "col": 9,
-      "direction": "down",
-      "answer": "FUME",
-      "clue": "Seethe"
-    },
-    {
-      "row": 6,
-      "col": 12,
-      "direction": "down",
-      "answer": "ESTEEM",
-      "clue": "Respect"
-    },
-    {
-      "row": 8,
-      "col": 0,
-      "direction": "across",
-      "answer": "PAWN",
-      "clue": "Chessman – hock"
-    },
-    {
-      "row": 8,
-      "col": 0,
-      "direction": "down",
-      "answer": "PUFF",
-      "clue": "Gust – cream pastry"
-    },
-    {
-      "row": 8,
       "col": 5,
-      "direction": "down",
-      "answer": "SPOT",
-      "clue": "Pimple – notice"
-    },
-    {
-      "row": 9,
-      "col": 3,
       "direction": "across",
-      "answer": "EXPERIENCE",
-      "clue": "Know-how"
+      "answer": "REMEMBER",
+      "clue": "Recall"
     },
     {
-      "row": 9,
+      "row": 3,
+      "col": 6,
+      "direction": "down",
+      "answer": "EXTINCTION",
+      "clue": "Dying out"
+    },
+    {
+      "row": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "ETCH",
+      "clue": "Engrave"
+    },
+    {
+      "row": 3,
       "col": 10,
       "direction": "down",
-      "answer": "NICE",
-      "clue": "Pleasant"
+      "answer": "BAY",
+      "clue": "Inlet"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "ORBIT",
+      "clue": "Path of a satellite"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "direction": "down",
+      "answer": "BRASS",
+      "clue": "Cheek – money"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "direction": "down",
+      "answer": "TUG",
+      "clue": "Pull – small towing boat"
+    },
+    {
+      "row": 5,
+      "col": 8,
+      "direction": "across",
+      "answer": "CRY",
+      "clue": "Weep"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "down",
+      "answer": "ANCHOVY",
+      "clue": "Small salty fish"
+    },
+    {
+      "row": 6,
+      "col": 2,
+      "direction": "across",
+      "answer": "ANGUISH",
+      "clue": "Torment"
+    },
+    {
+      "row": 6,
+      "col": 11,
+      "direction": "down",
+      "answer": "PARSNIP",
+      "clue": "Pale root vegetable"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "down",
+      "answer": "FLUSH",
+      "clue": "Blush – level"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "COSY",
+      "clue": "Snug"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "across",
+      "answer": "COLLAR",
+      "clue": "Shirt neckband"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "across",
+      "answer": "JET",
+      "clue": "Aircraft – spurt"
     },
     {
       "row": 10,
       "col": 2,
       "direction": "down",
-      "answer": "PIN",
-      "clue": "Brooch – fasten"
+      "answer": "ASH",
+      "clue": "Tree – fire residue"
+    },
+    {
+      "row": 10,
+      "col": 9,
+      "direction": "across",
+      "answer": "SEND",
+      "clue": "Post"
     },
     {
       "row": 11,
       "col": 0,
       "direction": "across",
-      "answer": "FLIGHT",
-      "clue": "Air journey – stairs"
+      "answer": "VEST",
+      "clue": "Singlet"
     },
     {
-      "row": 12,
-      "col": 8,
+      "row": 11,
+      "col": 5,
       "direction": "across",
-      "answer": "KEEN",
-      "clue": "Eager"
+      "answer": "POUCH",
+      "clue": "Small bag"
     }
   ]
 }

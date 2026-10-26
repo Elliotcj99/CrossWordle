@@ -6,185 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
-      "direction": "down",
-      "answer": "LONG",
-      "clue": "Lengthy – yearn"
-    },
-    {
-      "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "DISTANT",
-      "clue": "Far"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "across",
-      "answer": "SIN",
-      "clue": "Wrongdoing"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "SERVE",
-      "clue": "Wait on – start a rally"
-    },
-    {
-      "row": 1,
       "col": 1,
-      "direction": "down",
-      "answer": "POD",
-      "clue": "Peas' casing"
+      "direction": "across",
+      "answer": "WITHDRAW",
+      "clue": "Pull back"
     },
     {
-      "row": 1,
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "IDLE",
+      "clue": "Lazy"
+    },
+    {
+      "row": 0,
       "col": 5,
-      "direction": "across",
-      "answer": "NIBBLE",
-      "clue": "Small bite"
+      "direction": "down",
+      "answer": "DIG",
+      "clue": "Excavate – jibe"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "WAD",
+      "clue": "Bundle of notes"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "BERET",
+      "clue": "French cap"
     },
     {
       "row": 1,
       "col": 8,
-      "direction": "down",
-      "answer": "BOX",
-      "clue": "Carton – fight with gloves"
-    },
-    {
-      "row": 2,
-      "col": 10,
       "direction": "across",
-      "answer": "RAP",
-      "clue": "Knock – spoken music"
+      "answer": "ARENA",
+      "clue": "Stadium"
     },
     {
-      "row": 2,
+      "row": 1,
       "col": 12,
       "direction": "down",
-      "answer": "POSITIVE",
-      "clue": "Optimistic – sure"
+      "answer": "ARROW",
+      "clue": "Bow's missile"
+    },
+    {
+      "row": 2,
+      "col": 1,
+      "direction": "across",
+      "answer": "SLING",
+      "clue": "Catapult – arm support"
     },
     {
       "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "LIMPET",
+      "clue": "Clinging shellfish"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "PAWN",
+      "clue": "Chessman – hock"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "across",
+      "answer": "RISOTTO",
+      "clue": "Creamy rice dish"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "down",
+      "answer": "OFF",
+      "clue": "Gone bad – away"
+    },
+    {
+      "row": 5,
       "col": 1,
-      "direction": "across",
-      "answer": "DIGEST",
-      "clue": "Summary – process food"
-    },
-    {
-      "row": 4,
-      "col": 9,
-      "direction": "across",
-      "answer": "LESS",
-      "clue": "Fewer"
-    },
-    {
-      "row": 4,
-      "col": 9,
       "direction": "down",
-      "answer": "LOOSEN",
-      "clue": "Slacken"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "down",
-      "answer": "DUMP",
-      "clue": "Tip"
-    },
-    {
-      "row": 5,
-      "col": 2,
-      "direction": "across",
-      "answer": "SPRING",
-      "clue": "Coil – season"
-    },
-    {
-      "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "SCHOOL",
-      "clue": "Academy – group of fish"
+      "answer": "UNCLE",
+      "clue": "Aunt's husband – pawnbroker"
     },
     {
       "row": 6,
-      "col": 8,
+      "col": 0,
       "direction": "across",
-      "answer": "ROAST",
-      "clue": "Sunday lunch dish"
+      "answer": "SNOWDROP",
+      "clue": "Early white flower"
     },
     {
-      "row": 7,
-      "col": 4,
+      "row": 6,
+      "col": 9,
+      "direction": "across",
+      "answer": "FLY",
+      "clue": "Soar – zip"
+    },
+    {
+      "row": 6,
+      "col": 10,
       "direction": "down",
-      "answer": "LAYER",
-      "clue": "Tier – hen"
+      "answer": "LANTERN",
+      "clue": "Lamp"
     },
     {
       "row": 8,
+      "col": 5,
+      "direction": "across",
+      "answer": "FITTING",
+      "clue": "Appropriate"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "FOCUS",
+      "clue": "Concentrate"
+    },
+    {
+      "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "PROFANE",
-      "clue": "Blasphemous"
+      "answer": "TEXT",
+      "clue": "Words – mobile message"
     },
     {
       "row": 9,
-      "col": 7,
-      "direction": "across",
-      "answer": "RENT",
-      "clue": "Hire – tear"
-    },
-    {
-      "row": 9,
-      "col": 7,
+      "col": 0,
       "direction": "down",
-      "answer": "RUFF",
-      "clue": "Elizabethan collar"
+      "answer": "TIER",
+      "clue": "Layer"
     },
     {
       "row": 9,
-      "col": 10,
+      "col": 3,
       "direction": "down",
-      "answer": "TUCK",
-      "clue": "Food at boarding school – fold in"
+      "answer": "TAPE",
+      "clue": "Ribbon"
+    },
+    {
+      "row": 9,
+      "col": 12,
+      "direction": "down",
+      "answer": "TRAY",
+      "clue": "Tea carrier"
     },
     {
       "row": 10,
-      "col": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "HALTER",
-      "clue": "Horse's headgear"
-    },
-    {
-      "row": 10,
-      "col": 1,
-      "direction": "down",
-      "answer": "ACT",
-      "clue": "Law passed by Parliament"
-    },
-    {
-      "row": 11,
-      "col": 10,
-      "direction": "across",
-      "answer": "CUP",
-      "clue": "Mug – trophy"
+      "answer": "COYOTE",
+      "clue": "Prairie wolf"
     },
     {
       "row": 12,
       "col": 0,
       "direction": "across",
-      "answer": "STAY",
-      "clue": "Remain"
+      "answer": "RACE",
+      "clue": "Sprint – people"
     },
     {
       "row": 12,
       "col": 5,
       "direction": "across",
-      "answer": "LOFT",
-      "clue": "Attic"
+      "answer": "SLOVENLY",
+      "clue": "Untidy"
     }
   ]
 }

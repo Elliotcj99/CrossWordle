@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "across",
-      "answer": "CORRECT",
-      "clue": "Right"
-    },
-    {
-      "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "CONCRETE",
-      "clue": "Solid – path material"
-    },
-    {
-      "row": 0,
       "col": 2,
       "direction": "down",
-      "answer": "RIG",
-      "clue": "Fix dishonestly – oil platform"
+      "answer": "GUN",
+      "clue": "Firearm"
     },
     {
       "row": 0,
-      "col": 6,
+      "col": 4,
       "direction": "down",
-      "answer": "TAX",
-      "clue": "Levy"
+      "answer": "BACON",
+      "clue": "Rasher source"
     },
     {
       "row": 0,
-      "col": 11,
+      "col": 7,
       "direction": "down",
-      "answer": "TIRE",
-      "clue": "Weary"
+      "answer": "SUBTLE",
+      "clue": "Understated"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "PEG",
+      "clue": "Clothes clip – hook"
     },
     {
       "row": 1,
-      "col": 9,
+      "col": 1,
+      "direction": "across",
+      "answer": "PUMA",
+      "clue": "Cougar"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "across",
+      "answer": "DUCHESS",
+      "clue": "Duke's wife"
+    },
+    {
+      "row": 1,
+      "col": 12,
       "direction": "down",
-      "answer": "PHYSICAL",
-      "clue": "Bodily"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "NAG",
-      "clue": "Pester – old horse"
-    },
-    {
-      "row": 2,
-      "col": 4,
-      "direction": "across",
-      "answer": "FOX",
-      "clue": "Reynard – baffle"
-    },
-    {
-      "row": 2,
-      "col": 8,
-      "direction": "across",
-      "answer": "WHARF",
-      "clue": "Quay"
+      "answer": "SILK",
+      "clue": "Worm's fabric"
     },
     {
       "row": 3,
-      "col": 7,
-      "direction": "down",
-      "answer": "SENSE",
-      "clue": "Feel – logic"
+      "col": 3,
+      "direction": "across",
+      "answer": "FOURTH",
+      "clue": "Quarter"
     },
     {
       "row": 4,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "QUOTE",
-      "clue": "Cite – estimate"
+      "answer": "RAG",
+      "clue": "Cloth – student charity event"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "down",
+      "answer": "RELIEF",
+      "clue": "Respite – raised carving"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "direction": "down",
+      "answer": "GIG",
+      "clue": "Concert"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "down",
+      "answer": "BEGIN",
+      "clue": "Start"
     },
     {
       "row": 5,
-      "col": 12,
-      "direction": "down",
-      "answer": "HOBBLE",
-      "clue": "Limp"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "TWITCH",
-      "clue": "Jerk – birdwatching"
-    },
-    {
-      "row": 6,
-      "col": 3,
-      "direction": "down",
-      "answer": "TACKLE",
-      "clue": "Gear – challenge"
-    },
-    {
-      "row": 6,
-      "col": 5,
-      "direction": "down",
-      "answer": "HAPPEN",
-      "clue": "Occur"
-    },
-    {
-      "row": 6,
-      "col": 7,
-      "direction": "across",
-      "answer": "SUCK",
-      "clue": "Draw through a straw"
-    },
-    {
-      "row": 8,
-      "col": 3,
-      "direction": "across",
-      "answer": "CAP",
-      "clue": "Peaked hat – upper limit"
-    },
-    {
-      "row": 8,
-      "col": 8,
-      "direction": "across",
-      "answer": "CLIMB",
-      "clue": "Ascend"
-    },
-    {
-      "row": 8,
-      "col": 8,
-      "direction": "down",
-      "answer": "CLASS",
-      "clue": "Form at school"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "across",
-      "answer": "MASK",
-      "clue": "Disguise"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "down",
-      "answer": "MUCH",
-      "clue": "A lot"
-    },
-    {
-      "row": 9,
       "col": 5,
       "direction": "across",
-      "answer": "POOL",
-      "clue": "Puddle – game with cues"
+      "answer": "PRETZEL",
+      "clue": "Knotted snack"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "direction": "down",
+      "answer": "RUTHLESS",
+      "clue": "Merciless"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "LAG",
+      "clue": "Fall behind"
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "direction": "down",
+      "answer": "MALE",
+      "clue": "Masculine"
+    },
+    {
+      "row": 7,
+      "col": 3,
+      "direction": "across",
+      "answer": "FANTASTIC",
+      "clue": "Terrific"
+    },
+    {
+      "row": 7,
+      "col": 8,
+      "direction": "down",
+      "answer": "SPOT",
+      "clue": "Pimple – notice"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "FLARE",
+      "clue": "Distress signal"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "down",
+      "answer": "LOVE",
+      "clue": "Adore – zero at tennis"
+    },
+    {
+      "row": 9,
+      "col": 3,
+      "direction": "down",
+      "answer": "REAM",
+      "clue": "Five hundred sheets"
+    },
+    {
+      "row": 9,
+      "col": 11,
+      "direction": "down",
+      "answer": "POLE",
+      "clue": "Staff – Warsaw native"
     },
     {
       "row": 10,
-      "col": 3,
+      "col": 5,
       "direction": "across",
-      "answer": "LIE",
-      "clue": "Fib – recline"
+      "answer": "BEETROOT",
+      "clue": "Borscht ingredient"
     },
     {
       "row": 10,
-      "col": 8,
-      "direction": "across",
-      "answer": "ALIVE",
-      "clue": "Living"
+      "col": 9,
+      "direction": "down",
+      "answer": "RIM",
+      "clue": "Edge"
     },
     {
-      "row": 11,
+      "row": 12,
       "col": 0,
       "direction": "across",
-      "answer": "CITE",
-      "clue": "Quote"
+      "answer": "TERM",
+      "clue": "Word – school period"
     },
     {
       "row": 12,
       "col": 6,
       "direction": "across",
-      "answer": "BOSOM",
-      "clue": "Chest"
+      "answer": "SCAMPER",
+      "clue": "Scurry"
     }
   ]
 }

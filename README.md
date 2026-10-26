@@ -93,5 +93,6 @@ and `npm run test:e2e` before each commit.
 
 ## Known gaps
 
-- About 3,000 answers have hand-written clues, enough for about 120 days without repeating an
-  answer. Add more in `data/clues/quick.tsv` (see `data/clues/README.md`).
+- About 4,500 answers have hand-written clues, enough for about 170 days without repeating an
+  answer. There are no multi-word answers (such as AT A LOOSE END) yet: every guess must be a
+  single dictionary word of the entry's length. Add more in `data/clues/quick.tsv` (see `data/clues/README.md`).

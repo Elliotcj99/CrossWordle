@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
-      "direction": "across",
-      "answer": "DOOR",
-      "clue": "Entrance"
-    },
-    {
-      "row": 0,
-      "col": 1,
-      "direction": "down",
-      "answer": "DISTIL",
-      "clue": "Purify by boiling"
-    },
-    {
-      "row": 0,
       "col": 4,
-      "direction": "down",
-      "answer": "RUN",
-      "clue": "Sprint – manage"
-    },
-    {
-      "row": 0,
-      "col": 6,
       "direction": "across",
-      "answer": "EGG",
-      "clue": "Hen's product"
+      "answer": "GLIB",
+      "clue": "Slick"
     },
     {
       "row": 0,
       "col": 7,
       "direction": "down",
-      "answer": "GRAB",
-      "clue": "Snatch"
+      "answer": "BATON",
+      "clue": "Conductor's stick – relay item"
     },
     {
       "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "CLEAR",
-      "clue": "Transparent"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "MATE",
-      "clue": "Friend – checkmate"
-    },
-    {
-      "row": 2,
-      "col": 1,
+      "col": 9,
       "direction": "across",
-      "answer": "SHUNT",
-      "clue": "Shove aside"
+      "answer": "FRET",
+      "clue": "Worry – guitar ridge"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "FRANTIC",
+      "clue": "Frenzied"
+    },
+    {
+      "row": 0,
+      "col": 11,
+      "direction": "down",
+      "answer": "EAT",
+      "clue": "Dine"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "LIP",
+      "clue": "Cheek – rim"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "down",
+      "answer": "POT",
+      "clue": "Pan – jackpot"
     },
     {
       "row": 2,
       "col": 5,
       "direction": "down",
-      "answer": "TEE",
-      "clue": "Peg for a golf ball"
+      "answer": "WAREHOUSE",
+      "clue": "Depot"
     },
     {
       "row": 2,
-      "col": 7,
+      "col": 9,
       "direction": "across",
-      "answer": "ARREST",
-      "clue": "Nick"
+      "answer": "ACT",
+      "clue": "Law passed by Parliament"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "CUT",
+      "clue": "Slice"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "down",
+      "answer": "CRIMSON",
+      "clue": "Deep red"
     },
     {
       "row": 3,
       "col": 5,
       "direction": "across",
-      "answer": "EBB",
-      "clue": "Recede"
+      "answer": "ADORN",
+      "clue": "Decorate"
     },
     {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "PIERCE",
-      "clue": "Puncture"
-    },
-    {
-      "row": 4,
-      "col": 4,
+      "row": 3,
+      "col": 12,
       "direction": "down",
-      "answer": "CHAMBER",
-      "clue": "Room"
+      "answer": "RETROGRADE",
+      "clue": "Backward-looking"
     },
     {
       "row": 4,
-      "col": 8,
+      "col": 3,
       "direction": "across",
-      "answer": "CORN",
-      "clue": "Wheat – foot complaint"
+      "answer": "WAR",
+      "clue": "Conflict"
     },
     {
       "row": 4,
-      "col": 11,
-      "direction": "down",
-      "answer": "NEEDLE",
-      "clue": "Sewing tool – antagonise"
+      "col": 9,
+      "direction": "across",
+      "answer": "TRUE",
+      "clue": "Accurate"
     },
     {
       "row": 5,
-      "col": 6,
+      "col": 2,
       "direction": "down",
-      "answer": "SOD",
-      "clue": "Turf – unpleasant person"
-    },
-    {
-      "row": 6,
-      "col": 3,
-      "direction": "across",
-      "answer": "SAVOUR",
-      "clue": "Relish"
+      "answer": "DUFFEL",
+      "clue": "Toggle coat"
     },
     {
       "row": 6,
       "col": 8,
-      "direction": "down",
-      "answer": "REPRESS",
-      "clue": "Suppress"
+      "direction": "across",
+      "answer": "SCOUR",
+      "clue": "Scrub"
     },
     {
-      "row": 6,
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "SAFFRON",
+      "clue": "Costly yellow spice"
+    },
+    {
+      "row": 8,
       "col": 10,
       "direction": "across",
-      "answer": "VET",
-      "clue": "Animal doctor – check"
+      "answer": "BUG",
+      "clue": "Insect – irritate"
     },
     {
       "row": 8,
-      "col": 2,
-      "direction": "across",
-      "answer": "RIB",
-      "clue": "Tease – chest bone"
-    },
-    {
-      "row": 8,
-      "col": 7,
-      "direction": "across",
-      "answer": "SPOIL",
-      "clue": "Ruin – pamper"
+      "col": 10,
+      "direction": "down",
+      "answer": "BELT",
+      "clue": "Strap around the waist"
     },
     {
       "row": 9,
-      "col": 1,
+      "col": 5,
+      "direction": "across",
+      "answer": "SIMPLE",
+      "clue": "Easy"
+    },
+    {
+      "row": 9,
+      "col": 7,
       "direction": "down",
-      "answer": "LEAD",
-      "clue": "Guide – pencil core"
+      "answer": "MOTH",
+      "clue": "Night flier drawn to light"
     },
     {
       "row": 10,
       "col": 1,
       "direction": "across",
-      "answer": "ENTRANCE",
-      "clue": "Doorway – enchant"
+      "answer": "SLICE",
+      "clue": "Piece"
     },
     {
       "row": 10,
-      "col": 3,
+      "col": 1,
       "direction": "down",
-      "answer": "TAP",
-      "clue": "Water outlet – knock lightly"
+      "answer": "SIN",
+      "clue": "Wrongdoing"
     },
     {
-      "row": 10,
-      "col": 6,
-      "direction": "down",
-      "answer": "NET",
-      "clue": "Mesh – after tax"
+      "row": 11,
+      "col": 9,
+      "direction": "across",
+      "answer": "STUD",
+      "clue": "Stallion – earring"
     },
     {
       "row": 12,
       "col": 3,
       "direction": "across",
-      "answer": "PROTEST",
-      "clue": "Objection"
+      "answer": "BROTH",
+      "clue": "Thin soup"
     }
   ]
 }

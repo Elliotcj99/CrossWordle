@@ -7,184 +7,177 @@
     {
       "row": 0,
       "col": 1,
+      "direction": "down",
+      "answer": "AROUND",
+      "clue": "Approximately"
+    },
+    {
+      "row": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "FUSS",
-      "clue": "Commotion"
+      "answer": "PIN",
+      "clue": "Brooch – fasten"
     },
     {
       "row": 0,
-      "col": 1,
+      "col": 5,
       "direction": "down",
-      "answer": "FLING",
-      "clue": "Hurl – affair"
+      "answer": "PEEP",
+      "clue": "Peek"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 10,
       "direction": "down",
-      "answer": "SHEAR",
-      "clue": "Clip a sheep"
-    },
-    {
-      "row": 0,
-      "col": 9,
-      "direction": "across",
-      "answer": "CUBE",
-      "clue": "Dice shape"
-    },
-    {
-      "row": 0,
-      "col": 11,
-      "direction": "down",
-      "answer": "BED",
-      "clue": "Place to sleep"
+      "answer": "AXE",
+      "clue": "Chopper – cut"
     },
     {
       "row": 1,
-      "col": 4,
-      "direction": "across",
-      "answer": "HELP",
-      "clue": "Assist"
-    },
-    {
-      "row": 1,
-      "col": 6,
-      "direction": "down",
-      "answer": "LEGAL",
-      "clue": "Lawful"
-    },
-    {
-      "row": 2,
       "col": 0,
       "direction": "across",
-      "answer": "FIX",
-      "clue": "Mend"
+      "answer": "TRIPLE",
+      "clue": "Threefold"
     },
     {
-      "row": 2,
+      "row": 1,
       "col": 8,
       "direction": "across",
-      "answer": "COLD",
-      "clue": "Chilly – sniffles"
+      "answer": "SEX",
+      "clue": "Gender"
     },
     {
-      "row": 2,
+      "row": 1,
       "col": 8,
       "direction": "down",
-      "answer": "CRUDE",
-      "clue": "Rough – unrefined oil"
+      "answer": "SHAPE",
+      "clue": "Form"
     },
     {
-      "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "BANG",
-      "clue": "Loud noise"
-    },
-    {
-      "row": 3,
+      "row": 1,
       "col": 12,
       "direction": "down",
-      "answer": "JACKAL",
-      "clue": "African scavenger"
+      "answer": "COMMUTE",
+      "clue": "Journey to work"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "CURL",
+      "clue": "Ringlet"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "PECAN",
+      "clue": "Pie nut"
     },
     {
       "row": 4,
       "col": 10,
       "direction": "down",
-      "answer": "BETTER",
-      "clue": "Improved"
+      "answer": "SYNTHETIC",
+      "clue": "Man-made"
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "direction": "across",
+      "answer": "DISSOLVE",
+      "clue": "Melt away"
     },
     {
       "row": 5,
       "col": 3,
       "direction": "down",
-      "answer": "REEF",
-      "clue": "Coral ridge"
+      "answer": "SCRAMBLE",
+      "clue": "Muddle – clamber"
     },
     {
       "row": 5,
       "col": 6,
-      "direction": "across",
-      "answer": "LODGE",
-      "clue": "Cabin – stay"
+      "direction": "down",
+      "answer": "LATE",
+      "clue": "Tardy – deceased"
     },
     {
-      "row": 6,
+      "row": 7,
+      "col": 6,
+      "direction": "across",
+      "answer": "THEATRE",
+      "clue": "Playhouse"
+    },
+    {
+      "row": 7,
+      "col": 8,
+      "direction": "down",
+      "answer": "ESCAPE",
+      "clue": "Break out"
+    },
+    {
+      "row": 8,
       "col": 1,
+      "direction": "across",
+      "answer": "MEAGRE",
+      "clue": "Scanty"
+    },
+    {
+      "row": 8,
+      "col": 1,
+      "direction": "down",
+      "answer": "MIME",
+      "clue": "Silent acting"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "RARE",
+      "clue": "Uncommon – undercooked"
+    },
+    {
+      "row": 9,
+      "col": 8,
       "direction": "across",
       "answer": "CHEER",
       "clue": "Applaud"
     },
     {
-      "row": 6,
-      "col": 1,
+      "row": 9,
+      "col": 12,
       "direction": "down",
-      "answer": "CORRUPT",
-      "clue": "Crooked"
-    },
-    {
-      "row": 8,
-      "col": 0,
-      "direction": "across",
-      "answer": "GRAFT",
-      "clue": "Hard work – transplant"
-    },
-    {
-      "row": 8,
-      "col": 4,
-      "direction": "down",
-      "answer": "TOUGH",
-      "clue": "Hardy – difficult"
-    },
-    {
-      "row": 8,
-      "col": 6,
-      "direction": "down",
-      "answer": "FLOOD",
-      "clue": "Deluge"
-    },
-    {
-      "row": 8,
-      "col": 8,
-      "direction": "across",
-      "answer": "SPELL",
-      "clue": "Charm – period"
-    },
-    {
-      "row": 8,
-      "col": 8,
-      "direction": "down",
-      "answer": "SPRAY",
-      "clue": "Mist – bunch of flowers"
+      "answer": "REEL",
+      "clue": "Spool – Scottish dance"
     },
     {
       "row": 10,
       "col": 3,
       "direction": "across",
-      "answer": "HUMOUR",
-      "clue": "Comedy"
-    },
-    {
-      "row": 10,
-      "col": 11,
-      "direction": "down",
-      "answer": "FIN",
-      "clue": "Shark's swimming aid"
+      "answer": "BORE",
+      "clue": "Tire – dull person"
     },
     {
       "row": 11,
       "col": 8,
       "direction": "across",
-      "answer": "ADMIT",
-      "clue": "Confess"
+      "answer": "POISE",
+      "clue": "Composure"
     },
     {
       "row": 12,
-      "col": 3,
+      "col": 2,
       "direction": "across",
-      "answer": "SHED",
-      "clue": "Outbuilding – cast off"
+      "answer": "DEW",
+      "clue": "Morning moisture"
+    },
+    {
+      "row": 12,
+      "col": 6,
+      "direction": "across",
+      "answer": "TEE",
+      "clue": "Peg for a golf ball"
     }
   ]
 }

@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "LOOSE",
-      "clue": "Slack"
-    },
-    {
-      "row": 0,
-      "col": 8,
+      "col": 0,
       "direction": "across",
-      "answer": "PANEL",
-      "clue": "Board of experts"
+      "answer": "LOW",
+      "clue": "Moo – down"
     },
     {
       "row": 0,
-      "col": 8,
+      "col": 0,
       "direction": "down",
-      "answer": "PET",
-      "clue": "Darling – stroke"
+      "answer": "LAP",
+      "clue": "Circuit – knees, when seated"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 2,
       "direction": "down",
-      "answer": "NAP",
-      "clue": "Snooze"
+      "answer": "WEB",
+      "clue": "Spider's trap – internet"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "across",
+      "answer": "CONVERT",
+      "clue": "Change"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "CARD",
+      "clue": "Postcard – joker"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "NAVY",
+      "clue": "Fleet – dark blue"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "RECEPTION",
+      "clue": "Front desk – party after a wedding"
     },
     {
       "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "LIP",
-      "clue": "Cheek – rim"
+      "answer": "RUNNING",
+      "clue": "Consecutive – in charge of"
     },
     {
-      "row": 1,
+      "row": 2,
       "col": 2,
-      "direction": "down",
-      "answer": "UNIFY",
-      "clue": "Combine"
-    },
-    {
-      "row": 1,
-      "col": 4,
       "direction": "across",
-      "answer": "POISE",
-      "clue": "Composure"
+      "answer": "BAR",
+      "clue": "Pub counter"
     },
     {
       "row": 2,
-      "col": 0,
+      "col": 6,
       "direction": "across",
-      "answer": "BONE",
-      "clue": "Skeleton part"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "down",
-      "answer": "BUST",
-      "clue": "Broken – sculpted head and shoulders"
-    },
-    {
-      "row": 2,
-      "col": 8,
-      "direction": "across",
-      "answer": "TIP",
-      "clue": "Hint – gratuity"
+      "answer": "VOICE",
+      "clue": "Speech"
     },
     {
       "row": 3,
-      "col": 11,
+      "col": 1,
       "direction": "down",
-      "answer": "FLARE",
-      "clue": "Distress signal"
+      "answer": "DOMINO",
+      "clue": "Spotted tile"
     },
     {
-      "row": 4,
-      "col": 2,
-      "direction": "across",
-      "answer": "FRIENDLY",
-      "clue": "Amiable"
-    },
-    {
-      "row": 4,
-      "col": 8,
-      "direction": "down",
-      "answer": "LOSE",
-      "clue": "Mislay"
-    },
-    {
-      "row": 6,
+      "row": 3,
       "col": 4,
-      "direction": "down",
-      "answer": "SOLE",
-      "clue": "Only – flatfish"
-    },
-    {
-      "row": 6,
-      "col": 6,
-      "direction": "down",
-      "answer": "LIST",
-      "clue": "Inventory – lean"
-    },
-    {
-      "row": 6,
-      "col": 8,
       "direction": "across",
-      "answer": "SNARL",
-      "clue": "Growl"
+      "answer": "DAY",
+      "clue": "Twenty-four hours"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "ROD",
+      "clue": "Pole"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "across",
+      "answer": "RESOLUTION",
+      "clue": "Determination – picture sharpness"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "down",
+      "answer": "RADIO",
+      "clue": "Wireless"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "direction": "down",
+      "answer": "LIE",
+      "clue": "Fib – recline"
     },
     {
       "row": 7,
-      "col": 3,
+      "col": 6,
       "direction": "across",
-      "answer": "NOTICE",
-      "clue": "Spot"
+      "answer": "DEVOUR",
+      "clue": "Wolf down"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "DAINTY",
+      "clue": "Delicate"
+    },
+    {
+      "row": 7,
+      "col": 11,
+      "direction": "down",
+      "answer": "REIGN",
+      "clue": "Rule"
     },
     {
       "row": 8,
-      "col": 1,
-      "direction": "down",
-      "answer": "BUNK",
-      "clue": "Bed – nonsense"
-    },
-    {
-      "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "PURGE",
-      "clue": "Clear out"
+      "answer": "SOLID",
+      "clue": "Firm"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "down",
+      "answer": "SHIFT",
+      "clue": "Move – work period"
     },
     {
       "row": 9,
-      "col": 3,
-      "direction": "down",
-      "answer": "GOOD",
-      "clue": "Fine – well-behaved"
-    },
-    {
-      "row": 9,
-      "col": 6,
-      "direction": "across",
-      "answer": "TIED",
-      "clue": "Bound – level"
-    },
-    {
-      "row": 9,
-      "col": 7,
-      "direction": "down",
-      "answer": "IDLE",
-      "clue": "Lazy"
-    },
-    {
-      "row": 10,
-      "col": 5,
-      "direction": "down",
-      "answer": "RIP",
-      "clue": "Tear"
-    },
-    {
-      "row": 10,
       "col": 10,
       "direction": "across",
-      "answer": "LUG",
-      "clue": "Drag"
+      "answer": "ZIP",
+      "clue": "Fastener – nothing"
     },
     {
       "row": 10,
-      "col": 12,
-      "direction": "down",
-      "answer": "GUN",
-      "clue": "Firearm"
+      "col": 0,
+      "direction": "across",
+      "answer": "INK",
+      "clue": "Pen fluid – tattoo"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "across",
+      "answer": "DUNCE",
+      "clue": "Dimwit"
+    },
+    {
+      "row": 11,
+      "col": 9,
+      "direction": "across",
+      "answer": "KING",
+      "clue": "Monarch"
     },
     {
       "row": 12,
-      "col": 3,
+      "col": 2,
       "direction": "across",
-      "answer": "DEPRESSION",
-      "clue": "Slump"
+      "answer": "ARRAY",
+      "clue": "Range, display"
     }
   ]
 }

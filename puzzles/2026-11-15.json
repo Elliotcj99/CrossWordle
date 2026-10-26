@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 1,
+      "direction": "down",
+      "answer": "FOX",
+      "clue": "Reynard – baffle"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "BROOCH",
+      "clue": "Pinned jewel"
+    },
+    {
+      "row": 0,
+      "col": 10,
       "direction": "across",
-      "answer": "LAG",
-      "clue": "Fall behind"
+      "answer": "RED",
+      "clue": "Colour of a pillar box"
     },
     {
       "row": 0,
-      "col": 0,
+      "col": 10,
       "direction": "down",
-      "answer": "LATER",
-      "clue": "Afterwards"
+      "answer": "REED",
+      "clue": "Rush – clarinet part"
     },
     {
       "row": 0,
-      "col": 2,
+      "col": 12,
       "direction": "down",
-      "answer": "GAP",
-      "clue": "Space"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "across",
-      "answer": "BUCK",
-      "clue": "Male deer"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "down",
-      "answer": "BOND",
-      "clue": "Tie – Ian Fleming's spy"
-    },
-    {
-      "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "COTTON",
-      "clue": "Fabric – thread"
+      "answer": "DRAKE",
+      "clue": "Male duck"
     },
     {
       "row": 1,
-      "col": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "ROOM",
+      "clue": "Chamber – space"
+    },
+    {
+      "row": 1,
+      "col": 3,
       "direction": "down",
+      "answer": "MUSH",
+      "clue": "Pulp"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "direction": "down",
+      "answer": "BLANKET",
+      "clue": "Bed cover"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "across",
+      "answer": "RUE",
+      "clue": "Regret"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "down",
+      "answer": "CRUNCH",
+      "clue": "Munch noisily – critical moment"
+    },
+    {
+      "row": 3,
+      "col": 3,
+      "direction": "across",
+      "answer": "SCAFFOLD",
+      "clue": "Gallows – builders' frame"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "CARPET",
+      "clue": "Rug – reprimand"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "direction": "across",
+      "answer": "THEME",
+      "clue": "Topic"
+    },
+    {
+      "row": 5,
+      "col": 11,
+      "direction": "down",
+      "answer": "EMBER",
+      "clue": "Glowing coal"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "NUANCE",
+      "clue": "Subtlety"
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "direction": "across",
+      "answer": "TAN",
+      "clue": "Bronze – brown"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "ARIA",
+      "clue": "Opera solo"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "across",
+      "answer": "JAB",
+      "clue": "Poke – injection"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "CHESS",
+      "clue": "Checkmate game"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "down",
+      "answer": "TRAM",
+      "clue": "Streetcar"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "across",
       "answer": "HEART",
       "clue": "Core – ticker"
     },
     {
-      "row": 1,
-      "col": 12,
-      "direction": "down",
-      "answer": "DRAW",
-      "clue": "Sketch – tie"
-    },
-    {
-      "row": 2,
-      "col": 2,
-      "direction": "across",
-      "answer": "PENETRATE",
-      "clue": "Pierce"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "ROCK",
-      "clue": "Stone – sway"
-    },
-    {
-      "row": 4,
-      "col": 1,
-      "direction": "down",
-      "answer": "OUT",
-      "clue": "Dismissed – not in"
-    },
-    {
-      "row": 4,
-      "col": 8,
-      "direction": "down",
-      "answer": "GAIN",
-      "clue": "Profit"
-    },
-    {
-      "row": 4,
-      "col": 10,
-      "direction": "across",
-      "answer": "RAW",
-      "clue": "Uncooked – sore"
-    },
-    {
-      "row": 5,
-      "col": 4,
-      "direction": "across",
-      "answer": "CONTACT",
-      "clue": "Touch"
-    },
-    {
-      "row": 7,
-      "col": 2,
-      "direction": "across",
-      "answer": "ARGUMENT",
-      "clue": "Row"
-    },
-    {
-      "row": 7,
-      "col": 3,
-      "direction": "down",
-      "answer": "REDUCE",
-      "clue": "Cut"
-    },
-    {
-      "row": 8,
+      "row": 9,
       "col": 10,
       "direction": "down",
-      "answer": "REBEL",
-      "clue": "Rise up"
+      "answer": "ACE",
+      "clue": "Serve that can't be returned"
     },
     {
-      "row": 8,
+      "row": 9,
       "col": 12,
       "direction": "down",
-      "answer": "REST",
-      "clue": "Relax – remainder"
+      "answer": "TOOL",
+      "clue": "Implement"
     },
     {
-      "row": 9,
+      "row": 10,
       "col": 0,
       "direction": "across",
-      "answer": "WORD",
-      "clue": "Promise – term"
+      "answer": "ALTERNATE",
+      "clue": "Every other"
     },
     {
-      "row": 9,
+      "row": 10,
       "col": 0,
       "direction": "down",
-      "answer": "WALL",
-      "clue": "Barrier"
-    },
-    {
-      "row": 9,
-      "col": 5,
-      "direction": "across",
-      "answer": "STAMPEDE",
-      "clue": "Panic rush"
-    },
-    {
-      "row": 9,
-      "col": 6,
-      "direction": "down",
-      "answer": "TIME",
-      "clue": "Hour – occasion"
-    },
-    {
-      "row": 9,
-      "col": 8,
-      "direction": "down",
-      "answer": "MUTE",
-      "clue": "Silent"
-    },
-    {
-      "row": 11,
-      "col": 3,
-      "direction": "across",
-      "answer": "COMMITMENT",
-      "clue": "Dedication"
+      "answer": "AIM",
+      "clue": "Goal"
     },
     {
       "row": 12,
-      "col": 0,
+      "col": 4,
       "direction": "across",
-      "answer": "LIME",
-      "clue": "Green citrus fruit"
+      "answer": "MOROSE",
+      "clue": "Sullen"
     }
   ]
 }

@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
+      "col": 1,
       "direction": "across",
-      "answer": "SNUB",
-      "clue": "Cold-shoulder"
+      "answer": "NODE",
+      "clue": "Junction point"
     },
     {
       "row": 0,
-      "col": 5,
+      "col": 3,
       "direction": "down",
-      "answer": "BOWL",
-      "clue": "Dish – deliver at cricket"
+      "answer": "DRAMA",
+      "clue": "Play – fuss"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 6,
+      "direction": "across",
+      "answer": "PROCESS",
+      "clue": "Method"
+    },
+    {
+      "row": 0,
+      "col": 9,
       "direction": "down",
-      "answer": "PAIR",
-      "clue": "Couple"
+      "answer": "CELLAR",
+      "clue": "Wine store"
     },
     {
       "row": 0,
       "col": 12,
       "direction": "down",
-      "answer": "LEFT",
-      "clue": "Port side – departed"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "down",
-      "answer": "WHIRL",
-      "clue": "Spin"
+      "answer": "SUET",
+      "clue": "Dumpling fat"
     },
     {
       "row": 1,
       "col": 5,
-      "direction": "across",
-      "answer": "OFFSTAGE",
-      "clue": "In the wings"
-    },
-    {
-      "row": 1,
-      "col": 8,
       "direction": "down",
-      "answer": "SAP",
-      "clue": "Drain – fool"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "HOLLOW",
-      "clue": "Empty"
+      "answer": "STAR",
+      "clue": "Celebrity – sun"
     },
     {
       "row": 2,
       "col": 2,
+      "direction": "across",
+      "answer": "FAITHFUL",
+      "clue": "Loyal"
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "direction": "across",
+      "answer": "LEFT",
+      "clue": "Port side – departed"
+    },
+    {
+      "row": 3,
+      "col": 11,
       "direction": "down",
-      "answer": "LENGTH",
-      "clue": "Extent"
-    },
-    {
-      "row": 3,
-      "col": 5,
-      "direction": "across",
-      "answer": "LIMP",
-      "clue": "Floppy – hobble"
-    },
-    {
-      "row": 3,
-      "col": 10,
-      "direction": "across",
-      "answer": "ROT",
-      "clue": "Decay – nonsense"
+      "answer": "FIT",
+      "clue": "Healthy – suit"
     },
     {
       "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "RANK",
-      "clue": "Status – foul-smelling"
+      "answer": "IDEA",
+      "clue": "Notion"
     },
     {
       "row": 4,
-      "col": 9,
+      "col": 1,
       "direction": "down",
-      "answer": "BLOCKADE",
-      "clue": "Siege barrier"
+      "answer": "DUET",
+      "clue": "Song for two"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "down",
+      "answer": "WHALE",
+      "clue": "Largest mammal"
+    },
+    {
+      "row": 5,
+      "col": 4,
+      "direction": "down",
+      "answer": "BRAND",
+      "clue": "Trademark"
     },
     {
       "row": 5,
       "col": 6,
       "direction": "across",
-      "answer": "SHALLOW",
-      "clue": "Superficial"
-    },
-    {
-      "row": 5,
-      "col": 7,
-      "direction": "down",
-      "answer": "HIDE",
-      "clue": "Conceal – animal skin"
+      "answer": "CHARITY",
+      "clue": "Good cause"
     },
     {
       "row": 6,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "STAMP",
-      "clue": "Seal – postage label"
-    },
-    {
-      "row": 6,
-      "col": 5,
-      "direction": "down",
-      "answer": "PURPOSE",
-      "clue": "Aim"
+      "answer": "CELERY",
+      "clue": "Crunchy salad stalk"
     },
     {
       "row": 7,
       "col": 7,
       "direction": "across",
-      "answer": "DECENT",
-      "clue": "Respectable"
+      "answer": "LYRIC",
+      "clue": "Song words"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "down",
+      "answer": "RUNNER",
+      "clue": "Athlete – sled blade"
     },
     {
       "row": 7,
       "col": 11,
       "direction": "down",
-      "answer": "NUDE",
-      "clue": "Unclothed"
+      "answer": "CHERRY",
+      "clue": "Stone fruit"
     },
     {
       "row": 8,
-      "col": 3,
+      "col": 2,
       "direction": "down",
-      "answer": "NOISE",
-      "clue": "Din"
+      "answer": "CRYPT",
+      "clue": "Underground vault"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "across",
+      "answer": "NOSE",
+      "clue": "Hooter"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "STORY",
+      "clue": "Tale"
     },
     {
       "row": 9,
       "col": 1,
       "direction": "across",
-      "answer": "STOOP",
-      "clue": "Bend – lower yourself"
-    },
-    {
-      "row": 9,
-      "col": 1,
-      "direction": "down",
-      "answer": "SLOW",
-      "clue": "Sluggish"
+      "answer": "ARID",
+      "clue": "Parched"
     },
     {
       "row": 9,
       "col": 8,
       "direction": "across",
-      "answer": "BAND",
-      "clue": "Group of musicians"
+      "answer": "INNER",
+      "clue": "Interior"
     },
     {
       "row": 10,
-      "col": 7,
+      "col": 0,
       "direction": "down",
-      "answer": "DRY",
-      "clue": "Arid"
+      "answer": "VAN",
+      "clue": "Delivery vehicle"
     },
     {
       "row": 11,
+      "col": 2,
+      "direction": "across",
+      "answer": "PRIMROSE",
+      "clue": "Pale yellow flower"
+    },
+    {
+      "row": 12,
       "col": 0,
       "direction": "across",
-      "answer": "BOSS",
-      "clue": "Manager"
-    },
-    {
-      "row": 11,
-      "col": 5,
-      "direction": "across",
-      "answer": "SURVEY",
-      "clue": "Questionnaire – inspect"
+      "answer": "NET",
+      "clue": "Mesh – after tax"
     }
   ]
 }
