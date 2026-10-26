@@ -62,12 +62,18 @@ export function feedbackFor(puzzle: Puzzle, state: GameState, entry: Entry): Sco
 }
 
 /**
- * Cells confirmed by a green in any entry, keyed by `cellKey`. A lock is for good: later guesses
- * may put other letters there to fish for information, but they never undo it.
+ * Cells shown on the grid, keyed by `cellKey`: every cell of a solved entry, plus every green
+ * when the puzzle's `lockGreens` rule is on. A lock is for good: later guesses may put other
+ * letters there to fish for information, but they never undo it.
  */
 export function lockedLetters(puzzle: Puzzle, state: GameState): Map<string, string> {
   const locks = new Map<string, string>();
   for (const entry of puzzle.entries) {
+    if (isSolved(state, entry)) {
+      entry.cells.forEach((cell, i) => locks.set(cellKey(cell), entry.answer[i]!));
+      continue;
+    }
+    if (!puzzle.rules.lockGreens) continue;
     for (const guess of guessesFor(state, entry)) {
       entry.cells.forEach((cell, i) => {
         if (guess[i] === entry.answer[i]) locks.set(cellKey(cell), entry.answer[i]!);
@@ -89,7 +95,7 @@ export function isSolved(state: GameState, entry: Entry): boolean {
 export function guessLimit(puzzle: Puzzle, entry: Entry): number {
   const budget = puzzle.rules.guessBudget;
   return budget.kind === 'shared'
-    ? budget.guessesPerEntry * puzzle.entries.length
+    ? Math.round(budget.guessesPerEntry * puzzle.entries.length)
     : entry.answer.length + budget.extraGuesses;
 }
 

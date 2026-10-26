@@ -19,9 +19,9 @@
       how many times.
     </li>
     <li>
-      Greens lock their square on the grid for good, and the crossing entry gets that letter too.
-      Your guesses are still your own: type any word, even one that drops a green, to fish for other
-      letters. An entry is solved when you guess its word.
+      An entry is solved when you guess its word. Only then does it go on the grid in green, and the
+      entries crossing it get its letters. Until then your greens stay in your own guesses. Type any
+      word, even one that drops a green, to fish for other letters.
     </li>
     <li>You share one pool of guesses across the whole puzzle. Spend it wisely.</li>
     <li>

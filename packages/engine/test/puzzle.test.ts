@@ -103,5 +103,18 @@ describe('puzzle validation', () => {
     expect(() =>
       parsePuzzleFile({ ...sampleFile, rules: { guessBudget: { kind: 'unlimited' } } }),
     ).toThrow(PuzzleError);
+    expect(() => parsePuzzleFile({ ...sampleFile, rules: { lockGreens: 'yes' } })).toThrow(
+      PuzzleError,
+    );
+  });
+
+  it('takes a fractional shared budget of at least one guess per entry', () => {
+    const budget = (guessesPerEntry: number) => () =>
+      parsePuzzleFile({
+        ...sampleFile,
+        rules: { guessBudget: { kind: 'shared', guessesPerEntry } },
+      });
+    expect(budget(2.5)).not.toThrow();
+    expect(budget(0.5)).toThrow(PuzzleError);
   });
 });
