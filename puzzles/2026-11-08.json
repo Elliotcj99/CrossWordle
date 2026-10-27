@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "across",
-      "answer": "ESSENTIAL",
-      "clue": "Vital"
-    },
-    {
-      "row": 0,
-      "col": 1,
-      "direction": "down",
-      "answer": "SPEAK",
-      "clue": "Talk"
-    },
-    {
-      "row": 0,
       "col": 5,
-      "direction": "down",
-      "answer": "TANG",
-      "clue": "Zest"
+      "direction": "across",
+      "answer": "ELK",
+      "clue": "Large deer"
     },
     {
       "row": 0,
-      "col": 11,
+      "col": 6,
       "direction": "down",
-      "answer": "EARLY",
-      "clue": "Ahead of time"
+      "answer": "LEG",
+      "clue": "Limb – stage of a journey"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "across",
+      "answer": "SOD",
+      "clue": "Turf – unpleasant person"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "SHROUD",
+      "clue": "Winding sheet – veil"
     },
     {
       "row": 1,
-      "col": 9,
+      "col": 2,
       "direction": "across",
-      "answer": "LEAF",
-      "clue": "Page – frond"
+      "answer": "NAP",
+      "clue": "Snooze"
     },
     {
       "row": 1,
-      "col": 9,
+      "col": 4,
       "direction": "down",
-      "answer": "LETTER",
-      "clue": "Character – post"
+      "answer": "PRIZE",
+      "clue": "Award"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "down",
+      "answer": "ELEGY",
+      "clue": "Lament"
     },
     {
       "row": 2,
-      "col": 0,
+      "col": 4,
       "direction": "across",
-      "answer": "LEGION",
-      "clue": "Roman army unit – vast"
-    },
-    {
-      "row": 2,
-      "col": 3,
-      "direction": "down",
-      "answer": "INPUT",
-      "clue": "Contribution"
-    },
-    {
-      "row": 2,
-      "col": 7,
-      "direction": "down",
-      "answer": "RECITE",
-      "clue": "Say from memory"
+      "answer": "REGULAR",
+      "clue": "Routine – frequent customer"
     },
     {
       "row": 3,
-      "col": 5,
-      "direction": "across",
-      "answer": "GREAT",
-      "clue": "Excellent"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "down",
-      "answer": "WHIP",
-      "clue": "Lash – party enforcer"
-    },
-    {
-      "row": 5,
-      "col": 5,
-      "direction": "across",
-      "answer": "SPICE",
-      "clue": "Pepper, say"
-    },
-    {
-      "row": 5,
-      "col": 5,
-      "direction": "down",
-      "answer": "SHOUT",
-      "clue": "Yell"
-    },
-    {
-      "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "HINT",
-      "clue": "Clue"
+      "answer": "NAG",
+      "clue": "Pester – old horse"
     },
     {
-      "row": 6,
-      "col": 9,
-      "direction": "across",
-      "answer": "REIN",
-      "clue": "Bridle strap – curb"
+      "row": 3,
+      "col": 0,
+      "direction": "down",
+      "answer": "NOSTALGIA",
+      "clue": "Wistfulness"
     },
     {
-      "row": 6,
+      "row": 3,
       "col": 10,
+      "direction": "across",
+      "answer": "OUT",
+      "clue": "Dismissed – not in"
+    },
+    {
+      "row": 3,
+      "col": 12,
       "direction": "down",
-      "answer": "ECHO",
-      "clue": "Reverberation"
+      "answer": "TUBA",
+      "clue": "Big brass instrument"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "across",
+      "answer": "RIG",
+      "clue": "Fix dishonestly – oil platform"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "SILVER",
+      "clue": "Second place medal"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "LAYER",
+      "clue": "Tier – hen"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "down",
+      "answer": "REALISE",
+      "clue": "Understand – cash in"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "across",
+      "answer": "DAB",
+      "clue": "Pat – flatfish"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "down",
+      "answer": "TABLET",
+      "clue": "Pill – touchscreen device"
     },
     {
       "row": 7,
-      "col": 4,
+      "col": 5,
       "direction": "across",
-      "answer": "MOVE",
-      "clue": "Shift"
+      "answer": "ABANDON",
+      "clue": "Desert"
     },
     {
       "row": 8,
       "col": 2,
-      "direction": "down",
-      "answer": "PLAY",
-      "clue": "Drama – frolic"
-    },
-    {
-      "row": 8,
-      "col": 12,
-      "direction": "down",
-      "answer": "WELL",
-      "clue": "Healthy – spring"
-    },
-    {
-      "row": 9,
-      "col": 1,
       "direction": "across",
-      "answer": "BLISTER",
-      "clue": "Bubble on the skin"
+      "answer": "EVIL",
+      "clue": "Wicked"
     },
     {
       "row": 9,
       "col": 7,
-      "direction": "down",
-      "answer": "ROOF",
-      "clue": "Ceiling"
-    },
-    {
-      "row": 9,
-      "col": 9,
       "direction": "across",
-      "answer": "YOKE",
-      "clue": "Oxen's harness"
+      "answer": "LEMUR",
+      "clue": "Madagascan primate"
     },
     {
       "row": 9,
       "col": 9,
       "direction": "down",
-      "answer": "YARD",
-      "clue": "Three feet – courtyard"
+      "answer": "MINT",
+      "clue": "Herb – where coins are made"
     },
     {
-      "row": 11,
-      "col": 0,
-      "direction": "across",
-      "answer": "WAY",
-      "clue": "Route – method"
+      "row": 9,
+      "col": 11,
+      "direction": "down",
+      "answer": "RUIN",
+      "clue": "Destroy"
     },
     {
-      "row": 11,
-      "col": 9,
-      "direction": "across",
-      "answer": "RAIL",
-      "clue": "Banister – train track"
-    },
-    {
-      "row": 12,
+      "row": 10,
       "col": 3,
+      "direction": "down",
+      "answer": "FAN",
+      "clue": "Supporter"
+    },
+    {
+      "row": 11,
+      "col": 2,
       "direction": "across",
-      "answer": "FLUFF",
-      "clue": "Fuzz – bungle"
+      "answer": "VASE",
+      "clue": "Flower holder"
+    },
+    {
+      "row": 11,
+      "col": 7,
+      "direction": "across",
+      "answer": "TENNIS",
+      "clue": "Wimbledon game"
     }
   ]
 }

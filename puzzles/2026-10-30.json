@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "MIDDLE",
+      "clue": "Centre"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "across",
+      "answer": "BUN",
+      "clue": "Small cake – hair knot"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "UNDERWEAR",
+      "clue": "Smalls"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "CREEK",
+      "clue": "Inlet"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "ILL",
+      "clue": "Unwell"
+    },
+    {
+      "row": 1,
       "col": 2,
-      "direction": "across",
-      "answer": "TART",
-      "clue": "Pastry – sour"
-    },
-    {
-      "row": 0,
-      "col": 5,
       "direction": "down",
-      "answer": "TRIGGER",
-      "clue": "Set off"
+      "answer": "LOFT",
+      "clue": "Attic"
     },
     {
-      "row": 0,
-      "col": 7,
+      "row": 1,
+      "col": 6,
       "direction": "down",
-      "answer": "JOLLY",
-      "clue": "Cheerful"
+      "answer": "SMACK",
+      "clue": "Slap"
     },
     {
-      "row": 0,
+      "row": 1,
       "col": 9,
-      "direction": "down",
-      "answer": "SPIN",
-      "clue": "Twirl"
+      "direction": "across",
+      "answer": "TROT",
+      "clue": "Jog"
     },
     {
       "row": 1,
-      "col": 7,
-      "direction": "across",
-      "answer": "OPPOSE",
-      "clue": "Resist"
-    },
-    {
-      "row": 1,
-      "col": 11,
+      "col": 12,
       "direction": "down",
-      "answer": "SUBSTANCE",
-      "clue": "Matter"
+      "answer": "THROUGH",
+      "clue": "Via"
     },
     {
       "row": 2,
-      "col": 1,
+      "col": 8,
       "direction": "down",
-      "answer": "TEAR",
-      "clue": "Rip – drop from the eye"
-    },
-    {
-      "row": 2,
-      "col": 3,
-      "direction": "across",
-      "answer": "CHILL",
-      "clue": "Coldness"
-    },
-    {
-      "row": 2,
-      "col": 3,
-      "direction": "down",
-      "answer": "COMBINE",
-      "clue": "Merge"
+      "answer": "DISCUS",
+      "clue": "Olympic throwing event"
     },
     {
       "row": 3,
-      "col": 0,
+      "col": 4,
       "direction": "across",
-      "answer": "HERO",
-      "clue": "Champion"
+      "answer": "EXAMINE",
+      "clue": "Inspect"
     },
     {
       "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "LATER",
+      "clue": "Afterwards"
+    },
+    {
+      "row": 6,
       "col": 3,
       "direction": "across",
-      "answer": "MUG",
-      "clue": "Cup – fool"
-    },
-    {
-      "row": 4,
-      "col": 10,
-      "direction": "across",
-      "answer": "USE",
-      "clue": "Employ"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "CRIB",
-      "clue": "Copy – Nativity scene"
+      "answer": "GEM",
+      "clue": "Jewel"
     },
     {
       "row": 6,
       "col": 7,
-      "direction": "down",
-      "answer": "REGARD",
-      "clue": "Esteem"
-    },
-    {
-      "row": 6,
-      "col": 9,
       "direction": "across",
-      "answer": "TRAP",
-      "clue": "Snare"
+      "answer": "QUIT",
+      "clue": "Leave"
     },
     {
       "row": 6,
-      "col": 9,
+      "col": 10,
       "direction": "down",
-      "answer": "TICK",
-      "clue": "Mark of approval – parasite"
+      "answer": "TOADY",
+      "clue": "Creep"
     },
     {
       "row": 7,
       "col": 1,
       "direction": "down",
-      "answer": "CANCEL",
-      "clue": "Call off"
+      "answer": "FOREST",
+      "clue": "Woodland"
     },
     {
       "row": 8,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "AGE",
-      "clue": "Era"
+      "answer": "CONTRAST",
+      "clue": "Difference"
     },
     {
       "row": 8,
-      "col": 5,
-      "direction": "across",
-      "answer": "BAG",
-      "clue": "Sack"
-    },
-    {
-      "row": 8,
-      "col": 5,
+      "col": 3,
       "direction": "down",
-      "answer": "BIT",
-      "clue": "Small piece"
+      "answer": "TIGER",
+      "clue": "Striped big cat"
     },
     {
-      "row": 9,
+      "row": 8,
+      "col": 7,
+      "direction": "down",
+      "answer": "TANG",
+      "clue": "Zest"
+    },
+    {
+      "row": 8,
       "col": 9,
       "direction": "across",
-      "answer": "KEEP",
-      "clue": "Retain – castle stronghold"
+      "answer": "CAN",
+      "clue": "Tin"
     },
     {
       "row": 9,
-      "col": 10,
+      "col": 12,
       "direction": "down",
-      "answer": "EAT",
-      "clue": "Dine"
+      "answer": "SWAN",
+      "clue": "Graceful river bird"
     },
     {
       "row": 10,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "CHATTER",
-      "clue": "Natter"
+      "answer": "HEIGHTEN",
+      "clue": "Intensify"
     },
     {
       "row": 10,
-      "col": 4,
-      "direction": "down",
-      "answer": "TIE",
-      "clue": "Draw – neckwear"
+      "col": 10,
+      "direction": "across",
+      "answer": "YEW",
+      "clue": "Churchyard tree"
     },
     {
       "row": 11,
       "col": 7,
       "direction": "across",
-      "answer": "DIRTY",
-      "clue": "Filthy"
+      "answer": "GUT",
+      "clue": "Belly – instinct"
     },
     {
       "row": 12,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "CLOSE",
-      "clue": "Near – shut"
+      "answer": "TURBAN",
+      "clue": "Wound headdress"
+    },
+    {
+      "row": 12,
+      "col": 10,
+      "direction": "across",
+      "answer": "RUN",
+      "clue": "Sprint – manage"
     }
   ]
 }

@@ -4,6 +4,7 @@ import {
   fitsPuzzle,
   gameStatus,
   guessesRemaining,
+  guessLimit,
   isSolved,
   loadPuzzle,
   lockedLetters,
@@ -51,8 +52,30 @@ function entry(puzzle: Puzzle, id: string) {
 }
 
 describe('crossing locks', () => {
-  it('locks greens and shows them in the crossing entry', () => {
+  it('keeps greens off the grid until the entry is solved', () => {
     const puzzle = ring();
+    const state = play(puzzle, [['1A', 'COT']]);
+    expect(lockedLetters(puzzle, state).size).toBe(0);
+  });
+
+  it('locks every cell of a solved entry, which the crossing entries share', () => {
+    const puzzle = ring();
+    const state = play(puzzle, [
+      ['1A', 'COT'],
+      ['1A', 'CAT'],
+    ]);
+    const locks = lockedLetters(puzzle, state);
+
+    expect(entry(puzzle, '1A').cells.map((cell) => locks.get(cellKey(cell)))).toEqual([
+      'C',
+      'A',
+      'T',
+    ]);
+    expect(locks.has(cellKey({ row: 1, col: 0 }))).toBe(false);
+  });
+
+  it('locks greens as soon as they are found when lockGreens is on', () => {
+    const puzzle = ring({ lockGreens: true });
     const state = play(puzzle, [['1A', 'COT']]);
     const locks = lockedLetters(puzzle, state);
 
@@ -62,7 +85,7 @@ describe('crossing locks', () => {
   });
 
   it('lets a guess fish with other letters where a cell is locked, and keeps the lock', () => {
-    const puzzle = ring();
+    const puzzle = ring({ lockGreens: true });
     // 1A's C is green, then BAT ignores it; 1D's guess DOC also crosses that locked C.
     const state = play(puzzle, [
       ['1A', 'COP'],
@@ -91,7 +114,7 @@ describe('crossing locks', () => {
   });
 
   it('does not solve an entry whose cells are all filled in by crossings and greens', () => {
-    const puzzle = ring();
+    const puzzle = ring({ lockGreens: true });
     // COD and TOE lock 1A's C and T; BAN turns its middle A green.
     const state = play(puzzle, [
       ['1D', 'COD'],
@@ -163,13 +186,15 @@ describe('guess checks', () => {
 });
 
 describe('guess budget', () => {
-  it('shares 4 guesses per entry across the puzzle by default', () => {
+  it('shares 8/3 guesses per entry across the puzzle by default, rounded', () => {
     const puzzle = ring();
     const state = play(puzzle, [
       ['1A', 'COT'],
       ['3A', 'DYE'],
     ]);
-    expect(guessesRemaining(puzzle, state, entry(puzzle, '2D'))).toBe(4 * 4 - 2);
+    // 4 entries × 8/3 = 10.67, so 11 guesses.
+    expect(guessLimit(puzzle, entry(puzzle, '2D'))).toBe(11);
+    expect(guessesRemaining(puzzle, state, entry(puzzle, '2D'))).toBe(11 - 2);
   });
 
   it('is lost when the shared pool runs out', () => {

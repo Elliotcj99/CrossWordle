@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 8,
-      "direction": "across",
-      "answer": "DELAY",
-      "clue": "Hold-up"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "DESERT",
-      "clue": "Sahara, for one"
-    },
-    {
-      "row": 0,
-      "col": 11,
-      "direction": "down",
-      "answer": "AIR",
-      "clue": "Tune – what we breathe"
-    },
-    {
-      "row": 1,
       "col": 1,
       "direction": "down",
-      "answer": "SUBMIT",
-      "clue": "Hand in – yield"
+      "answer": "MENACE",
+      "clue": "Threat"
     },
     {
-      "row": 1,
+      "row": 0,
       "col": 3,
       "direction": "across",
-      "answer": "BEAT",
-      "clue": "Defeat"
+      "answer": "PUFF",
+      "clue": "Gust – cream pastry"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "PLAY",
+      "clue": "Drama – frolic"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "FEVER",
+      "clue": "High temperature"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "APPLE",
+      "clue": "Cox, say"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "AVOCADO",
+      "clue": "Guacamole fruit"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "POET",
+      "clue": "Bard"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "EXALT",
+      "clue": "Praise"
     },
     {
       "row": 1,
-      "col": 3,
-      "direction": "down",
-      "answer": "BITCH",
-      "clue": "Female dog"
+      "col": 0,
+      "direction": "across",
+      "answer": "TELL",
+      "clue": "Inform"
     },
     {
       "row": 2,
       "col": 8,
       "direction": "across",
-      "answer": "SEAR",
-      "clue": "Scorch"
-    },
-    {
-      "row": 2,
-      "col": 10,
-      "direction": "down",
-      "answer": "APPLY",
-      "clue": "Put in for a job"
+      "answer": "ONE",
+      "clue": "Single unit"
     },
     {
       "row": 3,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "SAGE",
-      "clue": "Wise – herb"
-    },
-    {
-      "row": 3,
-      "col": 6,
-      "direction": "down",
-      "answer": "APPROACH",
-      "clue": "Come near"
+      "answer": "WARY",
+      "clue": "Cautious"
     },
     {
       "row": 4,
-      "col": 8,
+      "col": 4,
       "direction": "across",
-      "answer": "REPEL",
-      "clue": "Drive back"
+      "answer": "NORMAL",
+      "clue": "Usual"
     },
     {
       "row": 4,
-      "col": 12,
-      "direction": "down",
-      "answer": "LEAP",
-      "clue": "Jump"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "RIGHT",
-      "clue": "Correct – starboard"
-    },
-    {
-      "row": 5,
       "col": 4,
       "direction": "down",
-      "answer": "TRAVERSE",
-      "clue": "Cross"
+      "answer": "NOBLE",
+      "clue": "Aristocrat"
     },
     {
       "row": 5,
-      "col": 6,
+      "col": 1,
       "direction": "across",
-      "answer": "PUT",
-      "clue": "Place"
+      "answer": "ECHO",
+      "clue": "Reverberation"
     },
     {
-      "row": 7,
-      "col": 0,
-      "direction": "down",
-      "answer": "VISIT",
-      "clue": "Call on"
-    },
-    {
-      "row": 7,
-      "col": 4,
-      "direction": "across",
-      "answer": "AROUSE",
-      "clue": "Stir"
-    },
-    {
-      "row": 7,
-      "col": 8,
-      "direction": "down",
-      "answer": "SONG",
-      "clue": "Ballad"
-    },
-    {
-      "row": 8,
-      "col": 2,
-      "direction": "down",
-      "answer": "COURT",
-      "clue": "Tribunal – woo"
-    },
-    {
-      "row": 8,
+      "row": 5,
       "col": 10,
       "direction": "down",
-      "answer": "GUARD",
-      "clue": "Sentry"
+      "answer": "GROTTO",
+      "clue": "Cave"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "across",
+      "answer": "DOUR",
+      "clue": "Stern"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "down",
+      "answer": "DIE",
+      "clue": "Perish – cube for games"
+    },
+    {
+      "row": 8,
+      "col": 3,
+      "direction": "across",
+      "answer": "SERGEANT",
+      "clue": "Army rank"
+    },
+    {
+      "row": 8,
+      "col": 3,
+      "direction": "down",
+      "answer": "SHOAL",
+      "clue": "Group of fish"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "GOWN",
+      "clue": "Evening dress"
     },
     {
       "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "SCORE",
-      "clue": "Twenty – tally"
+      "answer": "MASH",
+      "clue": "Crushed potato"
     },
     {
       "row": 9,
+      "col": 0,
+      "direction": "down",
+      "answer": "MEAT",
+      "clue": "Flesh"
+    },
+    {
+      "row": 10,
       "col": 6,
       "direction": "across",
-      "answer": "CON",
-      "clue": "Swindle"
+      "answer": "WALLOW",
+      "clue": "Roll in mud – revel"
     },
     {
       "row": 10,
-      "col": 8,
-      "direction": "across",
-      "answer": "GIANT",
-      "clue": "Huge – ogre"
-    },
-    {
-      "row": 10,
-      "col": 12,
+      "col": 11,
       "direction": "down",
-      "answer": "TIN",
-      "clue": "Can"
+      "answer": "WIN",
+      "clue": "Victory"
     },
     {
       "row": 11,
-      "col": 0,
+      "col": 2,
       "direction": "across",
-      "answer": "THRASH",
-      "clue": "Beat soundly"
+      "answer": "CABIN",
+      "clue": "Hut"
     },
     {
       "row": 12,
-      "col": 6,
+      "col": 8,
       "direction": "across",
-      "answer": "ABANDON",
-      "clue": "Desert"
+      "answer": "SOUND",
+      "clue": "Noise – healthy"
     }
   ]
 }

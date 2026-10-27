@@ -6,185 +6,171 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "POUT",
-      "clue": "Sulky look"
-    },
-    {
-      "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "STIR",
-      "clue": "Mix – commotion"
-    },
-    {
-      "row": 0,
-      "col": 4,
+      "col": 1,
       "direction": "across",
-      "answer": "VARIATION",
-      "clue": "Change"
+      "answer": "SPORT",
+      "clue": "Game"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 1,
       "direction": "down",
-      "answer": "VEX",
-      "clue": "Annoy"
+      "answer": "SACRIFICE",
+      "clue": "Give up"
     },
     {
       "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "OPPOSITION",
+      "clue": "Rival party"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "BAGEL",
+      "clue": "Ring-shaped roll"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "across",
+      "answer": "MENIAL",
+      "clue": "Lowly"
+    },
+    {
+      "row": 1,
       "col": 6,
       "direction": "down",
-      "answer": "ROW",
-      "clue": "Line – argument"
-    },
-    {
-      "row": 0,
-      "col": 11,
-      "direction": "down",
-      "answer": "OVERLAP",
-      "clue": "Coincide in part"
+      "answer": "MILE",
+      "clue": "Eight furlongs"
     },
     {
       "row": 2,
-      "col": 9,
-      "direction": "across",
-      "answer": "FEED",
-      "clue": "Nourish"
-    },
-    {
-      "row": 3,
-      "col": 0,
-      "direction": "across",
-      "answer": "TERM",
-      "clue": "Word – school period"
-    },
-    {
-      "row": 3,
       "col": 1,
-      "direction": "down",
-      "answer": "EXACT",
-      "clue": "Precise"
+      "direction": "across",
+      "answer": "CAP",
+      "clue": "Peaked hat – upper limit"
     },
     {
-      "row": 3,
-      "col": 3,
+      "row": 2,
+      "col": 12,
       "direction": "down",
-      "answer": "MODULATION",
-      "clue": "Change of key"
-    },
-    {
-      "row": 3,
-      "col": 5,
-      "direction": "down",
-      "answer": "REAL",
-      "clue": "Genuine"
+      "answer": "GLADE",
+      "clue": "Clearing"
     },
     {
       "row": 3,
       "col": 8,
-      "direction": "down",
-      "answer": "CULTURE",
-      "clue": "Arts – yoghurt bacteria"
+      "direction": "across",
+      "answer": "SPELL",
+      "clue": "Charm – period"
     },
     {
       "row": 4,
-      "col": 3,
+      "col": 1,
       "direction": "across",
-      "answer": "OVERRUN",
-      "clue": "Infest – go past time"
+      "answer": "INSIDE",
+      "clue": "Within – in prison"
     },
     {
-      "row": 5,
+      "row": 4,
+      "col": 5,
+      "direction": "down",
+      "answer": "DON",
+      "clue": "Put on – Oxford tutor"
+    },
+    {
+      "row": 6,
       "col": 0,
       "direction": "across",
-      "answer": "HARD",
-      "clue": "Difficult – solid"
+      "answer": "DISTANT",
+      "clue": "Far"
     },
     {
       "row": 6,
       "col": 8,
       "direction": "across",
-      "answer": "TRIP",
-      "clue": "Outing – stumble"
+      "answer": "CLOSE",
+      "clue": "Near – shut"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "LAW",
+      "clue": "Rule"
+    },
+    {
+      "row": 6,
+      "col": 11,
+      "direction": "down",
+      "answer": "STOPPER",
+      "clue": "Bung"
     },
     {
       "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "STALL",
-      "clue": "Kiosk – delay"
-    },
-    {
-      "row": 7,
-      "col": 12,
-      "direction": "down",
-      "answer": "INDEX",
-      "clue": "List at the back of a book"
-    },
-    {
-      "row": 8,
-      "col": 5,
-      "direction": "down",
-      "answer": "ASIDE",
-      "clue": "Stage whisper"
-    },
-    {
-      "row": 8,
-      "col": 10,
-      "direction": "across",
-      "answer": "MAN",
-      "clue": "Chap – staff"
-    },
-    {
-      "row": 8,
-      "col": 10,
-      "direction": "down",
-      "answer": "MESS",
-      "clue": "Muddle – army canteen"
-    },
-    {
-      "row": 9,
-      "col": 1,
-      "direction": "across",
-      "answer": "PIT",
-      "clue": "Mine – fruit stone"
-    },
-    {
-      "row": 9,
-      "col": 5,
-      "direction": "across",
-      "answer": "SCHEME",
-      "clue": "Plan"
-    },
-    {
-      "row": 9,
       "col": 7,
       "direction": "down",
-      "answer": "HISS",
-      "clue": "Snake's sound"
+      "answer": "SPEECH",
+      "clue": "Address"
     },
     {
-      "row": 11,
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "SECOND",
+      "clue": "Moment – runner-up"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "DUVET",
+      "clue": "Continental quilt"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "WOOL",
+      "clue": "Fleece"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "EAR",
+      "clue": "Organ of hearing"
+    },
+    {
+      "row": 10,
       "col": 2,
-      "direction": "across",
-      "answer": "HOLD",
-      "clue": "Grasp"
+      "direction": "down",
+      "answer": "RIB",
+      "clue": "Tease – chest bone"
+    },
+    {
+      "row": 10,
+      "col": 9,
+      "direction": "down",
+      "answer": "PUT",
+      "clue": "Place"
     },
     {
       "row": 11,
-      "col": 10,
+      "col": 5,
       "direction": "across",
-      "answer": "SEX",
-      "clue": "Gender"
+      "answer": "EXCLUDE",
+      "clue": "Leave out"
     },
     {
       "row": 12,
-      "col": 7,
+      "col": 0,
       "direction": "across",
-      "answer": "SET",
-      "clue": "Put – group"
+      "answer": "COBALT",
+      "clue": "Deep blue"
     }
   ]
 }

@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 9,
+      "col": 0,
       "direction": "across",
-      "answer": "GOAD",
-      "clue": "Prod"
+      "answer": "SLUG",
+      "clue": "Shell-less snail – swig"
     },
     {
       "row": 0,
-      "col": 9,
+      "col": 0,
       "direction": "down",
-      "answer": "GLOSS",
-      "clue": "Sheen"
+      "answer": "SALT",
+      "clue": "Season – sailor"
     },
     {
       "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "DIRT",
-      "clue": "Muck"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "down",
-      "answer": "ESTABLISH",
-      "clue": "Set up"
-    },
-    {
-      "row": 1,
-      "col": 2,
-      "direction": "across",
-      "answer": "GET",
-      "clue": "Obtain"
-    },
-    {
-      "row": 1,
-      "col": 2,
-      "direction": "down",
-      "answer": "GENERATION",
-      "clue": "Age group"
-    },
-    {
-      "row": 2,
-      "col": 5,
-      "direction": "across",
-      "answer": "ZIP",
-      "clue": "Fastener – nothing"
-    },
-    {
-      "row": 2,
-      "col": 7,
-      "direction": "down",
-      "answer": "PRESENT",
-      "clue": "Gift – current"
-    },
-    {
-      "row": 3,
-      "col": 0,
-      "direction": "across",
-      "answer": "TAN",
-      "clue": "Bronze – brown"
-    },
-    {
-      "row": 3,
-      "col": 7,
-      "direction": "across",
-      "answer": "RESIST",
-      "clue": "Withstand"
-    },
-    {
-      "row": 4,
-      "col": 2,
-      "direction": "across",
-      "answer": "EXCITE",
-      "clue": "Thrill"
-    },
-    {
-      "row": 4,
-      "col": 4,
-      "direction": "down",
-      "answer": "CUT",
-      "clue": "Slice"
-    },
-    {
-      "row": 5,
-      "col": 0,
-      "direction": "across",
-      "answer": "BAR",
-      "clue": "Pub counter"
-    },
-    {
-      "row": 5,
-      "col": 10,
-      "direction": "down",
-      "answer": "LOVE",
-      "clue": "Adore – zero at tennis"
-    },
-    {
-      "row": 6,
-      "col": 4,
-      "direction": "across",
-      "answer": "THRESHOLD",
-      "clue": "Doorstep – limit"
-    },
-    {
-      "row": 6,
-      "col": 12,
-      "direction": "down",
-      "answer": "DAILY",
-      "clue": "Every day – cleaner"
-    },
-    {
-      "row": 8,
-      "col": 0,
-      "direction": "across",
-      "answer": "SLIP",
-      "clue": "Error – petticoat"
-    },
-    {
-      "row": 8,
-      "col": 5,
-      "direction": "across",
-      "answer": "ENTIRE",
-      "clue": "Whole"
-    },
-    {
-      "row": 8,
-      "col": 9,
-      "direction": "down",
-      "answer": "RUE",
-      "clue": "Regret"
-    },
-    {
-      "row": 10,
-      "col": 1,
-      "direction": "across",
-      "answer": "SNAP",
-      "clue": "Break – card game"
-    },
-    {
-      "row": 10,
-      "col": 1,
-      "direction": "down",
-      "answer": "SAY",
-      "clue": "Utter"
-    },
-    {
-      "row": 10,
       "col": 3,
       "direction": "down",
-      "answer": "AIM",
-      "clue": "Goal"
+      "answer": "GLASS",
+      "clue": "Tumbler"
     },
     {
-      "row": 10,
+      "row": 0,
       "col": 7,
       "direction": "across",
-      "answer": "ENERGY",
-      "clue": "Vigour"
+      "answer": "TRIFLE",
+      "clue": "Layered pudding – small matter"
     },
     {
-      "row": 10,
-      "col": 8,
+      "row": 0,
+      "col": 7,
       "direction": "down",
-      "answer": "NIP",
-      "clue": "Pinch – tot of whisky"
+      "answer": "TOKEN",
+      "clue": "Symbol – voucher"
     },
     {
-      "row": 10,
+      "row": 0,
       "col": 10,
       "direction": "down",
-      "answer": "RAY",
-      "clue": "Beam – flat fish"
+      "answer": "FIG",
+      "clue": "Mediterranean fruit"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "EEL",
+      "clue": "Slippery fish"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "direction": "across",
+      "answer": "ZOO",
+      "clue": "Animal park"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "LOCAL",
+      "clue": "Neighbourhood pub"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "down",
+      "answer": "RIDDLE",
+      "clue": "Puzzle – perforate"
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "direction": "down",
+      "answer": "REFLECT",
+      "clue": "Mirror – ponder"
+    },
+    {
+      "row": 3,
+      "col": 11,
+      "direction": "down",
+      "answer": "SUPPORTER",
+      "clue": "Fan"
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "direction": "across",
+      "answer": "MISSION",
+      "clue": "Task"
+    },
+    {
+      "row": 4,
+      "col": 1,
+      "direction": "down",
+      "answer": "MAN",
+      "clue": "Chap – staff"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "across",
+      "answer": "EMU",
+      "clue": "Flightless Australian bird"
+    },
+    {
+      "row": 6,
+      "col": 1,
+      "direction": "across",
+      "answer": "NEW",
+      "clue": "Fresh"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "direction": "down",
+      "answer": "WEARY",
+      "clue": "Tired"
+    },
+    {
+      "row": 6,
+      "col": 5,
+      "direction": "across",
+      "answer": "DEVELOP",
+      "clue": "Grow"
+    },
+    {
+      "row": 8,
+      "col": 1,
+      "direction": "across",
+      "answer": "TRACE",
+      "clue": "Hint – copy through thin paper"
+    },
+    {
+      "row": 8,
+      "col": 1,
+      "direction": "down",
+      "answer": "TRITE",
+      "clue": "Hackneyed"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "CORD",
+      "clue": "String"
+    },
+    {
+      "row": 9,
+      "col": 6,
+      "direction": "across",
+      "answer": "SOFT",
+      "clue": "Gentle"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "down",
+      "answer": "FEAR",
+      "clue": "Dread"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "WILY",
+      "clue": "Crafty"
+    },
+    {
+      "row": 11,
+      "col": 5,
+      "direction": "across",
+      "answer": "IMMATURE",
+      "clue": "Childish"
     },
     {
       "row": 12,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "MULTIPLY",
-      "clue": "Increase in number"
+      "answer": "VERSE",
+      "clue": "Poetry"
     }
   ]
 }

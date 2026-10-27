@@ -8,183 +8,183 @@
       "row": 0,
       "col": 1,
       "direction": "down",
-      "answer": "URGE",
-      "clue": "Impulse – press"
+      "answer": "MARMALADE",
+      "clue": "Orange preserve"
     },
     {
       "row": 0,
       "col": 3,
       "direction": "down",
-      "answer": "APPEAR",
-      "clue": "Turn up"
+      "answer": "YIELDING",
+      "clue": "Soft"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "SAME",
+      "clue": "Identical"
     },
     {
       "row": 1,
       "col": 0,
       "direction": "across",
-      "answer": "PROPOSE",
-      "clue": "Suggest – pop the question"
+      "answer": "BARITONE",
+      "clue": "Male voice"
     },
     {
       "row": 1,
-      "col": 12,
+      "col": 6,
       "direction": "down",
-      "answer": "LAY",
-      "clue": "Put down – non-clerical"
+      "answer": "NOD",
+      "clue": "Bow of the head"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "across",
+      "answer": "PEA",
+      "clue": "Green legume"
     },
     {
       "row": 2,
-      "col": 7,
+      "col": 8,
       "direction": "down",
-      "answer": "CONJUGATE",
-      "clue": "List the forms of a verb"
+      "answer": "TRAP",
+      "clue": "Snare"
     },
     {
       "row": 3,
-      "col": 0,
+      "col": 3,
       "direction": "across",
-      "answer": "REVERSION",
-      "clue": "Return to a former state"
+      "answer": "LADDER",
+      "clue": "Stocking run – rungs"
     },
     {
       "row": 3,
-      "col": 0,
+      "col": 5,
       "direction": "down",
-      "answer": "RUST",
-      "clue": "Corrosion"
+      "answer": "DESIGNATE",
+      "clue": "Name"
     },
     {
       "row": 3,
       "col": 10,
       "direction": "across",
-      "answer": "SPY",
-      "clue": "Agent"
+      "answer": "USE",
+      "clue": "Employ"
     },
     {
       "row": 3,
       "col": 11,
       "direction": "down",
-      "answer": "PLASTIC",
-      "clue": "Credit cards, informally"
+      "answer": "SMOTHER",
+      "clue": "Suffocate"
     },
     {
-      "row": 5,
+      "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "SCARF",
-      "clue": "Neckwear – wolf down"
+      "answer": "RAID",
+      "clue": "Swoop"
     },
     {
       "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "ADHERE",
-      "clue": "Stick"
-    },
-    {
-      "row": 5,
-      "col": 9,
+      "col": 5,
       "direction": "across",
-      "answer": "SLAP",
-      "clue": "Smack"
+      "answer": "SOUP",
+      "clue": "Starter in a bowl"
     },
     {
       "row": 5,
-      "col": 9,
-      "direction": "down",
-      "answer": "SHIELD",
-      "clue": "Guard"
+      "col": 10,
+      "direction": "across",
+      "answer": "BOW",
+      "clue": "Ribbon knot – ship's front"
     },
     {
       "row": 6,
-      "col": 6,
+      "col": 0,
       "direction": "across",
-      "answer": "PUSH",
-      "clue": "Shove"
+      "answer": "DAWN",
+      "clue": "Daybreak"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "PUNGENT",
+      "clue": "Acrid"
     },
     {
       "row": 7,
-      "col": 2,
+      "col": 3,
       "direction": "across",
-      "answer": "HAIR",
-      "clue": "Locks"
+      "answer": "GAG",
+      "clue": "Joke – silence"
     },
     {
       "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "DIE",
-      "clue": "Perish – cube for games"
+      "answer": "SET",
+      "clue": "Put – group"
     },
     {
       "row": 8,
-      "col": 0,
+      "col": 7,
+      "direction": "across",
+      "answer": "TENDER",
+      "clue": "Sore – loving"
+    },
+    {
+      "row": 8,
+      "col": 7,
       "direction": "down",
-      "answer": "DITCH",
-      "clue": "Trench – dump"
-    },
-    {
-      "row": 8,
-      "col": 6,
-      "direction": "across",
-      "answer": "RAVE",
-      "clue": "All-night party"
+      "answer": "THIRD",
+      "clue": "Bronze position"
     },
     {
       "row": 9,
       "col": 4,
-      "direction": "down",
-      "answer": "MAIL",
-      "clue": "Post – chain armour"
+      "direction": "across",
+      "answer": "WASH",
+      "clue": "Clean"
     },
     {
-      "row": 9,
+      "row": 10,
+      "col": 1,
+      "direction": "down",
+      "answer": "BUS",
+      "clue": "Double-decker"
+    },
+    {
+      "row": 10,
+      "col": 7,
+      "direction": "across",
+      "answer": "ICE",
+      "clue": "Freeze – rink surface"
+    },
+    {
+      "row": 11,
+      "col": 0,
+      "direction": "across",
+      "answer": "JUGGLE",
+      "clue": "Keep balls in the air"
+    },
+    {
+      "row": 11,
       "col": 9,
       "direction": "across",
-      "answer": "LACE",
-      "clue": "Shoelace – delicate fabric"
-    },
-    {
-      "row": 9,
-      "col": 12,
-      "direction": "down",
-      "answer": "EAST",
-      "clue": "Where the sun rises"
-    },
-    {
-      "row": 10,
-      "col": 0,
-      "direction": "across",
-      "answer": "TOE",
-      "clue": "Foot digit"
-    },
-    {
-      "row": 10,
-      "col": 4,
-      "direction": "across",
-      "answer": "ASCEND",
-      "clue": "Climb"
-    },
-    {
-      "row": 10,
-      "col": 8,
-      "direction": "down",
-      "answer": "NUT",
-      "clue": "Kernel – loony"
+      "answer": "NEXT",
+      "clue": "Following"
     },
     {
       "row": 12,
-      "col": 2,
+      "col": 7,
       "direction": "across",
-      "answer": "SALT",
-      "clue": "Season – sailor"
-    },
-    {
-      "row": 12,
-      "col": 8,
-      "direction": "across",
-      "answer": "TAG",
-      "clue": "Label – chasing game"
+      "answer": "DOT",
+      "clue": "Spot"
     }
   ]
 }

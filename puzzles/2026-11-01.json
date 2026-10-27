@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
+      "col": 1,
+      "direction": "across",
+      "answer": "PATENT",
+      "clue": "Obvious – invention right"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "TACK",
+      "clue": "Pin – course"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "TOE",
+      "clue": "Foot digit"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "SHARP",
+      "clue": "Keen"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "STATIC",
+      "clue": "Motionless – crackle"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "PANTRY",
+      "clue": "Larder"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "CLINIC",
+      "clue": "Health centre"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "direction": "across",
+      "answer": "CAVE",
+      "clue": "Grotto – give in"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "direction": "down",
+      "answer": "VET",
+      "clue": "Animal doctor – check"
+    },
+    {
+      "row": 2,
       "col": 10,
       "direction": "across",
       "answer": "SUN",
       "clue": "Star at the centre of our system"
     },
     {
-      "row": 0,
+      "row": 2,
       "col": 10,
       "direction": "down",
-      "answer": "STEP",
-      "clue": "Pace – stair"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "NATURE",
-      "clue": "Character – the great outdoors"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "down",
-      "answer": "RAKE",
-      "clue": "Garden tool – libertine"
-    },
-    {
-      "row": 1,
-      "col": 3,
-      "direction": "across",
-      "answer": "PITCH",
-      "clue": "Sports field – tone"
-    },
-    {
-      "row": 1,
-      "col": 3,
-      "direction": "down",
-      "answer": "PART",
-      "clue": "Portion – role"
-    },
-    {
-      "row": 1,
-      "col": 6,
-      "direction": "down",
-      "answer": "CUE",
-      "clue": "Prompt – snooker stick"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "AREA",
-      "clue": "Region"
-    },
-    {
-      "row": 2,
-      "col": 8,
-      "direction": "across",
-      "answer": "QUEST",
-      "clue": "Search"
-    },
-    {
-      "row": 2,
-      "col": 8,
-      "direction": "down",
-      "answer": "QUINTET",
-      "clue": "Group of five"
-    },
-    {
-      "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "RISE",
-      "clue": "Ascend – pay increase"
-    },
-    {
-      "row": 3,
-      "col": 5,
-      "direction": "down",
-      "answer": "SPONSOR",
-      "clue": "Backer"
+      "answer": "SAY",
+      "clue": "Utter"
     },
     {
       "row": 4,
-      "col": 7,
+      "col": 4,
       "direction": "across",
-      "answer": "BID",
-      "clue": "Offer at auction"
+      "answer": "UTILITY",
+      "clue": "Usefulness – gas company"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "down",
+      "answer": "INTERPRET",
+      "clue": "Translate"
     },
     {
       "row": 5,
       "col": 2,
       "direction": "down",
-      "answer": "JET",
-      "clue": "Aircraft – spurt"
-    },
-    {
-      "row": 5,
-      "col": 10,
-      "direction": "across",
-      "answer": "ONE",
-      "clue": "Single unit"
-    },
-    {
-      "row": 5,
-      "col": 11,
-      "direction": "down",
-      "answer": "NERVOUS",
-      "clue": "Edgy"
+      "answer": "PLANET",
+      "clue": "Mars, say"
     },
     {
       "row": 6,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "LEARN",
-      "clue": "Study"
+      "answer": "CALL",
+      "clue": "Ring – name"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "down",
+      "answer": "SHERRY",
+      "clue": "Fortified wine"
     },
     {
       "row": 7,
-      "col": 5,
+      "col": 4,
       "direction": "across",
-      "answer": "SPEED",
-      "clue": "Pace"
+      "answer": "STEALTHY",
+      "clue": "Furtive"
     },
     {
-      "row": 9,
-      "col": 1,
-      "direction": "across",
-      "answer": "REPORT",
-      "clue": "Account – bang"
-    },
-    {
-      "row": 9,
-      "col": 1,
+      "row": 7,
+      "col": 8,
       "direction": "down",
-      "answer": "ROOT",
-      "clue": "Origin"
+      "answer": "LIVID",
+      "clue": "Furious"
     },
     {
-      "row": 9,
-      "col": 6,
-      "direction": "down",
-      "answer": "TREE",
-      "clue": "Oak, say"
-    },
-    {
-      "row": 9,
-      "col": 9,
-      "direction": "across",
-      "answer": "LOOK",
-      "clue": "Glance"
-    },
-    {
-      "row": 9,
-      "col": 9,
-      "direction": "down",
-      "answer": "LAME",
-      "clue": "Weak, as an excuse"
-    },
-    {
-      "row": 11,
+      "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "CONFINE",
-      "clue": "Restrict"
+      "answer": "JINX",
+      "clue": "Curse"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "down",
+      "answer": "JAW",
+      "clue": "Chin – chat"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "across",
+      "answer": "RAP",
+      "clue": "Knock – spoken music"
+    },
+    {
+      "row": 9,
+      "col": 12,
+      "direction": "down",
+      "answer": "PUNK",
+      "clue": "Rocker with a mohican"
+    },
+    {
+      "row": 10,
+      "col": 2,
+      "direction": "across",
+      "answer": "TAPER",
+      "clue": "Narrow – thin candle"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "down",
+      "answer": "PIE",
+      "clue": "Pastry dish"
     },
     {
       "row": 11,
-      "col": 9,
+      "col": 8,
       "direction": "across",
-      "answer": "MUSH",
-      "clue": "Pulp"
+      "answer": "DRY",
+      "clue": "Arid"
     },
     {
       "row": 12,
-      "col": 6,
+      "col": 1,
       "direction": "across",
-      "answer": "EDGE",
-      "clue": "Rim"
+      "answer": "DECENT",
+      "clue": "Respectable"
     }
   ]
 }

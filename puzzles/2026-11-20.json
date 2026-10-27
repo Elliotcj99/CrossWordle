@@ -8,183 +8,183 @@
       "row": 0,
       "col": 0,
       "direction": "across",
-      "answer": "RAT",
-      "clue": "Rodent – traitor"
-    },
-    {
-      "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "READ",
-      "clue": "Peruse"
+      "answer": "WHIM",
+      "clue": "Fancy"
     },
     {
       "row": 0,
       "col": 2,
       "direction": "down",
-      "answer": "TEST",
-      "clue": "Exam"
+      "answer": "INN",
+      "clue": "Pub"
     },
     {
       "row": 0,
-      "col": 8,
-      "direction": "across",
-      "answer": "SNIPE",
-      "clue": "Criticise – marsh bird"
-    },
-    {
-      "row": 0,
-      "col": 9,
+      "col": 6,
       "direction": "down",
-      "answer": "NEAR",
-      "clue": "Close"
+      "answer": "BUM",
+      "clue": "Bottom"
     },
     {
       "row": 0,
       "col": 11,
       "direction": "down",
-      "answer": "PREDICATE",
-      "clue": "Base"
+      "answer": "GALLEON",
+      "clue": "Spanish ship"
     },
     {
       "row": 1,
       "col": 5,
       "direction": "across",
-      "answer": "GUM",
-      "clue": "Chewy sweet – gingiva"
+      "answer": "GUARDIAN",
+      "clue": "Protector – newspaper"
     },
     {
       "row": 1,
-      "col": 7,
+      "col": 8,
       "direction": "down",
-      "answer": "MEASURE",
-      "clue": "Gauge – step"
+      "answer": "RIP",
+      "clue": "Tear"
     },
     {
       "row": 2,
-      "col": 7,
+      "col": 0,
       "direction": "across",
-      "answer": "ENAMEL",
-      "clue": "Glossy paint – tooth coating"
+      "answer": "BENCH",
+      "clue": "Long seat"
     },
     {
-      "row": 3,
-      "col": 2,
-      "direction": "across",
-      "answer": "TYPE",
-      "clue": "Kind"
-    },
-    {
-      "row": 3,
-      "col": 4,
+      "row": 2,
+      "col": 0,
       "direction": "down",
-      "answer": "PRIZE",
-      "clue": "Award"
+      "answer": "BOSOM",
+      "clue": "Chest"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "direction": "down",
+      "answer": "CITATION",
+      "clue": "Quotation – honour"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "down",
+      "answer": "WILD",
+      "clue": "Untamed"
     },
     {
       "row": 4,
-      "col": 10,
-      "direction": "across",
-      "answer": "HIT",
-      "clue": "Strike – chart-topper"
-    },
-    {
-      "row": 5,
       "col": 0,
       "direction": "across",
-      "answer": "WEB",
-      "clue": "Spider's trap – internet"
+      "answer": "SUSTAIN",
+      "clue": "Maintain"
     },
     {
-      "row": 5,
-      "col": 0,
-      "direction": "down",
-      "answer": "WORDS",
-      "clue": "Lyrics"
-    },
-    {
-      "row": 5,
-      "col": 6,
+      "row": 4,
+      "col": 9,
       "direction": "across",
-      "answer": "BUFF",
-      "clue": "Enthusiast – polish"
+      "answer": "SHED",
+      "clue": "Outbuilding – cast off"
     },
     {
-      "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "RAISE",
-      "clue": "Lift – pay rise"
-    },
-    {
-      "row": 7,
-      "col": 3,
+      "row": 4,
+      "col": 9,
       "direction": "down",
-      "answer": "STABLE",
-      "clue": "Steady – horse's home"
+      "answer": "SCOUNDREL",
+      "clue": "Rogue"
     },
     {
-      "row": 7,
-      "col": 6,
-      "direction": "across",
-      "answer": "RESORT",
-      "clue": "Holiday spot – last option"
-    },
-    {
-      "row": 7,
-      "col": 6,
-      "direction": "down",
-      "answer": "ROLLER",
-      "clue": "Hair curler – lawn smoother"
-    },
-    {
-      "row": 9,
+      "row": 6,
       "col": 3,
       "direction": "across",
-      "answer": "ANALYSIS",
-      "clue": "Close examination"
+      "answer": "TIDE",
+      "clue": "Ebb and flow"
     },
     {
-      "row": 9,
+      "row": 6,
       "col": 8,
+      "direction": "across",
+      "answer": "JOINT",
+      "clue": "Knee, say – shared"
+    },
+    {
+      "row": 7,
+      "col": 7,
       "direction": "down",
-      "answer": "SEND",
-      "clue": "Post"
+      "answer": "BED",
+      "clue": "Place to sleep"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "BOTTLE",
+      "clue": "Flask – nerve"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "TOUGH",
+      "clue": "Hardy – difficult"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "across",
+      "answer": "NUT",
+      "clue": "Kernel – loony"
+    },
+    {
+      "row": 8,
+      "col": 11,
+      "direction": "down",
+      "answer": "TIE",
+      "clue": "Draw – neckwear"
     },
     {
       "row": 9,
-      "col": 10,
-      "direction": "down",
-      "answer": "SIT",
-      "clue": "Be seated – pose"
-    },
-    {
-      "row": 9,
-      "col": 12,
-      "direction": "down",
-      "answer": "BUY",
-      "clue": "Purchase"
-    },
-    {
-      "row": 11,
       "col": 1,
+      "direction": "down",
+      "answer": "BARE",
+      "clue": "Naked"
+    },
+    {
+      "row": 10,
+      "col": 0,
       "direction": "across",
-      "answer": "FILM",
-      "clue": "Movie"
+      "answer": "GAP",
+      "clue": "Space"
+    },
+    {
+      "row": 10,
+      "col": 9,
+      "direction": "across",
+      "answer": "REEF",
+      "clue": "Coral ridge"
     },
     {
       "row": 11,
-      "col": 10,
+      "col": 5,
       "direction": "across",
-      "answer": "TOY",
-      "clue": "Plaything"
+      "answer": "GLAZE",
+      "clue": "Shiny coating"
     },
     {
       "row": 12,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "GRADE",
-      "clue": "Mark – rank"
+      "answer": "HEARTH",
+      "clue": "Fireside"
+    },
+    {
+      "row": 12,
+      "col": 9,
+      "direction": "across",
+      "answer": "LOST",
+      "clue": "Missing"
     }
   ]
 }

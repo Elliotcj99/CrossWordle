@@ -6,178 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 5,
+      "col": 1,
+      "direction": "across",
+      "answer": "AMPLE",
+      "clue": "Plenty"
+    },
+    {
+      "row": 0,
+      "col": 3,
       "direction": "down",
-      "answer": "MAROON",
-      "clue": "Strand – dark red"
+      "answer": "PET",
+      "clue": "Darling – stroke"
     },
     {
       "row": 0,
       "col": 7,
-      "direction": "across",
-      "answer": "CLUTCH",
-      "clue": "Grab – car pedal"
+      "direction": "down",
+      "answer": "GIN",
+      "clue": "Spirit with tonic"
     },
     {
       "row": 0,
-      "col": 7,
+      "col": 11,
       "direction": "down",
-      "answer": "CHEEK",
-      "clue": "Impudence"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "TRUE",
-      "clue": "Accurate"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "HONK",
-      "clue": "Toot"
+      "answer": "AMBULANCE",
+      "clue": "Emergency vehicle"
     },
     {
       "row": 1,
-      "col": 3,
-      "direction": "across",
-      "answer": "SMASH",
-      "clue": "Shatter – big hit"
+      "col": 0,
+      "direction": "down",
+      "answer": "JUDO",
+      "clue": "Martial art"
     },
     {
       "row": 1,
-      "col": 3,
-      "direction": "down",
-      "answer": "SCRAPE",
-      "clue": "Graze"
+      "col": 6,
+      "direction": "across",
+      "answer": "SITCOM",
+      "clue": "TV comedy"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "UNITE",
+      "clue": "Join"
     },
     {
       "row": 3,
-      "col": 2,
+      "col": 5,
+      "direction": "down",
+      "answer": "BAD",
+      "clue": "Naughty"
+    },
+    {
+      "row": 3,
+      "col": 8,
       "direction": "across",
-      "answer": "GROOVE",
-      "clue": "Channel – rhythm"
+      "answer": "SHOUT",
+      "clue": "Yell"
     },
     {
       "row": 3,
       "col": 9,
+      "direction": "down",
+      "answer": "HEATHER",
+      "clue": "Moorland plant"
+    },
+    {
+      "row": 4,
+      "col": 0,
       "direction": "across",
-      "answer": "DECK",
-      "clue": "Floor of a ship – pack of cards"
+      "answer": "OFFSTAGE",
+      "clue": "In the wings"
     },
     {
       "row": 4,
       "col": 1,
       "direction": "down",
-      "answer": "PAT",
-      "clue": "Tap"
+      "answer": "FULL",
+      "clue": "Packed"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "SCOUT",
+      "clue": "Lookout – talent spotter"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "down",
+      "answer": "EQUAL",
+      "clue": "Match"
     },
     {
       "row": 5,
       "col": 9,
       "direction": "across",
-      "answer": "BOIL",
-      "clue": "Heat to bubbling"
-    },
-    {
-      "row": 5,
-      "col": 9,
-      "direction": "down",
-      "answer": "BURNING",
-      "clue": "Fiery"
-    },
-    {
-      "row": 5,
-      "col": 11,
-      "direction": "down",
-      "answer": "IMAGE",
-      "clue": "Picture"
+      "answer": "AJAR",
+      "clue": "Slightly open"
     },
     {
       "row": 6,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "STEEL",
-      "clue": "Strong alloy – nerve"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "down",
-      "answer": "SUNSET",
-      "clue": "Dusk"
-    },
-    {
-      "row": 6,
-      "col": 2,
-      "direction": "down",
-      "answer": "ENJOY",
-      "clue": "Relish"
-    },
-    {
-      "row": 6,
-      "col": 4,
-      "direction": "down",
-      "answer": "LULL",
-      "clue": "Calm spell"
+      "answer": "LION",
+      "clue": "King of the jungle"
     },
     {
       "row": 6,
       "col": 6,
-      "direction": "down",
-      "answer": "KID",
-      "clue": "Child – tease"
+      "direction": "across",
+      "answer": "PUNT",
+      "clue": "Flat-bottomed boat – gamble"
     },
     {
-      "row": 7,
-      "col": 4,
+      "row": 8,
+      "col": 6,
       "direction": "across",
-      "answer": "UNIVERSAL",
-      "clue": "Worldwide"
+      "answer": "SLEEPER",
+      "clue": "Railway beam – overnight train"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "SOCK",
+      "clue": "Foot covering – punch"
+    },
+    {
+      "row": 8,
+      "col": 12,
+      "direction": "down",
+      "answer": "RACK",
+      "clue": "Shelf – torture frame"
     },
     {
       "row": 9,
       "col": 0,
-      "direction": "across",
-      "answer": "SHOAL",
-      "clue": "Group of fish"
-    },
-    {
-      "row": 9,
-      "col": 7,
-      "direction": "across",
-      "answer": "DRIVER",
-      "clue": "Chauffeur – golf club"
-    },
-    {
-      "row": 9,
-      "col": 7,
       "direction": "down",
-      "answer": "DRUM",
-      "clue": "Percussion instrument"
+      "answer": "LESS",
+      "clue": "Fewer"
     },
     {
       "row": 9,
-      "col": 12,
+      "col": 4,
       "direction": "down",
-      "answer": "RUIN",
-      "clue": "Destroy"
+      "answer": "SMUT",
+      "clue": "Filth"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "ENDEMIC",
+      "clue": "Native to an area"
+    },
+    {
+      "row": 10,
+      "col": 10,
+      "direction": "down",
+      "answer": "RUT",
+      "clue": "Groove"
     },
     {
       "row": 11,
-      "col": 5,
+      "col": 9,
       "direction": "across",
-      "answer": "YOUNG",
-      "clue": "Youthful"
+      "answer": "MUCK",
+      "clue": "Dirt"
     },
     {
       "row": 12,
-      "col": 10,
+      "col": 0,
       "direction": "across",
-      "answer": "CAN",
-      "clue": "Tin"
+      "answer": "SHIFTY",
+      "clue": "Evasive"
     }
   ]
 }

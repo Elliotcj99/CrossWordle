@@ -13,18 +13,19 @@ A crossword where every entry is solved as its own Wordle.
   answer shows how many times it appears. Grey tiles, and letters the answer has only once, show
   no number.
 - **Guesses** must be real words (in the word list), as in Wordle.
-- **Locks:** a green locks its cell on the grid for good, and the crossing entry shares it.
-  Guesses are never forced to use locked letters, so a player can fish for other letters; that
-  never changes the grid. An entry is solved only when its exact word is guessed, even if
-  crossings have already filled in every cell. Yellows and greys only apply
-  within their own entry.
-- **Guess budget:** one shared pool of 4 guesses per entry. Win by solving every entry before the
-  pool runs out.
+- **Locks:** an entry is solved only when its exact word is guessed. Only then do its letters go
+  on the grid, in green, for good, and the crossing entries share them. Greens from a guess that
+  doesn't solve the entry stay in that entry's guess rows. Guesses are never forced to use locked
+  letters, so a player can fish for other letters; that never changes the grid. Greens, yellows
+  and greys only apply within their own entry.
+- **Guess budget:** one shared pool of 8/3 guesses per entry (a third fewer than 4), rounded: 67
+  for a 25-entry puzzle. Win by solving every entry before the pool runs out.
 
 All of these rules are in `RuleSet` (`packages/engine/src/rules.ts`), and a puzzle file can
 override them. For example, `"rules": {"guessBudget": {"kind": "perEntry", "extraGuesses": 1}}`
-gives each entry its own limit of length + 1, and `"rules": {"realWordsOnly": false}` accepts
-any combination of letters as a guess.
+gives each entry its own limit of length + 1, `"rules": {"realWordsOnly": false}` accepts any
+combination of letters as a guess, and `"rules": {"lockGreens": true}` puts each green on the grid
+as soon as it is found.
 
 ## Repository layout
 
@@ -92,5 +93,6 @@ and `npm run test:e2e` before each commit.
 
 ## Known gaps
 
-- About 3,000 answers have hand-written clues, enough for about 120 days without repeating an
-  answer. Add more in `data/clues/quick.tsv` (see `data/clues/README.md`).
+- About 4,500 answers have hand-written clues, enough for about 170 days without repeating an
+  answer. There are no multi-word answers (such as AT A LOOSE END) yet: every guess must be a
+  single dictionary word of the entry's length. Add more in `data/clues/quick.tsv` (see `data/clues/README.md`).

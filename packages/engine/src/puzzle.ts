@@ -330,6 +330,7 @@ function ruleOverrideProblems(rules: unknown): string[] {
     'guessBudget',
     'duplicateCounts',
     'realWordsOnly',
+    'lockGreens',
   ]);
   for (const key of Object.keys(rules)) {
     if (!known.has(key)) problems.push(`"rules.${key}" is not a rule.`);
@@ -350,9 +351,12 @@ function ruleOverrideProblems(rules: unknown): string[] {
   if (rules.realWordsOnly !== undefined && typeof rules.realWordsOnly !== 'boolean') {
     problems.push('"rules.realWordsOnly" must be true or false.');
   }
+  if (rules.lockGreens !== undefined && typeof rules.lockGreens !== 'boolean') {
+    problems.push('"rules.lockGreens" must be true or false.');
+  }
   if (rules.guessBudget !== undefined && !isGuessBudget(rules.guessBudget)) {
     problems.push(
-      '"rules.guessBudget" must be {"kind":"shared","guessesPerEntry":n} or {"kind":"perEntry","extraGuesses":n}.',
+      '"rules.guessBudget" must be {"kind":"shared","guessesPerEntry":n} with n ≥ 1 or {"kind":"perEntry","extraGuesses":n}.',
     );
   }
   return problems;
@@ -360,7 +364,10 @@ function ruleOverrideProblems(rules: unknown): string[] {
 
 function isGuessBudget(value: unknown): value is GuessBudget {
   if (!isRecord(value)) return false;
-  if (value.kind === 'shared') return isPositiveInteger(value.guessesPerEntry);
+  if (value.kind === 'shared') {
+    const n = value.guessesPerEntry;
+    return typeof n === 'number' && Number.isFinite(n) && n >= 1;
+  }
   if (value.kind === 'perEntry') return isNonNegativeInteger(value.extraGuesses);
   return false;
 }

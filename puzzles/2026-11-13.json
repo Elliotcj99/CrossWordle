@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
+      "col": 0,
       "direction": "down",
-      "answer": "DREAM",
-      "clue": "Fantasy"
+      "answer": "GEL",
+      "clue": "Hair product – set"
     },
     {
       "row": 0,
-      "col": 7,
+      "col": 2,
       "direction": "across",
-      "answer": "DUET",
-      "clue": "Song for two"
+      "answer": "POPPY",
+      "clue": "Remembrance flower"
     },
     {
       "row": 0,
-      "col": 7,
+      "col": 2,
       "direction": "down",
-      "answer": "DRESSING",
-      "clue": "Vinaigrette – bandage"
+      "answer": "PAT",
+      "clue": "Tap"
     },
     {
       "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "GUT",
-      "clue": "Belly – instinct"
-    },
-    {
-      "row": 1,
-      "col": 1,
-      "direction": "down",
-      "answer": "NOTE",
-      "clue": "Memo – musical sound"
-    },
-    {
-      "row": 1,
       "col": 5,
+      "direction": "down",
+      "answer": "PHOBIA",
+      "clue": "Fear"
+    },
+    {
+      "row": 0,
+      "col": 8,
       "direction": "across",
-      "answer": "JAR",
-      "clue": "Pot – jolt"
+      "answer": "DUKE",
+      "clue": "Peer – fist"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "DIRT",
+      "clue": "Muck"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "KEEP",
+      "clue": "Retain – castle stronghold"
     },
     {
       "row": 2,
       "col": 0,
       "direction": "across",
-      "answer": "TOKEN",
-      "clue": "Symbol – voucher"
+      "answer": "LOT",
+      "clue": "Auction item – destiny"
     },
     {
       "row": 2,
-      "col": 7,
+      "col": 1,
+      "direction": "down",
+      "answer": "OWL",
+      "clue": "Wise old bird"
+    },
+    {
+      "row": 2,
+      "col": 4,
       "direction": "across",
-      "answer": "EXPECT",
-      "clue": "Anticipate"
-    },
-    {
-      "row": 2,
-      "col": 9,
-      "direction": "down",
-      "answer": "PAINT",
-      "clue": "Coat – daub"
-    },
-    {
-      "row": 2,
-      "col": 11,
-      "direction": "down",
-      "answer": "COMPENSATE",
-      "clue": "Make up for"
+      "answer": "MOLAR",
+      "clue": "Back tooth"
     },
     {
       "row": 3,
-      "col": 5,
-      "direction": "down",
-      "answer": "THUNDER",
-      "clue": "Rumble after lightning"
-    },
-    {
-      "row": 4,
-      "col": 0,
+      "col": 8,
       "direction": "across",
-      "answer": "BEAM",
-      "clue": "Shine – roof timber"
+      "answer": "TAPAS",
+      "clue": "Spanish small plates"
     },
     {
       "row": 4,
-      "col": 0,
+      "col": 7,
       "direction": "down",
-      "answer": "BOW",
-      "clue": "Ribbon knot – ship's front"
-    },
-    {
-      "row": 4,
-      "col": 2,
-      "direction": "down",
-      "answer": "AGREEMENT",
-      "clue": "Deal"
+      "answer": "TERMITE",
+      "clue": "Wood-eating insect"
     },
     {
       "row": 5,
-      "col": 5,
-      "direction": "across",
-      "answer": "UNION",
-      "clue": "Merger – workers' body"
-    },
-    {
-      "row": 6,
-      "col": 9,
-      "direction": "across",
-      "answer": "THEN",
-      "clue": "Next"
-    },
-    {
-      "row": 7,
-      "col": 1,
-      "direction": "across",
-      "answer": "WET",
-      "clue": "Damp"
-    },
-    {
-      "row": 7,
-      "col": 5,
-      "direction": "across",
-      "answer": "DIG",
-      "clue": "Excavate – jibe"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "across",
-      "answer": "COMFORT",
-      "clue": "Console"
-    },
-    {
-      "row": 9,
       "col": 0,
       "direction": "down",
-      "answer": "COPY",
-      "clue": "Duplicate"
+      "answer": "VISION",
+      "clue": "Sight – dream"
     },
     {
-      "row": 9,
+      "row": 5,
+      "col": 2,
+      "direction": "across",
+      "answer": "TIRADE",
+      "clue": "Rant"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "THINK",
+      "clue": "Ponder"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "across",
+      "answer": "CHIN",
+      "clue": "Jaw's point"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "down",
+      "answer": "COOKIE",
+      "clue": "Biscuit, in America"
+    },
+    {
+      "row": 5,
+      "col": 12,
+      "direction": "down",
+      "answer": "NEEDLE",
+      "clue": "Sewing tool – antagonise"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "STIFF",
+      "clue": "Rigid"
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "FICKLE",
+      "clue": "Capricious"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "across",
+      "answer": "OGRE",
+      "clue": "Monster"
+    },
+    {
+      "row": 8,
       "col": 6,
-      "direction": "down",
-      "answer": "TOSS",
-      "clue": "Flip"
-    },
-    {
-      "row": 9,
-      "col": 9,
       "direction": "across",
-      "answer": "SWAY",
-      "clue": "Rock – influence"
+      "answer": "SICK",
+      "clue": "Ill"
     },
     {
       "row": 10,
-      "col": 8,
+      "col": 3,
+      "direction": "across",
+      "answer": "SKATE",
+      "clue": "Rink blade – ray"
+    },
+    {
+      "row": 10,
+      "col": 9,
+      "direction": "across",
+      "answer": "EDGE",
+      "clue": "Rim"
+    },
+    {
+      "row": 10,
+      "col": 11,
       "direction": "down",
-      "answer": "PRY",
-      "clue": "Snoop"
-    },
-    {
-      "row": 11,
-      "col": 0,
-      "direction": "across",
-      "answer": "PONY",
-      "clue": "Small horse"
-    },
-    {
-      "row": 11,
-      "col": 8,
-      "direction": "across",
-      "answer": "REFER",
-      "clue": "Mention"
+      "answer": "GET",
+      "clue": "Obtain"
     },
     {
       "row": 12,
-      "col": 6,
+      "col": 0,
       "direction": "across",
-      "answer": "SHY",
-      "clue": "Bashful"
+      "answer": "LITTER",
+      "clue": "Rubbish – brood of puppies"
     }
   ]
 }

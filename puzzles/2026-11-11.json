@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "TOP",
-      "clue": "Summit – lid"
+      "col": 1,
+      "direction": "across",
+      "answer": "SERVICE",
+      "clue": "Church ceremony – car check-up"
     },
     {
-      "row": 1,
+      "row": 0,
       "col": 1,
       "direction": "down",
-      "answer": "SEARCH",
-      "clue": "Hunt"
+      "answer": "SHELTER",
+      "clue": "Refuge"
     },
     {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "MESSAGE",
-      "clue": "Note"
-    },
-    {
-      "row": 2,
+      "row": 0,
       "col": 3,
       "direction": "down",
-      "answer": "SCOUR",
-      "clue": "Scrub"
+      "answer": "RAT",
+      "clue": "Rodent – traitor"
     },
     {
-      "row": 2,
-      "col": 5,
-      "direction": "down",
-      "answer": "GINGER",
-      "clue": "Spice – redhead"
-    },
-    {
-      "row": 2,
-      "col": 8,
-      "direction": "across",
-      "answer": "PRICK",
-      "clue": "Jab with a needle"
-    },
-    {
-      "row": 2,
-      "col": 9,
-      "direction": "down",
-      "answer": "REPEAT",
-      "clue": "Rerun"
-    },
-    {
-      "row": 2,
-      "col": 11,
-      "direction": "down",
-      "answer": "CURL",
-      "clue": "Ringlet"
-    },
-    {
-      "row": 3,
-      "col": 7,
-      "direction": "down",
-      "answer": "SLASH",
-      "clue": "Cut – stroke"
-    },
-    {
-      "row": 4,
-      "col": 9,
-      "direction": "across",
-      "answer": "PARK",
-      "clue": "Green space – leave the car"
-    },
-    {
-      "row": 5,
-      "col": 3,
-      "direction": "across",
-      "answer": "UPGRADE",
-      "clue": "Improve"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "CHAR",
-      "clue": "Scorch – cuppa"
-    },
-    {
-      "row": 6,
-      "col": 12,
-      "direction": "down",
-      "answer": "GEM",
-      "clue": "Jewel"
-    },
-    {
-      "row": 7,
-      "col": 4,
-      "direction": "across",
-      "answer": "ARCH",
-      "clue": "Curved structure – mischievous"
-    },
-    {
-      "row": 7,
+      "row": 0,
       "col": 6,
       "direction": "down",
-      "answer": "CHECK",
-      "clue": "Verify"
+      "answer": "CIDER",
+      "clue": "Apple drink"
     },
     {
-      "row": 7,
+      "row": 0,
       "col": 9,
       "direction": "across",
-      "answer": "TUBE",
-      "clue": "Pipe – the Underground"
+      "answer": "MAP",
+      "clue": "Chart"
     },
     {
-      "row": 8,
-      "col": 1,
+      "row": 0,
+      "col": 9,
       "direction": "down",
-      "answer": "WHINE",
-      "clue": "Whimper"
+      "answer": "MUMPS",
+      "clue": "Swelling disease"
     },
     {
-      "row": 9,
-      "col": 1,
+      "row": 0,
+      "col": 11,
+      "direction": "down",
+      "answer": "POLAR",
+      "clue": "Arctic"
+    },
+    {
+      "row": 2,
+      "col": 0,
       "direction": "across",
       "answer": "HEAT",
       "clue": "Warmth – qualifying race"
     },
     {
-      "row": 9,
-      "col": 4,
-      "direction": "down",
-      "answer": "TWIN",
-      "clue": "One of two born together"
-    },
-    {
-      "row": 9,
-      "col": 6,
+      "row": 2,
+      "col": 5,
       "direction": "across",
-      "answer": "EARTHY",
-      "clue": "Unpretentious – crude"
+      "answer": "ODE",
+      "clue": "Keats poem"
     },
     {
-      "row": 9,
-      "col": 8,
+      "row": 2,
+      "col": 9,
+      "direction": "across",
+      "answer": "MILL",
+      "clue": "Grinder – factory"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "STAB",
+      "clue": "Attempt – knife"
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "direction": "across",
+      "answer": "PRESSURE",
+      "clue": "Stress"
+    },
+    {
+      "row": 4,
+      "col": 5,
       "direction": "down",
-      "answer": "RUT",
-      "clue": "Groove"
+      "answer": "PARITY",
+      "clue": "Equality"
     },
     {
-      "row": 9,
+      "row": 4,
       "col": 10,
       "direction": "down",
-      "answer": "HORN",
-      "clue": "Bull's spike – car's warning"
+      "answer": "UNDO",
+      "clue": "Unfasten – reverse"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "direction": "down",
+      "answer": "SAFETY",
+      "clue": "Security"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "across",
+      "answer": "WANDER",
+      "clue": "Roam"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "down",
+      "answer": "WHITE",
+      "clue": "Snowy"
+    },
+    {
+      "row": 6,
+      "col": 12,
+      "direction": "down",
+      "answer": "REASON",
+      "clue": "Cause"
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "direction": "across",
+      "answer": "LAVISH",
+      "clue": "Lush"
+    },
+    {
+      "row": 8,
+      "col": 9,
+      "direction": "down",
+      "answer": "DIRTY",
+      "clue": "Filthy"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "down",
+      "answer": "COD",
+      "clue": "Fish for chips"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "IBIS",
+      "clue": "Sacred bird of Egypt"
     },
     {
       "row": 10,
-      "col": 12,
-      "direction": "down",
-      "answer": "PAY",
-      "clue": "Wages"
+      "col": 0,
+      "direction": "across",
+      "answer": "FORT",
+      "clue": "Stronghold"
+    },
+    {
+      "row": 10,
+      "col": 6,
+      "direction": "across",
+      "answer": "BEER",
+      "clue": "Ale"
     },
     {
       "row": 11,
-      "col": 3,
-      "direction": "across",
-      "answer": "PICKET",
-      "clue": "Striker at the gates"
-    },
-    {
-      "row": 12,
-      "col": 0,
-      "direction": "across",
-      "answer": "LEG",
-      "clue": "Limb – stage of a journey"
-    },
-    {
-      "row": 12,
       "col": 9,
       "direction": "across",
-      "answer": "ONLY",
-      "clue": "Sole"
+      "answer": "TURN",
+      "clue": "Rotate – go"
+    },
+    {
+      "row": 12,
+      "col": 5,
+      "direction": "across",
+      "answer": "ALLEY",
+      "clue": "Narrow passage"
     }
   ]
 }

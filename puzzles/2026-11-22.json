@@ -6,185 +6,178 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "FAKE",
-      "clue": "Counterfeit"
-    },
-    {
-      "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "HERE",
-      "clue": "Present"
-    },
-    {
-      "row": 0,
-      "col": 8,
+      "col": 0,
       "direction": "across",
-      "answer": "STUD",
-      "clue": "Stallion – earring"
+      "answer": "BIZARRE",
+      "clue": "Weird"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "ABRUPT",
+      "clue": "Sudden – curt"
     },
     {
       "row": 0,
       "col": 8,
       "direction": "down",
-      "answer": "SLUMP",
-      "clue": "Collapse"
+      "answer": "HARD",
+      "clue": "Difficult – solid"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "REPOSE",
+      "clue": "Rest"
     },
     {
       "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "STAPLE",
-      "clue": "Basic item – wire fastener"
-    },
-    {
-      "row": 2,
       "col": 7,
       "direction": "across",
-      "answer": "SUBDUE",
-      "clue": "Overcome"
+      "answer": "DASH",
+      "clue": "Sprint – punctuation mark"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "down",
+      "answer": "HANG",
+      "clue": "Suspend"
     },
     {
       "row": 2,
-      "col": 10,
-      "direction": "down",
-      "answer": "DUMMY",
-      "clue": "Mannequin – baby's soother"
-    },
-    {
-      "row": 3,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "LEASE",
-      "clue": "Rental agreement"
+      "answer": "STIR",
+      "clue": "Mix – commotion"
     },
     {
-      "row": 3,
+      "row": 2,
       "col": 1,
       "direction": "down",
-      "answer": "LAPSE",
-      "clue": "Slip"
+      "answer": "TITTER",
+      "clue": "Giggle"
     },
     {
-      "row": 3,
-      "col": 4,
-      "direction": "down",
-      "answer": "SUPPLY",
-      "clue": "Provide"
-    },
-    {
-      "row": 4,
+      "row": 2,
       "col": 6,
       "direction": "down",
-      "answer": "STRENGTH",
-      "clue": "Power"
+      "answer": "PASTA",
+      "clue": "Penne, say"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "GARDEN",
+      "clue": "Plot with lawn and beds"
     },
     {
       "row": 4,
-      "col": 12,
-      "direction": "down",
-      "answer": "FILLING",
-      "clue": "Sandwich contents"
+      "col": 1,
+      "direction": "across",
+      "answer": "TAP",
+      "clue": "Water outlet – knock lightly"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "across",
+      "answer": "GAS",
+      "clue": "Fuel for a hob"
     },
     {
       "row": 5,
-      "col": 1,
+      "col": 3,
       "direction": "across",
-      "answer": "PLOP",
-      "clue": "Splash softly"
+      "answer": "TANTRUM",
+      "clue": "Hissy fit"
     },
     {
-      "row": 6,
-      "col": 4,
-      "direction": "across",
-      "answer": "PORTRAYAL",
-      "clue": "Depiction"
-    },
-    {
-      "row": 6,
+      "row": 5,
       "col": 9,
       "direction": "down",
-      "answer": "AWAY",
-      "clue": "Not at home"
+      "answer": "MINDLESS",
+      "clue": "Thoughtless"
+    },
+    {
+      "row": 6,
+      "col": 11,
+      "direction": "down",
+      "answer": "RECLAIM",
+      "clue": "Take back"
     },
     {
       "row": 7,
       "col": 0,
       "direction": "across",
-      "answer": "LEVEL",
-      "clue": "Flat – tier"
+      "answer": "BRAVE",
+      "clue": "Courageous"
     },
     {
       "row": 7,
       "col": 0,
       "direction": "down",
-      "answer": "LUMP",
-      "clue": "Swelling"
+      "answer": "BARGE",
+      "clue": "Canal boat – shove"
     },
     {
-      "row": 8,
-      "col": 8,
-      "direction": "across",
-      "answer": "BAY",
-      "clue": "Inlet"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "across",
-      "answer": "MIRE",
-      "clue": "Bog"
-    },
-    {
-      "row": 9,
+      "row": 7,
       "col": 2,
       "direction": "down",
-      "answer": "RIPE",
-      "clue": "Ready to eat"
+      "answer": "APPEAL",
+      "clue": "Charm – request to a higher court"
     },
     {
-      "row": 10,
-      "col": 4,
-      "direction": "down",
-      "answer": "RED",
-      "clue": "Colour of a pillar box"
-    },
-    {
-      "row": 10,
-      "col": 8,
-      "direction": "down",
-      "answer": "HOP",
-      "clue": "Jump on one leg"
-    },
-    {
-      "row": 10,
-      "col": 10,
+      "row": 7,
+      "col": 7,
       "direction": "across",
-      "answer": "BUG",
-      "clue": "Insect – irritate"
+      "answer": "CONVEY",
+      "clue": "Carry"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "across",
+      "answer": "MOST",
+      "clue": "Majority"
+    },
+    {
+      "row": 9,
+      "col": 6,
+      "direction": "down",
+      "answer": "SHOE",
+      "clue": "Footwear"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "LULL",
+      "clue": "Calm spell"
     },
     {
       "row": 10,
-      "col": 10,
-      "direction": "down",
-      "answer": "BIG",
-      "clue": "Large"
+      "col": 0,
+      "direction": "across",
+      "answer": "GREY",
+      "clue": "Silver-haired"
     },
     {
       "row": 11,
-      "col": 1,
+      "col": 5,
       "direction": "across",
-      "answer": "SPEECH",
-      "clue": "Address"
+      "answer": "BOWLS",
+      "clue": "Green game"
     },
     {
       "row": 12,
-      "col": 8,
+      "col": 1,
       "direction": "across",
-      "answer": "PIG",
-      "clue": "Hog"
+      "answer": "SLAP",
+      "clue": "Smack"
     }
   ]
 }

@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "STING",
-      "clue": "Bee's weapon – con"
+      "answer": "COST",
+      "clue": "Price"
     },
     {
       "row": 0,
-      "col": 3,
+      "col": 0,
       "direction": "down",
-      "answer": "SPIKE",
-      "clue": "Point"
+      "answer": "CODE",
+      "clue": "Cipher"
     },
     {
       "row": 0,
       "col": 5,
       "direction": "down",
-      "answer": "INDUCTION",
-      "clue": "Initiation"
+      "answer": "FRESCO",
+      "clue": "Wall painting"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 7,
       "direction": "down",
-      "answer": "SEED",
-      "clue": "Pip – rank in a tournament"
-    },
-    {
-      "row": 0,
-      "col": 12,
-      "direction": "down",
-      "answer": "GIFT",
-      "clue": "Present – talent"
+      "answer": "ENSEMBLE",
+      "clue": "Outfit – group of players"
     },
     {
       "row": 1,
-      "col": 0,
+      "col": 4,
       "direction": "across",
-      "answer": "HARP",
-      "clue": "Angel's instrument"
-    },
-    {
-      "row": 1,
-      "col": 1,
-      "direction": "down",
-      "answer": "ADOPT",
-      "clue": "Take on as your own"
-    },
-    {
-      "row": 1,
-      "col": 8,
-      "direction": "down",
-      "answer": "LAND",
-      "clue": "Ground – touch down"
+      "answer": "GRAND",
+      "clue": "Magnificent – a thousand pounds"
     },
     {
       "row": 2,
-      "col": 5,
-      "direction": "across",
-      "answer": "DAMAGE",
-      "clue": "Harm"
-    },
-    {
-      "row": 3,
       "col": 0,
       "direction": "across",
-      "answer": "BOOK",
-      "clue": "Reserve – novel"
+      "answer": "DRUM",
+      "clue": "Percussion instrument"
     },
     {
-      "row": 3,
-      "col": 10,
-      "direction": "across",
-      "answer": "DOT",
-      "clue": "Spot"
-    },
-    {
-      "row": 3,
-      "col": 11,
-      "direction": "down",
-      "answer": "OIL",
-      "clue": "Crude – lubricant"
-    },
-    {
-      "row": 4,
+      "row": 2,
       "col": 3,
-      "direction": "across",
-      "answer": "EXCLUDE",
-      "clue": "Leave out"
+      "direction": "down",
+      "answer": "MISS",
+      "clue": "Fail to hit – young lady"
     },
     {
-      "row": 5,
+      "row": 2,
       "col": 10,
-      "direction": "across",
-      "answer": "PLY",
-      "clue": "Layer – travel regularly"
+      "direction": "down",
+      "answer": "VIOLIN",
+      "clue": "Fiddle"
     },
     {
-      "row": 5,
+      "row": 2,
       "col": 12,
       "direction": "down",
-      "answer": "YIELD",
-      "clue": "Give way – harvest"
+      "answer": "PRANCE",
+      "clue": "Strut"
     },
     {
-      "row": 6,
-      "col": 2,
+      "row": 3,
+      "col": 3,
       "direction": "across",
-      "answer": "VARIABLE",
-      "clue": "Changeable"
+      "answer": "ISSUE",
+      "clue": "Matter – edition"
     },
     {
-      "row": 6,
-      "col": 2,
+      "row": 3,
+      "col": 9,
+      "direction": "across",
+      "answer": "PIER",
+      "clue": "Seaside jetty"
+    },
+    {
+      "row": 5,
+      "col": 1,
       "direction": "down",
-      "answer": "VEIL",
-      "clue": "Bride's face covering"
+      "answer": "EGOTIST",
+      "clue": "Self-centred person"
     },
     {
-      "row": 8,
+      "row": 5,
+      "col": 3,
+      "direction": "across",
+      "answer": "SNOWBALL",
+      "clue": "Grow rapidly – winter missile"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "JOB",
+      "clue": "Post"
+    },
+    {
+      "row": 7,
       "col": 4,
       "direction": "across",
-      "answer": "ENDEMIC",
-      "clue": "Native to an area"
+      "answer": "CITE",
+      "clue": "Quote"
     },
     {
-      "row": 8,
+      "row": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "CHIMP",
+      "clue": "Ape, for short"
+    },
+    {
+      "row": 7,
       "col": 6,
       "direction": "down",
-      "answer": "DEEP",
-      "clue": "Profound"
+      "answer": "TITLE",
+      "clue": "Name – championship"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "across",
+      "answer": "KNEE",
+      "clue": "Leg joint"
     },
     {
       "row": 8,
       "col": 8,
       "direction": "down",
-      "answer": "MOLAR",
-      "clue": "Back tooth"
+      "answer": "LANKY",
+      "clue": "Gangling"
     },
     {
       "row": 9,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "OLD",
-      "clue": "Aged"
+      "answer": "BID",
+      "clue": "Offer at auction"
     },
     {
       "row": 9,
-      "col": 1,
-      "direction": "down",
-      "answer": "OVER",
-      "clue": "Finished – six balls"
+      "col": 6,
+      "direction": "across",
+      "answer": "TRASH",
+      "clue": "Rubbish"
     },
     {
       "row": 9,
-      "col": 3,
+      "col": 10,
       "direction": "down",
-      "answer": "DASH",
-      "clue": "Sprint – punctuation mark"
+      "answer": "HAVE",
+      "clue": "Own"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 10,
       "direction": "across",
-      "answer": "DEFLECT",
-      "clue": "Divert"
+      "answer": "AIR",
+      "clue": "Tune – what we breathe"
+    },
+    {
+      "row": 10,
+      "col": 12,
+      "direction": "down",
+      "answer": "ROW",
+      "clue": "Line – argument"
     },
     {
       "row": 11,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "VERSE",
-      "clue": "Poetry"
+      "answer": "TEMPLE",
+      "clue": "Place of worship – side of the head"
     },
     {
       "row": 12,
       "col": 7,
       "direction": "across",
-      "answer": "CREATE",
-      "clue": "Make"
+      "answer": "LYRE",
+      "clue": "Ancient harp"
     }
   ]
 }

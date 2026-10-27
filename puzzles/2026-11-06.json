@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "BAD",
-      "clue": "Naughty"
-    },
-    {
-      "row": 0,
-      "col": 2,
-      "direction": "across",
-      "answer": "JUGGLE",
-      "clue": "Keep balls in the air"
-    },
-    {
-      "row": 0,
       "col": 2,
       "direction": "down",
-      "answer": "JAB",
-      "clue": "Poke – injection"
+      "answer": "GOAL",
+      "clue": "Net result"
     },
     {
       "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "LET",
-      "clue": "Allow – rent out"
-    },
-    {
-      "row": 1,
-      "col": 8,
-      "direction": "down",
-      "answer": "WIND",
-      "clue": "Breeze – coil"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "DAB",
-      "clue": "Pat – flatfish"
-    },
-    {
-      "row": 2,
-      "col": 4,
-      "direction": "across",
-      "answer": "ENTAIL",
-      "clue": "Involve"
-    },
-    {
-      "row": 2,
       "col": 5,
-      "direction": "down",
-      "answer": "NARROW",
-      "clue": "Thin"
-    },
-    {
-      "row": 3,
-      "col": 10,
-      "direction": "down",
-      "answer": "JAM",
-      "clue": "Preserve – traffic snarl-up"
-    },
-    {
-      "row": 4,
-      "col": 1,
-      "direction": "down",
-      "answer": "FREEZE",
-      "clue": "Turn to ice"
-    },
-    {
-      "row": 4,
-      "col": 3,
-      "direction": "down",
-      "answer": "IMPORTANT",
-      "clue": "Significant"
-    },
-    {
-      "row": 4,
-      "col": 8,
       "direction": "across",
-      "answer": "DRAB",
-      "clue": "Dreary"
+      "answer": "SOMBRE",
+      "clue": "Gloomy"
     },
     {
-      "row": 5,
-      "col": 1,
-      "direction": "across",
-      "answer": "RAM",
-      "clue": "Male sheep – butt"
-    },
-    {
-      "row": 5,
-      "col": 7,
-      "direction": "down",
-      "answer": "SLOP",
-      "clue": "Spill"
-    },
-    {
-      "row": 5,
-      "col": 12,
-      "direction": "down",
-      "answer": "BUM",
-      "clue": "Bottom"
-    },
-    {
-      "row": 6,
-      "col": 3,
-      "direction": "across",
-      "answer": "PEOPLE",
-      "clue": "Folk"
-    },
-    {
-      "row": 7,
-      "col": 0,
-      "direction": "across",
-      "answer": "ZERO",
-      "clue": "Nought"
-    },
-    {
-      "row": 7,
-      "col": 9,
-      "direction": "across",
-      "answer": "LOOM",
-      "clue": "Weaving frame – appear menacingly"
-    },
-    {
-      "row": 7,
-      "col": 11,
-      "direction": "down",
-      "answer": "ORGAN",
-      "clue": "Church instrument – liver, say"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "across",
-      "answer": "FEATURE",
-      "clue": "Characteristic – magazine article"
-    },
-    {
-      "row": 9,
-      "col": 0,
-      "direction": "down",
-      "answer": "FLUX",
-      "clue": "Constant change"
-    },
-    {
-      "row": 9,
-      "col": 5,
-      "direction": "down",
-      "answer": "RAID",
-      "clue": "Swoop"
-    },
-    {
-      "row": 9,
-      "col": 9,
-      "direction": "across",
-      "answer": "SIGN",
-      "clue": "Notice – omen"
-    },
-    {
-      "row": 9,
-      "col": 9,
-      "direction": "down",
-      "answer": "SKIP",
-      "clue": "Hop – miss out"
-    },
-    {
-      "row": 10,
+      "row": 0,
       "col": 7,
       "direction": "down",
       "answer": "MAT",
       "clue": "Rug"
     },
     {
-      "row": 11,
-      "col": 2,
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "RUM",
+      "clue": "Pirate's drink – odd"
+    },
+    {
+      "row": 1,
+      "col": 1,
       "direction": "across",
-      "answer": "INDICATION",
-      "clue": "Sign"
+      "answer": "WORM",
+      "clue": "Wriggler in the soil"
+    },
+    {
+      "row": 1,
+      "col": 4,
+      "direction": "down",
+      "answer": "MANGO",
+      "clue": "Tropical fruit"
+    },
+    {
+      "row": 1,
+      "col": 11,
+      "direction": "down",
+      "answer": "ALTO",
+      "clue": "Voice between soprano and tenor"
+    },
+    {
+      "row": 2,
+      "col": 9,
+      "direction": "across",
+      "answer": "MELT",
+      "clue": "Thaw"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "SILENT",
+      "clue": "Quiet"
+    },
+    {
+      "row": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "COPY",
+      "clue": "Duplicate"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "across",
+      "answer": "SORROW",
+      "clue": "Grief"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "down",
+      "answer": "RECKON",
+      "clue": "Think"
+    },
+    {
+      "row": 4,
+      "col": 12,
+      "direction": "down",
+      "answer": "WARDROBE",
+      "clue": "Clothes cupboard"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "PURPOSE",
+      "clue": "Aim"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "POPLAR",
+      "clue": "Tall slender tree"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "down",
+      "answer": "PUB",
+      "clue": "Local"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "down",
+      "answer": "SHORE",
+      "clue": "Coast"
+    },
+    {
+      "row": 7,
+      "col": 3,
+      "direction": "across",
+      "answer": "BLOOD",
+      "clue": "Red stuff in your veins"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "CAUSE",
+      "clue": "Reason"
+    },
+    {
+      "row": 8,
+      "col": 10,
+      "direction": "across",
+      "answer": "OAR",
+      "clue": "Rowing blade"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "AID",
+      "clue": "Help"
+    },
+    {
+      "row": 9,
+      "col": 2,
+      "direction": "down",
+      "answer": "DULL",
+      "clue": "Boring"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "across",
+      "answer": "CERTAIN",
+      "clue": "Sure"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "down",
+      "answer": "CURT",
+      "clue": "Brusque"
+    },
+    {
+      "row": 11,
+      "col": 1,
+      "direction": "across",
+      "answer": "SLUR",
+      "clue": "Insult – mumble"
+    },
+    {
+      "row": 11,
+      "col": 6,
+      "direction": "across",
+      "answer": "RESOLVE",
+      "clue": "Settle"
     }
   ]
 }

@@ -22,7 +22,7 @@ test('shows every clue', async ({ page }) => {
 test('rejects words that are not in the word list without using a guess', async ({ page }) => {
   await guess(page, 'LEVXL');
   await expect(panel(page).getByText('Not in the word list.')).toBeVisible();
-  await expect(panel(page).getByText('36 of 36 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('24 of 24 guesses left')).toBeVisible();
 
   // The letters stay so the player can fix them.
   await page.keyboard.press('Backspace');
@@ -34,22 +34,26 @@ test('rejects words that are not in the word list without using a guess', async 
 test('accepts newer words from the British list', async ({ page }) => {
   // EMAIL and PODCAST are in the SCOWL British list but not in ENABLE.
   await guess(page, 'EMAIL');
-  await expect(panel(page).getByText('35 of 36 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('23 of 24 guesses left')).toBeVisible();
   await clue(page, 'Resolved, as a dispute').click();
   await guess(page, 'PODCAST');
-  await expect(panel(page).getByText('34 of 36 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('22 of 24 guesses left')).toBeVisible();
 });
 
-test('lets a guess fish with other letters, and the grid keeps its greens', async ({ page }) => {
+test('lets a guess fish with other letters, and keeps greens off the grid', async ({ page }) => {
   await guess(page, 'EERIE'); // the second E is green
   const grid = page.getByRole('group', { name: /Crossword grid/ });
-  await expect(grid.getByRole('button', { name: 'row 1, column 2, E' })).toBeVisible();
+  await expect(grid.getByRole('button', { name: 'row 1, column 2, empty' })).toBeVisible();
 
   // The next guess starts empty, like Wordle, and can drop the green E.
   const next = panel(page).getByRole('listitem', { name: 'Current guess' });
   await expect(next).toHaveText('');
   await guess(page, 'TABLE');
-  await expect(panel(page).getByText('34 of 36 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('22 of 24 guesses left')).toBeVisible();
+  await expect(grid.getByRole('button', { name: 'row 1, column 2, empty' })).toBeVisible();
+
+  // Solving the entry puts it on the grid.
+  await guess(page, 'LEVEL');
   await expect(grid.getByRole('button', { name: 'row 1, column 2, E' })).toBeVisible();
 });
 
@@ -61,7 +65,7 @@ test('badges green and yellow tiles whose letter the answer repeats', async ({ p
   await expect(row.getByLabel('E, not in the word')).toHaveCount(1);
 });
 
-test('locks greens into the crossing entry', async ({ page }) => {
+test('locks a solved entry into its crossings', async ({ page }) => {
   await guess(page, 'LEVEL');
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
 
@@ -109,7 +113,7 @@ test('starts fresh when saved progress no longer fits the puzzle', async ({ page
     ),
   );
   await page.reload();
-  await expect(panel(page).getByText('36 of 36 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('24 of 24 guesses left')).toBeVisible();
 });
 
 test('tells the player what a guess found', async ({ page }) => {

@@ -3,7 +3,7 @@
 Daily puzzles take their answers and clues from `quick.tsv` and `edits.tsv`. Later lists
 override earlier ones.
 
-- `quick.tsv`: about 3,000 familiar words, each with a clue written for CrossWordle in the style of
+- `quick.tsv`: about 4,500 answers, each with a clue written for CrossWordle in the style of
   a British quick crossword (below). Edit it by hand.
 - `edits.tsv`: hand edits. Replace a clue (`ANSWER<tab>Better clue`), add an answer, or take an
   answer out of the pool (`ANSWER<tab>-`).
@@ -30,10 +30,15 @@ definitions a solver can get from general knowledge, never cryptic wordplay or c
   validator reject these).
 - **Original.** Write new clues; never copy one from a newspaper.
 
-Answers were chosen as the 3,000 pool words with the most WordNet senses, a good guide to how
-familiar a word is. Puzzles still fill to 24 to 26 entries from that pool after excluding 60 days
-of answers, and 3,000 answers last about 120 days before one has to repeat. To add answers, pick
-familiar words from `wordnet.tsv` and clue them in `quick.tsv`.
+Answers should be the kind newspaper setters use, not just the commonest words. The pool started
+as the 3,000 words with the most WordNet senses (familiar, but mostly abstract and easy to clue
+with a one-word synonym), less dull derived forms such as SHORTNESS and HEAVILY. About 1,600
+answers were then added for variety: animals, food, household things, clothes, music and the
+arts, sport, nature, the body, people, places, materials and colours, and livelier words such as
+ASTUTE, GAZEBO and MIASMA. Prefer adding words like these to more abstract ones.
+
+Puzzles fill to 24 to 26 entries from the pool after excluding 60 days of answers, and about
+4,500 answers last about 170 days before one has to repeat.
 
 Each line is `ANSWER<tab>clue`. Blank lines and lines starting with `#` are ignored. Answers must
 be in the guess dictionary (`data/wordlists`), and a clue may not contain its answer.

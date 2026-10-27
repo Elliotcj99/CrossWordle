@@ -6,185 +6,185 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 1,
       "direction": "down",
-      "answer": "ACE",
-      "clue": "Serve that can't be returned"
+      "answer": "WINCE",
+      "clue": "Flinch"
     },
     {
       "row": 0,
-      "col": 2,
+      "col": 10,
       "direction": "down",
-      "answer": "COLOURED",
-      "clue": "Tinted"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "across",
-      "answer": "SOFT",
-      "clue": "Gentle"
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "down",
-      "answer": "STEW",
-      "clue": "Casserole – fret"
-    },
-    {
-      "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "FEAR",
-      "clue": "Dread"
+      "answer": "BUBBLE",
+      "clue": "Fizz"
     },
     {
       "row": 1,
       "col": 0,
       "direction": "across",
-      "answer": "CLOUT",
-      "clue": "Influence"
+      "answer": "LIMBO",
+      "clue": "Uncertain state – dance under a bar"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "down",
+      "answer": "BERRY",
+      "clue": "Small fruit"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "direction": "across",
+      "answer": "BOGUS",
+      "clue": "Phoney"
     },
     {
       "row": 1,
       "col": 8,
-      "direction": "across",
-      "answer": "WALK",
-      "clue": "Stroll"
+      "direction": "down",
+      "answer": "OCEAN",
+      "clue": "Atlantic, say"
     },
     {
-      "row": 1,
-      "col": 10,
+      "row": 2,
+      "col": 5,
       "direction": "down",
-      "answer": "LEAN",
-      "clue": "Thin – tilt"
+      "answer": "GIFT",
+      "clue": "Present – talent"
+    },
+    {
+      "row": 2,
+      "col": 12,
+      "direction": "down",
+      "answer": "LAY",
+      "clue": "Put down – non-clerical"
     },
     {
       "row": 3,
       "col": 1,
       "direction": "across",
-      "answer": "FORWARD",
-      "clue": "Ahead – striker"
+      "answer": "CARRIAGE",
+      "clue": "Coach – posture"
     },
     {
       "row": 3,
-      "col": 5,
-      "direction": "down",
-      "answer": "AID",
-      "clue": "Help"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "down",
-      "answer": "RESPECT",
-      "clue": "Esteem"
-    },
-    {
-      "row": 4,
-      "col": 8,
+      "col": 10,
       "direction": "across",
-      "answer": "MIND",
-      "clue": "Intellect – look after"
+      "answer": "BRA",
+      "clue": "Supporting garment"
     },
     {
-      "row": 4,
-      "col": 11,
+      "row": 5,
+      "col": 5,
+      "direction": "across",
+      "answer": "THUNDER",
+      "clue": "Rumble after lightning"
+    },
+    {
+      "row": 5,
+      "col": 9,
       "direction": "down",
-      "answer": "DAMN",
-      "clue": "Curse"
+      "answer": "DELTA",
+      "clue": "River mouth – Greek D"
     },
     {
       "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "SWELL",
-      "clue": "Grow – wave"
+      "col": 2,
+      "direction": "down",
+      "answer": "FLOW",
+      "clue": "Stream"
     },
     {
       "row": 6,
       "col": 4,
       "direction": "down",
-      "answer": "LIBRARY",
-      "clue": "Book lending place"
-    },
-    {
-      "row": 6,
-      "col": 6,
-      "direction": "down",
-      "answer": "CROWD",
-      "clue": "Throng"
-    },
-    {
-      "row": 6,
-      "col": 9,
-      "direction": "down",
-      "answer": "POCKET",
-      "clue": "Pouch – snooker hole"
+      "answer": "INDENT",
+      "clue": "Start a line further in"
     },
     {
       "row": 7,
-      "col": 8,
+      "col": 0,
       "direction": "across",
-      "answer": "POINT",
-      "clue": "Tip – purpose"
+      "answer": "COLONY",
+      "clue": "Settlement"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "down",
+      "answer": "CANAPE",
+      "clue": "Party nibble"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "across",
+      "answer": "LOOP",
+      "clue": "Ring"
     },
     {
       "row": 7,
       "col": 12,
       "direction": "down",
-      "answer": "TUG",
-      "clue": "Pull – small towing boat"
+      "answer": "PLANE",
+      "clue": "Aircraft – carpenter's tool"
     },
     {
       "row": 8,
-      "col": 4,
+      "col": 6,
       "direction": "across",
-      "answer": "BOOT",
-      "clue": "Car's luggage space"
+      "answer": "SORT",
+      "clue": "Kind – arrange"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "SLANG",
+      "clue": "Informal language"
     },
     {
       "row": 9,
-      "col": 0,
+      "col": 2,
       "direction": "across",
-      "answer": "CRY",
-      "clue": "Weep"
+      "answer": "WHEEL",
+      "clue": "Tyre holder – rotate"
     },
     {
-      "row": 10,
-      "col": 3,
+      "row": 9,
+      "col": 9,
       "direction": "across",
-      "answer": "MANDATE",
-      "clue": "Authority"
+      "answer": "AREA",
+      "clue": "Region"
+    },
+    {
+      "row": 9,
+      "col": 10,
+      "direction": "down",
+      "answer": "RUB",
+      "clue": "Massage"
     },
     {
       "row": 10,
-      "col": 7,
-      "direction": "down",
-      "answer": "ARM",
-      "clue": "Limb"
-    },
-    {
-      "row": 10,
-      "col": 11,
-      "direction": "down",
-      "answer": "FLY",
-      "clue": "Soar – zip"
+      "col": 6,
+      "direction": "across",
+      "answer": "ADD",
+      "clue": "Total up"
     },
     {
       "row": 11,
-      "col": 9,
+      "col": 0,
       "direction": "across",
-      "answer": "TILT",
-      "clue": "Lean"
+      "answer": "PAD",
+      "clue": "Notebook – flat"
     },
     {
       "row": 12,
-      "col": 0,
+      "col": 6,
       "direction": "across",
-      "answer": "PARTY",
-      "clue": "Celebration"
+      "answer": "GLUM",
+      "clue": "Morose"
     }
   ]
 }
