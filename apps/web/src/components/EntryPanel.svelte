@@ -25,6 +25,8 @@
     hinting: boolean;
     oncrosswordclue: () => void;
     onwordleclue: () => void;
+    onprev: () => void;
+    onnext: () => void;
     message: string;
   }
 
@@ -43,6 +45,8 @@
     hinting,
     oncrosswordclue,
     onwordleclue,
+    onprev,
+    onnext,
     message,
   }: Props = $props();
 
@@ -76,10 +80,14 @@
 </script>
 
 <div class="panel">
-  <p class="eyebrow">
-    {entry.number}
-    {entry.direction === 'across' ? 'Across' : 'Down'} · {entry.length} letters
-  </p>
+  <div class="entry-nav">
+    <button type="button" class="nav" onclick={onprev} aria-label="Previous clue">‹ Prev</button>
+    <p class="eyebrow">
+      {entry.number}
+      {entry.direction === 'across' ? 'Across' : 'Down'} · {entry.length} letters
+    </p>
+    <button type="button" class="nav" onclick={onnext} aria-label="Next clue">Next ›</button>
+  </div>
   <h2 class="clue">{entry.clue}</h2>
   {#if secondClue}
     <p class="clue2"><span class="star" aria-hidden="true">*</span> {secondClue}</p>
@@ -179,8 +187,34 @@
     container-type: inline-size;
   }
 
+  .entry-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .nav {
+    flex: none;
+    padding: 6px 12px;
+    border: 2px solid var(--rule);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .nav:hover {
+    border-color: var(--ink-muted);
+  }
+
   .eyebrow {
     margin: 0;
+    text-align: center;
     font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.08em;

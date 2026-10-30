@@ -58,6 +58,7 @@
   let submitting = $state(false);
   let hinting = $state(false);
   let results = $state.raw(loadResults());
+  let boardEl = $state<HTMLElement>();
 
   const locks = $derived(lockedLetters(puzzle, game));
   const status = $derived(gameStatus(puzzle, game));
@@ -204,6 +205,24 @@
     select(puzzle.entries[0]!);
   }
 
+  /** The single-column phone layout, where the grid and the clue list are far apart. */
+  function isPhone(): boolean {
+    return typeof window !== 'undefined' && window.matchMedia('(max-width: 859px)').matches;
+  }
+
+  /** Moves to the next or previous entry in the puzzle's order (1, 2, 3…, across before down). */
+  function step(delta: number) {
+    const i = puzzle.entries.findIndex((e) => e.id === selectedId);
+    const count = puzzle.entries.length;
+    select(puzzle.entries[(i + delta + count) % count]!);
+  }
+
+  /** Selecting from the clue list jumps back up to the grid on a phone, to save scrolling. */
+  function selectFromClues(entry: ClientEntry) {
+    select(entry);
+    if (isPhone()) boardEl?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function onKeydown(event: KeyboardEvent) {
     if (event.ctrlKey || event.metaKey || event.altKey) return;
     if (event.key === 'Enter' || event.key === 'Backspace' || /^[A-Za-z]$/.test(event.key)) {
@@ -238,7 +257,7 @@
 {/if}
 
 <div class="layout">
-  <section class="board" aria-label="Crossword">
+  <section class="board" aria-label="Crossword" bind:this={boardEl}>
     <Grid
       {puzzle}
       {locks}
@@ -265,6 +284,8 @@
       {hinting}
       oncrosswordclue={revealCrosswordClue}
       onwordleclue={revealWordleClue}
+      onprev={() => step(-1)}
+      onnext={() => step(1)}
       {message}
     />
     <Keyboard marks={bestMarks(feedback.flat())} onkey={press} />
@@ -277,7 +298,7 @@
       {solvedIds}
       {guessCounts}
       shownClue2Ids={crosswordClueIds}
-      onselect={select}
+      onselect={selectFromClues}
     />
   </section>
 </div>
