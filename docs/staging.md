@@ -35,8 +35,8 @@ previews with Cloudflare Access:
    **production branch** is `main` (so only `main` goes live) and that preview deployments are
    enabled for other branches.
 3. In **Zero Trust → Access → Applications**, add a **Self-hosted** application covering the preview
-   hostnames (e.g. `*.<project>.pages.dev`), with a policy that **allows only your and Dad's
-   emails**. Previews now require an email login; `crosswordle.eyepeasea.org` (production) is
+   hostnames (e.g. `*.<project>.pages.dev`), with a policy that **allows only your and your
+   reviewers' emails**. Previews now require an email login; the production custom domain is
    unaffected.
 4. Open the preview URL, sign in, and test. Share the link only with people on the allowlist.
 
