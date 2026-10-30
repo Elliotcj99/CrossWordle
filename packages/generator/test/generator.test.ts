@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { loadPuzzle, type PuzzleFile } from '@crosswordle/engine';
 import { describe, expect, it } from 'vitest';
 import { candidatePool, parseClueLists } from '../src/clue-lists';
-import { addDays, dailyTitle, generateDaily, recentAnswers } from '../src/daily';
+import { addDays, dailyTitle, dateOf, generateDaily, recentAnswers } from '../src/daily';
 import { DEFAULT_LAYOUT, generateLayout, type Candidate } from '../src/layout';
 import { seededRandom } from '../src/random';
 import { clueFor, givesAway, type WordNet } from '../src/wordnet';
@@ -77,6 +77,31 @@ describe('daily puzzles', () => {
   it('is repeatable for a date', () => {
     const a: PuzzleFile = generateDaily('2026-11-05', pool, [], small)!;
     expect(generateDaily('2026-11-05', pool, [], small)).toEqual(a);
+  });
+
+  it('reads the play date from the end of an id, whatever the prefix', () => {
+    expect(dateOf('2026-10-24')).toBe('2026-10-24');
+    expect(dateOf('naughty-2026-10-24')).toBe('2026-10-24');
+    expect(dateOf('sample')).toBeUndefined();
+    expect(dateOf('2026-13-40')).toBeUndefined();
+  });
+
+  it('prefixes a collection and dedupes against it by date', () => {
+    const naming = { idPrefix: 'naughty-', titlePrefix: 'Naughty · ' };
+    const first = generateDaily('2026-10-24', pool, [], small, naming)!;
+    expect(first.id).toBe('naughty-2026-10-24');
+    expect(first.title).toBe('Naughty · Saturday 24 October 2026');
+
+    // A prefixed id dedupes against the day before, even though the id is not a bare date.
+    const second = generateDaily('2026-10-25', pool, [first], small, naming)!;
+    const used = new Set(first.entries.map((e) => e.answer));
+    expect(second.entries.some((e) => used.has(e.answer))).toBe(false);
+  });
+
+  it('seeds a different puzzle for a prefixed id than the bare date', () => {
+    const plain = generateDaily('2026-10-24', pool, [], small)!;
+    const prefixed = generateDaily('2026-10-24', pool, [], small, { idPrefix: 'naughty-' })!;
+    expect(prefixed.entries).not.toEqual(plain.entries);
   });
 });
 

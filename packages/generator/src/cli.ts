@@ -4,28 +4,32 @@ import { parseArgs } from 'node:util';
 import { loadPuzzle, parsePuzzleFile, type PuzzleFile } from '@crosswordle/engine';
 import { candidatePool, readClueLists } from './clue-lists';
 import { addDays, generateDaily, isDate } from './daily';
+import { DEFAULT_LAYOUT, type LayoutOptions } from './layout';
 import { publishFolder, readPuzzleFolder, type LoadedFile } from './puzzle-files';
 import { NOTICE_FILE, readWordLists, writeWordFiles } from './word-lists';
 import { clueFor, readWordNet } from './wordnet';
 
 const USAGE = `Usage:
-  crosswordle validate <folder> --words <folder>
+  (--words may be repeated to merge several word-list folders.)
+  crosswordle validate <folder> --words <folder>...
       Check every puzzle in a folder, including that its answers are in the word lists
-  crosswordle publish --in <folder> --words <folder> --notice <file> --out <folder>
+  crosswordle publish --in <folder> --words <folder>... --notice <file> --out <folder>
                       --answers-out <file> [--clues2 <file>...]
       Validate and write puzzles for the site: answer-free files (and the clues' licence notice)
       to --out, and the answers bundle for the scoring Function to --answers-out. --clues2 adds
       an optional second clue per answer (for the Crossword-clue hint), later lists winning.
   crosswordle reveal <id> --puzzles <folder>
       Print one puzzle's answers (clue -> answer), for checking a puzzle locally
-  crosswordle words --in <folder> --out <folder>
+  crosswordle words --words <folder>... --out <folder>
       Write the guess dictionary for the site, one file per word length, plus its licence notice
-  crosswordle clues --wordnet <folder> --answers <file> --words <folder> --out <file>
+  crosswordle clues --wordnet <folder> --answers <file> --words <folder>... --out <file>
       Write a clue list from Open English WordNet (JSON edition) for the common words in <file>
-  crosswordle generate --clues <file> [--clues <file>...] --words <folder> --puzzles <folder>
-                       [--from <YYYY-MM-DD>] [--days <n>]
-      Write daily puzzles that don't exist yet (default: 14 days from today). Later clue
-      lists override earlier ones.`;
+  crosswordle generate --clues <file> [--clues <file>...] --words <folder>... --puzzles <folder>
+                       [--from <YYYY-MM-DD>] [--days <n>] [--id-prefix <s>] [--title-prefix <s>]
+                       [--min-entries <n>] [--max-entries <n>] [--max-size <n>] [--candidates <n>]
+      Write daily puzzles that don't exist yet (default: 14 days from today). Later clue lists
+      override earlier ones. --id-prefix/--title-prefix name a separate collection (e.g. naughty-);
+      the layout flags override the newspaper-size default.`;
 
 async function main(argv: string[]): Promise<number> {
   const { positionals, values } = parseArgs({
@@ -34,7 +38,7 @@ async function main(argv: string[]): Promise<number> {
     options: {
       in: { type: 'string' },
       out: { type: 'string' },
-      words: { type: 'string' },
+      words: { type: 'string', multiple: true },
       wordnet: { type: 'string' },
       answers: { type: 'string' },
       clues: { type: 'string', multiple: true },
@@ -44,13 +48,19 @@ async function main(argv: string[]): Promise<number> {
       notice: { type: 'string' },
       'answers-out': { type: 'string' },
       clues2: { type: 'string', multiple: true },
+      'id-prefix': { type: 'string' },
+      'title-prefix': { type: 'string' },
+      'min-entries': { type: 'string' },
+      'max-entries': { type: 'string' },
+      'max-size': { type: 'string' },
+      candidates: { type: 'string' },
     },
   });
   const [command, folder] = positionals;
 
   switch (command) {
     case 'validate': {
-      if (folder === undefined || values.words === undefined) return usage();
+      if (folder === undefined || !values.words?.length) return usage();
       const words = await loadWords(values.words);
       if (words === undefined) return 1;
       const loaded = await readPuzzleFolder(folder, words);
@@ -58,11 +68,11 @@ async function main(argv: string[]): Promise<number> {
       return hasProblems(loaded) ? 1 : 0;
     }
     case 'publish': {
-      const { in: inFolder, out, words: wordsFolder, notice: noticeFile } = values;
+      const { in: inFolder, out, words: wordsFolders, notice: noticeFile } = values;
       const answersOut = values['answers-out'];
-      if (!inFolder || !out || !wordsFolder || !noticeFile || !answersOut) return usage();
+      if (!inFolder || !out || !wordsFolders?.length || !noticeFile || !answersOut) return usage();
       const notice = await readFile(noticeFile, 'utf8');
-      const words = await loadWords(wordsFolder);
+      const words = await loadWords(wordsFolders);
       if (words === undefined) return 1;
       const loaded = await readPuzzleFolder(inFolder, words);
       report(loaded);
@@ -106,24 +116,28 @@ async function main(argv: string[]): Promise<number> {
       return 0;
     }
     case 'words': {
-      if (values.in === undefined || values.out === undefined) return usage();
-      const words = await loadWords(values.in);
+      if (!values.words?.length || values.out === undefined) return usage();
+      const words = await loadWords(values.words);
       if (words === undefined) return 1;
-      const notice = await readFile(join(values.in, NOTICE_FILE), 'utf8').catch(() => undefined);
-      if (notice === undefined) {
-        console.error(
-          `${join(values.in, NOTICE_FILE)} is missing; the word lists' licences require it.`,
-        );
-        return 1;
+      const notices: string[] = [];
+      for (const folder of values.words) {
+        const notice = await readFile(join(folder, NOTICE_FILE), 'utf8').catch(() => undefined);
+        if (notice === undefined) {
+          console.error(
+            `${join(folder, NOTICE_FILE)} is missing; the word lists' licences require it.`,
+          );
+          return 1;
+        }
+        notices.push(notice.trim());
       }
-      const lengths = await writeWordFiles(words, notice, values.out);
+      const lengths = await writeWordFiles(words, `${notices.join('\n\n---\n\n')}\n`, values.out);
       console.log(`Wrote ${words.size} words (lengths ${lengths.join(', ')}) to ${values.out}`);
       return 0;
     }
     case 'clues': {
-      const { wordnet: wordnetFolder, answers, words: wordsFolder, out } = values;
-      if (!wordnetFolder || !answers || !wordsFolder || !out) return usage();
-      const words = await loadWords(wordsFolder);
+      const { wordnet: wordnetFolder, answers, words: wordsFolders, out } = values;
+      if (!wordnetFolder || !answers || !wordsFolders?.length || !out) return usage();
+      const words = await loadWords(wordsFolders);
       if (words === undefined) return 1;
       const wordnet = await readWordNet(wordnetFolder);
       const common = commonWords(await readFile(answers, 'utf8'));
@@ -148,13 +162,18 @@ async function main(argv: string[]): Promise<number> {
       return 0;
     }
     case 'generate': {
-      const { clues: clueFiles, words: wordsFolder, puzzles } = values;
-      if (!clueFiles?.length || !wordsFolder || !puzzles) return usage();
+      const { clues: clueFiles, words: wordsFolders, puzzles } = values;
+      if (!clueFiles?.length || !wordsFolders?.length || !puzzles) return usage();
       const from = values.from ?? localToday();
       const days = Number(values.days ?? '14');
       if (!isDate(from) || !Number.isInteger(days) || days < 1) return usage();
 
-      const words = await loadWords(wordsFolder);
+      const layout = layoutFromFlags(values);
+      if (layout === undefined) return usage();
+      const idPrefix = values['id-prefix'] ?? '';
+      const titlePrefix = values['title-prefix'] ?? '';
+
+      const words = await loadWords(wordsFolders);
       if (words === undefined) return 1;
       const clueLists = await readClueLists(clueFiles);
       for (const problem of clueLists.problems) console.error(`      - ${problem}`);
@@ -171,19 +190,20 @@ async function main(argv: string[]): Promise<number> {
       let failed = false;
       for (let i = 0; i < days; i++) {
         const date = addDays(from, i);
-        if (existing.some((p) => p.id === date)) {
-          console.log(`skip  ${date} (already exists)`);
+        const id = `${idPrefix}${date}`;
+        if (existing.some((p) => p.id === id)) {
+          console.log(`skip  ${id} (already exists)`);
           continue;
         }
-        const puzzle = generateDaily(date, pool, existing);
+        const puzzle = generateDaily(date, pool, existing, layout, { idPrefix, titlePrefix });
         if (puzzle === undefined) {
-          console.error(`FAIL  ${date}: no layout reached the minimum number of entries.`);
+          console.error(`FAIL  ${id}: no layout reached the minimum number of entries.`);
           failed = true;
           continue;
         }
-        await writeFile(join(puzzles, `${date}.json`), `${JSON.stringify(puzzle, null, 2)}\n`);
+        await writeFile(join(puzzles, `${id}.json`), `${JSON.stringify(puzzle, null, 2)}\n`);
         existing.push(puzzle);
-        console.log(`new   ${date}: ${puzzle.entries.length} entries`);
+        console.log(`new   ${id}: ${puzzle.entries.length} entries`);
       }
       return failed ? 1 : 0;
     }
@@ -206,16 +226,52 @@ function localToday(): string {
   return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
 }
 
-/** The merged word lists, or `undefined` (after reporting why) if any source line is invalid. */
-async function loadWords(folder: string): Promise<ReadonlySet<string> | undefined> {
-  const { words, problems } = await readWordLists(folder);
-  for (const problem of problems) console.error(`      - ${problem}`);
-  if (problems.length > 0) return undefined;
-  if (words.size === 0) {
-    console.error(`No words found in ${folder}.`);
+/** The merged word lists across folders, or `undefined` (after reporting why) if any line is bad. */
+async function loadWords(folders: readonly string[]): Promise<ReadonlySet<string> | undefined> {
+  const merged = new Set<string>();
+  let bad = false;
+  for (const folder of folders) {
+    const { words, problems } = await readWordLists(folder);
+    for (const problem of problems) console.error(`      - ${folder}/${problem}`);
+    if (problems.length > 0) bad = true;
+    for (const word of words) merged.add(word);
+  }
+  if (bad) return undefined;
+  if (merged.size === 0) {
+    console.error(`No words found in ${folders.join(', ')}.`);
     return undefined;
   }
-  return words;
+  return merged;
+}
+
+/** Layout options from the CLI flags, over the newspaper-size default; `undefined` if any is bad. */
+function layoutFromFlags(values: {
+  'min-entries'?: string;
+  'max-entries'?: string;
+  'max-size'?: string;
+  candidates?: string;
+}): LayoutOptions | undefined {
+  const flags: [keyof LayoutOptions, string | undefined][] = [
+    ['minEntries', values['min-entries']],
+    ['maxEntries', values['max-entries']],
+    ['maxSize', values['max-size']],
+    ['candidatesPerAttempt', values.candidates],
+  ];
+  const layout = { ...DEFAULT_LAYOUT };
+  for (const [key, raw] of flags) {
+    if (raw === undefined) continue;
+    const value = Number(raw);
+    if (!Number.isInteger(value) || value < 1) {
+      console.error(`--${key} must be a whole number ≥ 1.`);
+      return undefined;
+    }
+    layout[key] = value;
+  }
+  if (layout.minEntries > layout.maxEntries) {
+    console.error('--min-entries cannot be greater than --max-entries.');
+    return undefined;
+  }
+  return layout;
 }
 
 function report(loaded: readonly LoadedFile[]): void {

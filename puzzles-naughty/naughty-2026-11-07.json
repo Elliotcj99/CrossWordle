@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "id": "naughty-2026-11-07",
+  "title": "Naughty · Saturday 7 November 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "KNOBHEAD",
+      "clue": "Pig-headed twit"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "FUCK",
+      "clue": "The big one: all-purpose expletive"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "WANKERS",
+      "clue": "Contemptible pillocks"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "PRICKS",
+      "clue": "Small jabs, or nasty blokes"
+    },
+    {
+      "row": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "COCKUP",
+      "clue": "Right old mess"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "down",
+      "answer": "PISSED",
+      "clue": "Plastered, or furious"
+    },
+    {
+      "row": 5,
+      "col": 5,
+      "direction": "down",
+      "answer": "WHORED",
+      "clue": "Sold affections"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "SNATCH",
+      "clue": "Grab, or female anatomy"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "down",
+      "answer": "TURDS",
+      "clue": "Solid droppings"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "across",
+      "answer": "CRAPPER",
+      "clue": "The throne, the bog"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "across",
+      "answer": "DILDOS",
+      "clue": "Bedroom playthings"
+    }
+  ]
+}

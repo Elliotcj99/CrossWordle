@@ -29,17 +29,20 @@ as soon as it is found.
 
 ## Repository layout
 
-| Path                 | What it is                                                                              |
-| -------------------- | --------------------------------------------------------------------------------------- |
-| `packages/engine`    | The rules: scoring, puzzle loading and validation, game state. Pure TypeScript, no UI.  |
-| `packages/generator` | Command line: generate daily puzzles, build clue and word lists, validate, publish.     |
-| `apps/web`           | The game: Svelte 5 + Vite, built to static files.                                       |
-| `data/wordlists/`    | Guess dictionary sources (ENABLE, public domain, plus additions).                       |
-| `data/clues/`        | Answers and clues for daily puzzles, written in quick-crossword style, plus hand edits. |
-| `puzzles/`           | Puzzle source files (plain answers), one per id.                                        |
-| `deploy/`            | Security headers (one source for both hosts), nginx site, lab hosting guide.            |
-| `scripts/`           | Header rendering and the lab deploy, both run locally.                                  |
-| `.github/workflows`  | Cloudflare Pages deploy (`deploy-cloudflare.yml`), run by hand only. There is no CI.    |
+| Path                      | What it is                                                                              |
+| ------------------------- | --------------------------------------------------------------------------------------- |
+| `packages/engine`         | The rules: scoring, puzzle loading and validation, game state. Pure TypeScript, no UI.  |
+| `packages/generator`      | Command line: generate daily puzzles, build clue and word lists, validate, publish.     |
+| `apps/web`                | The game: Svelte 5 + Vite, built to static files.                                       |
+| `data/wordlists/`         | Guess dictionary sources (ENABLE, public domain, plus additions).                       |
+| `data/clues/`             | Answers and clues for daily puzzles, written in quick-crossword style, plus hand edits. |
+| `data/wordlists-naughty/` | Rude words for Naughty mode (CC0, no slurs).                                            |
+| `data/clues-naughty/`     | Cheeky clues for the Naughty-mode words (CC0).                                          |
+| `puzzles/`                | Puzzle source files (plain answers), one per id.                                        |
+| `puzzles-naughty/`        | Naughty-mode puzzle sources; ids are prefixed `naughty-<date>`.                         |
+| `deploy/`                 | Security headers (one source for both hosts), nginx site, lab hosting guide.            |
+| `scripts/`                | Header rendering and the lab deploy, both run locally.                                  |
+| `.github/workflows`       | Cloudflare Pages deploy (`deploy-cloudflare.yml`), run by hand only. There is no CI.    |
 
 ## Getting started
 
@@ -83,6 +86,23 @@ and `npm run test:e2e` before each commit.
   answer repeats.
 - `npm run puzzles` writes the site's copies to `apps/web/public/puzzles` with answers encoded.
   The encoding only stops answers being read at a glance; it is not security.
+
+## Naughty mode
+
+An optional, grown-up version of the game: a header toggle swaps the daily puzzle for a pure-rude
+one, with a purple "Naughty"-stamped wordmark. It is **off on every fresh load and never
+remembered**, and turning it on asks first, so nobody meets strong language without opting in.
+
+- Its words and clues are a hand-written, public-domain (CC0) set in `data/wordlists-naughty/` and
+  `data/clues-naughty/`. They are swearing and crude vocabulary only — **no slurs** (words attacking
+  people for race, sexuality and the like are kept out on purpose; see the `NOTICE.md` files).
+- The puzzles are a separate collection: smaller, denser grids (a rude-only vocabulary doesn't fill
+  a newspaper-size grid), ids prefixed `naughty-<date>`, published to `apps/web/public/naughty/`
+  with their own guess dictionary in `apps/web/public/words-naughty/` (the ordinary dictionary plus
+  the rude words, so normal words are still valid guesses). Answers stay server-side exactly as for
+  the daily puzzles (`functions/_puzzles.naughty.json`).
+- Regenerate the puzzle sources with `npm run generate:naughty` (smaller-grid layout flags are baked
+  into that script). `npm run build`/`dev` publish them alongside the daily ones automatically.
 
 ## Hosting
 

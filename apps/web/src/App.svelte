@@ -1,6 +1,7 @@
 <script lang="ts">
   import HowToPlay from './components/HowToPlay.svelte';
   import Game from './Game.svelte';
+  import { NAUGHTY, NORMAL } from './lib/collections';
   import { loadPuzzleFor } from './lib/puzzles';
   import { applySettings, loadSettings, saveSettings } from './lib/settings';
   import { loadWordChecker } from './lib/words';
@@ -12,16 +13,31 @@
     saveSettings(settings);
   });
 
+  // Naughty mode is deliberately not remembered: it is off on every fresh load, and turning it on
+  // always asks first, so nobody lands on strong language without opting in that session.
+  let naughty = $state(false);
+  let askingNaughty = $state(false);
+  const collection = $derived(naughty ? NAUGHTY : NORMAL);
+
+  /** The checkbox: switching on asks first; switching off is immediate. */
+  function onNaughtyChange(wanted: boolean) {
+    if (wanted && !naughty) askingNaughty = true;
+    else naughty = wanted;
+  }
+
   /** `#2026-10-24` or `#sample` opens that puzzle; no hash opens today's. */
   const readHash = () => decodeURIComponent(location.hash.slice(1)) || undefined;
 
   let requested = $state(readHash());
   const loading = $derived(
-    loadPuzzleFor(requested).then(async (puzzle) => ({
+    loadPuzzleFor(requested, collection).then(async (puzzle) => ({
       puzzle,
       // The word lists are only needed when the puzzle limits guesses to real words (the default).
       isWord: puzzle.rules.realWordsOnly
-        ? await loadWordChecker(puzzle.entries.map((entry) => entry.length))
+        ? await loadWordChecker(
+            puzzle.entries.map((entry) => entry.length),
+            collection.wordsPath,
+          )
         : undefined,
     })),
   );
@@ -29,9 +45,13 @@
 
 <svelte:window onhashchange={() => (requested = readHash())} />
 
-<main>
+<main class:naughty>
   <header class="masthead">
-    <h1 class="wordmark" aria-label="CrossWordle">
+    <h1
+      class="wordmark"
+      class:naughty
+      aria-label={naughty ? 'CrossWordle, Naughty mode' : 'CrossWordle'}
+    >
       <span class="cross" aria-hidden="true">
         <span>C</span><span>R</span><span>O</span><span>S</span><span>S</span>
       </span>
@@ -39,15 +59,48 @@
         <span class="correct">W</span><span class="absent">O</span><span class="present">R</span
         ><span class="correct">D</span><span class="absent">L</span><span class="correct">E</span>
       </span>
+      {#if naughty}
+        <span class="stamp" aria-hidden="true">Naughty</span>
+      {/if}
     </h1>
     <div class="tools">
       <label class="toggle">
         <input id="high-contrast" type="checkbox" bind:checked={highContrast} />
         High-contrast colours
       </label>
+      <label class="toggle">
+        <input
+          id="naughty-mode"
+          type="checkbox"
+          checked={naughty}
+          onchange={(event) => onNaughtyChange(event.currentTarget.checked)}
+        />
+        Naughty mode
+      </label>
       <HowToPlay />
     </div>
   </header>
+
+  {#if askingNaughty}
+    <div class="naughty-confirm" role="alertdialog" aria-labelledby="naughty-confirm-title">
+      <p id="naughty-confirm-title">
+        <strong>Naughty mode contains strong language and crude words.</strong> It's off again next time
+        you open the page.
+      </p>
+      <div class="naughty-confirm-actions">
+        <button
+          type="button"
+          class="link danger"
+          onclick={() => {
+            naughty = true;
+            askingNaughty = false;
+          }}>Let me in</button
+        >
+        <button type="button" class="link" onclick={() => (askingNaughty = false)}>No thanks</button
+        >
+      </div>
+    </div>
+  {/if}
 
   {#await loading}
     <p class="note">Loading today's puzzle…</p>
@@ -93,6 +146,7 @@
   }
 
   .wordmark {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
@@ -142,6 +196,82 @@
 
   .absent {
     background: var(--absent);
+  }
+
+  /* Naughty mode: a purple wordmark with a rubber-stamp slapped across it. */
+  .wordmark.naughty .cross {
+    background: #6a1fb0;
+  }
+
+  .wordmark.naughty .correct {
+    background: #7b2cbf;
+  }
+
+  .wordmark.naughty .present {
+    background: #9d4edd;
+  }
+
+  .wordmark.naughty .absent {
+    background: #5a189a;
+  }
+
+  .stamp {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-8deg);
+    pointer-events: none;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 125%;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: clamp(0.85rem, 2.6vw, 1.1rem);
+    color: #ff2e63;
+    border: 2.5px solid #ff2e63;
+    border-radius: 7px;
+    padding: 2px 8px;
+    background: color-mix(in srgb, #ff2e63 16%, transparent);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+  }
+
+  .naughty-confirm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 20px;
+    margin-bottom: 20px;
+    padding: 12px 16px;
+    border: 2px solid #9d4edd;
+    border-radius: 8px;
+    background: color-mix(in srgb, #9d4edd 12%, var(--surface));
+  }
+
+  .naughty-confirm p {
+    margin: 0;
+    max-width: 60ch;
+  }
+
+  .naughty-confirm-actions {
+    display: flex;
+    gap: 16px;
+    white-space: nowrap;
+  }
+
+  .link {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .link.danger {
+    color: var(--ink);
+    font-weight: 700;
   }
 
   .note {

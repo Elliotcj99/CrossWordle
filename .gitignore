@@ -4,12 +4,15 @@ coverage/
 *.log
 .DS_Store
 
-# Built by `npm run puzzles` and `npm run words`
+# Built by `npm run puzzles`/`npm run words` (and their `:naughty` counterparts)
 apps/web/public/puzzles/
 apps/web/public/words/
-# The answers bundle for the scoring Function: generated at build, never committed (it holds the
-# plain answers, so it must not reach a public repo). See functions/README.md.
+apps/web/public/naughty/
+apps/web/public/words-naughty/
+# The answers bundles for the scoring Function: generated at build, never committed (they hold the
+# plain answers, so they must not reach a public repo). See functions/README.md.
 functions/_puzzles.json
+functions/_puzzles.naughty.json
 
 # Cloudflare local state
 .wrangler/
