@@ -18,8 +18,8 @@ A crossword where every entry is solved as its own Wordle.
   doesn't solve the entry stay in that entry's guess rows. Guesses are never forced to use locked
   letters, so a player can fish for other letters; that never changes the grid. Greens, yellows
   and greys only apply within their own entry.
-- **Guess budget:** one shared pool of 8/3 guesses per entry (a third fewer than 4), rounded: 67
-  for a 25-entry puzzle. Win by solving every entry before the pool runs out.
+- **Guess budget:** one shared pool of 2 guesses per entry, rounded: 50 for a 25-entry puzzle.
+  Win by solving every entry before the pool runs out.
 
 All of these rules are in `RuleSet` (`packages/engine/src/rules.ts`), and a puzzle file can
 override them. For example, `"rules": {"guessBudget": {"kind": "perEntry", "extraGuesses": 1}}`

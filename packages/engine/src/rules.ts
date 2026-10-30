@@ -40,9 +40,10 @@ export type RuleOverrides = Partial<RuleSet>;
 export const DEFAULT_RULES: RuleSet = {
   minLength: 3,
   maxLength: 10,
-  // A third fewer than 4 an entry: 67 guesses for a 25-entry puzzle. A simulated player who
-  // ignores the clues needs about 3.3 an entry, so this budget has to be won with the clues.
-  guessBudget: { kind: 'shared', guessesPerEntry: 8 / 3 },
+  // A shared pool of 2 guesses per entry (50 for a 25-entry puzzle), rounded for the whole puzzle.
+  // A simulated clue-blind player needs about 3.3 an entry, so this budget has to be won by using
+  // the clues and spending the shared pool where it is needed; 8/3 an entry still left too much room.
+  guessBudget: { kind: 'shared', guessesPerEntry: 2 },
   duplicateCounts: true,
   realWordsOnly: true,
   lockGreens: false,

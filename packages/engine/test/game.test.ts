@@ -215,15 +215,15 @@ describe('guess checks', () => {
 });
 
 describe('guess budget', () => {
-  it('shares 8/3 guesses per entry across the puzzle by default, rounded', () => {
+  it('shares 2 guesses per entry across the puzzle by default', () => {
     const ctx = ring();
     const state = play(ctx, [
       ['1A', 'COT'],
       ['3A', 'DYE'],
     ]);
-    // 4 entries × 8/3 = 10.67, so 11 guesses.
-    expect(guessLimit(ctx.puzzle, entry(ctx.puzzle, '2D'))).toBe(11);
-    expect(guessesRemaining(ctx.puzzle, state, entry(ctx.puzzle, '2D'))).toBe(11 - 2);
+    // 4 entries at 2 each = 8 guesses.
+    expect(guessLimit(ctx.puzzle, entry(ctx.puzzle, '2D'))).toBe(8);
+    expect(guessesRemaining(ctx.puzzle, state, entry(ctx.puzzle, '2D'))).toBe(8 - 2);
   });
 
   it('is lost when the shared pool runs out', () => {
