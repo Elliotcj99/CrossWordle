@@ -25,6 +25,10 @@
     </li>
     <li>You share one pool of guesses across the whole puzzle. Spend it wisely.</li>
     <li>
+      Stuck on an entry? Reveal a second crossword clue, or a Wordle clue that shows one of its
+      letters (marked <b>*</b>). Both are free and stay until you restart.
+    </li>
+    <li>
       Prefer orange and blue? Turn on high-contrast colours. When you finish, copy your result to
       share it without giving the answers away.
     </li>
