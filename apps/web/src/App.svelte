@@ -68,15 +68,17 @@
         <input id="high-contrast" type="checkbox" bind:checked={highContrast} />
         High-contrast colours
       </label>
-      <label class="toggle">
-        <input
-          id="naughty-mode"
-          type="checkbox"
-          checked={naughty}
-          onchange={(event) => onNaughtyChange(event.currentTarget.checked)}
-        />
-        Naughty mode
-      </label>
+      <button
+        id="naughty-mode"
+        type="button"
+        class="naughty-toggle"
+        aria-pressed={naughty}
+        aria-label="Naughty mode"
+        onclick={() => onNaughtyChange(!naughty)}
+      >
+        <span aria-hidden="true">Naught<span class="swash">y</span></span>
+        <span class="mode-word" aria-hidden="true">mode</span>
+      </button>
       <HowToPlay />
     </div>
   </header>
@@ -297,6 +299,74 @@
     width: 1.1rem;
     height: 1.1rem;
     accent-color: var(--ink);
+  }
+
+  /* Naughty mode is a toggle button, not a plain checkbox: a purple pill with a
+     swash on the "y" that sweeps back under the word. aria-pressed carries state. */
+  .naughty-toggle {
+    --swash: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%2040'%3E%3Cpath%20d='M114%204%20C100%2036%2046%2044%2018%2032%20C4%2026%202%2014%2014%2011%20C21%209%2025%2015%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35em;
+    padding: 4px 16px;
+    border: 2px solid #9d4edd;
+    border-radius: 999px;
+    background: none;
+    color: #7b2cbf;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 125%;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .naughty-toggle .mode-word {
+    font-weight: 600;
+    font-stretch: 100%;
+    opacity: 0.8;
+  }
+
+  .naughty-toggle:hover {
+    background: color-mix(in srgb, #9d4edd 14%, transparent);
+  }
+
+  .naughty-toggle:focus-visible {
+    outline: 3px solid var(--cursor);
+    outline-offset: 2px;
+  }
+
+  .naughty-toggle[aria-pressed='true'] {
+    background: #7b2cbf;
+    border-color: #7b2cbf;
+    color: #fff;
+    box-shadow: 0 2px 10px color-mix(in srgb, #7b2cbf 45%, transparent);
+  }
+
+  /* The long tail on the "y": a swash drawn with a mask so it inherits the text
+     colour (purple when off, white when the button is pressed). */
+  .naughty-toggle .swash {
+    position: relative;
+  }
+
+  .naughty-toggle .swash::after {
+    content: '';
+    position: absolute;
+    left: -3.3em;
+    bottom: -0.4em;
+    width: 3.9em;
+    height: 0.9em;
+    background-color: currentColor;
+    -webkit-mask: var(--swash) no-repeat center / 100% 100%;
+    mask: var(--swash) no-repeat center / 100% 100%;
+    pointer-events: none;
   }
 
   footer {
