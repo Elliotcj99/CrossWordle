@@ -7,6 +7,9 @@ coverage/
 # Built by `npm run puzzles` and `npm run words`
 apps/web/public/puzzles/
 apps/web/public/words/
+# The answers bundle for the scoring Function: generated at build, never committed (it holds the
+# plain answers, so it must not reach a public repo). See functions/README.md.
+functions/_puzzles.json
 
 # Cloudflare local state
 .wrangler/

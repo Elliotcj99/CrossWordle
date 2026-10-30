@@ -6,7 +6,13 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   {
-    ignores: ['**/dist/', '**/node_modules/', 'apps/web/public/puzzles/', 'apps/web/public/words/'],
+    ignores: [
+      '**/dist/',
+      '**/node_modules/',
+      '.wrangler/',
+      'apps/web/public/puzzles/',
+      'apps/web/public/words/',
+    ],
   },
   js.configs.recommended,
   ...tseslint.configs.recommended,

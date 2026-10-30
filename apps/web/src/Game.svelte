@@ -2,6 +2,7 @@
   import {
     bestMarks,
     cellKey,
+    checkGuess,
     computeStats,
     deleteLetter,
     draftCells,
@@ -9,21 +10,22 @@
     emptyDraft,
     feedbackFor,
     gameStatus,
-    guessesFor,
+    guessCount,
     guessesRemaining,
     guessLimit,
     isSolved,
     lockedLetters,
     newGame,
+    recordGuess,
     shareText,
-    submitGuess,
-    typeLetter,
     type Cell,
+    type ClientEntry,
+    type ClientPuzzle,
     type Draft,
-    type Entry,
     type GameState,
-    type Puzzle,
+    type ScoredLetter,
     type WordChecker,
+    typeLetter,
   } from '@crosswordle/engine';
   import { untrack } from 'svelte';
   import Clues from './components/Clues.svelte';
@@ -31,12 +33,13 @@
   import EntryPanel from './components/EntryPanel.svelte';
   import Grid from './components/Grid.svelte';
   import Keyboard from './components/Keyboard.svelte';
+  import { scoreGuess, ScoringError } from './lib/api';
   import { localDate } from './lib/dates';
   import { guessErrorText } from './lib/messages';
   import { loadResults, recordResult } from './lib/results';
   import { loadGame, saveGame } from './lib/storage';
 
-  let { puzzle, isWord }: { puzzle: Puzzle; isWord: WordChecker | undefined } = $props();
+  let { puzzle, isWord }: { puzzle: ClientPuzzle; isWord: WordChecker | undefined } = $props();
 
   // A Game is created for one puzzle (App keys it by puzzle id), so the initial values are read
   // once on purpose. The engine returns new objects on every change, so raw state is enough.
@@ -45,20 +48,19 @@
   let draft = $state.raw<Draft>(emptyDraft());
   let message = $state('');
   let confirmingRestart = $state(false);
+  let submitting = $state(false);
   let results = $state.raw(loadResults());
 
   const locks = $derived(lockedLetters(puzzle, game));
   const status = $derived(gameStatus(puzzle, game));
   const selected = $derived(entryById(selectedId));
-  const length = $derived(selected.answer.length);
+  const length = $derived(selected.length);
   const cells = $derived(draftCells(draft, length));
-  const feedback = $derived(feedbackFor(puzzle, game, selected));
+  const feedback = $derived(feedbackFor(game, selected));
   const solvedIds = $derived(
     new Set(puzzle.entries.filter((e) => isSolved(game, e)).map((e) => e.id)),
   );
-  const guessCounts = $derived(
-    new Map(puzzle.entries.map((e) => [e.id, guessesFor(game, e).length])),
-  );
+  const guessCounts = $derived(new Map(puzzle.entries.map((e) => [e.id, guessCount(game, e)])));
   const stats = $derived(computeStats(results, localDate()));
 
   $effect(() => saveGame(game));
@@ -66,19 +68,19 @@
   // Record the result once the puzzle ends; the first result for a puzzle stands.
   $effect(() => {
     if (status === 'playing') return;
-    const used = puzzle.entries.reduce((sum, e) => sum + guessesFor(game, e).length, 0);
+    const used = puzzle.entries.reduce((sum, e) => sum + guessCount(game, e), 0);
     results = recordResult(puzzle.id, { won: status === 'won', guesses: used });
   });
 
-  function entryById(id: string): Entry {
+  function entryById(id: string): ClientEntry {
     return puzzle.entries.find((e) => e.id === id)!;
   }
 
-  function firstUnsolved(state: GameState): Entry | undefined {
+  function firstUnsolved(state: GameState): ClientEntry | undefined {
     return puzzle.entries.find((e) => !isSolved(state, e));
   }
 
-  function select(entry: Entry) {
+  function select(entry: ClientEntry) {
     selectedId = entry.id;
     draft = emptyDraft();
     message = '';
@@ -94,10 +96,10 @@
   }
 
   function press(key: string) {
-    if (status !== 'playing' || solvedIds.has(selectedId)) return;
+    if (status !== 'playing' || solvedIds.has(selectedId) || submitting) return;
     message = '';
     if (key === 'Enter') {
-      submit();
+      void submit();
     } else if (key === 'Backspace') {
       draft = deleteLetter(draft);
     } else if (/^[A-Za-z]$/.test(key)) {
@@ -105,34 +107,49 @@
     }
   }
 
-  function submit() {
+  async function submit() {
     const word = draftWord(draft, length);
     if (word === undefined) {
       message = guessErrorText['wrong-length'];
       return;
     }
-    const result = submitGuess(puzzle, game, selectedId, word, isWord);
-    if (!result.ok) {
-      message = guessErrorText[result.error];
+    const check = checkGuess(puzzle, game, selectedId, word, isWord);
+    if (!check.ok) {
+      message = guessErrorText[check.error];
       return;
     }
-    const guessed = selected;
-    game = result.state;
 
-    const solvedNow = isSolved(game, guessed);
-    const next = solvedNow ? firstUnsolved(game) : undefined;
-    if (next !== undefined) select(next);
-    else draft = emptyDraft();
-    message = summary(guessed, word, solvedNow);
+    // Scoring happens on the server so the answer never reaches the page.
+    submitting = true;
+    message = '';
+    try {
+      const scored = await scoreGuess(puzzle.id, check.entry.id, check.guess);
+      game = recordGuess(game, check.entry, scored.letters);
+      const next = scored.solved ? firstUnsolved(game) : undefined;
+      if (next !== undefined) select(next);
+      else draft = emptyDraft();
+      message = summary(check.entry, check.guess, scored.solved, scored.letters);
+    } catch (error) {
+      message =
+        error instanceof ScoringError
+          ? 'Could not score that guess — check your connection and try again.'
+          : 'Something went wrong scoring that guess.';
+    } finally {
+      submitting = false;
+    }
   }
 
   /** What the guess found, in words, so screen reader users hear the result too. */
-  function summary(entry: Entry, word: string, solved: boolean): string {
+  function summary(
+    entry: ClientEntry,
+    word: string,
+    solved: boolean,
+    letters: readonly ScoredLetter[],
+  ): string {
     const name = `${entry.number} ${entry.direction === 'across' ? 'Across' : 'Down'}`;
     if (solved) return `${word} solves ${name}.`;
-    const marks = feedbackFor(puzzle, game, entry).at(-1) ?? [];
-    const greens = marks.filter((l) => l.mark === 'correct').length;
-    const yellows = marks.filter((l) => l.mark === 'present').length;
+    const greens = letters.filter((l) => l.mark === 'correct').length;
+    const yellows = letters.filter((l) => l.mark === 'present').length;
     return `${word}: ${greens} green, ${yellows} yellow.`;
   }
 
@@ -183,7 +200,6 @@
       {selected}
       draft={cells.letters}
       cursor={cells.cursor}
-      reveal={status === 'lost'}
       onselectcell={selectCell}
     />
   </section>

@@ -1,6 +1,12 @@
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { basename, join } from 'node:path';
-import { parsePuzzleFile, publishPuzzle, PuzzleError, type PuzzleFile } from '@crosswordle/engine';
+import { basename, dirname, join } from 'node:path';
+import {
+  parsePuzzleFile,
+  publishPuzzle,
+  PuzzleError,
+  toPublicFile,
+  type PuzzleFile,
+} from '@crosswordle/engine';
 
 export interface PuzzleIndexItem {
   readonly id: string;
@@ -45,22 +51,37 @@ async function readPuzzle(path: string, words: ReadonlySet<string>): Promise<Loa
 }
 
 /**
- * Replaces `outFolder` with the published (encoded) puzzles, an `index.json` listing them, and
- * the clues' licence notice as `NOTICE.md`.
+ * Publishes the puzzles to two places:
+ *
+ * - `publicFolder` (served to the browser): the answer-free puzzle files, an `index.json` listing
+ *   them, and the clues' licence notice as `NOTICE.md`. This folder is replaced wholesale.
+ * - `answersFile` (bundled into the scoring Function, never served): every puzzle in full, with
+ *   its answers, keyed by id. This is the only copy of the answers the site ships, and it stays
+ *   on the server.
  */
 export async function publishFolder(
   files: readonly PuzzleFile[],
   notice: string,
-  outFolder: string,
+  publicFolder: string,
+  answersFile: string,
 ): Promise<void> {
-  await rm(outFolder, { recursive: true, force: true });
-  await mkdir(outFolder, { recursive: true });
-  await writeFile(join(outFolder, 'NOTICE.md'), notice);
+  await rm(publicFolder, { recursive: true, force: true });
+  await mkdir(publicFolder, { recursive: true });
+  await writeFile(join(publicFolder, 'NOTICE.md'), notice);
 
   const index: PuzzleIndexItem[] = [];
+  const answers: Record<string, PuzzleFile> = {};
   for (const file of files) {
-    await writeFile(join(outFolder, `${file.id}.json`), `${JSON.stringify(publishPuzzle(file))}\n`);
+    await writeFile(
+      join(publicFolder, `${file.id}.json`),
+      `${JSON.stringify(toPublicFile(file))}\n`,
+    );
     index.push({ id: file.id, title: file.title });
+    // The Function loads these directly, so keep the plain source (with its answers).
+    answers[file.id] = file;
   }
-  await writeFile(join(outFolder, 'index.json'), `${JSON.stringify(index, null, 2)}\n`);
+  await writeFile(join(publicFolder, 'index.json'), `${JSON.stringify(index, null, 2)}\n`);
+
+  await mkdir(dirname(answersFile), { recursive: true });
+  await writeFile(answersFile, `${JSON.stringify(answers)}\n`);
 }

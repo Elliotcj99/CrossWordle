@@ -13,17 +13,19 @@
   },
   "scripts": {
     "generate": "tsx packages/generator/src/cli.ts generate --clues data/clues/quick.tsv --clues data/clues/edits.tsv --words data/wordlists --puzzles puzzles",
-    "puzzles": "tsx packages/generator/src/cli.ts publish --in puzzles --words data/wordlists --notice data/clues/NOTICE.md --out apps/web/public/puzzles",
+    "puzzles": "tsx packages/generator/src/cli.ts publish --in puzzles --words data/wordlists --notice data/clues/NOTICE.md --out apps/web/public/puzzles --answers-out functions/_puzzles.json",
     "words": "tsx packages/generator/src/cli.ts words --in data/wordlists --out apps/web/public/words",
+    "reveal": "tsx packages/generator/src/cli.ts reveal --puzzles puzzles",
     "validate-puzzles": "tsx packages/generator/src/cli.ts validate puzzles --words data/wordlists",
     "dev": "npm run puzzles && npm run words && npm run dev -w @crosswordle/web",
+    "preview": "npm run build && wrangler pages dev apps/web/dist",
     "build": "npm run puzzles && npm run words && npm run build -w @crosswordle/web && node scripts/render-headers.mjs --format cloudflare --out apps/web/dist/_headers",
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc -p tsconfig.json && npm run check -w @crosswordle/web",
+    "typecheck": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json && npm run check -w @crosswordle/web",
     "test:e2e": "playwright test",
     "deploy:lab": "node scripts/deploy-lab.mjs"
   },
@@ -40,6 +42,7 @@
     "tsx": "^4.23.15",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.72.0",
-    "vitest": "^5.0.5"
+    "vitest": "^5.0.5",
+    "wrangler": "^4.156.0"
   }
 }

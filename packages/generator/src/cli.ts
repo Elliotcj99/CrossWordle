@@ -1,6 +1,7 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { basename, join } from 'node:path';
 import { parseArgs } from 'node:util';
+import { loadPuzzle, parsePuzzleFile, type PuzzleFile } from '@crosswordle/engine';
 import { candidatePool, readClueLists } from './clue-lists';
 import { addDays, generateDaily, isDate } from './daily';
 import { publishFolder, readPuzzleFolder, type LoadedFile } from './puzzle-files';
@@ -11,7 +12,11 @@ const USAGE = `Usage:
   crosswordle validate <folder> --words <folder>
       Check every puzzle in a folder, including that its answers are in the word lists
   crosswordle publish --in <folder> --words <folder> --notice <file> --out <folder>
-      Validate, encode and write puzzles for the site, with the clues' licence notice
+                      --answers-out <file>
+      Validate and write puzzles for the site: answer-free files (and the clues' licence notice)
+      to --out, and the answers bundle for the scoring Function to --answers-out
+  crosswordle reveal <id> --puzzles <folder>
+      Print one puzzle's answers (clue -> answer), for checking a puzzle locally
   crosswordle words --in <folder> --out <folder>
       Write the guess dictionary for the site, one file per word length, plus its licence notice
   crosswordle clues --wordnet <folder> --answers <file> --words <folder> --out <file>
@@ -36,6 +41,7 @@ async function main(argv: string[]): Promise<number> {
       from: { type: 'string' },
       days: { type: 'string' },
       notice: { type: 'string' },
+      'answers-out': { type: 'string' },
     },
   });
   const [command, folder] = positionals;
@@ -51,7 +57,8 @@ async function main(argv: string[]): Promise<number> {
     }
     case 'publish': {
       const { in: inFolder, out, words: wordsFolder, notice: noticeFile } = values;
-      if (!inFolder || !out || !wordsFolder || !noticeFile) return usage();
+      const answersOut = values['answers-out'];
+      if (!inFolder || !out || !wordsFolder || !noticeFile || !answersOut) return usage();
       const notice = await readFile(noticeFile, 'utf8');
       const words = await loadWords(wordsFolder);
       if (words === undefined) return 1;
@@ -62,8 +69,27 @@ async function main(argv: string[]): Promise<number> {
         loaded.flatMap((item) => (item.file === undefined ? [] : [item.file])),
         notice,
         out,
+        answersOut,
       );
-      console.log(`Published ${loaded.length} puzzle(s) to ${out}`);
+      console.log(`Published ${loaded.length} puzzle(s): ${out} (public), ${answersOut} (answers)`);
+      return 0;
+    }
+    case 'reveal': {
+      const puzzlesFolder = values.puzzles;
+      if (folder === undefined || puzzlesFolder === undefined) return usage();
+      const path = join(puzzlesFolder, `${folder}.json`);
+      let file: PuzzleFile;
+      try {
+        file = parsePuzzleFile(JSON.parse(await readFile(path, 'utf8')));
+      } catch (error) {
+        console.error(`Could not read ${path}: ${error instanceof Error ? error.message : error}`);
+        return 1;
+      }
+      const puzzle = loadPuzzle(file);
+      console.log(`${puzzle.title} (${puzzle.id})`);
+      for (const entry of puzzle.entries) {
+        console.log(`  ${entry.id.padEnd(4)} ${entry.answer.padEnd(12)} ${entry.clue}`);
+      }
       return 0;
     }
     case 'words': {

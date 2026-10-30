@@ -1,20 +1,24 @@
 <script lang="ts">
-  import { cellKey, gridCells, type Cell, type Entry, type Puzzle } from '@crosswordle/engine';
+  import {
+    cellKey,
+    gridCells,
+    type Cell,
+    type ClientEntry,
+    type ClientPuzzle,
+  } from '@crosswordle/engine';
 
   interface Props {
-    puzzle: Puzzle;
+    puzzle: ClientPuzzle;
     locks: ReadonlyMap<string, string>;
-    selected: Entry;
+    selected: ClientEntry;
     /** The selected entry's letters as typed so far, cell by cell. */
     draft: readonly (string | undefined)[];
     /** Index in the selected entry of the cell the next letter goes into. */
     cursor: number;
-    /** Show every answer (after the puzzle is lost). */
-    reveal: boolean;
     onselectcell: (cell: Cell) => void;
   }
 
-  let { puzzle, locks, selected, draft, cursor, reveal, onselectcell }: Props = $props();
+  let { puzzle, locks, selected, draft, cursor, onselectcell }: Props = $props();
 
   const cells = $derived(gridCells(puzzle));
   const selectedKeys = $derived(new Set(selected.cells.map(cellKey)));
@@ -22,14 +26,9 @@
   const cursorKey = $derived(
     cursor < selected.cells.length ? cellKey(selected.cells[cursor]!) : undefined,
   );
-  const answerByKey = $derived(
-    new Map(puzzle.entries.flatMap((e) => e.cells.map((c, i) => [cellKey(c), e.answer[i]!]))),
-  );
 
   function letterAt(key: string): string {
-    return (
-      locks.get(key) ?? draftByKey.get(key) ?? (reveal ? answerByKey.get(key) : undefined) ?? ''
-    );
+    return locks.get(key) ?? draftByKey.get(key) ?? '';
   }
 </script>
 
@@ -48,7 +47,6 @@
       class:selected={selectedKeys.has(cell.key)}
       class:cursor={cell.key === cursorKey}
       class:locked={locks.has(cell.key)}
-      class:revealed={reveal && !locks.has(cell.key)}
       style:grid-row={cell.row + 1}
       style:grid-column={cell.col + 1}
       aria-label="{cell.number === undefined ? '' : `${cell.number}, `}row {cell.row +
@@ -99,10 +97,6 @@
   .cell.locked {
     background: var(--correct);
     color: var(--on-mark);
-  }
-
-  .cell.revealed .letter {
-    color: var(--reveal);
   }
 
   .number {

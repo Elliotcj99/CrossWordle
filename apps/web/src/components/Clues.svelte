@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { Entry } from '@crosswordle/engine';
+  import type { ClientEntry } from '@crosswordle/engine';
 
   interface Props {
-    entries: readonly Entry[];
+    entries: readonly ClientEntry[];
     selectedId: string;
     solvedIds: ReadonlySet<string>;
     /** Guesses used so far on each entry. */
     guessCounts: ReadonlyMap<string, number>;
-    onselect: (entry: Entry) => void;
+    onselect: (entry: ClientEntry) => void;
   }
 
   let { entries, selectedId, solvedIds, guessCounts, onselect }: Props = $props();
@@ -17,7 +17,7 @@
     { title: 'Down', entries: entries.filter((e) => e.direction === 'down') },
   ]);
 
-  function status(entry: Entry): string {
+  function status(entry: ClientEntry): string {
     const used = guessCounts.get(entry.id) ?? 0;
     if (solvedIds.has(entry.id)) return `Solved in ${used}`;
     return used === 0 ? '' : `${used} ${used === 1 ? 'guess' : 'guesses'}`;
@@ -39,9 +39,7 @@
               onclick={() => onselect(entry)}
             >
               <span class="number">{entry.number}</span>
-              <span class="text"
-                >{entry.clue} <span class="length">({entry.answer.length})</span></span
-              >
+              <span class="text">{entry.clue} <span class="length">({entry.length})</span></span>
               <span class="status">{status(entry)}</span>
             </button>
           </li>

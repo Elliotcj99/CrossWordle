@@ -1,3 +1,4 @@
+export * from './client';
 export * from './draft';
 export * from './encoding';
 export * from './game';

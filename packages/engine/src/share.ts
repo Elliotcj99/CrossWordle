@@ -1,12 +1,12 @@
-import { feedbackFor, gameStatus, guessesFor, isSolved, type GameState } from './game';
-import type { Puzzle } from './puzzle';
+import type { ClientPuzzle } from './client';
+import { feedbackFor, gameStatus, guessCount, isSolved, type GameState } from './game';
 
 /**
  * One square per guess, spoiler-free: green for the guess that solved the entry, yellow for a
  * guess that found at least one letter, black for a guess that found nothing.
  */
-function squares(puzzle: Puzzle, state: GameState, entryIndex: number): string {
-  return feedbackFor(puzzle, state, puzzle.entries[entryIndex]!)
+function squares(state: GameState, puzzle: ClientPuzzle, entryIndex: number): string {
+  return feedbackFor(state, puzzle.entries[entryIndex]!)
     .map((row) =>
       row.every((l) => l.mark === 'correct')
         ? '🟩'
@@ -21,9 +21,9 @@ function squares(puzzle: Puzzle, state: GameState, entryIndex: number): string {
  * The text a player shares: the puzzle, the result, then a line per entry. An entry never solved
  * shows ❌ after its guesses.
  */
-export function shareText(puzzle: Puzzle, state: GameState): string {
+export function shareText(puzzle: ClientPuzzle, state: GameState): string {
   const status = gameStatus(puzzle, state);
-  const used = puzzle.entries.reduce((sum, e) => sum + guessesFor(state, e).length, 0);
+  const used = puzzle.entries.reduce((sum, e) => sum + guessCount(state, e), 0);
   const plural = used === 1 ? 'guess' : 'guesses';
   const headline =
     status === 'won'
@@ -33,7 +33,7 @@ export function shareText(puzzle: Puzzle, state: GameState): string {
         : `${used} ${plural} so far`;
 
   const lines = puzzle.entries.map((entry, i) => {
-    const row = squares(puzzle, state, i);
+    const row = squares(state, puzzle, i);
     const mark = isSolved(state, entry) || status !== 'lost' ? row : `${row}❌`;
     return `${entry.id.padEnd(4)}${mark}`;
   });

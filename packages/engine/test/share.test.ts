@@ -1,13 +1,27 @@
 import { describe, expect, it } from 'vitest';
-import { computeStats, loadPuzzle, newGame, shareText, submitGuess, type GameState } from '../src';
+import {
+  checkGuess,
+  computeStats,
+  evaluateGuess,
+  loadClientPuzzle,
+  loadPuzzle,
+  newGame,
+  recordGuess,
+  shareText,
+  toPublicFile,
+  type GameState,
+  type PuzzleFile,
+} from '../src';
 
 /**
  *   C A T      1A CAT   1D COD
  *   O . O      2D TOE   3A DUE
  *   D U E
+ *
+ * As in game.test.ts, the client plays the public puzzle while the answers are scored on the side.
  */
-const ring = (guessesPerEntry = 3) =>
-  loadPuzzle({
+const ring = (guessesPerEntry = 3) => {
+  const file: PuzzleFile = {
     version: 1,
     id: 'ring',
     title: 'Ring',
@@ -19,20 +33,27 @@ const ring = (guessesPerEntry = 3) =>
       { row: 0, col: 2, direction: 'down', answer: 'TOE', clue: 'Foot digit' },
       { row: 2, col: 0, direction: 'across', answer: 'DUE', clue: 'Owed' },
     ],
-  });
+  };
+  const puzzle = loadClientPuzzle(toPublicFile(file));
+  const answers = new Map(loadPuzzle(file).entries.map((e) => [e.id, e.answer]));
+  return { puzzle, answers };
+};
 
-function play(puzzle: ReturnType<typeof ring>, moves: [string, string][]): GameState {
+function play(ctx: ReturnType<typeof ring>, moves: [string, string][]): GameState {
   return moves.reduce((state, [id, word]) => {
-    const result = submitGuess(puzzle, state, id, word, () => true);
-    if (!result.ok) throw new Error(result.error);
-    return result.state;
-  }, newGame(puzzle));
+    const check = checkGuess(ctx.puzzle, state, id, word, () => true);
+    if (!check.ok) throw new Error(check.error);
+    const letters = evaluateGuess(check.guess, ctx.answers.get(check.entry.id)!, {
+      duplicateCounts: ctx.puzzle.rules.duplicateCounts,
+    });
+    return recordGuess(state, check.entry, letters);
+  }, newGame(ctx.puzzle));
 }
 
 describe('shareText', () => {
   it('shows each guess as a spoiler-free square', () => {
-    const puzzle = ring();
-    const state = play(puzzle, [
+    const ctx = ring();
+    const state = play(ctx, [
       ['1A', 'BOX'], // nothing found
       ['1A', 'COT'], // some letters
       ['1A', 'CAT'],
@@ -40,7 +61,7 @@ describe('shareText', () => {
       ['1D', 'COD'],
       ['2D', 'TOE'],
     ]);
-    expect(shareText(puzzle, state)).toBe(
+    expect(shareText(ctx.puzzle, state)).toBe(
       [
         'CrossWordle · Ring',
         'Solved in 6 guesses',
@@ -54,15 +75,15 @@ describe('shareText', () => {
   });
 
   it('marks unsolved entries when the puzzle is lost', () => {
-    const puzzle = ring(1);
-    const state = play(puzzle, [
+    const ctx = ring(1);
+    const state = play(ctx, [
       ['1A', 'CAT'],
       ['3A', 'DUE'],
       ['1D', 'CUD'],
       ['2D', 'TEE'],
     ]);
-    expect(shareText(puzzle, state)).toContain('1D  🟨❌');
-    expect(shareText(puzzle, state)).toContain('Out of guesses after 4');
+    expect(shareText(ctx.puzzle, state)).toContain('1D  🟨❌');
+    expect(shareText(ctx.puzzle, state)).toContain('Out of guesses after 4');
   });
 });
 

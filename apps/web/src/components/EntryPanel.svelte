@@ -1,9 +1,15 @@
 <script lang="ts">
-  import type { DraftCells, Entry, GuessBudget, Mark, ScoredLetter } from '@crosswordle/engine';
+  import type {
+    ClientEntry,
+    DraftCells,
+    GuessBudget,
+    Mark,
+    ScoredLetter,
+  } from '@crosswordle/engine';
 
   interface Props {
-    entry: Entry;
-    feedback: ScoredLetter[][];
+    entry: ClientEntry;
+    feedback: readonly (readonly ScoredLetter[])[];
     draft: DraftCells;
     solved: boolean;
     remaining: number;
@@ -32,7 +38,7 @@
 <div class="panel">
   <p class="eyebrow">
     {entry.number}
-    {entry.direction === 'across' ? 'Across' : 'Down'} · {entry.answer.length} letters
+    {entry.direction === 'across' ? 'Across' : 'Down'} · {entry.length} letters
   </p>
   <h2 class="clue">{entry.clue}</h2>
 

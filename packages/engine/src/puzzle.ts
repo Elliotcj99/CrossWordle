@@ -68,7 +68,9 @@ export interface GridCell extends Cell {
 }
 
 /** Every letter cell once, each carrying the number of the entry that starts there (if any). */
-export function gridCells(puzzle: Puzzle): GridCell[] {
+export function gridCells(puzzle: {
+  readonly entries: ReadonlyArray<{ readonly number: number; readonly cells: readonly Cell[] }>;
+}): GridCell[] {
   const cells = new Map<string, GridCell>();
   for (const entry of puzzle.entries) {
     entry.cells.forEach((cell, i) => {
@@ -162,12 +164,66 @@ export function publishPuzzle(file: PuzzleFile): PuzzleFile {
   };
 }
 
-function entryCells(entry: EntryFile): Cell[] {
-  return Array.from({ length: entry.answer.length }, (_, i) =>
-    entry.direction === 'across'
-      ? { row: entry.row, col: entry.col + i }
-      : { row: entry.row + i, col: entry.col },
+/** An entry in a public puzzle file: its place and length, but no answer. */
+export interface PublicEntryFile {
+  readonly row: number;
+  readonly col: number;
+  readonly direction: Direction;
+  /** The answer's length, so the grid and guesses can be sized without the answer itself. */
+  readonly length: number;
+  readonly clue: string;
+}
+
+/**
+ * The puzzle as served to the browser: layout, clues and lengths only. Answers stay on the server
+ * (see the scoring Function), so they can't be read from the page.
+ */
+export interface PublicPuzzleFile {
+  readonly version: 1;
+  readonly id: string;
+  readonly title: string;
+  readonly rules?: RuleOverrides;
+  readonly entries: readonly PublicEntryFile[];
+}
+
+/** Validates a source file and returns the answer-free copy that is published to the browser. */
+export function toPublicFile(file: PuzzleFile): PublicPuzzleFile {
+  loadPuzzle(file); // Throws PuzzleError if the puzzle is invalid.
+  const lengthOf = (entry: EntryFile): number =>
+    file.answerEncoding === 'plain'
+      ? entry.answer.length
+      : decodeAnswer(entry.answer, file.id).length;
+  return {
+    version: 1,
+    id: file.id,
+    title: file.title,
+    ...(file.rules === undefined ? {} : { rules: file.rules }),
+    entries: file.entries.map((entry) => ({
+      row: entry.row,
+      col: entry.col,
+      direction: entry.direction,
+      length: lengthOf(entry),
+      clue: entry.clue,
+    })),
+  };
+}
+
+/** The cells a placed entry fills, from its start, direction and length. */
+export function cellsOf(placed: {
+  readonly row: number;
+  readonly col: number;
+  readonly direction: Direction;
+  readonly length: number;
+}): Cell[] {
+  return Array.from({ length: placed.length }, (_, i) =>
+    placed.direction === 'across'
+      ? { row: placed.row, col: placed.col + i }
+      : { row: placed.row + i, col: placed.col },
   );
+}
+
+function entryCells(entry: EntryFile): Cell[] {
+  return cellsOf({ ...entry, length: entry.answer.length });
 }
 
 function describe(entry: EntryFile): string {
@@ -284,7 +340,9 @@ function isConnected(entries: readonly EntryFile[]): boolean {
 }
 
 /** Crossword numbering: start cells numbered left to right, top to bottom. */
-function startNumbers(entries: readonly EntryFile[]): Map<string, number> {
+export function startNumbers(
+  entries: readonly { readonly row: number; readonly col: number }[],
+): Map<string, number> {
   const starts = [...new Map(entries.map((entry) => [cellKey(entry), entry])).values()].sort(
     (a, b) => a.row - b.row || a.col - b.col,
   );

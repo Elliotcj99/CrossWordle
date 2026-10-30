@@ -21,7 +21,7 @@
       puzzle,
       // The word lists are only needed when the puzzle limits guesses to real words (the default).
       isWord: puzzle.rules.realWordsOnly
-        ? await loadWordChecker(puzzle.entries.map((entry) => entry.answer.length))
+        ? await loadWordChecker(puzzle.entries.map((entry) => entry.length))
         : undefined,
     })),
   );
