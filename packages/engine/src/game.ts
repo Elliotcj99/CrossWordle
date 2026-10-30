@@ -1,4 +1,5 @@
 import type { ClientEntry, ClientPuzzle } from './client';
+import type { HintLetter } from './hint';
 import { cellKey } from './puzzle';
 import type { ScoredLetter } from './scoring';
 
@@ -11,6 +12,16 @@ export interface GameState {
   readonly puzzleId: string;
   /** Scored guesses so far, keyed by entry id, oldest first. */
   readonly guesses: Readonly<Record<string, readonly (readonly ScoredLetter[])[]>>;
+  /** Entry ids whose second (crossword) clue has been revealed. Hints are free and stay revealed. */
+  readonly crosswordClues?: readonly string[];
+  /** The one Wordle-clue letter revealed per entry (single use), keyed by entry id. */
+  readonly wordleClues?: Readonly<Record<string, HintLetter>>;
+}
+
+/** A cell of the Wordle-clue row: a letter the player can see, starred if the hint revealed it. */
+export interface RevealedCell {
+  readonly letter: string;
+  readonly starred: boolean;
 }
 
 export type GameStatus = 'playing' | 'won' | 'lost';
@@ -175,4 +186,54 @@ export function recordGuess(
     ...state,
     guesses: { ...state.guesses, [entry.id]: [...feedbackFor(state, entry), letters] },
   };
+}
+
+/** Whether an entry has a second clue to reveal, and whether it already has been. */
+export function hasSecondClue(entry: ClientEntry): boolean {
+  return entry.clue2 !== undefined;
+}
+
+export function crosswordClueShown(state: GameState, entry: ClientEntry): boolean {
+  return state.crosswordClues?.includes(entry.id) ?? false;
+}
+
+/** The revealed Wordle-clue letter for an entry, or `undefined` if none has been used. */
+export function wordleClueFor(state: GameState, entry: ClientEntry): HintLetter | undefined {
+  return state.wordleClues?.[entry.id];
+}
+
+/** Reveals an entry's second crossword clue (a no-op if it has none or it is already shown). */
+export function recordCrosswordClue(state: GameState, entry: ClientEntry): GameState {
+  if (!hasSecondClue(entry) || crosswordClueShown(state, entry)) return state;
+  return { ...state, crosswordClues: [...(state.crosswordClues ?? []), entry.id] };
+}
+
+/** Records the Wordle-clue letter revealed for an entry (single use per entry). */
+export function recordWordleClue(
+  state: GameState,
+  entry: ClientEntry,
+  hint: HintLetter,
+): GameState {
+  return { ...state, wordleClues: { ...state.wordleClues, [entry.id]: hint } };
+}
+
+/**
+ * The Wordle-clue row to show above an entry's guesses once its hint has been used: the player's
+ * own greens (no star) plus the one hint letter (starred); other cells are blank. `undefined`
+ * before a hint is used, so the row isn't shown at all.
+ */
+export function wordleClueRow(
+  state: GameState,
+  entry: ClientEntry,
+): (RevealedCell | undefined)[] | undefined {
+  const hint = wordleClueFor(state, entry);
+  if (hint === undefined) return undefined;
+  const row: (RevealedCell | undefined)[] = Array.from({ length: entry.length }, () => undefined);
+  for (const guess of feedbackFor(state, entry)) {
+    guess.forEach((tile, i) => {
+      if (tile.mark === 'correct') row[i] = { letter: tile.letter, starred: false };
+    });
+  }
+  row[hint.index] = { letter: hint.letter, starred: true };
+  return row;
 }

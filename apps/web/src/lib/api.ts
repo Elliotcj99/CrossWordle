@@ -1,4 +1,4 @@
-import type { ScoredLetter } from '@crosswordle/engine';
+import type { HintLetter, ScoredLetter } from '@crosswordle/engine';
 
 /** What the scoring Function returns for a guess it accepted. */
 export interface ScoredGuess {
@@ -35,4 +35,37 @@ export async function scoreGuess(
     throw new ScoringError('The scorer sent an unexpected reply.');
   }
   return { letters: data.letters, solved: data.solved };
+}
+
+/** A Wordle-clue request either reveals a letter, finds nothing new, or fails. */
+export type HintResult =
+  | { readonly ok: true; readonly hint: HintLetter }
+  | { readonly ok: false; readonly reason: 'none' | 'error' };
+
+/**
+ * Asks the server for a letter to reveal for an entry, given the guesses made so far. The answer
+ * never reaches the browser; only the one chosen letter comes back. `reason: 'none'` means every
+ * position is already green, so there's nothing new to show.
+ */
+export async function requestHint(
+  puzzleId: string,
+  entryId: string,
+  guesses: readonly string[],
+): Promise<HintResult> {
+  try {
+    const response = await fetch('api/hint', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ puzzleId, entryId, guesses }),
+    });
+    if (response.status === 409) return { ok: false, reason: 'none' };
+    if (!response.ok) return { ok: false, reason: 'error' };
+    const data = (await response.json()) as Partial<HintLetter>;
+    if (typeof data.index !== 'number' || typeof data.letter !== 'string') {
+      return { ok: false, reason: 'error' };
+    }
+    return { ok: true, hint: { index: data.index, letter: data.letter } };
+  } catch {
+    return { ok: false, reason: 'error' };
+  }
 }

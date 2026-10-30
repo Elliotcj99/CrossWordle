@@ -4,6 +4,7 @@
     DraftCells,
     GuessBudget,
     Mark,
+    RevealedCell,
     ScoredLetter,
   } from '@crosswordle/engine';
 
@@ -15,10 +16,43 @@
     remaining: number;
     total: number;
     budgetKind: GuessBudget['kind'];
+    /** The revealed second (crossword) clue, or undefined if it hasn't been revealed. */
+    secondClue: string | undefined;
+    /** The Wordle-clue row (own greens + the one starred hint), or undefined if none is revealed. */
+    clueRow: (RevealedCell | undefined)[] | undefined;
+    canRevealCrossword: boolean;
+    canRevealWordle: boolean;
+    hinting: boolean;
+    oncrosswordclue: () => void;
+    onwordleclue: () => void;
     message: string;
   }
 
-  let { entry, feedback, draft, solved, remaining, total, budgetKind, message }: Props = $props();
+  let {
+    entry,
+    feedback,
+    draft,
+    solved,
+    remaining,
+    total,
+    budgetKind,
+    secondClue,
+    clueRow,
+    canRevealCrossword,
+    canRevealWordle,
+    hinting,
+    oncrosswordclue,
+    onwordleclue,
+    message,
+  }: Props = $props();
+
+  let confirming = $state<'crossword' | 'wordle' | null>(null);
+
+  // Clear a pending confirmation when the player switches entry.
+  $effect(() => {
+    void entry.id;
+    confirming = null;
+  });
 
   const markText: Record<Mark, string> = {
     correct: 'correct',
@@ -33,6 +67,12 @@
         : `, the answer has ${letter.answerCount} ${letter.letter}s`;
     return `${letter.letter}, ${markText[letter.mark]}${count}`;
   }
+
+  function confirmClue() {
+    if (confirming === 'crossword') oncrosswordclue();
+    else if (confirming === 'wordle') onwordleclue();
+    confirming = null;
+  }
 </script>
 
 <div class="panel">
@@ -41,6 +81,53 @@
     {entry.direction === 'across' ? 'Across' : 'Down'} · {entry.length} letters
   </p>
   <h2 class="clue">{entry.clue}</h2>
+  {#if secondClue}
+    <p class="clue2"><span class="star" aria-hidden="true">*</span> {secondClue}</p>
+  {/if}
+
+  {#if confirming}
+    <p class="clue-confirm" role="status">
+      Reveal the {confirming === 'crossword' ? 'crossword' : 'Wordle'} clue?
+      <button type="button" class="link strong" onclick={confirmClue}>Reveal</button>
+      <button type="button" class="link" onclick={() => (confirming = null)}>Cancel</button>
+    </p>
+  {:else if canRevealCrossword || canRevealWordle}
+    <div class="clue-buttons">
+      {#if canRevealCrossword}
+        <button type="button" class="hint" onclick={() => (confirming = 'crossword')}>
+          Crossword clue
+        </button>
+      {/if}
+      {#if canRevealWordle}
+        <button
+          type="button"
+          class="hint"
+          disabled={hinting}
+          onclick={() => (confirming = 'wordle')}
+        >
+          {hinting ? 'Revealing…' : 'Wordle clue'}
+        </button>
+      {/if}
+    </div>
+  {/if}
+
+  {#if clueRow}
+    <div class="clue-reveal" aria-label="Revealed letters">
+      {#each clueRow as cell, i (i)}
+        <span
+          class="clue-tile"
+          class:filled={cell !== undefined}
+          class:blank={cell === undefined}
+          aria-label={cell === undefined
+            ? `Position ${i + 1}, hidden`
+            : `Position ${i + 1}, ${cell.letter}${cell.starred ? ', clue' : ''}`}
+        >
+          {cell?.letter ?? ''}
+          {#if cell?.starred}<span class="star-badge" aria-hidden="true">*</span>{/if}
+        </span>
+      {/each}
+    </div>
+  {/if}
 
   <ol class="rows" aria-label="Guesses for {entry.id}">
     {#each feedback as row, r (r)}
@@ -102,10 +189,117 @@
   }
 
   .clue {
-    margin: 4px 0 16px;
+    margin: 4px 0 8px;
     font-size: 1.35rem;
     line-height: 1.25;
     text-wrap: balance;
+  }
+
+  .clue2 {
+    margin: 0 0 12px;
+    font-size: 1rem;
+    line-height: 1.3;
+    color: var(--ink-muted);
+    text-wrap: balance;
+  }
+
+  .star,
+  .star-badge {
+    font-weight: 800;
+    color: var(--present);
+  }
+
+  .clue-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 16px;
+  }
+
+  .hint {
+    padding: 6px 12px;
+    border: 2px solid var(--rule);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .hint:hover {
+    border-color: var(--ink-muted);
+  }
+
+  .hint:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .clue-confirm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+
+  .link {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
+  }
+
+  .link.strong {
+    color: var(--ink);
+  }
+
+  .clue-reveal {
+    display: flex;
+    gap: 6px;
+    margin: 0 0 10px;
+  }
+
+  .clue-tile {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: min(48px, calc((100cqi - 9 * 6px) / 10));
+    aspect-ratio: 1;
+    border: 2px dashed var(--rule);
+    border-radius: 4px;
+    background: var(--surface);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-stretch: 110%;
+    font-size: 1.35rem;
+  }
+
+  .clue-tile.blank {
+    background: var(--rule);
+    opacity: 0.5;
+  }
+
+  .clue-tile.filled {
+    border-style: solid;
+    border-color: var(--correct);
+    background: var(--correct);
+    color: var(--on-mark);
+  }
+
+  .star-badge {
+    position: absolute;
+    top: -6px;
+    right: -4px;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--on-mark);
   }
 
   .rows {

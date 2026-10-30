@@ -7,10 +7,12 @@
     solvedIds: ReadonlySet<string>;
     /** Guesses used so far on each entry. */
     guessCounts: ReadonlyMap<string, number>;
+    /** Entry ids whose second clue has been revealed, to show under the first. */
+    shownClue2Ids: ReadonlySet<string>;
     onselect: (entry: ClientEntry) => void;
   }
 
-  let { entries, selectedId, solvedIds, guessCounts, onselect }: Props = $props();
+  let { entries, selectedId, solvedIds, guessCounts, shownClue2Ids, onselect }: Props = $props();
 
   const groups = $derived([
     { title: 'Across', entries: entries.filter((e) => e.direction === 'across') },
@@ -39,7 +41,14 @@
               onclick={() => onselect(entry)}
             >
               <span class="number">{entry.number}</span>
-              <span class="text">{entry.clue} <span class="length">({entry.length})</span></span>
+              <span class="text">
+                {entry.clue} <span class="length">({entry.length})</span>
+                {#if shownClue2Ids.has(entry.id) && entry.clue2}
+                  <span class="clue2"
+                    ><span class="star" aria-hidden="true">*</span> {entry.clue2}</span
+                  >
+                {/if}
+              </span>
               <span class="status">{status(entry)}</span>
             </button>
           </li>
@@ -107,6 +116,18 @@
 
   .length {
     color: var(--ink-muted);
+  }
+
+  .clue2 {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.85rem;
+    color: var(--ink-muted);
+  }
+
+  .star {
+    font-weight: 800;
+    color: var(--present);
   }
 
   .status {

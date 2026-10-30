@@ -64,6 +64,7 @@ export async function publishFolder(
   notice: string,
   publicFolder: string,
   answersFile: string,
+  secondClue?: (answer: string) => string | undefined,
 ): Promise<void> {
   await rm(publicFolder, { recursive: true, force: true });
   await mkdir(publicFolder, { recursive: true });
@@ -74,7 +75,7 @@ export async function publishFolder(
   for (const file of files) {
     await writeFile(
       join(publicFolder, `${file.id}.json`),
-      `${JSON.stringify(toPublicFile(file))}\n`,
+      `${JSON.stringify(toPublicFile(file, secondClue))}\n`,
     );
     index.push({ id: file.id, title: file.title });
     // The Function loads these directly, so keep the plain source (with its answers).

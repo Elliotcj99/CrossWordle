@@ -4,6 +4,7 @@
     cellKey,
     checkGuess,
     computeStats,
+    crosswordClueShown,
     deleteLetter,
     draftCells,
     draftWord,
@@ -13,10 +14,13 @@
     guessCount,
     guessesRemaining,
     guessLimit,
+    hasSecondClue,
     isSolved,
     lockedLetters,
     newGame,
+    recordCrosswordClue,
     recordGuess,
+    recordWordleClue,
     shareText,
     type Cell,
     type ClientEntry,
@@ -26,6 +30,9 @@
     type ScoredLetter,
     type WordChecker,
     typeLetter,
+    wordleClueFor,
+    wordleClueRow,
+    wordOf,
   } from '@crosswordle/engine';
   import { untrack } from 'svelte';
   import Clues from './components/Clues.svelte';
@@ -33,7 +40,7 @@
   import EntryPanel from './components/EntryPanel.svelte';
   import Grid from './components/Grid.svelte';
   import Keyboard from './components/Keyboard.svelte';
-  import { scoreGuess, ScoringError } from './lib/api';
+  import { requestHint, scoreGuess, ScoringError } from './lib/api';
   import { localDate } from './lib/dates';
   import { guessErrorText } from './lib/messages';
   import { loadResults, recordResult } from './lib/results';
@@ -49,6 +56,7 @@
   let message = $state('');
   let confirmingRestart = $state(false);
   let submitting = $state(false);
+  let hinting = $state(false);
   let results = $state.raw(loadResults());
 
   const locks = $derived(lockedLetters(puzzle, game));
@@ -62,6 +70,19 @@
   );
   const guessCounts = $derived(new Map(puzzle.entries.map((e) => [e.id, guessCount(game, e)])));
   const stats = $derived(computeStats(results, localDate()));
+
+  // Clue hints for the selected entry (both free, and kept until restart).
+  const secondClue = $derived(crosswordClueShown(game, selected) ? selected.clue2 : undefined);
+  const clueRow = $derived(wordleClueRow(game, selected));
+  const canRevealCrossword = $derived(
+    status === 'playing' && hasSecondClue(selected) && !crosswordClueShown(game, selected),
+  );
+  const canRevealWordle = $derived(
+    status === 'playing' &&
+      !solvedIds.has(selected.id) &&
+      wordleClueFor(game, selected) === undefined,
+  );
+  const crosswordClueIds = $derived(new Set(game.crosswordClues ?? []));
 
   $effect(() => saveGame(game));
 
@@ -153,6 +174,30 @@
     return `${word}: ${greens} green, ${yellows} yellow.`;
   }
 
+  function revealCrosswordClue() {
+    game = recordCrosswordClue(game, selected);
+  }
+
+  async function revealWordleClue() {
+    if (hinting || wordleClueFor(game, selected) !== undefined) return;
+    hinting = true;
+    message = '';
+    try {
+      const guesses = feedbackFor(game, selected).map(wordOf);
+      const result = await requestHint(puzzle.id, selected.id, guesses);
+      if (result.ok) {
+        game = recordWordleClue(game, selected, result.hint);
+      } else {
+        message =
+          result.reason === 'none'
+            ? 'No new letter to reveal.'
+            : 'Could not get a hint — check your connection and try again.';
+      }
+    } finally {
+      hinting = false;
+    }
+  }
+
   function restart() {
     game = newGame(puzzle);
     confirmingRestart = false;
@@ -213,13 +258,27 @@
       remaining={guessesRemaining(puzzle, game, selected)}
       total={guessLimit(puzzle, selected)}
       budgetKind={puzzle.rules.guessBudget.kind}
+      {secondClue}
+      {clueRow}
+      {canRevealCrossword}
+      {canRevealWordle}
+      {hinting}
+      oncrosswordclue={revealCrosswordClue}
+      onwordleclue={revealWordleClue}
       {message}
     />
     <Keyboard marks={bestMarks(feedback.flat())} onkey={press} />
   </section>
 
   <section class="clues" aria-label="Clues">
-    <Clues entries={puzzle.entries} {selectedId} {solvedIds} {guessCounts} onselect={select} />
+    <Clues
+      entries={puzzle.entries}
+      {selectedId}
+      {solvedIds}
+      {guessCounts}
+      shownClue2Ids={crosswordClueIds}
+      onselect={select}
+    />
   </section>
 </div>
 

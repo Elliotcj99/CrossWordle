@@ -1,5 +1,5 @@
-import { evaluateGuess, loadPuzzle, parsePuzzleFile, type Puzzle } from '@crosswordle/engine';
-import puzzleData from '../_puzzles.json';
+import { evaluateGuess } from '@crosswordle/engine';
+import { json, puzzleFor } from './_shared';
 
 /**
  * Scores one guess against a hidden answer. The answers live only in `_puzzles.json`, which is
@@ -12,25 +12,6 @@ interface GuessBody {
   readonly puzzleId?: unknown;
   readonly entryId?: unknown;
   readonly guess?: unknown;
-}
-
-const puzzles = new Map<string, Puzzle>();
-
-function puzzleFor(id: string): Puzzle | undefined {
-  const cached = puzzles.get(id);
-  if (cached !== undefined) return cached;
-  const file = (puzzleData as Record<string, unknown>)[id];
-  if (file === undefined) return undefined;
-  const puzzle = loadPuzzle(parsePuzzleFile(file));
-  puzzles.set(id, puzzle);
-  return puzzle;
-}
-
-function json(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' },
-  });
 }
 
 export const onRequestPost = async (context: { request: Request }): Promise<Response> => {

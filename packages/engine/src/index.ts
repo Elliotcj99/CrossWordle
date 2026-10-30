@@ -2,6 +2,7 @@ export * from './client';
 export * from './draft';
 export * from './encoding';
 export * from './game';
+export * from './hint';
 export * from './puzzle';
 export * from './rules';
 export * from './scoring';

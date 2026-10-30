@@ -172,6 +172,8 @@ export interface PublicEntryFile {
   /** The answer's length, so the grid and guesses can be sized without the answer itself. */
   readonly length: number;
   readonly clue: string;
+  /** An optional second clue, revealed on demand as a hint. A hint, not the answer, so it ships. */
+  readonly clue2?: string;
 }
 
 /**
@@ -186,25 +188,37 @@ export interface PublicPuzzleFile {
   readonly entries: readonly PublicEntryFile[];
 }
 
-/** Validates a source file and returns the answer-free copy that is published to the browser. */
-export function toPublicFile(file: PuzzleFile): PublicPuzzleFile {
+/**
+ * Validates a source file and returns the answer-free copy that is published to the browser.
+ * `secondClue`, when given, supplies an optional second clue per answer; it is attached only when
+ * it differs from the entry's own clue.
+ */
+export function toPublicFile(
+  file: PuzzleFile,
+  secondClue?: (answer: string) => string | undefined,
+): PublicPuzzleFile {
   loadPuzzle(file); // Throws PuzzleError if the puzzle is invalid.
-  const lengthOf = (entry: EntryFile): number =>
-    file.answerEncoding === 'plain'
-      ? entry.answer.length
-      : decodeAnswer(entry.answer, file.id).length;
+  const answerOf = (entry: EntryFile): string =>
+    file.answerEncoding === 'plain' ? entry.answer : decodeAnswer(entry.answer, file.id);
+  const normalise = (clue: string): string => clue.trim().toLowerCase();
   return {
     version: 1,
     id: file.id,
     title: file.title,
     ...(file.rules === undefined ? {} : { rules: file.rules }),
-    entries: file.entries.map((entry) => ({
-      row: entry.row,
-      col: entry.col,
-      direction: entry.direction,
-      length: lengthOf(entry),
-      clue: entry.clue,
-    })),
+    entries: file.entries.map((entry) => {
+      const answer = answerOf(entry);
+      const clue2 = secondClue?.(answer);
+      const distinct = clue2 !== undefined && normalise(clue2) !== normalise(entry.clue);
+      return {
+        row: entry.row,
+        col: entry.col,
+        direction: entry.direction,
+        length: answer.length,
+        clue: entry.clue,
+        ...(distinct ? { clue2 } : {}),
+      };
+    }),
   };
 }
 

@@ -12,9 +12,10 @@ const USAGE = `Usage:
   crosswordle validate <folder> --words <folder>
       Check every puzzle in a folder, including that its answers are in the word lists
   crosswordle publish --in <folder> --words <folder> --notice <file> --out <folder>
-                      --answers-out <file>
+                      --answers-out <file> [--clues2 <file>...]
       Validate and write puzzles for the site: answer-free files (and the clues' licence notice)
-      to --out, and the answers bundle for the scoring Function to --answers-out
+      to --out, and the answers bundle for the scoring Function to --answers-out. --clues2 adds
+      an optional second clue per answer (for the Crossword-clue hint), later lists winning.
   crosswordle reveal <id> --puzzles <folder>
       Print one puzzle's answers (clue -> answer), for checking a puzzle locally
   crosswordle words --in <folder> --out <folder>
@@ -42,6 +43,7 @@ async function main(argv: string[]): Promise<number> {
       days: { type: 'string' },
       notice: { type: 'string' },
       'answers-out': { type: 'string' },
+      clues2: { type: 'string', multiple: true },
     },
   });
   const [command, folder] = positionals;
@@ -65,11 +67,22 @@ async function main(argv: string[]): Promise<number> {
       const loaded = await readPuzzleFolder(inFolder, words);
       report(loaded);
       if (hasProblems(loaded)) return 1;
+
+      let secondClue: ((answer: string) => string | undefined) | undefined;
+      if (values.clues2?.length) {
+        const list = await readClueLists(values.clues2);
+        if (list.problems.length > 0) {
+          console.error(`      - ${list.problems.length} second-clue line(s) skipped`);
+        }
+        secondClue = (answer) => list.clues.get(answer);
+      }
+
       await publishFolder(
         loaded.flatMap((item) => (item.file === undefined ? [] : [item.file])),
         notice,
         out,
         answersOut,
+        secondClue,
       );
       console.log(`Published ${loaded.length} puzzle(s): ${out} (public), ${answersOut} (answers)`);
       return 0;
