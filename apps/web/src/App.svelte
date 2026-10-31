@@ -77,7 +77,6 @@
         onclick={() => onNaughtyChange(!naughty)}
       >
         <span class="naughty-word" aria-hidden="true">Naughty</span>
-        <span class="mode-word" aria-hidden="true">mode</span>
       </button>
       <HowToPlay />
     </div>
@@ -342,12 +341,6 @@
     height: 2.5px;
     border-radius: 2px;
     background: currentColor;
-  }
-
-  .naughty-toggle .mode-word {
-    font-weight: 600;
-    font-stretch: 100%;
-    opacity: 0.8;
   }
 
   .naughty-toggle:hover {
