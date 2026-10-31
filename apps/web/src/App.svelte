@@ -302,9 +302,10 @@
   }
 
   /* Naughty mode is a toggle button, not a plain checkbox: a purple pill with a
-     swash on the "y" that sweeps back under the word. aria-pressed carries state. */
+     swash that flows out of the "y" descender and sweeps back under the word.
+     aria-pressed carries state. */
   .naughty-toggle {
-    --swash: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%2040'%3E%3Cpath%20d='M114%204%20C100%2036%2046%2044%2018%2032%20C4%2026%202%2014%2014%2011%20C21%209%2025%2015%2022%2021'%20fill='none'%20stroke='%23000'%20stroke-width='5'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
+    --swash: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%2080'%3E%3Cpath%20d='M112%202%20C112%2026%20100%2044%2064%2048%20C30%2052%208%2042%205%2028%20C3%2018%2012%2012%2022%2016%20C29%2019%2029%2028%2023%2031'%20fill='none'%20stroke='%23000'%20stroke-width='8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
     position: relative;
     display: inline-flex;
     align-items: baseline;
@@ -359,13 +360,13 @@
   .naughty-toggle .swash::after {
     content: '';
     position: absolute;
-    left: -3.3em;
-    bottom: -0.4em;
-    width: 3.9em;
-    height: 0.9em;
+    right: 0.12em;
+    top: 0.82em;
+    width: 3.3em;
+    height: 1.7em;
     background-color: currentColor;
-    -webkit-mask: var(--swash) no-repeat center / 100% 100%;
-    mask: var(--swash) no-repeat center / 100% 100%;
+    -webkit-mask: var(--swash) no-repeat top right / 100% 100%;
+    mask: var(--swash) no-repeat top right / 100% 100%;
     pointer-events: none;
   }
 
