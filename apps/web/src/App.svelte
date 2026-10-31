@@ -19,7 +19,7 @@
   let askingNaughty = $state(false);
   const collection = $derived(naughty ? NAUGHTY : NORMAL);
 
-  /** The checkbox: switching on asks first; switching off is immediate. */
+  /** The toggle button: switching on asks first; switching off is immediate. */
   function onNaughtyChange(wanted: boolean) {
     if (wanted && !naughty) askingNaughty = true;
     else naughty = wanted;
@@ -64,14 +64,19 @@
       {/if}
     </h1>
     <div class="tools">
-      <label class="toggle">
-        <input id="high-contrast" type="checkbox" bind:checked={highContrast} />
-        High-contrast colours
-      </label>
+      <button
+        id="high-contrast"
+        type="button"
+        class="pill"
+        aria-pressed={highContrast}
+        onclick={() => (highContrast = !highContrast)}
+      >
+        High contrast
+      </button>
       <button
         id="naughty-mode"
         type="button"
-        class="naughty-toggle"
+        class="pill naughty-toggle"
         aria-pressed={naughty}
         aria-label="Naughty mode"
         onclick={() => onNaughtyChange(!naughty)}
@@ -286,32 +291,21 @@
     gap: 8px 20px;
   }
 
-  .toggle {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    font-size: 0.9rem;
-    cursor: pointer;
-  }
-
-  .toggle input {
-    width: 1.1rem;
-    height: 1.1rem;
-    accent-color: var(--ink);
-  }
-
-  /* Naughty mode is a toggle button, not a plain checkbox: a purple pill with the
-     "Naughty" word underlined. aria-pressed carries state. */
-  .naughty-toggle {
+  /* Settings are pill-shaped toggle buttons; aria-pressed carries state. Outlined when off,
+     filled when on. Each variant sets the three colours. */
+  .pill {
+    --pill-edge: var(--ink-muted);
+    --pill-ink: var(--ink);
+    --pill-on: var(--ink);
+    --pill-on-ink: var(--paper);
     position: relative;
     display: inline-flex;
     align-items: baseline;
-    gap: 0.35em;
     padding: 5px 16px 9px;
-    border: 2px solid #9d4edd;
+    border: 2px solid var(--pill-edge);
     border-radius: 999px;
     background: none;
-    color: #7b2cbf;
+    color: var(--pill-ink);
     font-family: var(--font-display);
     font-weight: 800;
     font-stretch: 125%;
@@ -324,6 +318,33 @@
       color 0.15s ease,
       border-color 0.15s ease,
       box-shadow 0.15s ease;
+  }
+
+  .pill:hover {
+    background: color-mix(in srgb, var(--pill-edge) 14%, transparent);
+  }
+
+  .pill:focus-visible {
+    outline: 3px solid var(--cursor);
+    outline-offset: 2px;
+  }
+
+  .pill[aria-pressed='true'] {
+    background: var(--pill-on);
+    border-color: var(--pill-on);
+    color: var(--pill-on-ink);
+  }
+
+  /* Naughty mode: purple, with the word underlined. */
+  .naughty-toggle {
+    --pill-edge: #9d4edd;
+    --pill-ink: #7b2cbf;
+    --pill-on: #7b2cbf;
+    --pill-on-ink: #fff;
+  }
+
+  .naughty-toggle[aria-pressed='true'] {
+    box-shadow: 0 2px 10px color-mix(in srgb, #7b2cbf 45%, transparent);
   }
 
   .naughty-toggle .naughty-word {
@@ -342,23 +363,6 @@
     border-radius: 2px;
     background: currentColor;
   }
-
-  .naughty-toggle:hover {
-    background: color-mix(in srgb, #9d4edd 14%, transparent);
-  }
-
-  .naughty-toggle:focus-visible {
-    outline: 3px solid var(--cursor);
-    outline-offset: 2px;
-  }
-
-  .naughty-toggle[aria-pressed='true'] {
-    background: #7b2cbf;
-    border-color: #7b2cbf;
-    color: #fff;
-    box-shadow: 0 2px 10px color-mix(in srgb, #7b2cbf 45%, transparent);
-  }
-
 
   footer {
     margin-top: 40px;
