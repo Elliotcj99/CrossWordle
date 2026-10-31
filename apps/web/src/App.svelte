@@ -68,15 +68,16 @@
         <input id="high-contrast" type="checkbox" bind:checked={highContrast} />
         High-contrast colours
       </label>
-      <label class="toggle">
-        <input
-          id="naughty-mode"
-          type="checkbox"
-          checked={naughty}
-          onchange={(event) => onNaughtyChange(event.currentTarget.checked)}
-        />
-        Naughty mode
-      </label>
+      <button
+        id="naughty-mode"
+        type="button"
+        class="naughty-toggle"
+        aria-pressed={naughty}
+        aria-label="Naughty mode"
+        onclick={() => onNaughtyChange(!naughty)}
+      >
+        <span class="naughty-word" aria-hidden="true">Naughty</span>
+      </button>
       <HowToPlay />
     </div>
   </header>
@@ -298,6 +299,66 @@
     height: 1.1rem;
     accent-color: var(--ink);
   }
+
+  /* Naughty mode is a toggle button, not a plain checkbox: a purple pill with the
+     "Naughty" word underlined. aria-pressed carries state. */
+  .naughty-toggle {
+    position: relative;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35em;
+    padding: 5px 16px 9px;
+    border: 2px solid #9d4edd;
+    border-radius: 999px;
+    background: none;
+    color: #7b2cbf;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 125%;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease,
+      box-shadow 0.15s ease;
+  }
+
+  .naughty-toggle .naughty-word {
+    position: relative;
+  }
+
+  /* A continuous underline drawn below the descenders (text-decoration would
+     break up around the "g" and "y"). Inherits the text colour. */
+  .naughty-toggle .naughty-word::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.22em;
+    height: 2.5px;
+    border-radius: 2px;
+    background: currentColor;
+  }
+
+  .naughty-toggle:hover {
+    background: color-mix(in srgb, #9d4edd 14%, transparent);
+  }
+
+  .naughty-toggle:focus-visible {
+    outline: 3px solid var(--cursor);
+    outline-offset: 2px;
+  }
+
+  .naughty-toggle[aria-pressed='true'] {
+    background: #7b2cbf;
+    border-color: #7b2cbf;
+    color: #fff;
+    box-shadow: 0 2px 10px color-mix(in srgb, #7b2cbf 45%, transparent);
+  }
+
 
   footer {
     margin-top: 40px;
