@@ -76,7 +76,7 @@
         aria-label="Naughty mode"
         onclick={() => onNaughtyChange(!naughty)}
       >
-        <span aria-hidden="true">Naught<span class="swash">y</span></span>
+        <span class="naughty-word" aria-hidden="true">Naughty</span>
         <span class="mode-word" aria-hidden="true">mode</span>
       </button>
       <HowToPlay />
@@ -301,16 +301,14 @@
     accent-color: var(--ink);
   }
 
-  /* Naughty mode is a toggle button, not a plain checkbox: a purple pill with a
-     swash that flows out of the "y" descender and sweeps back under the word.
-     aria-pressed carries state. */
+  /* Naughty mode is a toggle button, not a plain checkbox: a purple pill with the
+     "Naughty" word underlined. aria-pressed carries state. */
   .naughty-toggle {
-    --swash: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20120%2080'%3E%3Cpath%20d='M112%202%20C112%2026%20100%2044%2064%2048%20C30%2052%208%2042%205%2028%20C3%2018%2012%2012%2022%2016%20C29%2019%2029%2028%2023%2031'%20fill='none'%20stroke='%23000'%20stroke-width='8'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E");
     position: relative;
     display: inline-flex;
     align-items: baseline;
     gap: 0.35em;
-    padding: 4px 16px;
+    padding: 5px 16px 9px;
     border: 2px solid #9d4edd;
     border-radius: 999px;
     background: none;
@@ -327,6 +325,23 @@
       color 0.15s ease,
       border-color 0.15s ease,
       box-shadow 0.15s ease;
+  }
+
+  .naughty-toggle .naughty-word {
+    position: relative;
+  }
+
+  /* A continuous underline drawn below the descenders (text-decoration would
+     break up around the "g" and "y"). Inherits the text colour. */
+  .naughty-toggle .naughty-word::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.22em;
+    height: 2.5px;
+    border-radius: 2px;
+    background: currentColor;
   }
 
   .naughty-toggle .mode-word {
@@ -351,24 +366,6 @@
     box-shadow: 0 2px 10px color-mix(in srgb, #7b2cbf 45%, transparent);
   }
 
-  /* The long tail on the "y": a swash drawn with a mask so it inherits the text
-     colour (purple when off, white when the button is pressed). */
-  .naughty-toggle .swash {
-    position: relative;
-  }
-
-  .naughty-toggle .swash::after {
-    content: '';
-    position: absolute;
-    right: 0.12em;
-    top: 0.82em;
-    width: 3.3em;
-    height: 1.7em;
-    background-color: currentColor;
-    -webkit-mask: var(--swash) no-repeat top right / 100% 100%;
-    mask: var(--swash) no-repeat top right / 100% 100%;
-    pointer-events: none;
-  }
 
   footer {
     margin-top: 40px;
