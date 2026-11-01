@@ -26,7 +26,9 @@ Browser ─HTTPS─▶ Cloudflare edge (crosswordle.example.com, proxied)
   rules are the same on every host.
 - **IIS listens on 127.0.0.1 only.** The only way in is through cloudflared, so nobody can reach the
   server around Cloudflare.
-- The app uses `#` URLs (`#2026-10-24`), so IIS needs no rewrite rules.
+- The app uses `#` URLs (`#2026-10-24`), so no rewrite rules are needed for routing. URL Rewrite
+  has one job: answering folder URLs (`/assets/`) with a 404, as Pages does, instead of IIS's
+  empty 200.
 
 ## One-time server setup
 
@@ -35,9 +37,10 @@ On the server, as an administrator:
 1. Install, from their signed installers (check each one's signature, and Node's SHA-256 against
    `SHASUMS256.txt`):
    - **Node.js 22 LTS** (Windows x64 MSI, machine-wide, default path `C:\Program Files\nodejs`).
-   - **HttpPlatformHandler v1.2** (x64 MSI from Microsoft's IIS downloads). It registers itself
-     with IIS, so install it **after** IIS: run step 2 once first (it installs IIS, then stops and
-     says HttpPlatformHandler is missing), install this, then run step 2 again.
+   - **HttpPlatformHandler v1.2** and **URL Rewrite 2.1** (x64 MSIs from Microsoft's IIS
+     downloads, signed by Microsoft). They register themselves with IIS, so install them **after**
+     IIS: run step 2 once first (it installs IIS, then stops and says what's missing), install
+     these, then run step 2 again.
 
    Installing IIS also creates the **Default Web Site** on port 80, for every address. If nothing
    else uses it, stop it and turn off its auto-start, so the server shows nothing on port 80:
@@ -99,8 +102,8 @@ What protects the public site, and what to keep doing.
 - **Nothing is reachable except through Cloudflare.** IIS binds to 127.0.0.1; from the LAN, port
   8080 only gets HTTP.sys's "Invalid Hostname". Node listens on a loopback port that IIS picks
   and proxies to.
-- **Nothing on the server runs code from a request.** IIS has only static files and
-  HttpPlatformHandler: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
+- **Nothing on the server runs code from a request.** IIS has only static files,
+  HttpPlatformHandler and URL Rewrite: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
   and compares letters. It never touches the file system, a shell or `eval`, and the site has no
   upload or write path.
 - **Least privilege.** Static files and Node both run as `IIS AppPool\crosswordle`, which can read

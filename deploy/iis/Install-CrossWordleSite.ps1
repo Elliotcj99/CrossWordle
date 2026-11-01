@@ -9,8 +9,8 @@
     loopback only, so it is reachable only through a local reverse proxy such as cloudflared),
     the release folders and their permissions, and a log field for the visitor's real address.
 
-    HttpPlatformHandler and Node.js 22 are installed separately, from their signed installers
-    (see deploy/iis/README.md). The script stops if either is missing.
+    HttpPlatformHandler, URL Rewrite and Node.js 22 are installed separately, from their signed
+    installers (see deploy/iis/README.md). The script stops if any is missing.
 
 .EXAMPLE
     Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1
@@ -55,6 +55,9 @@ if (-not (Test-Path $node)) {
 $modules = Get-WebConfiguration -PSPath 'MACHINE/WEBROOT/APPHOST' -Filter 'system.webServer/globalModules/add'
 if (-not ($modules | Where-Object { $_.name -eq 'httpPlatformHandler' })) {
     throw 'HttpPlatformHandler is not installed. Install the HttpPlatformHandler v1.2 MSI first.'
+}
+if (-not ($modules | Where-Object { $_.name -eq 'RewriteModule' })) {
+    throw 'URL Rewrite is not installed. Install the URL Rewrite 2.1 MSI first.'
 }
 
 foreach ($folder in @($Root, "$Root\releases", "$Root\empty")) {
