@@ -40,8 +40,10 @@ as soon as it is found.
 | `data/clues-naughty/`     | Cheeky clues for the Naughty-mode words (CC0).                                          |
 | `puzzles/`                | Puzzle source files (plain answers), one per id.                                        |
 | `puzzles-naughty/`        | Naughty-mode puzzle sources; ids are prefixed `naughty-<date>`.                         |
-| `deploy/`                 | Security headers (one source for both hosts), nginx site, lab hosting guide.            |
-| `scripts/`                | Header rendering and the lab deploy, both run locally.                                  |
+| `functions/`              | The API (guess scoring, hints) as Cloudflare Pages Functions.                           |
+| `server/`                 | The same API on a plain Node server, for hosting on IIS.                                |
+| `deploy/`                 | Security headers (one source for every host), IIS and nginx sites, hosting guides.      |
+| `scripts/`                | Header rendering, the IIS release build, and the IIS and lab deploys, all run locally.  |
 | `.github/workflows`       | Cloudflare Pages deploy (`deploy-cloudflare.yml`), run by hand only. There is no CI.    |
 
 ## Getting started
@@ -106,10 +108,16 @@ remembered**, and turning it on asks first, so nobody meets strong language with
 
 ## Hosting
 
-- **Now:** the private lab, deployed from your own machine with `npm run deploy:lab`. See
-  [deploy/lab/README.md](deploy/lab/README.md).
-- **Later:** Cloudflare Pages. Set the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
-  secrets, then run the **Deploy to Cloudflare Pages** workflow.
+The same build runs on either host; the public name points at one of them.
+
+- **Cloudflare Pages** (the default): every push to `main` builds on Cloudflare (`npm run build`,
+  output `apps/web/dist`) and goes live. The API runs as Pages Functions (`functions/`).
+- **IIS behind a Cloudflare Tunnel:** `npm run build:iis` packages the site with a `web.config`,
+  plus the API as a Node server (`server/`) that IIS starts. `scripts/deploy-iis.ps1` deploys it over
+  PowerShell remoting. See [deploy/iis/README.md](deploy/iis/README.md), including how to switch the
+  public name between the two hosts.
+- **Private lab (static only):** `npm run deploy:lab` uploads the static site to an nginx host. See
+  [deploy/lab/README.md](deploy/lab/README.md). It has no API, so guesses can't be scored there.
 
 ## Known gaps
 

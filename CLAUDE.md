@@ -7,6 +7,9 @@
   gitignored). The browser is served the public (answer-free) puzzle files and never receives an
   answer, so it can't be read from the page. Keep it that way: don't ship answers to the client,
   and don't commit `_puzzles.json`.
+- The same handlers also run on Node for the IIS host (`server/`, bundled by `npm run build:iis`
+  with the answers inlined into `dist/iis/server`, outside the served site). Keep the handlers to
+  Web `Request`/`Response` so both hosts work, and keep the server bundle out of the site folder.
 - Game state is the _scored_ guesses the server returned (marks per tile), keyed by entry. The
   browser can't recompute feedback without the answer, so it stores the marks; locks, budgets,
   solved state, status and the share card all derive from those. Don't store anything else.
