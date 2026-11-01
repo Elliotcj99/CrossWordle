@@ -85,24 +85,25 @@ try {
             function Test-Site {
                 $binding = (Get-WebBinding -Name $SiteName -Protocol http).bindingInformation
                 $base = 'http://' + ($binding -replace ':$', '')
-                $page = Invoke-WebRequest "$base/" -UseBasicParsing -TimeoutSec 60
-                if ($page.StatusCode -ne 200) { throw "Home page returned $($page.StatusCode)." }
-                # 'sample' is always in the answers bundle; an unknown entry proves the API runs
-                # and has the bundle, without scoring anything.
-                $body = '{"puzzleId":"sample","entryId":"-","guess":"A"}'
+                # HttpClient, not Invoke-WebRequest: Windows PowerShell's Invoke-WebRequest throws
+                # on a 4xx and has already consumed the body, which this check needs to read.
+                Add-Type -AssemblyName System.Net.Http
+                $client = New-Object System.Net.Http.HttpClient
+                $client.Timeout = [TimeSpan]::FromSeconds(60)
                 try {
-                    Invoke-WebRequest "$base/api/guess" -Method Post -Body $body `
-                        -ContentType 'application/json' -UseBasicParsing -TimeoutSec 60 | Out-Null
-                    throw 'The API accepted an unknown entry.'
-                } catch [System.Net.WebException] {
-                    $response = $_.Exception.Response
-                    if ($null -eq $response -or [int]$response.StatusCode -ne 404) {
-                        throw "The API check failed: $($_.Exception.Message)"
+                    $page = $client.GetAsync("$base/").Result
+                    if ([int]$page.StatusCode -ne 200) { throw "Home page returned $([int]$page.StatusCode)." }
+                    # 'sample' is always in the answers bundle; an unknown entry proves the API runs
+                    # and has the bundle, without scoring anything.
+                    $body = New-Object System.Net.Http.StringContent(
+                        '{"puzzleId":"sample","entryId":"-","guess":"A"}', [Text.Encoding]::UTF8, 'application/json')
+                    $api = $client.PostAsync("$base/api/guess", $body).Result
+                    $text = $api.Content.ReadAsStringAsync().Result
+                    if ([int]$api.StatusCode -ne 404 -or $text -notmatch '"unknown-entry"') {
+                        throw "The API check failed: $([int]$api.StatusCode) $text"
                     }
-                    $reader = New-Object System.IO.StreamReader($response.GetResponseStream())
-                    if ($reader.ReadToEnd() -notmatch 'unknown-entry') {
-                        throw 'The API returned 404 without its JSON body.'
-                    }
+                } finally {
+                    $client.Dispose()
                 }
             }
 
