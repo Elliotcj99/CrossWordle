@@ -107,4 +107,6 @@ if (-not ($existing | Where-Object { $_.logFieldName -eq 'CF-Connecting-IP' })) 
 }
 
 Start-Website -Name $SiteName
-Write-Output "Site '$SiteName' is ready at http://127.0.0.1:$Port/ (empty until the first deploy)."
+$serving = Get-ItemProperty $sitePath -Name physicalPath
+if ($serving -eq "$Root\empty") { $serving = 'nothing yet: run scripts/deploy-iis.ps1' }
+Write-Output "Site '$SiteName' is ready at http://127.0.0.1:$Port/, serving $serving."
