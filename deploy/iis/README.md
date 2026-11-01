@@ -32,10 +32,17 @@ Browser ─HTTPS─▶ Cloudflare edge (crosswordle.example.com, proxied)
 
 On the server, as an administrator:
 
-1. Install, from their signed installers:
+1. Install, from their signed installers (check each one's signature, and Node's SHA-256 against
+   `SHASUMS256.txt`):
    - **Node.js 22 LTS** (Windows x64 MSI, machine-wide, default path `C:\Program Files\nodejs`).
-   - **HttpPlatformHandler v1.2** (x64 MSI from Microsoft's IIS downloads). Install it after IIS if
-     you install IIS by hand. Otherwise step 2 tells you when it's missing.
+   - **HttpPlatformHandler v1.2** (x64 MSI from Microsoft's IIS downloads). It registers itself
+     with IIS, so install it **after** IIS: run step 2 once first (it installs IIS, then stops and
+     says HttpPlatformHandler is missing), install this, then run step 2 again.
+
+   Installing IIS also creates the **Default Web Site** on port 80, for every address. If nothing
+   else uses it, stop it and turn off its auto-start, so the server shows nothing on port 80:
+   `Stop-Website 'Default Web Site'; Set-ItemProperty 'IIS:\Sites\Default Web Site' serverAutoStart $false`.
+
 2. Run the setup script. It is safe to run again. From your machine:
 
    ```powershell
@@ -48,6 +55,8 @@ On the server, as an administrator:
    - the `crosswordle` app pool (no .NET, ApplicationPoolIdentity);
    - the `crosswordle` site on `http://127.0.0.1:8080/`;
    - `C:\inetpub\crosswordle\releases`, readable by the app pool;
+   - an unlock of the `handlers` section for this site only (IIS locks it by default, and the
+     release's `web.config` maps `/api` to HttpPlatformHandler);
    - a `CF-Connecting-IP` field in the IIS log, so you can see visitors' addresses (every request
      comes from cloudflared on 127.0.0.1).
 

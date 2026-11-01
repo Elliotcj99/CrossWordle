@@ -66,6 +66,11 @@ if (-not (Test-Path $sitePath)) {
 Set-ItemProperty $sitePath -Name bindings -Value @{ protocol = 'http'; bindingInformation = "127.0.0.1:${Port}:" }
 Set-ItemProperty $sitePath -Name applicationPool -Value $SiteName
 
+# IIS locks the handlers section by default, and the release's web.config maps /api to
+# HttpPlatformHandler. Unlock it for this site only.
+Set-WebConfiguration -PSPath 'MACHINE/WEBROOT/APPHOST' -Location $SiteName `
+    -Filter 'system.webServer/handlers' -Metadata overrideMode -Value Allow
+
 # The app pool (and the Node process it starts) can read the releases and nothing more.
 $acl = Get-Acl $Root
 $rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
