@@ -31,9 +31,14 @@ Cloudflare Pages builds a **preview deployment** for every non-production branch
 previews with Cloudflare Access:
 
 1. Push the branch. Pages builds a preview (production stays on `main`).
-2. In the Cloudflare dashboard → the Pages project → **Settings → General**, confirm the
-   **production branch** is `main` (so only `main` goes live) and that preview deployments are
-   enabled for other branches.
+2. In the Cloudflare dashboard → the Pages project → **Settings → Builds → Branch control**:
+   - **Production branch** is `main`, so only `main` goes live.
+   - **Preview branch** is **Custom branches**, with `feat/*` under **Include Preview branches**.
+     The include box takes chips: type the pattern and press Enter, or Save stays disabled and
+     nothing is stored. Custom branches keep Dependabot's branches from building previews.
+
+   A branch pushed while previews were off is skipped. Push a new commit to build it.
+
 3. In **Zero Trust → Access → Applications**, add a **Self-hosted** application covering the preview
    hostnames (e.g. `*.<project>.pages.dev`), with a policy that **allows only your and your
    reviewers' emails**. Previews now require an email login; the production custom domain is
