@@ -3,6 +3,11 @@
 A Cloudflare Pages Function that scores guesses on the server, so puzzle answers never reach the
 browser.
 
+The handlers only use Web `Request`/`Response`, so the same code also runs outside Cloudflare:
+`server/` wraps them in a Node HTTP server for the IIS host ([deploy/iis/README.md](../deploy/iis/README.md)).
+Keep them that way: no Cloudflare-only APIs (`env` bindings, KV, `waitUntil`) without a Node
+equivalent in `server/`.
+
 ## How it works
 
 - `api/guess.ts` handles `POST /api/guess` with `{ puzzleId, entryId, guess }` and replies with the
