@@ -48,7 +48,9 @@ try {
             throw 'Commit or stash your changes first: only committed work is deployed.'
         }
         $release = (git rev-parse HEAD).Trim()
-        npm run build:iis
+        # npm writes progress to stderr. When output is redirected, Windows PowerShell turns that
+        # into error records, which 'Stop' would treat as a failure; the exit code decides instead.
+        & { $ErrorActionPreference = 'Continue'; npm run build:iis }
         if ($LASTEXITCODE -ne 0) { throw 'npm run build:iis failed.' }
     }
 
