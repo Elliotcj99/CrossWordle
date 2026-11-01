@@ -27,8 +27,8 @@ Browser ─HTTPS─▶ Cloudflare edge (crosswordle.example.com, proxied)
 - **IIS listens on 127.0.0.1 only.** The only way in is through cloudflared, so nobody can reach the
   server around Cloudflare.
 - The app uses `#` URLs (`#2026-10-24`), so no rewrite rules are needed for routing. URL Rewrite
-  has one job: answering folder URLs (`/assets/`) with a 404, as Pages does, instead of IIS's
-  empty 200.
+  has one job: answering folder URLs (`/assets/`) with a 404 instead of IIS's empty 200. (Pages
+  answers them with the home page.)
 
 ## One-time server setup
 
@@ -120,7 +120,9 @@ What protects the public site, and what to keep doing.
   refused.
 - **Headers** (`deploy/security-headers.json`, the same on every host):
   - The CSP allows only the site's own scripts, styles, images, fonts and API, and no inline
-    script or style. Svelte sets styles through the CSSOM (`element.style`), which CSP permits,
+    script or style. The one exception is Cloudflare Web Analytics: its script from
+    `static.cloudflareinsights.com`, which reports to `cloudflareinsights.com`. Cloudflare adds
+    the script to the page itself when Web Analytics is on. Svelte sets styles through the CSSOM (`element.style`), which CSP permits,
     so `'unsafe-inline'` isn't needed. Injected `<style>` elements or `style=""` attributes are
     blocked.
   - Also sent: HSTS (one year, this hostname only), `nosniff`, no framing (CSP
