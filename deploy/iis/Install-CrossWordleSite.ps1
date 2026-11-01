@@ -35,6 +35,12 @@ if ($result.RestartNeeded -eq 'Yes') {
     Write-Warning 'Windows needs a restart to finish installing IIS. Restart, then run this again.'
     return
 }
+# Web-Server brings directory browsing with it; the site never lists folders. web.config turns it
+# off as well, so a removal still waiting for a restart doesn't hold up the rest of the setup.
+$removal = Uninstall-WindowsFeature -Name 'Web-Dir-Browsing' -WarningAction SilentlyContinue
+if ($removal.RestartNeeded -eq 'Yes') {
+    Write-Warning 'Directory browsing is removed at the next restart.'
+}
 
 Import-Module WebAdministration
 
@@ -71,11 +77,24 @@ Set-ItemProperty $sitePath -Name applicationPool -Value $SiteName
 Set-WebConfiguration -PSPath 'MACHINE/WEBROOT/APPHOST' -Location $SiteName `
     -Filter 'system.webServer/handlers' -Metadata overrideMode -Value Allow
 
-# The app pool (and the Node process it starts) can read the releases and nothing more.
-$acl = Get-Acl $Root
-$rule = New-Object System.Security.AccessControl.FileSystemAccessRule(
-    "IIS AppPool\$SiteName", 'ReadAndExecute', 'ContainerInherit, ObjectInherit', 'None', 'Allow')
-$acl.SetAccessRule($rule)
+# Serve static files as the app pool's own identity rather than the shared IUSR account, so one
+# account is the only non-admin reader.
+Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' -Location $SiteName `
+    -Filter 'system.webServer/security/authentication/anonymousAuthentication' -Name userName -Value ''
+
+# Only administrators (who deploy) and SYSTEM can write, and only the app pool (and the Node
+# process it starts) can read. Nothing is inherited from C:\inetpub, where every local user can
+# read: the releases hold the answers bundle.
+$acl = New-Object System.Security.AccessControl.DirectorySecurity
+$acl.SetAccessRuleProtection($true, $false)
+$inherit = 'ContainerInherit, ObjectInherit'
+foreach ($rule in @(
+        @('BUILTIN\Administrators', 'FullControl'),
+        @('NT AUTHORITY\SYSTEM', 'FullControl'),
+        @("IIS AppPool\$SiteName", 'ReadAndExecute'))) {
+    $acl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
+                $rule[0], $rule[1], $inherit, 'None', 'Allow')))
+}
 Set-Acl -Path $Root -AclObject $acl
 
 # Every request arrives from cloudflared on 127.0.0.1; log the visitor's address too.

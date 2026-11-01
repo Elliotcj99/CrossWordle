@@ -54,7 +54,10 @@ On the server, as an administrator:
    request filtering, compression and the IIS PowerShell module). It also creates the following:
    - the `crosswordle` app pool (no .NET, ApplicationPoolIdentity);
    - the `crosswordle` site on `http://127.0.0.1:8080/`;
-   - `C:\inetpub\crosswordle\releases`, readable by the app pool;
+   - `C:\inetpub\crosswordle\releases`, readable only by the app pool, writable only by
+     administrators;
+   - anonymous requests served as the app pool's identity, not the shared `IUSR`;
+   - directory browsing removed (installing IIS adds it);
    - an unlock of the `handlers` section for this site only (IIS locks it by default, and the
      release's `web.config` maps `/api` to HttpPlatformHandler);
    - a `CF-Connecting-IP` field in the IIS log, so you can see visitors' addresses (every request
@@ -80,10 +83,55 @@ Trust and DNS roles, or create the tunnel and give you its token.
    with a staging name, so the live site isn't affected.
 3. **Protect the staging name:** in **Zero Trust → Access → Applications**, add a **Self-hosted**
    application for the staging hostname. Give it a policy that allows only your email addresses.
-4. **Rate limit (optional):** in the zone, **Security → WAF → Rate limiting rules**, add a rule for
+4. **Rate limit:** in the zone, **Security → WAF → Rate limiting rules**, add a rule for
    URI path starts with `/api/`. The free plan has one rule.
 5. Leave **SSL/TLS** as it is. The edge certificate covers the hostname, and the hop from
-   cloudflared to IIS is local.
+   cloudflared to IIS is local. Check the zone has **Always Use HTTPS** on and **Minimum TLS
+   Version** at 1.2 or higher.
+6. Keep **Rocket Loader**, **Email Address Obfuscation** and other features that rewrite pages off
+   for this hostname (a **Configuration Rule** can turn them off for one host). They inject inline
+   scripts, which the site's CSP blocks.
+
+## Security
+
+What protects the public site, and what to keep doing.
+
+- **Nothing is reachable except through Cloudflare.** IIS binds to 127.0.0.1; from the LAN, port
+  8080 only gets HTTP.sys's "Invalid Hostname". Node listens on a loopback port that IIS picks
+  and proxies to.
+- **Nothing on the server runs code from a request.** IIS has only static files and
+  HttpPlatformHandler: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
+  and compares letters. It never touches the file system, a shell or `eval`, and the site has no
+  upload or write path.
+- **Least privilege.** Static files and Node both run as `IIS AppPool\crosswordle`, which can read
+  the releases and nothing else. Only administrators can write them, and other local users can't
+  read them (the answers bundle is there).
+- **No leaks.**
+  - No `Server` or `X-Powered-By` header, and no detailed error pages (which show server paths).
+  - `web.config` and the `server` folder are never served.
+  - The API's 500s say only `server-error`.
+  - No source maps are built.
+  - The deploy takes the server's name and credential at run time, so neither is in the repo.
+- **Request filtering.** Only GET, HEAD and POST are allowed. Bodies are capped at 16 KB (the API's
+  own limit), URLs at 1 KB and query strings at 512 bytes. Double-escaped and non-ASCII URLs are
+  refused.
+- **Headers** (`deploy/security-headers.json`, the same on every host):
+  - The CSP allows only the site's own scripts, styles, images, fonts and API, and no inline
+    script or style. Svelte sets styles through the CSSOM (`element.style`), which CSP permits,
+    so `'unsafe-inline'` isn't needed. Injected `<style>` elements or `style=""` attributes are
+    blocked.
+  - Also sent: HSTS (one year, this hostname only), `nosniff`, no framing (CSP
+    `frame-ancestors` and `X-Frame-Options`), `same-origin` COOP and CORP, `no-referrer`, and a
+    Permissions-Policy that turns off the camera, microphone, location, payment and USB.
+- **The tunnel token.** `cloudflared service install <token>` stores the token in the service's
+  configuration, which local users can read. Keep sign-ins to the server to administrators. If
+  the token is ever exposed, rotate it in the tunnel's settings.
+- **Patching.** Windows Update covers IIS. Node.js isn't updated automatically: install each
+  Node 22 security release (or the next LTS before 22 reaches end of life in April 2027), then
+  recycle the app pool. `npm audit --omit=dev` covers what ships; the server bundle has no
+  third-party packages.
+- **Logs.** IIS logs (with each visitor's address, from `CF-Connecting-IP`) are in
+  `C:\inetpub\logs\LogFiles` and grow without limit. Delete old ones from time to time.
 
 ## Deploying
 

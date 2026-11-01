@@ -16,8 +16,10 @@ const files = {
 export function puzzleFor(id: string): Puzzle | undefined {
   const cached = puzzles.get(id);
   if (cached !== undefined) return cached;
+  // Own keys only: ids come from the request, and `__proto__` or `constructor` must not reach
+  // Object.prototype.
+  if (!Object.hasOwn(files, id)) return undefined;
   const file = files[id];
-  if (file === undefined) return undefined;
   const puzzle = loadPuzzle(parsePuzzleFile(file));
   puzzles.set(id, puzzle);
   return puzzle;
