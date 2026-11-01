@@ -25,8 +25,10 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# Role services only: naming 'Web-Server' itself also adds its defaults, directory browsing among
+# them. The parents these need are added automatically.
 $features = @(
-    'Web-Server', 'Web-Static-Content', 'Web-Default-Doc', 'Web-Http-Errors',
+    'Web-Static-Content', 'Web-Default-Doc', 'Web-Http-Errors',
     'Web-Http-Logging', 'Web-Custom-Logging', 'Web-Filtering', 'Web-Stat-Compression',
     'Web-Scripting-Tools'
 )
@@ -37,9 +39,11 @@ if ($result.RestartNeeded -eq 'Yes') {
 }
 # Web-Server brings directory browsing with it; the site never lists folders. web.config turns it
 # off as well, so a removal still waiting for a restart doesn't hold up the rest of the setup.
-$removal = Uninstall-WindowsFeature -Name 'Web-Dir-Browsing' -WarningAction SilentlyContinue
-if ($removal.RestartNeeded -eq 'Yes') {
-    Write-Warning 'Directory browsing is removed at the next restart.'
+if ((Get-WindowsFeature -Name 'Web-Dir-Browsing').InstallState -in 'Installed', 'InstallPending') {
+    $removal = Uninstall-WindowsFeature -Name 'Web-Dir-Browsing' -WarningAction SilentlyContinue
+    if ($removal.RestartNeeded -eq 'Yes') {
+        Write-Warning 'Directory browsing is removed at the next restart.'
+    }
 }
 
 Import-Module WebAdministration
