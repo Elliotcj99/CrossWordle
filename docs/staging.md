@@ -30,7 +30,9 @@ Cloudflare Pages builds a **preview deployment** for every non-production branch
 `https://<branch>.<project>.pages.dev` URL. That URL is unlisted but publicly reachable, so protect
 previews with Cloudflare Access:
 
-1. Push the branch. Pages builds a preview (production stays on `main`).
+1. Push the branch. **Its name must start with `feat/`** (e.g. `feat/naughty-hints`), or Pages
+   builds no preview. Production stays on `main`. The preview URL uses the branch name with `/`
+   turned into `-`: `https://feat-naughty-hints.<project>.pages.dev`.
 2. In the Cloudflare dashboard → the Pages project → **Settings → Builds → Branch control**:
    - **Production branch** is `main`, so only `main` goes live.
    - **Preview branch** is **Custom branches**, with `feat/*` under **Include Preview branches**.

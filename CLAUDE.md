@@ -18,5 +18,7 @@
 - Every engine change gets unit tests in `packages/engine/test`.
 - Test the full stack (static site + Function) locally with `npm run preview` (Wrangler). See
   `docs/staging.md` for previewing a branch privately.
+- Name branches `feat/<topic>`. Cloudflare Pages only builds preview deployments for `feat/*`
+  branches, so a branch with any other name gets no preview.
 - Never commit real host names, IP addresses, domains or account names. Use `example.com`,
   `192.0.2.x` and repository variables or secrets instead.
