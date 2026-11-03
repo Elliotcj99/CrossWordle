@@ -1,4 +1,5 @@
 <script lang="ts">
+  // Keep the grouping in step with `clueOrder` in the engine, which picks the next clue to play.
   import type { ClientEntry } from '@crosswordle/engine';
 
   interface Props {

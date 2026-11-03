@@ -3,6 +3,7 @@
     bestMarks,
     cellKey,
     checkGuess,
+    clueOrder,
     computeStats,
     crosswordClueShown,
     deleteLetter,
@@ -18,6 +19,7 @@
     isSolved,
     lockedLetters,
     newGame,
+    nextUnsolved,
     recordCrosswordClue,
     recordGuess,
     recordWordleClue,
@@ -50,8 +52,10 @@
 
   // A Game is created for one puzzle (App keys it by puzzle id), so the initial values are read
   // once on purpose. The engine returns new objects on every change, so raw state is enough.
+  // `order` is the entries as the clue list shows them; every move between clues follows it.
+  const order = clueOrder(untrack(() => puzzle));
   let game = $state.raw<GameState>(untrack(() => loadGame(puzzle) ?? newGame(puzzle)));
-  let selectedId = $state(untrack(() => firstUnsolved(game)?.id ?? puzzle.entries[0]!.id));
+  let selectedId = $state(untrack(() => (nextUnsolved(puzzle, game) ?? order[0]!).id));
   let draft = $state.raw<Draft>(emptyDraft());
   let message = $state('');
   let confirmingRestart = $state(false);
@@ -96,10 +100,6 @@
 
   function entryById(id: string): ClientEntry {
     return puzzle.entries.find((e) => e.id === id)!;
-  }
-
-  function firstUnsolved(state: GameState): ClientEntry | undefined {
-    return puzzle.entries.find((e) => !isSolved(state, e));
   }
 
   function select(entry: ClientEntry) {
@@ -147,7 +147,8 @@
     try {
       const scored = await scoreGuess(puzzle.id, check.entry.id, check.guess);
       game = recordGuess(game, check.entry, scored.letters);
-      const next = scored.solved ? firstUnsolved(game) : undefined;
+      // Once every clue is solved there is no next one: stay on this clue and the game ends.
+      const next = scored.solved ? nextUnsolved(puzzle, game, check.entry.id) : undefined;
       if (next !== undefined) select(next);
       else draft = emptyDraft();
       message = summary(check.entry, check.guess, scored.solved, scored.letters);
@@ -202,7 +203,7 @@
   function restart() {
     game = newGame(puzzle);
     confirmingRestart = false;
-    select(puzzle.entries[0]!);
+    select(order[0]!);
   }
 
   /** The single-column phone layout, where the grid and the clue list are far apart. */
@@ -210,11 +211,10 @@
     return typeof window !== 'undefined' && window.matchMedia('(max-width: 859px)').matches;
   }
 
-  /** Moves to the next or previous entry in the puzzle's order (1, 2, 3…, across before down). */
+  /** Moves to the next or previous clue in the list (across before down), wrapping round. */
   function step(delta: number) {
-    const i = puzzle.entries.findIndex((e) => e.id === selectedId);
-    const count = puzzle.entries.length;
-    select(puzzle.entries[(i + delta + count) % count]!);
+    const i = order.findIndex((e) => e.id === selectedId);
+    select(order[(i + delta + order.length) % order.length]!);
   }
 
   /** Selecting from the clue list jumps back up to the grid on a phone, to save scrolling. */

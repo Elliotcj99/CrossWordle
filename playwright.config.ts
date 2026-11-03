@@ -1,20 +1,30 @@
 import { defineConfig, devices } from '@playwright/test';
 
+/**
+ * A site that is already running, such as a staging deploy (`http://127.0.0.1:8081`). When it's
+ * set, the tests run against it and no local server is started.
+ */
+const deployed = process.env.CROSSWORDLE_BASE_URL || undefined;
+
 export default defineConfig({
   testDir: 'apps/web/e2e',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:4173',
+    baseURL: deployed ?? 'http://localhost:4173',
   },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
     { name: 'phone', use: { ...devices['Pixel 7'] } },
   ],
-  webServer: {
-    command: 'npm run build && npm run preview -w @crosswordle/web -- --port 4173 --strictPort',
-    url: 'http://localhost:4173',
-    reuseExistingServer: !process.env.CI,
-  },
+  ...(deployed === undefined && {
+    webServer: {
+      // The full stack (static site + the scoring Functions), since guesses are scored on the
+      // server.
+      command: 'npm run preview -- --port 4173',
+      url: 'http://localhost:4173',
+      reuseExistingServer: !process.env.CI,
+    },
+  }),
 });

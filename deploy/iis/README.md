@@ -173,6 +173,13 @@ IIS site runs out of puzzles.
   - play a guess and a hint, in both daily and Naughty mode;
   - check the browser console for CSP errors;
   - check the response headers: `curl -I https://crosswordle-staging.example.com/assets/<file>`.
+- **Staging site:** a second site on the same server, so tests never touch the live one. Create
+  it once with the install script (`-ArgumentList 'Crosswordle-Staging',
+'C:\inetpub\crosswordle-staging', 8081`), then deploy a branch to it with
+  `.\scripts\deploy-iis.ps1 -Credential $credential -SiteName Crosswordle-Staging -Root C:\inetpub\crosswordle-staging`.
+  To run the browser tests against it, run them on the server with
+  `$env:CROSSWORDLE_BASE_URL = 'http://127.0.0.1:8081'; npm run test:e2e`. Playwright then uses
+  the deployed site and doesn't start its own.
 - **API logs:** if `/api` returns 502, set `stdoutLogEnabled="true"` and
   `stdoutLogFile="..\..\..\logs\api"` on `<httpPlatform>` in the live release's `web.config`. Create
   the `logs` folder, give the app pool modify rights on it, and read the log.
