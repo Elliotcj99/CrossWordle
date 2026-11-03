@@ -74,6 +74,20 @@ describe('daily puzzles', () => {
     expect(recentAnswers('2027-03-01', [first]).size).toBe(0);
   });
 
+  it('lets a collection reuse answers sooner with a shorter window', () => {
+    const first = generateDaily('2026-10-24', pool, [], small)!;
+    // Ten days later: still recent under the default window, but not under a 7-day one.
+    expect(recentAnswers('2026-11-03', [first]).size).toBe(first.entries.length);
+    expect(recentAnswers('2026-11-03', [first], 7).size).toBe(0);
+    expect(recentAnswers('2026-10-31', [first], 7).size).toBe(first.entries.length);
+
+    // generateDaily passes the window through: with none, yesterday's answers are fair game.
+    const again = generateDaily('2026-10-25', pool, [first], small, { recentDays: 0 })!;
+    const fresh = generateDaily('2026-10-25', pool, [first], small)!;
+    expect(again).toEqual(generateDaily('2026-10-25', pool, [], small));
+    expect(again).not.toEqual(fresh);
+  });
+
   it('is repeatable for a date', () => {
     const a: PuzzleFile = generateDaily('2026-11-05', pool, [], small)!;
     expect(generateDaily('2026-11-05', pool, [], small)).toEqual(a);

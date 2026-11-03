@@ -3,7 +3,7 @@ import { basename, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { loadPuzzle, parsePuzzleFile, type PuzzleFile } from '@crosswordle/engine';
 import { candidatePool, readClueLists } from './clue-lists';
-import { addDays, generateDaily, isDate } from './daily';
+import { addDays, generateDaily, isDate, RECENT_DAYS } from './daily';
 import { DEFAULT_LAYOUT, type LayoutOptions } from './layout';
 import { publishFolder, readPuzzleFolder, type LoadedFile } from './puzzle-files';
 import { NOTICE_FILE, readWordLists, writeWordFiles } from './word-lists';
@@ -27,9 +27,11 @@ const USAGE = `Usage:
   crosswordle generate --clues <file> [--clues <file>...] --words <folder>... --puzzles <folder>
                        [--from <YYYY-MM-DD>] [--days <n>] [--id-prefix <s>] [--title-prefix <s>]
                        [--min-entries <n>] [--max-entries <n>] [--max-size <n>] [--candidates <n>]
+                       [--recent-days <n>]
       Write daily puzzles that don't exist yet (default: 14 days from today). Later clue lists
       override earlier ones. --id-prefix/--title-prefix name a separate collection (e.g. naughty-);
-      the layout flags override the newspaper-size default.`;
+      the layout flags override the newspaper-size default. --recent-days is how many days either
+      side of a puzzle its answers can't be reused (default 60; less for a small word list).`;
 
 async function main(argv: string[]): Promise<number> {
   const { positionals, values } = parseArgs({
@@ -45,6 +47,7 @@ async function main(argv: string[]): Promise<number> {
       puzzles: { type: 'string' },
       from: { type: 'string' },
       days: { type: 'string' },
+      'recent-days': { type: 'string' },
       notice: { type: 'string' },
       'answers-out': { type: 'string' },
       clues2: { type: 'string', multiple: true },
@@ -166,7 +169,9 @@ async function main(argv: string[]): Promise<number> {
       if (!clueFiles?.length || !wordsFolders?.length || !puzzles) return usage();
       const from = values.from ?? localToday();
       const days = Number(values.days ?? '14');
+      const recentDays = Number(values['recent-days'] ?? RECENT_DAYS);
       if (!isDate(from) || !Number.isInteger(days) || days < 1) return usage();
+      if (!Number.isInteger(recentDays) || recentDays < 0) return usage();
 
       const layout = layoutFromFlags(values);
       if (layout === undefined) return usage();
@@ -195,7 +200,11 @@ async function main(argv: string[]): Promise<number> {
           console.log(`skip  ${id} (already exists)`);
           continue;
         }
-        const puzzle = generateDaily(date, pool, existing, layout, { idPrefix, titlePrefix });
+        const puzzle = generateDaily(date, pool, existing, layout, {
+          idPrefix,
+          titlePrefix,
+          recentDays,
+        });
         if (puzzle === undefined) {
           console.error(`FAIL  ${id}: no layout reached the minimum number of entries.`);
           failed = true;
