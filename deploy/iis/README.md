@@ -113,6 +113,12 @@ What protects the public site, and what to keep doing.
   HttpPlatformHandler and URL Rewrite: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
   and compares letters. It never touches the file system, a shell or `eval`, and the site has no
   upload or write path.
+- **Data and settings stay outside the releases.** `<root>\data` holds the database: the only
+  folder the app pool can write to. `<root>\config.json` holds the site's settings (contact
+  address, Turnstile keys); the install script creates it empty. `web.config` passes both paths to
+  Node (`CROSSWORDLE_DATA`, `CROSSWORDLE_CONFIG`), and deploys never touch either. Node checks
+  both at start-up, so a broken settings file or an unwritable data folder shows up as a failed
+  deploy check, not as errors for players.
 - **Least privilege.** Static files and Node both run as `IIS AppPool\crosswordle`, which can read
   the releases and nothing else. Only administrators can write them, and other local users can't
   read them (the answers bundle is there).

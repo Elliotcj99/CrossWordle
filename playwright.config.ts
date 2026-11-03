@@ -12,7 +12,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   reporter: 'list',
   use: {
-    baseURL: deployed ?? 'http://localhost:4173',
+    baseURL: deployed ?? 'http://127.0.0.1:4173',
   },
   projects: [
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
@@ -20,10 +20,11 @@ export default defineConfig({
   ],
   ...(deployed === undefined && {
     webServer: {
-      // The full stack (static site + the scoring Functions), since guesses are scored on the
-      // server.
-      command: 'npm run preview -- --port 4173',
-      url: 'http://localhost:4173',
+      // The full stack, as IIS runs it: the static site and the Node API (server/preview.ts).
+      // Its database goes under test-results, so every run starts empty.
+      command: 'npm run preview',
+      env: { PORT: '4173', CROSSWORDLE_DATA: 'test-results/.data' },
+      url: 'http://127.0.0.1:4173',
       reuseExistingServer: !process.env.CI,
     },
   }),

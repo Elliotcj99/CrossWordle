@@ -14,10 +14,16 @@ import type {
 
 export type Handler = (context: { request: Request }) => Promise<Response>;
 
-/** POST handlers keyed by exact path, e.g. `/api/guess`. */
-export type Routes = Readonly<Record<string, Handler>>;
+/** A path's handlers by method. A GET route also answers HEAD. */
+export interface Route {
+  readonly GET?: Handler;
+  readonly POST?: Handler;
+}
 
-/** Guess and hint bodies are a few hundred bytes; anything far bigger is refused unread. */
+/** Routes keyed by exact path, e.g. `/api/guess`. */
+export type Routes = Readonly<Record<string, Route>>;
+
+/** Request bodies are a few hundred bytes; anything far bigger is refused unread. */
 export const MAX_BODY_BYTES = 16 * 1024;
 
 function json(
@@ -59,28 +65,36 @@ async function readBody(req: IncomingMessage, limit: number): Promise<Buffer | u
 
 async function handle(routes: Routes, req: IncomingMessage, res: ServerResponse): Promise<void> {
   const url = new URL(req.url ?? '/', 'http://localhost');
-  const handler = Object.hasOwn(routes, url.pathname) ? routes[url.pathname] : undefined;
-  if (handler === undefined) return json(res, 404, { error: 'not-found' });
-  if (req.method !== 'POST') {
-    return json(res, 405, { error: 'method-not-allowed' }, { allow: 'POST' });
+  const route = Object.hasOwn(routes, url.pathname) ? routes[url.pathname] : undefined;
+  if (route === undefined) return json(res, 404, { error: 'not-found' });
+
+  const head = req.method === 'HEAD';
+  const method = head ? 'GET' : (req.method ?? '');
+  const handler = method === 'GET' ? route.GET : method === 'POST' ? route.POST : undefined;
+  if (handler === undefined) {
+    const allow = [route.GET && 'GET, HEAD', route.POST && 'POST'].filter(Boolean).join(', ');
+    return json(res, 405, { error: 'method-not-allowed' }, { allow });
   }
 
-  const body = await readBody(req, MAX_BODY_BYTES);
-  if (body === undefined) {
-    // Stop reading the rest of an oversized upload.
-    return json(res, 413, { error: 'too-large' }, { connection: 'close' });
+  let body: Buffer | undefined;
+  if (method === 'POST') {
+    body = await readBody(req, MAX_BODY_BYTES);
+    if (body === undefined) {
+      // Stop reading the rest of an oversized upload.
+      return json(res, 413, { error: 'too-large' }, { connection: 'close' });
+    }
   }
 
   const response = await handler({
     request: new Request(url, {
-      method: 'POST',
+      method,
       headers: toHeaders(req.headers),
-      body: new Uint8Array(body),
+      ...(body === undefined ? {} : { body: new Uint8Array(body) }),
     }),
   });
   res.statusCode = response.status;
   response.headers.forEach((value, name) => res.setHeader(name, value));
-  res.end(Buffer.from(await response.arrayBuffer()));
+  res.end(head ? undefined : Buffer.from(await response.arrayBuffer()));
 }
 
 export function createRequestListener(routes: Routes): RequestListener {
