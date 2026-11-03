@@ -18,6 +18,9 @@
 - Every engine change gets unit tests in `packages/engine/test`.
 - Test the full stack (static site + Function) locally with `npm run preview` (Wrangler). See
   `docs/staging.md` for previewing a branch privately.
+- Naughty words are meant to be laughed at, never hurtful: no slurs (race, ethnicity, religion,
+  sexuality, gender identity, disability), and keep insults balanced between men and women. Every
+  new word needs both clues, and `npm run check:naughty` must pass.
 - Name branches `feat/<topic>`. Cloudflare Pages only builds preview deployments for `feat/*`
   branches, so a branch with any other name gets no preview.
 - Never commit real host names, IP addresses, domains or account names. Use `example.com`,

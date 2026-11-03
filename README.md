@@ -97,6 +97,8 @@ remembered**, and turning it on asks first, so nobody meets strong language with
 - Its words and clues are a hand-written, public-domain (CC0) set in `data/wordlists-naughty/` and
   `data/clues-naughty/`. They are swearing and crude vocabulary only — **no slurs** (words attacking
   people for race, sexuality and the like are kept out on purpose; see the `NOTICE.md` files).
+  `npm run check:naughty` enforces that against a hashed list of blocked words, and runs before
+  the naughty puzzles are generated or published.
 - The puzzles are a separate collection: smaller, denser grids (a rude-only vocabulary doesn't fill
   a newspaper-size grid), ids prefixed `naughty-<date>`, published to `apps/web/public/naughty/`
   with their own guess dictionary in `apps/web/public/words-naughty/` (the ordinary dictionary plus
