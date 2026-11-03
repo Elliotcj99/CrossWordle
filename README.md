@@ -105,6 +105,8 @@ remembered**, and turning it on asks first, so nobody meets strong language with
   the rude words, so normal words are still valid guesses). Answers stay server-side exactly as for
   the daily puzzles (`functions/_puzzles.naughty.json`). The "Crossword clue" hint works here too,
   using the second clues in `data/clues-naughty/second.tsv`.
+- A puzzle never uses two forms of a word (JIZZ and JIZZED), and a word's forms rest for 10 days
+  after it's used, along with the word.
 - Regenerate the puzzle sources with `npm run generate:naughty` (smaller-grid layout flags are baked
   into that script). `npm run build`/`dev` publish them alongside the daily ones automatically.
 

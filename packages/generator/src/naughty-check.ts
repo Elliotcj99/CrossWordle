@@ -1,5 +1,8 @@
 import { createHash } from 'node:crypto';
+import { forms } from './word-forms';
 import { SLUR, type WordNet } from './wordnet';
+
+export { forms };
 
 /**
  * Keeps slurs out of Naughty mode. Its words are meant to be funny-rude, so anything that attacks
@@ -38,35 +41,6 @@ export function parseReviewed(text: string): Set<string> {
     if (word !== undefined && word.trim() !== '') words.add(word.trim().toLowerCase());
   }
   return words;
-}
-
-const SUFFIXES: readonly (readonly [string, string])[] = [
-  ['ies', 'y'],
-  ['iest', 'y'],
-  ['ier', 'y'],
-  ['ers', ''],
-  ['ing', ''],
-  ['es', ''],
-  ['ed', ''],
-  ['er', ''],
-  ['s', ''],
-  ['y', ''],
-  ['d', ''],
-];
-
-/** The word and the stems left after taking off a common ending (FAGS → FAG, SPAZZED → SPAZZ). */
-export function forms(word: string): string[] {
-  const lower = word.toLowerCase();
-  const out = new Set([lower]);
-  for (const [ending, replacement] of SUFFIXES) {
-    if (lower.length > ending.length + 2 && lower.endsWith(ending)) {
-      const stem = lower.slice(0, -ending.length) + replacement;
-      out.add(stem);
-      // A doubled final consonant (SPAZZED → SPAZ).
-      if (/([b-df-hj-np-tv-z])\1$/.test(stem)) out.add(stem.slice(0, -1));
-    }
-  }
-  return [...out];
 }
 
 /** The leading and trailing pieces of a compound, each at least three letters, with their forms. */

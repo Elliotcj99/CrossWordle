@@ -1,10 +1,12 @@
 import type { PuzzleFile } from '@crosswordle/engine';
 import { DEFAULT_LAYOUT, generateLayout, type Candidate, type LayoutOptions } from './layout';
 import { seededRandom } from './random';
+import { sharesStem, stemsOf } from './word-forms';
 
 /**
- * By default an answer isn't reused within this many days either side of a puzzle. A collection
- * with a small word list (Naughty mode) needs a shorter window, or it runs out of fresh answers.
+ * By default an answer, or another form of it (JIZZ, JIZZED), isn't reused within this many days
+ * either side of a puzzle. A collection with a small word list (Naughty mode) needs a shorter
+ * window, or it runs out of fresh answers.
  */
 export const RECENT_DAYS = 60;
 
@@ -77,7 +79,10 @@ export interface Naming {
 
 /** A collection's naming, and how long its answers rest before they can be used again. */
 export interface DailyOptions extends Naming {
-  /** Days either side of a puzzle in which its answers aren't reused. Defaults to `RECENT_DAYS`. */
+  /**
+   * Days either side of a puzzle in which its answers (and their other forms) aren't reused.
+   * Defaults to `RECENT_DAYS`.
+   */
   readonly recentDays?: number;
 }
 
@@ -85,7 +90,7 @@ export interface DailyOptions extends Naming {
  * The puzzle for `date`, laid out from `pool` minus recently used answers. The same inputs
  * always give the same puzzle; a different `naming.idPrefix` seeds a different puzzle for the same
  * date, so a prefixed collection doesn't clone the daily one. Answers used within `options.recentDays`
- * of `date` are left out. `undefined` if no layout reached the
+ * of `date`, and other forms of them, are left out. `undefined` if no layout reached the
  * minimum size.
  */
 export function generateDaily(
@@ -96,8 +101,8 @@ export function generateDaily(
   options: DailyOptions = {},
 ): PuzzleFile | undefined {
   const id = `${options.idPrefix ?? ''}${date}`;
-  const recent = recentAnswers(date, existing, options.recentDays);
-  const fresh = pool.filter((candidate) => !recent.has(candidate.answer));
+  const recent = stemsOf(recentAnswers(date, existing, options.recentDays));
+  const fresh = pool.filter((candidate) => !sharesStem(candidate.answer, recent));
   const entries = generateLayout(fresh, seededRandom(id), layout);
   return entries === undefined
     ? undefined
