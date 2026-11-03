@@ -25,9 +25,9 @@ Browser ─HTTPS─▶ Cloudflare edge (crosswordle.example.com, proxied)
 - **The headers match Pages.** `web.config` is rendered from `deploy/iis/web.config` and
   `deploy/security-headers.json` by `scripts/render-headers.mjs --format iis`, so the CSP and cache
   rules are the same on every host.
-- **Only the reverse proxy can reach IIS.** The site answers only for its own host names, and a
-  Windows Firewall rule lets only the proxy's address reach its port. The proxy accepts
-  CrossWordle traffic only from Cloudflare.
+- **The public path is Cloudflare, then the reverse proxy.** The proxy accepts CrossWordle traffic
+  only from Cloudflare, and IIS answers only for the site's own host names. The script leaves the
+  server's firewall alone; the network decides which machines can reach IIS's port.
 - The app uses `#` URLs (`#2026-10-24`), so no rewrite rules are needed for routing. URL Rewrite
   has one job: answering folder URLs (`/assets/`) with a 404 instead of IIS's empty 200. (Pages
   answers them with the home page.)
@@ -67,20 +67,17 @@ On the server, as an administrator:
      release's `web.config` maps `/api` to HttpPlatformHandler);
    - a `CF-Connecting-IP` field in the IIS log, so you can see visitors' addresses (every request
      comes from the reverse proxy);
-   - for a site on a network address, a Windows Firewall rule that lets only the reverse proxy reach
-     its port.
 
    The parameters, in `-ArgumentList` order, are the site name, root folder, port, the address to
-   listen on (`127.0.0.1`, one of the server's addresses, or `*`), the host names to answer for, and
-   the reverse proxy's address. Behind a proxy at `192.0.2.10`:
+   listen on (`127.0.0.1`, one of the server's addresses, or `*`), and the host names to answer
+   for. Behind a reverse proxy on another machine:
 
    ```powershell
    Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
-       'crosswordle', 'C:\inetpub\crosswordle', 8080, '192.0.2.20', @('crosswordle.example.com'), '192.0.2.10'
+       'crosswordle', 'C:\inetpub\crosswordle', 8080, '192.0.2.20', @('crosswordle.example.com')
    ```
 
-   The firewall rule only works with Windows Firewall on. The script warns if any profile has it
-   off. If Windows asks for a restart after installing IIS, restart, then run the script again.
+   If Windows asks for a restart after installing IIS, restart, then run the script again.
 
 3. On the reverse proxy, route the public host names to the server's address and port. Keep the
    `Host` header, pass `CF-Connecting-IP` through, and health-check `GET /`.
@@ -105,10 +102,11 @@ On the server, as an administrator:
 
 What protects the public site, and what to keep doing.
 
-- **Nothing is reachable except through Cloudflare.** The proxy accepts the host name only with
-  Cloudflare's origin-pull certificate. IIS takes connections only from the proxy, and answers only
-  for its own host names (others get HTTP.sys's "Invalid Hostname"). Node listens on a loopback port
-  that IIS picks and proxies to.
+- **From the internet, the only way in is through Cloudflare.** The proxy accepts the host name only
+  with Cloudflare's origin-pull certificate, and IIS answers only for its own host names (others
+  get HTTP.sys's "Invalid Hostname"). Node listens on a loopback port that IIS picks and proxies
+  to. Machines on the server's own network can still reach IIS's port directly, so only trust
+  `CF-Connecting-IP` for logging, not for access decisions.
 - **Nothing on the server runs code from a request.** IIS has only static files,
   HttpPlatformHandler and URL Rewrite: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
   and compares letters. It never touches the file system, a shell or `eval`, and the site has no
