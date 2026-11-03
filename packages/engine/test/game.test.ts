@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   cellKey,
   checkGuess,
+  clueOrder,
   evaluateGuess,
   fitsPuzzle,
   gameStatus,
@@ -12,6 +13,7 @@ import {
   loadPuzzle,
   lockedLetters,
   newGame,
+  nextUnsolved,
   recordGuess,
   toPublicFile,
   type ClientEntry,
@@ -281,5 +283,47 @@ describe('game status', () => {
 
     const done = play(ctx, [['2D', 'TOE']], state);
     expect(gameStatus(ctx.puzzle, done)).toBe('won');
+  });
+});
+
+describe('moving between clues', () => {
+  const ids = (entries: readonly ClientEntry[]) => entries.map((e) => e.id);
+
+  it('lists the clues as the clue list shows them: Across, then Down', () => {
+    // The puzzle file lists them 1A, 1D, 2D, 3A.
+    expect(ids(clueOrder(ring().puzzle))).toEqual(['1A', '3A', '1D', '2D']);
+  });
+
+  it('moves on to the next clue in the list, not back to the first unsolved one', () => {
+    const ctx = ring();
+    const state = play(ctx, [['3A', 'DUE']]);
+    expect(nextUnsolved(ctx.puzzle, state, '3A')?.id).toBe('1D');
+  });
+
+  it('skips solved clues and wraps round to the top of the list', () => {
+    const ctx = ring();
+    const state = play(ctx, [
+      ['1D', 'COD'],
+      ['2D', 'TOE'],
+    ]);
+    expect(nextUnsolved(ctx.puzzle, state, '2D')?.id).toBe('1A');
+    expect(nextUnsolved(ctx.puzzle, state, '1A')?.id).toBe('3A');
+  });
+
+  it('starts from the first unsolved clue when there is no current one', () => {
+    const ctx = ring();
+    expect(nextUnsolved(ctx.puzzle, newGame(ctx.puzzle))?.id).toBe('1A');
+    expect(nextUnsolved(ctx.puzzle, play(ctx, [['1A', 'CAT']]))?.id).toBe('3A');
+  });
+
+  it('has nowhere to go once every clue is solved', () => {
+    const ctx = ring();
+    const state = play(ctx, [
+      ['1A', 'CAT'],
+      ['3A', 'DUE'],
+      ['1D', 'COD'],
+      ['2D', 'TOE'],
+    ]);
+    expect(nextUnsolved(ctx.puzzle, state, '2D')).toBeUndefined();
   });
 });

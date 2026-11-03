@@ -91,6 +91,30 @@ export function isSolved(state: GameState, entry: ClientEntry): boolean {
   );
 }
 
+/** The entries in the order the clue list shows them: every Across clue, then every Down clue. */
+export function clueOrder(puzzle: ClientPuzzle): readonly ClientEntry[] {
+  return [
+    ...puzzle.entries.filter((e) => e.direction === 'across'),
+    ...puzzle.entries.filter((e) => e.direction === 'down'),
+  ];
+}
+
+/**
+ * The first unsolved entry after `afterId` in clue order, wrapping round to the top of the list,
+ * so solving a clue moves on to the next one rather than back to the start. With no `afterId`
+ * (or an unknown one) it is the first unsolved entry. `undefined` once every entry is solved.
+ */
+export function nextUnsolved(
+  puzzle: ClientPuzzle,
+  state: GameState,
+  afterId?: string,
+): ClientEntry | undefined {
+  const order = clueOrder(puzzle);
+  const start = order.findIndex((e) => e.id === afterId) + 1;
+  const wrapped = [...order.slice(start), ...order.slice(0, start)];
+  return wrapped.find((e) => !isSolved(state, e));
+}
+
 /**
  * Cells shown on the grid, keyed by `cellKey`: every cell of a solved entry, plus every green
  * when the puzzle's `lockGreens` rule is on. A lock is for good: later guesses may put other
