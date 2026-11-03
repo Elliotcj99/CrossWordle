@@ -30,8 +30,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc -p tsconfig.json && tsc -p functions/tsconfig.json && tsc -p server/tsconfig.json && npm run check -w @crosswordle/web",
-    "test:e2e": "playwright test",
-    "deploy:lab": "node scripts/deploy-lab.mjs"
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
