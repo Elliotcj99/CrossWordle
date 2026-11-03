@@ -1,18 +1,19 @@
-# Hosting on IIS behind a Cloudflare Tunnel
+# Hosting on IIS behind a reverse proxy
 
-An alternative to Cloudflare Pages: the same site and API, served from a Windows Server by IIS and
-reached from the internet only through a Cloudflare Tunnel. Nothing is opened inbound on the
-server's network. Pages keeps working as it does now, so either host can serve the public name, and
-switching between them is a DNS change (see [Switching hosts](#switching-hosts)).
+The same site and API as on Cloudflare Pages, served from a Windows Server by IIS. The public name
+is proxied by Cloudflare, which forwards to a reverse proxy (such as HAProxy) in front of the
+server's network. The proxy forwards to IIS. Pages keeps working as it does now, so either host can
+serve the public name, and switching between them is a DNS change (see
+[Switching hosts](#switching-hosts)).
 
 ```
 Browser ─HTTPS─▶ Cloudflare edge (crosswordle.example.com, proxied)
-                     │  tunnel (outbound from the server)
+                     │  HTTPS, Full (strict), Authenticated Origin Pulls
                      ▼
-            cloudflared (Windows service) ──http://127.0.0.1:8080──▶ IIS site "crosswordle"
-                                                                      ├─ static files: releases\<sha>\site
-                                                                      └─ /api/*: Node, via HttpPlatformHandler
-                                                                                 (releases\<sha>\server\server.mjs)
+            Reverse proxy (DMZ) ──http://192.0.2.20:8080──▶ IIS site "crosswordle"
+                                                              ├─ static files: releases\<sha>\site
+                                                              └─ /api/*: Node, via HttpPlatformHandler
+                                                                         (releases\<sha>\server\server.mjs)
 ```
 
 - **The API is the same code as on Pages.** `server/main.ts` runs the Pages Function handlers
@@ -24,8 +25,9 @@ Browser ─HTTPS─▶ Cloudflare edge (crosswordle.example.com, proxied)
 - **The headers match Pages.** `web.config` is rendered from `deploy/iis/web.config` and
   `deploy/security-headers.json` by `scripts/render-headers.mjs --format iis`, so the CSP and cache
   rules are the same on every host.
-- **IIS listens on 127.0.0.1 only.** The only way in is through cloudflared, so nobody can reach the
-  server around Cloudflare.
+- **Only the reverse proxy can reach IIS.** The site answers only for its own host names, and a
+  Windows Firewall rule lets only the proxy's address reach its port. The proxy accepts
+  CrossWordle traffic only from Cloudflare.
 - The app uses `#` URLs (`#2026-10-24`), so no rewrite rules are needed for routing. URL Rewrite
   has one job: answering folder URLs (`/assets/`) with a 404 instead of IIS's empty 200. (Pages
   answers them with the home page.)
@@ -56,7 +58,7 @@ On the server, as an administrator:
    It installs the IIS role services (static content, default document, HTTP errors, logging,
    request filtering, compression and the IIS PowerShell module). It also creates the following:
    - the `crosswordle` app pool (no .NET, ApplicationPoolIdentity);
-   - the `crosswordle` site on `http://127.0.0.1:8080/`;
+   - the `crosswordle` site, on `http://127.0.0.1:8080/` unless you give it an address;
    - `C:\inetpub\crosswordle\releases`, readable only by the app pool, writable only by
      administrators;
    - anonymous requests served as the app pool's identity, not the shared `IUSR`;
@@ -64,33 +66,37 @@ On the server, as an administrator:
    - an unlock of the `handlers` section for this site only (IIS locks it by default, and the
      release's `web.config` maps `/api` to HttpPlatformHandler);
    - a `CF-Connecting-IP` field in the IIS log, so you can see visitors' addresses (every request
-     comes from cloudflared on 127.0.0.1).
+     comes from the reverse proxy);
+   - for a site on a network address, a Windows Firewall rule that lets only the reverse proxy reach
+     its port.
 
-   Change the defaults with `-ArgumentList <site>, <root>, <port>`. If Windows asks for a restart
-   after installing IIS, restart, then run the script again.
+   The parameters, in `-ArgumentList` order, are the site name, root folder, port, the address to
+   listen on (`127.0.0.1`, one of the server's addresses, or `*`), the host names to answer for, and
+   the reverse proxy's address. Behind a proxy at `192.0.2.10`:
 
-3. Install **cloudflared** (Windows MSI from Cloudflare). Run it as a service with the tunnel's token
-   (see the next section): `cloudflared service install <token>`. Don't paste the token anywhere
-   it's kept, such as a chat or your shell history. Read it from your secret store into a variable.
+   ```powershell
+   Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
+       'crosswordle', 'C:\inetpub\crosswordle', 8080, '192.0.2.20', @('crosswordle.example.com'), '192.0.2.10'
+   ```
 
-## Cloudflare (dashboard)
+   The firewall rule only works with Windows Firewall on. The script warns if any profile has it
+   off. If Windows asks for a restart after installing IIS, restart, then run the script again.
 
-A tunnel's public hostname is a proxied CNAME to `<tunnel id>.cfargotunnel.com`. Cloudflare only
-routes it to a tunnel **in the same account as the DNS zone**. Create the tunnel in the account that
-owns the domain. If that's someone else's account, they can either add you as a member with Zero
-Trust and DNS roles, or create the tunnel and give you its token.
+3. On the reverse proxy, route the public host names to the server's address and port. Keep the
+   `Host` header, pass `CF-Connecting-IP` through, and health-check `GET /`.
 
-1. **Zero Trust → Networks → Tunnels → Create a tunnel**, type **Cloudflared**. Name it, then copy
-   the connector token for step 3 above. Once the service runs, the tunnel shows as **Healthy**.
-2. **Public hostname:** `crosswordle-staging.example.com` → service `HTTP` `127.0.0.1:8080`. Start
-   with a staging name, so the live site isn't affected.
-3. **Protect the staging name:** in **Zero Trust → Access → Applications**, add a **Self-hosted**
-   application for the staging hostname. Give it a policy that allows only your email addresses.
+## Cloudflare and the reverse proxy
+
+1. **DNS:** the public name is a **proxied** record pointing at the reverse proxy's public address.
+2. **SSL/TLS:** **Full (strict)**, with a Cloudflare **Origin CA** certificate for the host name on
+   the proxy. If other sites in the zone can't use Full (strict), set it for this host name only
+   with a **Configuration Rule**.
+3. **Authenticated Origin Pulls:** turn it on, and have the proxy require Cloudflare's client
+   certificate for this host name. Then only Cloudflare can reach the site, so `CF-Connecting-IP`
+   can be trusted. Also limiting the host name to Cloudflare's IP ranges adds a second layer.
 4. **Rate limit:** in the zone, **Security → WAF → Rate limiting rules**, add a rule for
    URI path starts with `/api/`. The free plan has one rule.
-5. Leave **SSL/TLS** as it is. The edge certificate covers the hostname, and the hop from
-   cloudflared to IIS is local. Check the zone has **Always Use HTTPS** on and **Minimum TLS
-   Version** at 1.2 or higher.
+5. Check the zone has **Always Use HTTPS** on and **Minimum TLS Version** at 1.2 or higher.
 6. Keep **Rocket Loader**, **Email Address Obfuscation** and other features that rewrite pages off
    for this hostname (a **Configuration Rule** can turn them off for one host). They inject inline
    scripts, which the site's CSP blocks.
@@ -99,9 +105,10 @@ Trust and DNS roles, or create the tunnel and give you its token.
 
 What protects the public site, and what to keep doing.
 
-- **Nothing is reachable except through Cloudflare.** IIS binds to 127.0.0.1; from the LAN, port
-  8080 only gets HTTP.sys's "Invalid Hostname". Node listens on a loopback port that IIS picks
-  and proxies to.
+- **Nothing is reachable except through Cloudflare.** The proxy accepts the host name only with
+  Cloudflare's origin-pull certificate. IIS takes connections only from the proxy, and answers only
+  for its own host names (others get HTTP.sys's "Invalid Hostname"). Node listens on a loopback port
+  that IIS picks and proxies to.
 - **Nothing on the server runs code from a request.** IIS has only static files,
   HttpPlatformHandler and URL Rewrite: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
   and compares letters. It never touches the file system, a shell or `eval`, and the site has no
@@ -128,9 +135,6 @@ What protects the public site, and what to keep doing.
   - Also sent: HSTS (one year, this hostname only), `nosniff`, no framing (CSP
     `frame-ancestors` and `X-Frame-Options`), `same-origin` COOP and CORP, `no-referrer`, and a
     Permissions-Policy that turns off the camera, microphone, location, payment and USB.
-- **The tunnel token.** `cloudflared service install <token>` stores the token in the service's
-  configuration, which local users can read. Keep sign-ins to the server to administrators. If
-  the token is ever exposed, rotate it in the tunnel's settings.
 - **Patching.** Windows Update covers IIS. Node.js isn't updated automatically: install each
   Node 22 security release (or the next LTS before 22 reaches end of life in April 2027), then
   recycle the app pool. `npm audit --omit=dev` covers what ships; the server bundle has no
@@ -168,8 +172,8 @@ IIS site runs out of puzzles.
 - **On your machine:** run `npm run build:iis`, then `$env:PORT = 8787; node dist\iis\server\server.mjs`,
   and `POST` to `http://127.0.0.1:8787/api/guess`. This runs only the API; use `npm run preview` for
   the full stack.
-- **On the server:** open `http://127.0.0.1:8080/` there, or open the staging hostname through
-  Access. Then:
+- **On the server:** open the site there (see the binding in IIS), or open it through its public
+  name. Then:
   - play a guess and a hint, in both daily and Naughty mode;
   - check the browser console for CSP errors;
   - check the response headers: `curl -I https://crosswordle-staging.example.com/assets/<file>`.
@@ -186,24 +190,24 @@ IIS site runs out of puzzles.
 
 ## Switching hosts
 
-The public name can point at Pages (a **DNS only** CNAME to `<project>.pages.dev`) or at the tunnel
-(a **proxied** CNAME to `<tunnel id>.cfargotunnel.com`), not both at once.
+The public name can point at Pages (a **DNS only** CNAME to `<project>.pages.dev`) or at the reverse
+proxy (a **proxied** record to its public address), not both at once.
 
 **Pages → IIS:**
 
 1. Deploy to IIS the commit that Pages is serving, and test it on the staging name.
 2. In the Pages project, **Custom domains**: remove `crosswordle.example.com`.
 3. In the zone's DNS, delete the `crosswordle` CNAME to `<project>.pages.dev`.
-4. In the tunnel, add the public hostname `crosswordle.example.com` → `HTTP` `127.0.0.1:8080`.
-   This creates the proxied CNAME.
+4. Point `crosswordle.example.com` at the reverse proxy's public address, **proxied**. The proxy
+   already routes the name to IIS (test it first on a second name routed the same way).
 5. Check from outside:
    - The name resolves to Cloudflare's addresses.
    - HTTPS returns 200 with the security headers.
    - Today's puzzle loads, and a guess and a hint both work.
    - The IIS log shows the visit with `CF-Connecting-IP`.
 
-**IIS → Pages:** do the same in reverse. Remove the tunnel's public hostname, add back the DNS only
-CNAME to `<project>.pages.dev`, then add the custom domain back in the Pages project. Pages checks
+**IIS → Pages:** do the same in reverse. Add back the DNS only CNAME to `<project>.pages.dev` in
+place of the proxied record, then add the custom domain back in the Pages project. Pages checks
 the domain again, which takes a few minutes.
 
 While IIS serves the name, Pages can keep building. Its `<project>.pages.dev` address stays up as

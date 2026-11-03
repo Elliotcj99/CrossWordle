@@ -83,13 +83,17 @@ try {
             }
 
             function Test-Site {
-                $binding = (Get-WebBinding -Name $SiteName -Protocol http).bindingInformation
-                $base = 'http://' + ($binding -replace ':$', '')
+                # Bindings look like "<address>:<port>:<host name>". Test through the first one,
+                # sending its host name, if it has one, so IIS routes the request to this site.
+                $address, $port, $hostName = (@(Get-WebBinding -Name $SiteName -Protocol http)[0]).bindingInformation -split ':', 3
+                if ($address -eq '*') { $address = '127.0.0.1' }
+                $base = "http://${address}:$port"
                 # HttpClient, not Invoke-WebRequest: Windows PowerShell's Invoke-WebRequest throws
                 # on a 4xx and has already consumed the body, which this check needs to read.
                 Add-Type -AssemblyName System.Net.Http
                 $client = New-Object System.Net.Http.HttpClient
                 $client.Timeout = [TimeSpan]::FromSeconds(60)
+                if ($hostName) { $client.DefaultRequestHeaders.Host = $hostName }
                 try {
                     $page = $client.GetAsync("$base/").Result
                     if ([int]$page.StatusCode -ne 200) { throw "Home page returned $([int]$page.StatusCode)." }

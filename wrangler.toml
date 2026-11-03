@@ -1,4 +1,4 @@
-# Cloudflare Pages project. Used by .github/workflows/deploy-cloudflare.yml.
+# Cloudflare Pages project, for `npm run preview` (wrangler pages dev).
 name = "crosswordle"
 pages_build_output_dir = "apps/web/dist"
 compatibility_date = "2026-10-01"
