@@ -1,4 +1,11 @@
-import { loadPuzzle, parsePuzzleFile, type Puzzle } from '@crosswordle/engine';
+import {
+  loadClientPuzzle,
+  loadPuzzle,
+  parsePuzzleFile,
+  toPublicFile,
+  type ClientPuzzle,
+  type Puzzle,
+} from '@crosswordle/engine';
 import puzzleData from '../_puzzles.json';
 import naughtyData from '../_puzzles.naughty.json';
 
@@ -22,6 +29,21 @@ export function puzzleFor(id: string): Puzzle | undefined {
   const file = files[id];
   const puzzle = loadPuzzle(parsePuzzleFile(file));
   puzzles.set(id, puzzle);
+  return puzzle;
+}
+
+const clientPuzzles = new Map<string, ClientPuzzle>();
+
+/**
+ * The answer-free form of a puzzle: the model the browser plays. The Node server rebuilds each
+ * player's game on it, so the engine works out the same result the player sees.
+ */
+export function clientPuzzleFor(id: string): ClientPuzzle | undefined {
+  const cached = clientPuzzles.get(id);
+  if (cached !== undefined) return cached;
+  if (!Object.hasOwn(files, id)) return undefined;
+  const puzzle = loadClientPuzzle(toPublicFile(parsePuzzleFile(files[id])));
+  clientPuzzles.set(id, puzzle);
   return puzzle;
 }
 

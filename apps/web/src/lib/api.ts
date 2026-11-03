@@ -1,4 +1,11 @@
 import type { HintLetter, ScoredLetter } from '@crosswordle/engine';
+import { features } from './features';
+import { playerId } from './player';
+
+/** Every API request carries the player id, so the server can keep its record of their game. */
+function headers(): Record<string, string> {
+  return { 'content-type': 'application/json', 'x-player-id': playerId() };
+}
 
 /** What the scoring Function returns for a guess it accepted. */
 export interface ScoredGuess {
@@ -22,7 +29,7 @@ export async function scoreGuess(
   try {
     response = await fetch('api/guess', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: headers(),
       body: JSON.stringify({ puzzleId, entryId, guess }),
     });
   } catch {
@@ -55,7 +62,7 @@ export async function requestHint(
   try {
     const response = await fetch('api/hint', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: headers(),
       body: JSON.stringify({ puzzleId, entryId, guesses }),
     });
     if (response.status === 409) return { ok: false, reason: 'none' };
@@ -68,4 +75,28 @@ export async function requestHint(
   } catch {
     return { ok: false, reason: 'error' };
   }
+}
+
+/**
+ * Tells a server that keeps records about something the page did on its own: a restart, or
+ * revealing an entry's second clue (the page already has those clues). Best effort: the game
+ * carries on whatever happens, and hosts without records (Cloudflare Pages) aren't asked.
+ */
+async function report(path: string, body: Record<string, string>): Promise<void> {
+  if (!(await features()).has('records')) return;
+  try {
+    await fetch(path, { method: 'POST', headers: headers(), body: JSON.stringify(body) });
+  } catch {
+    // Offline: the server's record misses this one; the game itself is unaffected.
+  }
+}
+
+/** The player restarted the puzzle: their next attempt can't be ranked. */
+export function reportRestart(puzzleId: string): Promise<void> {
+  return report('api/restart', { puzzleId });
+}
+
+/** The player revealed an entry's second (crossword) clue. */
+export function reportCrosswordClue(puzzleId: string, entryId: string): Promise<void> {
+  return report('api/clue', { puzzleId, entryId });
 }
