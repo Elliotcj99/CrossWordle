@@ -22,7 +22,7 @@ test('shows every clue', async ({ page }) => {
 test('rejects words that are not in the word list without using a guess', async ({ page }) => {
   await guess(page, 'LEVXL');
   await expect(panel(page).getByText('Not in the word list.')).toBeVisible();
-  await expect(panel(page).getByText('24 of 24 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('18 of 18 guesses left')).toBeVisible();
 
   // The letters stay so the player can fix them.
   await page.keyboard.press('Backspace');
@@ -34,10 +34,10 @@ test('rejects words that are not in the word list without using a guess', async 
 test('accepts newer words from the British list', async ({ page }) => {
   // EMAIL and PODCAST are in the SCOWL British list but not in ENABLE.
   await guess(page, 'EMAIL');
-  await expect(panel(page).getByText('23 of 24 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('17 of 18 guesses left')).toBeVisible();
   await clue(page, 'Resolved, as a dispute').click();
   await guess(page, 'PODCAST');
-  await expect(panel(page).getByText('22 of 24 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('16 of 18 guesses left')).toBeVisible();
 });
 
 test('lets a guess fish with other letters, and keeps greens off the grid', async ({ page }) => {
@@ -49,7 +49,7 @@ test('lets a guess fish with other letters, and keeps greens off the grid', asyn
   const next = panel(page).getByRole('listitem', { name: 'Current guess' });
   await expect(next).toHaveText('');
   await guess(page, 'TABLE');
-  await expect(panel(page).getByText('22 of 24 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('16 of 18 guesses left')).toBeVisible();
   await expect(grid.getByRole('button', { name: 'row 1, column 2, empty' })).toBeVisible();
 
   // Solving the entry puts it on the grid.
@@ -95,6 +95,8 @@ test('never changes a solved answer on the grid', async ({ page }) => {
 
 test('keeps progress after a reload, and restart clears it', async ({ page }) => {
   await guess(page, 'LEVEL');
+  // Progress is saved once the server has scored the guess.
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
   await page.reload();
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
 
@@ -113,7 +115,7 @@ test('starts fresh when saved progress no longer fits the puzzle', async ({ page
     ),
   );
   await page.reload();
-  await expect(panel(page).getByText('24 of 24 guesses left')).toBeVisible();
+  await expect(panel(page).getByText('18 of 18 guesses left')).toBeVisible();
 });
 
 test('tells the player what a guess found', async ({ page }) => {
@@ -122,18 +124,11 @@ test('tells the player what a guess found', async ({ page }) => {
 });
 
 test('shows stats and a spoiler-free result when the puzzle ends', async ({ page }) => {
-  for (const word of [
-    'LEVEL',
-    'LATTE',
-    'VALET',
-    'LLAMA',
-    'ABYSS',
-    'SETTLED',
-    'EXTRA',
-    'HELLO',
-    'ODD',
-  ]) {
+  const words = ['LEVEL', 'LATTE', 'VALET', 'LLAMA', 'ABYSS', 'SETTLED', 'EXTRA', 'HELLO', 'ODD'];
+  for (const [i, word] of words.entries()) {
     await guess(page, word);
+    // Keys are ignored while a guess is being scored, so wait for it before typing the next.
+    await expect(page.getByText(`${i + 1} of 9 solved`)).toBeVisible();
   }
   const end = page.getByRole('region', { name: 'Solved. Every entry cracked.' });
   await expect(end).toBeVisible();
@@ -144,10 +139,12 @@ test('shows stats and a spoiler-free result when the puzzle ends', async ({ page
 });
 
 test('can switch to high-contrast colours', async ({ page }) => {
-  await page.getByLabel('High-contrast colours').check();
+  const toggle = page.getByRole('button', { name: 'High contrast' });
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('html')).toHaveAttribute('data-high-contrast', '');
   await page.reload();
-  await expect(page.getByLabel('High-contrast colours')).toBeChecked();
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
 });
 
 test('works with the on-screen keyboard', async ({ page }) => {

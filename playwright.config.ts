@@ -13,7 +13,8 @@ export default defineConfig({
     { name: 'phone', use: { ...devices['Pixel 7'] } },
   ],
   webServer: {
-    command: 'npm run build && npm run preview -w @crosswordle/web -- --port 4173 --strictPort',
+    // The full stack (static site + the scoring Functions), since guesses are scored on the server.
+    command: 'npm run preview -- --port 4173',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
   },
