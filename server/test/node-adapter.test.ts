@@ -17,11 +17,24 @@ const echo: Handler = async ({ request }) =>
 
 const failing: Handler = () => Promise.reject(new Error('boom'));
 
+const status: Handler = ({ request }) =>
+  Promise.resolve(
+    new Response(JSON.stringify({ method: request.method, ok: true }), {
+      headers: { 'content-type': 'application/json' },
+    }),
+  );
+
 let server: Server;
 let base: string;
 
 beforeAll(async () => {
-  server = createServer(createRequestListener({ '/api/echo': echo, '/api/fail': failing }));
+  server = createServer(
+    createRequestListener({
+      '/api/echo': { POST: echo },
+      '/api/fail': { POST: failing },
+      '/api/status': { GET: status },
+    }),
+  );
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
 });
@@ -62,10 +75,27 @@ describe('createRequestListener', () => {
     expect((await post('/constructor', '{}')).status).toBe(404);
   });
 
-  it('answers 405 with Allow for anything but POST', async () => {
-    const response = await fetch(`${base}/api/echo`);
-    expect(response.status).toBe(405);
-    expect(response.headers.get('allow')).toBe('POST');
+  it('answers 405 with Allow for a method the path has no handler for', async () => {
+    const getEcho = await fetch(`${base}/api/echo`);
+    expect(getEcho.status).toBe(405);
+    expect(getEcho.headers.get('allow')).toBe('POST');
+
+    const postStatus = await post('/api/status', '{}');
+    expect(postStatus.status).toBe(405);
+    expect(postStatus.headers.get('allow')).toBe('GET, HEAD');
+
+    expect((await fetch(`${base}/api/echo`, { method: 'PUT', body: '{}' })).status).toBe(405);
+  });
+
+  it('routes GET without a body, and answers HEAD from the GET handler without one', async () => {
+    const get = await fetch(`${base}/api/status`);
+    expect(get.status).toBe(200);
+    expect(await get.json()).toEqual({ method: 'GET', ok: true });
+
+    const head = await fetch(`${base}/api/status`, { method: 'HEAD' });
+    expect(head.status).toBe(200);
+    expect(head.headers.get('content-type')).toBe('application/json');
+    expect(await head.text()).toBe('');
   });
 
   it('refuses a body over the size limit', async () => {

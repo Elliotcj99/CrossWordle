@@ -16,8 +16,13 @@
 - New rules go in `RuleSet` with a default, and puzzle files can override them. Don't hard-code
   rules in the UI.
 - Every engine change gets unit tests in `packages/engine/test`.
-- Test the full stack (static site + Function) locally with `npm run preview` (Wrangler). See
-  `docs/staging.md` for previewing a branch privately.
+- Test the full stack locally with `npm run preview`: the built site and the API on the Node
+  server IIS runs (`server/preview.ts`). See `docs/staging.md` for previewing a branch privately.
+- API features that need the database are Node-only (`server/api/`), listed in `FEATURES`
+  (`server/api/features.ts`). The browser asks `/api/features` and hides what the host lacks, so
+  the same build keeps working on Cloudflare Pages until the move to IIS is finished.
+- Database schema changes are new entries at the end of `MIGRATIONS` (`server/db.ts`), with
+  tests. Never edit or reorder one that has shipped.
 - Name branches `feat/<topic>`. Cloudflare Pages only builds preview deployments for `feat/*`
   branches, so a branch with any other name gets no preview.
 - Never commit real host names, IP addresses, domains or account names. Use `example.com`,

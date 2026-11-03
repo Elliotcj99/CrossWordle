@@ -9,19 +9,20 @@ npm run preview
 ```
 
 This builds the site, generates the answers bundle, and serves everything — static files **and** the
-scoring Function — with Wrangler at <http://127.0.0.1:8788>. Use this for day-to-day work; it is the
-only way to exercise `/api/guess` locally (plain `npm run dev` runs Vite without the Function).
+API — on the Node server that IIS runs (`server/preview.ts`), at <http://127.0.0.1:4173>. Use this
+for day-to-day work; it is the only way to exercise `/api/guess` locally (plain `npm run dev` runs
+Vite without the API). Its database and settings go in a `.data` folder (gitignored).
 
 Quick check that scoring works and answers aren't served:
 
 ```sh
 # scores a guess (never returns the answer)
-curl -s -X POST http://127.0.0.1:8788/api/guess \
+curl -s -X POST http://127.0.0.1:4173/api/guess \
   -H 'content-type: application/json' \
   -d '{"puzzleId":"<id>","entryId":"1A","guess":"<word>"}'
 
 # a public puzzle file: has "length", never "answer"
-curl -s http://127.0.0.1:8788/puzzles/<id>.json
+curl -s http://127.0.0.1:4173/puzzles/<id>.json
 ```
 
 ## 2. Private preview deployment (share with a reviewer, not players)

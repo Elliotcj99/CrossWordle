@@ -21,7 +21,7 @@
     "reveal": "tsx packages/generator/src/cli.ts reveal --puzzles puzzles",
     "validate-puzzles": "tsx packages/generator/src/cli.ts validate puzzles --words data/wordlists",
     "dev": "npm run puzzles && npm run puzzles:naughty && npm run words && npm run words:naughty && npm run dev -w @crosswordle/web",
-    "preview": "npm run build && wrangler pages dev apps/web/dist",
+    "preview": "npm run build && tsx server/preview.ts",
     "build": "npm run puzzles && npm run puzzles:naughty && npm run words && npm run words:naughty && npm run build -w @crosswordle/web && node scripts/render-headers.mjs --format cloudflare --out apps/web/dist/_headers",
     "build:iis": "npm run build && node scripts/build-iis.mjs",
     "test": "vitest run",

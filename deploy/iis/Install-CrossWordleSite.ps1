@@ -72,7 +72,7 @@ if (-not ($modules | Where-Object { $_.name -eq 'RewriteModule' })) {
     throw 'URL Rewrite is not installed. Install the URL Rewrite 2.1 MSI first.'
 }
 
-foreach ($folder in @($Root, "$Root\releases", "$Root\empty")) {
+foreach ($folder in @($Root, "$Root\releases", "$Root\empty", "$Root\data", "$Root\backups")) {
     if (-not (Test-Path $folder)) { New-Item -ItemType Directory -Path $folder | Out-Null }
 }
 
@@ -118,6 +118,20 @@ foreach ($rule in @(
                 $rule[0], $rule[1], $inherit, 'None', 'Allow')))
 }
 Set-Acl -Path $Root -AclObject $acl
+
+# The database lives in data, the one folder the app pool may write to. Backups are written by an
+# administrator's scheduled task, so backups keeps the read-only rights it inherits.
+$dataAcl = Get-Acl -Path "$Root\data"
+$dataAcl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
+            "IIS AppPool\$SiteName", 'Modify', $inherit, 'None', 'Allow')))
+Set-Acl -Path "$Root\data" -AclObject $dataAcl
+
+# The site's settings (contact address, Turnstile keys), read by the API. Never in a release or
+# the repo. Created empty, without a byte order mark, if it isn't there yet.
+$config = "$Root\config.json"
+if (-not (Test-Path $config)) {
+    [IO.File]::WriteAllText($config, "{}`r`n", (New-Object Text.UTF8Encoding($false)))
+}
 
 # Every request arrives from cloudflared on 127.0.0.1; log the visitor's address too.
 $fields = "system.applicationHost/sites/site[@name='$SiteName']/logFile/customFields"

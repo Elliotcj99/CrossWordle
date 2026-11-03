@@ -17,6 +17,9 @@ functions/_puzzles.naughty.json
 # Cloudflare local state
 .wrangler/
 
+# The local preview server's database and settings (server/config.ts)
+.data/
+
 # Playwright
 test-results/
 playwright-report/
