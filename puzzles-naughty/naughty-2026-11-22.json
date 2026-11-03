@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "id": "naughty-2026-11-22",
+  "title": "Naughty · Sunday 22 November 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 1,
+      "direction": "across",
+      "answer": "BOLLOCKS",
+      "clue": "Utter nonsense!"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "SHITHEADS",
+      "clue": "Despicable sorts"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "BITCHY",
+      "clue": "Cattily spiteful"
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "direction": "down",
+      "answer": "WHORING",
+      "clue": "Selling affections"
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "direction": "down",
+      "answer": "TOSSER",
+      "clue": "Waste of space (British)"
+    },
+    {
+      "row": 3,
+      "col": 10,
+      "direction": "down",
+      "answer": "BULLSHIT",
+      "clue": "Utter codswallop"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "direction": "down",
+      "answer": "JERKOFF",
+      "clue": "Worthless layabout"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "HOOTERS",
+      "clue": "An eyeful up top"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "across",
+      "answer": "DICKHEAD",
+      "clue": "Obnoxious oaf"
+    },
+    {
+      "row": 10,
+      "col": 4,
+      "direction": "across",
+      "answer": "FUCKWIT",
+      "clue": "Utter moron"
+    }
+  ]
+}

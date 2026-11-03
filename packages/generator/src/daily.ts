@@ -2,7 +2,10 @@ import type { PuzzleFile } from '@crosswordle/engine';
 import { DEFAULT_LAYOUT, generateLayout, type Candidate, type LayoutOptions } from './layout';
 import { seededRandom } from './random';
 
-/** An answer isn't reused within this many days either side of a puzzle. */
+/**
+ * By default an answer isn't reused within this many days either side of a puzzle. A collection
+ * with a small word list (Naughty mode) needs a shorter window, or it runs out of fresh answers.
+ */
 export const RECENT_DAYS = 60;
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
@@ -48,10 +51,14 @@ export function dailyTitle(date: string): string {
   return `${WEEKDAYS[day.getUTCDay()]} ${day.getUTCDate()} ${MONTHS[day.getUTCMonth()]} ${day.getUTCFullYear()}`;
 }
 
-/** Answers used by dated puzzles within `RECENT_DAYS` of `date` (any collection prefix). */
-export function recentAnswers(date: string, puzzles: readonly PuzzleFile[]): Set<string> {
-  const from = addDays(date, -RECENT_DAYS);
-  const to = addDays(date, RECENT_DAYS);
+/** Answers used by dated puzzles within `recentDays` of `date` (any collection prefix). */
+export function recentAnswers(
+  date: string,
+  puzzles: readonly PuzzleFile[],
+  recentDays: number = RECENT_DAYS,
+): Set<string> {
+  const from = addDays(date, -recentDays);
+  const to = addDays(date, recentDays);
   return new Set(
     puzzles
       .flatMap((p) => {
@@ -68,10 +75,17 @@ export interface Naming {
   readonly titlePrefix?: string;
 }
 
+/** A collection's naming, and how long its answers rest before they can be used again. */
+export interface DailyOptions extends Naming {
+  /** Days either side of a puzzle in which its answers aren't reused. Defaults to `RECENT_DAYS`. */
+  readonly recentDays?: number;
+}
+
 /**
  * The puzzle for `date`, laid out from `pool` minus recently used answers. The same inputs
  * always give the same puzzle; a different `naming.idPrefix` seeds a different puzzle for the same
- * date, so a prefixed collection doesn't clone the daily one. `undefined` if no layout reached the
+ * date, so a prefixed collection doesn't clone the daily one. Answers used within `options.recentDays`
+ * of `date` are left out. `undefined` if no layout reached the
  * minimum size.
  */
 export function generateDaily(
@@ -79,10 +93,10 @@ export function generateDaily(
   pool: readonly Candidate[],
   existing: readonly PuzzleFile[],
   layout: LayoutOptions = DEFAULT_LAYOUT,
-  naming: Naming = {},
+  options: DailyOptions = {},
 ): PuzzleFile | undefined {
-  const id = `${naming.idPrefix ?? ''}${date}`;
-  const recent = recentAnswers(date, existing);
+  const id = `${options.idPrefix ?? ''}${date}`;
+  const recent = recentAnswers(date, existing, options.recentDays);
   const fresh = pool.filter((candidate) => !recent.has(candidate.answer));
   const entries = generateLayout(fresh, seededRandom(id), layout);
   return entries === undefined
@@ -90,7 +104,7 @@ export function generateDaily(
     : {
         version: 1,
         id,
-        title: `${naming.titlePrefix ?? ''}${dailyTitle(date)}`,
+        title: `${options.titlePrefix ?? ''}${dailyTitle(date)}`,
         answerEncoding: 'plain',
         entries,
       };
