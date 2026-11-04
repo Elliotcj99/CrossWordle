@@ -4,7 +4,8 @@ A hand-written list of rude, crude and profane English words, assembled for Cros
 optional "Naughty mode". It is original to this project and placed in the public domain
 (Creative Commons Zero, CC0 1.0): do what you like with it.
 
-Scope: swearing and crude sexual or scatological vocabulary, plus milder rude words. It
+Scope: swearing and crude sexual or scatological vocabulary, milder rude words, and innuendo
+(ordinary words with a rude second meaning, such as SAUSAGE or KNOCKER). It
 **excludes slurs** — words that attack people for their race, ethnicity, religion, sexuality,
 gender identity or disability. Those are not "cheeky", and they are kept out on purpose.
 

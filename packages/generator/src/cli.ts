@@ -28,11 +28,12 @@ const USAGE = `Usage:
   crosswordle generate --clues <file> [--clues <file>...] --words <folder>... --puzzles <folder>
                        [--from <YYYY-MM-DD>] [--days <n>] [--id-prefix <s>] [--title-prefix <s>]
                        [--min-entries <n>] [--max-entries <n>] [--max-size <n>] [--candidates <n>]
-                       [--recent-days <n>]
+                       [--recent-days <n>] [--form-rest-days <n>]
       Write daily puzzles that don't exist yet (default: 14 days from today). Later clue lists
       override earlier ones. --id-prefix/--title-prefix name a separate collection (e.g. naughty-);
       the layout flags override the newspaper-size default. --recent-days is how many days either
-      side of a puzzle its answers can't be reused (default 60; less for a small word list).
+      side of a puzzle its answers can't be reused (default 60; less for a small word list), and
+      --form-rest-days how long their other forms (JIZZED after JIZZ) rest (default: the same).
   crosswordle check-naughty --words <folder> --clues <file>... --blocked <file> --reviewed <file>
                             [--wordnet <folder>]
       Check a Naughty word list and its clues for slurs: blocked words (by hash), their forms and
@@ -53,6 +54,7 @@ async function main(argv: string[]): Promise<number> {
       from: { type: 'string' },
       days: { type: 'string' },
       'recent-days': { type: 'string' },
+      'form-rest-days': { type: 'string' },
       notice: { type: 'string' },
       'answers-out': { type: 'string' },
       clues2: { type: 'string', multiple: true },
@@ -179,6 +181,8 @@ async function main(argv: string[]): Promise<number> {
       const recentDays = Number(values['recent-days'] ?? RECENT_DAYS);
       if (!isDate(from) || !Number.isInteger(days) || days < 1) return usage();
       if (!Number.isInteger(recentDays) || recentDays < 0) return usage();
+      const formRestDays = Number(values['form-rest-days'] ?? recentDays);
+      if (!Number.isInteger(formRestDays) || formRestDays < 0) return usage();
 
       const layout = layoutFromFlags(values);
       if (layout === undefined) return usage();
@@ -211,6 +215,7 @@ async function main(argv: string[]): Promise<number> {
           idPrefix,
           titlePrefix,
           recentDays,
+          formRestDays,
         });
         if (puzzle === undefined) {
           console.error(`FAIL  ${id}: no layout reached the minimum number of entries.`);
