@@ -141,6 +141,49 @@ export class Records {
         };
   }
 
+  /** Every puzzle the player has finished, with its first finish, oldest first. */
+  results(playerId: string): (StoredResult & { puzzleId: string; finishedAt: string })[] {
+    const rows = this.db
+      .prepare(
+        `SELECT puzzle_id, attempt, won, guesses, crossword_hints, wordle_hints, ranked,
+                unranked_reason, finished_at
+           FROM results WHERE player_id = ? ORDER BY finished_at`,
+      )
+      .all(playerId) as {
+      puzzle_id: string;
+      attempt: number;
+      won: number;
+      guesses: number;
+      crossword_hints: number;
+      wordle_hints: number;
+      ranked: number;
+      unranked_reason: 'lost' | 'restarted' | null;
+      finished_at: string;
+    }[];
+    return rows.map((row) => ({
+      puzzleId: row.puzzle_id,
+      attempt: row.attempt,
+      won: row.won === 1,
+      guesses: row.guesses,
+      crosswordHints: row.crossword_hints,
+      wordleHints: row.wordle_hints,
+      ranked: row.ranked === 1,
+      unrankedReason: row.unranked_reason,
+      finishedAt: row.finished_at,
+    }));
+  }
+
+  /**
+   * The player's current attempt at a puzzle, as the server has it, or `undefined` if they
+   * haven't played it. Read-only: unlike recording, it never registers the player or the play.
+   */
+  currentGame(playerId: string, puzzle: ClientPuzzle): GameState | undefined {
+    const row = this.db
+      .prepare('SELECT attempt FROM plays WHERE player_id = ? AND puzzle_id = ?')
+      .get(playerId, puzzle.id) as { attempt: number } | undefined;
+    return row === undefined ? undefined : this.state(playerId, puzzle, row.attempt);
+  }
+
   /** The game as the server saw it in one attempt, for the engine to sum up. */
   state(playerId: string, puzzle: ClientPuzzle, attempt: number): GameState {
     const guesses: Record<string, ScoredLetter[][]> = {};
@@ -156,10 +199,17 @@ export class Records {
       .prepare(
         'SELECT entry_id, kind, detail FROM hints WHERE player_id = ? AND puzzle_id = ? AND attempt = ?',
       )
-      .all(playerId, puzzle.id, attempt) as { entry_id: string; kind: HintKind; detail: string }[];
+      .all(playerId, puzzle.id, attempt) as {
+      entry_id: string;
+      kind: HintKind;
+      detail: string | null;
+    }[];
+    // Crossword clues recorded before the server sent them (schema 2) have no detail.
     const revealed = <T>(kind: HintKind): Record<string, T> =>
       Object.fromEntries(
-        hints.filter((h) => h.kind === kind).map((h) => [h.entry_id, JSON.parse(h.detail) as T]),
+        hints
+          .filter((h) => h.kind === kind && h.detail !== null)
+          .map((h) => [h.entry_id, JSON.parse(h.detail!) as T]),
       );
     return {
       ...newGame(puzzle),

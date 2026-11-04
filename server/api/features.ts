@@ -8,8 +8,11 @@ import type { Handler } from '../node-adapter';
  * name here when it ships.
  */
 export const FEATURES: readonly string[] = [
-  // The server keeps its own record of each player's game (guesses, hints, restarts).
+  // The server keeps its own record of each player's game (guesses, hints, restarts), and gives
+  // it back: the player's finished puzzles (/api/record) and current game (/api/game).
   'records',
+  // Each puzzle's leaderboard (/api/leaderboard).
+  'leaderboard',
   // Players can name themselves after finishing a puzzle.
   'nicknames',
   // Players can make a recovery code, to get their record back in another browser.

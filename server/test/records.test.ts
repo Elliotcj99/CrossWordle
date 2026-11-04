@@ -156,6 +156,28 @@ describe('Records', () => {
     });
   });
 
+  it("gives back the player's current game, read-only, and their finished puzzles", () => {
+    expect(records.currentGame(ALICE, puzzle)).toBeUndefined();
+    expect(db.prepare('SELECT count(*) AS n FROM players').get()).toEqual({ n: 0 });
+
+    guess('1A', 'COT');
+    records.recordHint(ALICE, puzzle, '1D', { kind: 'crossword', clue: 'Fish' });
+    expect(records.currentGame(ALICE, puzzle)).toMatchObject({
+      puzzleId: 'ring',
+      guesses: { '1A': [expect.any(Array)] },
+      crosswordClues: { '1D': 'Fish' },
+    });
+
+    // After a restart, the current game is the new, empty attempt.
+    records.recordRestart(ALICE, puzzle);
+    expect(records.currentGame(ALICE, puzzle)).toMatchObject({ guesses: {}, crosswordClues: {} });
+
+    SOLUTION.forEach(([id, word]) => guess(id, word, ALICE, puzzleOn('other')));
+    expect(records.results(ALICE)).toEqual([
+      expect.objectContaining({ puzzleId: 'other', won: true, guesses: 4, ranked: true }),
+    ]);
+  });
+
   it('keeps players apart', () => {
     const bob = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
     SOLUTION.forEach(([id, word]) => guess(id, word));

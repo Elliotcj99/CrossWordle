@@ -9,7 +9,7 @@
    * keeps records (IIS), with Cloudflare's bot check when the site has a Turnstile key. The score
    * comes from the server's own record of the game, so the form only sends the name.
    */
-  let { puzzleId }: { puzzleId: string } = $props();
+  let { puzzleId, onsaved }: { puzzleId: string; onsaved?: (() => void) | undefined } = $props();
 
   const KEY = 'crosswordle:nickname';
 
@@ -67,6 +67,7 @@
     }
     saved = { nickname: outcome.nickname, result: outcome.result };
     nickname = outcome.nickname;
+    onsaved?.();
     try {
       localStorage.setItem(KEY, outcome.nickname);
     } catch {

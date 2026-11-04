@@ -1,5 +1,6 @@
 import rudeWordList from './_rude-words.json';
 import { databaseFile, pathsFromEnv, readConfig } from './config';
+import { Leaderboard } from './leaderboard';
 import { openDatabase } from './db';
 import { Nicknames } from './nicknames';
 import { RateLimits } from './rate-limits';
@@ -18,6 +19,7 @@ export function startServices(): Services & { close(): void } {
   const db = openDatabase(databaseFile(paths));
   return {
     records: new Records(db),
+    leaderboard: new Leaderboard(db),
     nicknames: new Nicknames(db),
     recovery: new Recovery(db),
     limits: new RateLimits(db),

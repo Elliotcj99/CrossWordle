@@ -235,6 +235,39 @@ test('names a solved game on the leaderboard, refusing rude nicknames', async ({
   );
   await expect(field).toHaveValue('Grid Tester');
   await expect(form.getByRole('button', { name: 'Update' })).toBeVisible();
+
+  // The board shows the player once they've named themselves: as their own row, or, on a
+  // long-lived test site with more than 100 ahead of them, their place below it.
+  const board = page.getByRole('region', { name: 'Leaderboard' });
+  await expect(
+    board
+      .getByRole('row', { name: /Grid Tester \(you\) 9 0 0/ })
+      .or(board.getByText(/^You're \d+(st|nd|rd|th)\.$/)),
+  ).toBeVisible();
+});
+
+test('shows the leaderboard while playing, and before anyone is on it says so', async ({
+  page,
+}) => {
+  const board = page.getByRole('region', { name: 'Leaderboard' });
+  await expect(board).toHaveCount(0);
+  await page.getByRole('button', { name: 'Leaderboard' }).click();
+  await expect(board.getByRole('heading', { name: 'Leaderboard' })).toBeVisible();
+  await expect(
+    board.getByRole('table').or(board.getByText(/No one's on the board yet/)),
+  ).toBeVisible();
+  await page.getByRole('button', { name: 'Hide leaderboard' }).click();
+  await expect(board).toHaveCount(0);
+});
+
+test("carries on from the server's copy of a game this browser has lost", async ({ page }) => {
+  await guess(page, 'LEVEL');
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+  // Like another device with the same player id (a restored record): no saved game here.
+  await page.evaluate(() => localStorage.removeItem('crosswordle:game:sample'));
+  await page.reload();
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+  await expect(page.getByText('1 of 9 solved')).toBeVisible();
 });
 
 test('brings a record back with a recovery code after the browser forgets it', async ({ page }) => {
