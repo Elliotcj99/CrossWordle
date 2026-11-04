@@ -4,6 +4,7 @@ import { parseArgs } from 'node:util';
 import { puzzleIds } from '../functions/api/_shared';
 import { databaseFile, pathsFromEnv, type Paths } from './config';
 import { openDatabase } from './db';
+import { Feedback, FeedbackError, type FeedbackItem } from './feedback';
 import { Health, RUNWAY_DAYS, type Runway } from './health';
 import { ErrorLog, type LogEntry } from './log';
 import { Review, ReviewError, type FlaggedResult } from './review';
@@ -18,6 +19,7 @@ import { Stats, type PuzzleStats, type StatsReport } from './stats';
  *   node admin.mjs errors [--hours <n>]
  *   node admin.mjs health
  *   node admin.mjs stats [--from <date>] [--to <date>]
+ *   node admin.mjs feedback [--all] | feedback show|close|reopen <id>
  *
  * On IIS, deploy/iis/Invoke-CrossWordleAdmin.ps1 runs it from the live release with the site's
  * data folder. Locally, `npm run admin -- review` uses `.data` (or CROSSWORDLE_DATA).
@@ -34,6 +36,9 @@ const USAGE = `Usage:
   stats [--from <date>] [--to <date>]
                               Usage per puzzle and per day (YYYY-MM-DD; default: the last
                               7 days, UTC).
+  feedback [--all]            Open feature requests, oldest first (--all: closed ones too).
+  feedback show <id>          One request in full.
+  feedback close <id>         Dealt with. feedback reopen <id> undoes it.
 
 <player> is the player id, or its first 8 or more characters as the list shows them.`;
 
@@ -105,6 +110,33 @@ function main(argv: readonly string[]): number {
         console.log(describeHealth(report.ok, report.checks, report.runway, paths));
         return report.ok ? 0 : 2;
       }
+      case 'feedback': {
+        const requests = new Feedback(db);
+        const [action, idText] = rest;
+        if (action === undefined) {
+          const items = requests.list(values.all);
+          console.log(
+            items.length === 0
+              ? values.all
+                ? 'No feature requests.'
+                : 'No open feature requests.'
+              : items.map(describeRequestLine).join('\n'),
+          );
+          return 0;
+        }
+        const id = Number(idText);
+        if (!Number.isInteger(id) || rest.length !== 2) break;
+        if (action === 'show') {
+          console.log(describeRequest(requests.get(id)));
+          return 0;
+        }
+        if (action === 'close' || action === 'reopen') {
+          const item = requests.setStatus(id, action === 'close' ? 'closed' : 'open');
+          console.log(`Request ${item.id} is ${item.status}: ${item.title}`);
+          return 0;
+        }
+        break;
+      }
       case 'stats': {
         const today = new Date().toISOString().slice(0, 10);
         const to = values.to ?? today;
@@ -122,7 +154,7 @@ function main(argv: readonly string[]): number {
     console.error(USAGE);
     return 1;
   } catch (error) {
-    if (error instanceof ReviewError) {
+    if (error instanceof ReviewError || error instanceof FeedbackError) {
       console.error(error.message);
       return 1;
     }
@@ -130,6 +162,21 @@ function main(argv: readonly string[]): number {
   } finally {
     db.close();
   }
+}
+
+function describeRequestLine(item: FeedbackItem): string {
+  const status = item.status === 'closed' ? '  (closed)' : '';
+  return `#${item.id}  ${item.createdAt.slice(0, 10)}  ${item.title}${status}`;
+}
+
+function describeRequest(item: FeedbackItem): string {
+  return [
+    `#${item.id}  ${item.title}`,
+    `From player ${item.playerId.slice(0, 8)}, ${item.createdAt}. ` +
+      (item.status === 'open' ? 'Open.' : `Closed ${item.closedAt}.`),
+    '',
+    item.description,
+  ].join('\n');
 }
 
 function describeError(entry: LogEntry): string {

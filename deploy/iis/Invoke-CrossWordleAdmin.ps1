@@ -17,6 +17,8 @@
                                     disk, the last backup and recent errors (exit 2 if down).
         stats [--from <date>] [--to <date>]
                                     Usage per puzzle and per day (default: the last 7 days).
+        feedback [--all]            Open feature requests (--all: closed ones too).
+        feedback show|close|reopen <id>
 
     Nothing comes off the leaderboard unless you hide it.
 
