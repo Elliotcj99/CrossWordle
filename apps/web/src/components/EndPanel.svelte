@@ -1,14 +1,16 @@
 <script lang="ts">
   import type { GameStatus, Stats } from '@crosswordle/engine';
+  import NicknameForm from './NicknameForm.svelte';
 
   interface Props {
+    puzzleId: string;
     status: Exclude<GameStatus, 'playing'>;
     stats: Stats;
     /** The spoiler-free result to share. */
     share: string;
   }
 
-  let { status, stats, share }: Props = $props();
+  let { puzzleId, status, stats, share }: Props = $props();
 
   let copyState = $state<'idle' | 'copied' | 'failed'>('idle');
   let shareText: HTMLPreElement | undefined = $state();
@@ -67,6 +69,10 @@
         browser blocked copying. The result is selected: copy it with Ctrl+C or a long press.{/if}
     </p>
   </div>
+
+  {#if status === 'won'}
+    <NicknameForm {puzzleId} />
+  {/if}
 </section>
 
 <style>

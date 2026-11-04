@@ -26,6 +26,11 @@ export function pathsFromEnv(env: NodeJS.ProcessEnv = process.env): Paths {
 export interface Config {
   /** Shown by the Contact link. */
   readonly contactEmail?: string;
+  /**
+   * Cloudflare Turnstile keys for the bot check on forms. Without them the forms work unchecked,
+   * which is only for local runs: every IIS site sets them (test keys on staging).
+   */
+  readonly turnstile?: { readonly siteKey: string; readonly secretKey: string };
 }
 
 /** Reads the settings file; a missing file is no settings, a malformed one is an error. */
@@ -40,16 +45,33 @@ export function readConfig(path: string): Config {
   return parseConfig(JSON.parse(text.replace(/^\uFEFF/, '')) as unknown, path);
 }
 
+const isText = (value: unknown): value is string =>
+  typeof value === 'string' && value.trim() !== '';
+
 export function parseConfig(value: unknown, source = 'config'): Config {
   if (typeof value !== 'object' || value === null || Array.isArray(value)) {
     throw new Error(`${source} must be a JSON object.`);
   }
-  const { contactEmail } = value as Record<string, unknown>;
-  if (
-    contactEmail !== undefined &&
-    (typeof contactEmail !== 'string' || !contactEmail.includes('@'))
-  ) {
+  const { contactEmail, turnstile } = value as Record<string, unknown>;
+  if (contactEmail !== undefined && (!isText(contactEmail) || !contactEmail.includes('@'))) {
     throw new Error(`${source}: contactEmail must be an email address.`);
   }
-  return contactEmail === undefined ? {} : { contactEmail };
+  if (turnstile !== undefined) {
+    const keys = turnstile as Record<string, unknown> | null;
+    if (
+      typeof keys !== 'object' ||
+      keys === null ||
+      !isText(keys.siteKey) ||
+      !isText(keys.secretKey)
+    ) {
+      throw new Error(`${source}: turnstile needs a siteKey and a secretKey.`);
+    }
+  }
+  const keys = turnstile as { siteKey: string; secretKey: string } | undefined;
+  return {
+    ...(contactEmail === undefined ? {} : { contactEmail: contactEmail as string }),
+    ...(keys === undefined
+      ? {}
+      : { turnstile: { siteKey: keys.siteKey, secretKey: keys.secretKey } }),
+  };
 }

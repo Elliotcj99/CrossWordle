@@ -9,7 +9,17 @@ const panel = (page: Page) => page.getByRole('region', { name: 'Current entry' }
 const clue = (page: Page, text: string) =>
   page.getByRole('region', { name: 'Clues' }).getByRole('button', { name: new RegExp(text) });
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, baseURL }) => {
+  // Each test is its own visitor to the API. Without Cloudflare in front (staging on 127.0.0.1,
+  // npm run preview) every request would share one address, and the forms' per-address rate
+  // limits would trip across runs. Addresses are from 192.0.2.0/24, the documentation range.
+  const visitor = `192.0.2.${1 + Math.floor(Math.random() * 254)}`;
+  // Only the site's own API: Cloudflare's bot check makes requests of its own.
+  const site = new URL(baseURL!).origin;
+  const ownApi = (url: URL) => url.origin === site && url.pathname.startsWith('/api/');
+  await page.route(ownApi, (route) =>
+    route.continue({ headers: { ...route.request().headers(), 'cf-connecting-ip': visitor } }),
+  );
   // The sample puzzle, so the tests don't depend on today's date.
   await page.goto('/#sample');
   await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
@@ -146,14 +156,18 @@ test('tells the player what a guess found', async ({ page }) => {
   await expect(panel(page).getByText('EERIE: 1 green, 1 yellow.')).toBeVisible();
 });
 
-test('shows stats and a spoiler-free result when the puzzle ends', async ({ page }) => {
-  // Solving a clue moves on to the next one in the list: every Across, then every Down.
+/** Solves the sample puzzle in nine guesses, in clue-list order (every Across, then every Down). */
+async function solveSample(page: Page) {
   const words = ['LEVEL', 'ABYSS', 'EXTRA', 'HELLO', 'LATTE', 'VALET', 'LLAMA', 'SETTLED', 'ODD'];
   for (const [i, word] of words.entries()) {
     await guess(page, word);
     // Keys are ignored while a guess is being scored, so wait for it before typing the next.
     await expect(page.getByText(`${i + 1} of 9 solved`)).toBeVisible();
   }
+}
+
+test('shows stats and a spoiler-free result when the puzzle ends', async ({ page }) => {
+  await solveSample(page);
   const end = page.getByRole('region', { name: 'Solved. Every entry cracked.' });
   await expect(end).toBeVisible();
   await expect(end.getByText('Played')).toBeVisible();
@@ -168,6 +182,29 @@ test('shows stats and a spoiler-free result when the puzzle ends', async ({ page
   // A key the game took would clear the last guess's result.
   await expect(panel(page).getByText(/^ODD solves \d+ Down\.$/)).toBeVisible();
   await expect(end).toBeVisible();
+});
+
+test('names a solved game on the leaderboard, refusing rude nicknames', async ({ page }) => {
+  await solveSample(page);
+  const form = page.getByRole('form', { name: 'Your nickname for the leaderboard' });
+  const field = form.getByLabel('Your nickname for the leaderboard');
+  const submit = form.getByRole('button', { name: 'Submit' });
+
+  // Typing in the field doesn't reach the grid.
+  await field.fill('B u m');
+  // On a site with a bot check, Submit waits for Cloudflare's widget (test keys pass at once).
+  await expect(submit).toBeEnabled({ timeout: 15_000 });
+  await submit.click();
+  await expect(form.getByRole('status')).toHaveText('Please choose a different nickname.');
+
+  await field.fill('  Grid   Tester ');
+  await expect(submit).toBeEnabled({ timeout: 15_000 });
+  await submit.click();
+  await expect(form.getByRole('status')).toHaveText(
+    "Saved as Grid Tester. You're on the leaderboard with 9 guesses, 0 Crossword clues and 0 Wordle clues.",
+  );
+  await expect(field).toHaveValue('Grid Tester');
+  await expect(form.getByRole('button', { name: 'Update' })).toBeVisible();
 });
 
 test('can switch to high-contrast colours', async ({ page }) => {

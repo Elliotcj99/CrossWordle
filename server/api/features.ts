@@ -1,3 +1,4 @@
+import type { Config } from '../config';
 import type { Handler } from '../node-adapter';
 
 /**
@@ -9,11 +10,26 @@ import type { Handler } from '../node-adapter';
 export const FEATURES: readonly string[] = [
   // The server keeps its own record of each player's game (guesses, hints, restarts).
   'records',
+  // Players can name themselves after finishing a puzzle.
+  'nicknames',
 ];
 
-export const features: Handler = () =>
-  Promise.resolve(
-    new Response(JSON.stringify({ features: FEATURES }), {
-      headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' },
-    }),
-  );
+/**
+ * The feature list, plus the public Turnstile site key when the site has one, so the page can show
+ * the bot check on its forms. (The secret key never leaves the server.)
+ */
+export function features(config: Config): Handler {
+  const body = JSON.stringify({
+    features: FEATURES,
+    ...(config.turnstile === undefined ? {} : { turnstileSiteKey: config.turnstile.siteKey }),
+  });
+  return () =>
+    Promise.resolve(
+      new Response(body, {
+        headers: {
+          'content-type': 'application/json; charset=utf-8',
+          'cache-control': 'no-store',
+        },
+      }),
+    );
+}

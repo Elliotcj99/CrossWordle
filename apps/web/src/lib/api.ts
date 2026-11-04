@@ -83,7 +83,7 @@ export async function requestHint(
  * carries on whatever happens, and hosts without records (Cloudflare Pages) aren't asked.
  */
 async function report(path: string, body: Record<string, string>): Promise<void> {
-  if (!(await features()).has('records')) return;
+  if (!(await features()).names.has('records')) return;
   try {
     await fetch(path, { method: 'POST', headers: headers(), body: JSON.stringify(body) });
   } catch {
@@ -99,4 +99,61 @@ export function reportRestart(puzzleId: string): Promise<void> {
 /** The player revealed an entry's second (crossword) clue. */
 export function reportCrosswordClue(puzzleId: string, entryId: string): Promise<void> {
   return report('api/clue', { puzzleId, entryId });
+}
+
+/** The server's record of a finished game, as it will appear on the leaderboard. */
+export interface RecordedResult {
+  readonly won: boolean;
+  readonly guesses: number;
+  readonly crosswordHints: number;
+  readonly wordleHints: number;
+  readonly ranked: boolean;
+  readonly unrankedReason: 'lost' | 'restarted' | null;
+}
+
+export type NicknameOutcome =
+  | { readonly ok: true; readonly nickname: string; readonly result: RecordedResult }
+  | { readonly ok: false; readonly message: string };
+
+const NICKNAME_ERRORS: Readonly<Record<string, string>> = {
+  'nickname-invalid': 'Use 2 to 20 letters, digits, spaces, dots, dashes or underscores.',
+  'nickname-not-allowed': 'Please choose a different nickname.',
+  'too-many': 'Too many tries. Please wait a while and try again.',
+  'check-failed': "The bot check didn't go through. Please try again.",
+  'not-finished': "The server hasn't seen this game finish, so it can't be named.",
+};
+
+/**
+ * Names the player on the leaderboard for this puzzle. The score isn't sent: the server uses its
+ * own record of the game, and replies with it.
+ */
+export async function submitNickname(
+  puzzleId: string,
+  nickname: string,
+  turnstileToken: string | undefined,
+): Promise<NicknameOutcome> {
+  try {
+    const response = await fetch('api/nickname', {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ puzzleId, nickname, turnstileToken }),
+    });
+    const data = (await response.json()) as {
+      error?: string;
+      nickname?: string;
+      result?: RecordedResult;
+    };
+    if (response.ok && data.nickname !== undefined && data.result !== undefined) {
+      return { ok: true, nickname: data.nickname, result: data.result };
+    }
+    return {
+      ok: false,
+      message: NICKNAME_ERRORS[data.error ?? ''] ?? 'Something went wrong. Please try again.',
+    };
+  } catch {
+    return {
+      ok: false,
+      message: 'Could not reach the server. Check your connection and try again.',
+    };
+  }
 }

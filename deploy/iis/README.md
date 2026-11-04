@@ -114,7 +114,10 @@ What protects the public site, and what to keep doing.
 - **Data and settings stay outside the releases.** `<root>\data` holds the database: the only
   folder the app pool can write to. `<root>\config.json` holds the site's settings (contact
   address, Turnstile keys); the install script creates it empty. `web.config` passes both paths to
-  Node (`CROSSWORDLE_DATA`, `CROSSWORDLE_CONFIG`), and deploys never touch either. Node checks
+  Node (`CROSSWORDLE_DATA`, `CROSSWORDLE_CONFIG`), and deploys never touch either. Set it with
+  `Set-CrossWordleConfig.ps1` (contact address, Turnstile site key, and the secret key as a
+  SecureString read from your secret store), which recycles the app pool so Node rereads it.
+  Staging uses Cloudflare's always-pass Turnstile test keys. Node checks
   both at start-up, so a broken settings file or an unwritable data folder shows up as a failed
   deploy check, not as errors for players.
 - **Least privilege.** Static files and Node both run as `IIS AppPool\crosswordle`, which can read
@@ -131,9 +134,11 @@ What protects the public site, and what to keep doing.
   refused.
 - **Headers** (`deploy/security-headers.json`, the same on every host):
   - The CSP allows only the site's own scripts, styles, images, fonts and API, and no inline
-    script or style. The one exception is Cloudflare Web Analytics: its script from
-    `static.cloudflareinsights.com`, which reports to `cloudflareinsights.com`. Cloudflare adds
-    the script to the page itself when Web Analytics is on. Svelte sets styles through the CSSOM (`element.style`), which CSP permits,
+    script or style. Two exceptions, both Cloudflare's: Web Analytics (its script from
+    `static.cloudflareinsights.com`, which reports to `cloudflareinsights.com`; Cloudflare adds
+    the script to the page itself when Web Analytics is on), and the Turnstile bot check on forms
+    (its script and frame from `challenges.cloudflare.com`, loaded only when a form needs it).
+    Svelte sets styles through the CSSOM (`element.style`), which CSP permits,
     so `'unsafe-inline'` isn't needed. Injected `<style>` elements or `style=""` attributes are
     blocked.
   - Also sent: HSTS (one year, this hostname only), `nosniff`, no framing (CSP
