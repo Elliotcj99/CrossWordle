@@ -16,6 +16,7 @@ import {
   newGame,
   nextUnsolved,
   recordGuess,
+  recordWordleClue,
   toPublicFile,
   type ClientEntry,
   type ClientPuzzle,
@@ -23,6 +24,7 @@ import {
   type PuzzleFile,
   type RuleOverrides,
   type ScoredLetter,
+  wordleClueRow,
 } from '../src';
 
 /**
@@ -325,6 +327,61 @@ describe('game summary', () => {
       wordleClues: { '9D': { index: 0, letter: 'X' } },
     };
     expect(gameSummary(ctx.puzzle, state)).toMatchObject({ crosswordHints: 0, wordleHints: 0 });
+  });
+});
+
+describe('the Wordle-clue row', () => {
+  const letters = (row: ReturnType<typeof wordleClueRow>) =>
+    row?.map((cell) => (cell === undefined ? '.' : cell.starred ? `${cell.letter}*` : cell.letter));
+
+  it('shows nothing until the hint is used', () => {
+    const ctx = ring();
+    expect(wordleClueRow(ctx.puzzle, newGame(ctx.puzzle), entry(ctx.puzzle, '1A'))).toBeUndefined();
+  });
+
+  it('adds letters the grid shows from solved crossings, including ones solved after the hint', () => {
+    const ctx = ring();
+    const cat = entry(ctx.puzzle, '1A');
+    // 1A CAT crosses 1D COD at its C and 2D TOE at its T.
+    let state = recordWordleClue(newGame(ctx.puzzle), cat, { index: 1, letter: 'A' });
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['.', 'A*', '.']);
+
+    state = play(ctx, [['2D', 'TOE']], state);
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['.', 'A*', 'T']);
+
+    state = play(ctx, [['1D', 'COD']], state);
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['C', 'A*', 'T']);
+  });
+
+  it("doesn't add a crossing's unconfirmed greens unless the puzzle locks them", () => {
+    const cat = (ctx: Ring) => entry(ctx.puzzle, '1A');
+    // COT on 1D has a green C (shared with 1A) but doesn't solve 1D.
+    for (const [lockGreens, expected] of [
+      [false, ['.', 'A*', '.']],
+      [true, ['C', 'A*', '.']],
+    ] as const) {
+      const ctx = ring({ lockGreens });
+      const state = play(
+        ctx,
+        [['1D', 'CAT']],
+        recordWordleClue(newGame(ctx.puzzle), cat(ctx), { index: 1, letter: 'A' }),
+      );
+      expect(letters(wordleClueRow(ctx.puzzle, state, cat(ctx)))).toEqual(expected);
+    }
+  });
+
+  it('keeps the hint letter starred, and the player’s own greens', () => {
+    const ctx = ring();
+    const cat = entry(ctx.puzzle, '1A');
+    const state = play(
+      ctx,
+      [
+        ['1A', 'COT'],
+        ['1D', 'COD'],
+      ],
+      recordWordleClue(newGame(ctx.puzzle), cat, { index: 0, letter: 'C' }),
+    );
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['C*', '.', 'T']);
   });
 });
 

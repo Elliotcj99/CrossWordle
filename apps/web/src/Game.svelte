@@ -97,7 +97,7 @@
 
   // Clue hints for the selected entry (both free, and kept until restart).
   const secondClue = $derived(crosswordClueFor(game, selected));
-  const clueRow = $derived(wordleClueRow(game, selected));
+  const clueRow = $derived(wordleClueRow(puzzle, game, selected));
   const canRevealCrossword = $derived(
     status === 'playing' && hasSecondClue(selected) && secondClue === undefined,
   );

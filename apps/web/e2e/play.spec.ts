@@ -156,6 +156,30 @@ test('gets the Crossword clue from the server when revealed, and keeps it', asyn
   await expect(panel(page).getByRole('button', { name: 'Crossword clue' })).toHaveCount(0);
 });
 
+test('fills the Wordle-clue row with letters solved crossings give, even after the clue', async ({
+  page,
+}) => {
+  // 1A LEVEL: LATTE crosses its first letter and VALET its third.
+  await panel(page).getByRole('button', { name: 'Wordle clue' }).click();
+  await panel(page).getByRole('button', { name: 'Reveal' }).click();
+  const row = panel(page).getByLabel('Revealed letters');
+  await expect(row.getByLabel(/, clue$/)).toHaveCount(1);
+
+  await clue(page, 'Milky coffee order').click();
+  await guess(page, 'LATTE');
+  await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 1');
+  await clue(page, 'Attendant who parks your car').click();
+  await guess(page, 'VALET');
+  await expect(clue(page, 'Attendant who parks your car')).toContainText('Solved in 1');
+
+  // Back on 1A, both crossing letters are in the row (one may be the clue letter itself).
+  await clue(page, 'Flat and even').click();
+  await expect(row.getByLabel(/^Position 1, L/)).toBeVisible();
+  await expect(row.getByLabel(/^Position 3, V/)).toBeVisible();
+  // It's only what the player sees: 1A still has its full guess budget.
+  await expect(panel(page).getByText('16 of 18 guesses left')).toBeVisible();
+});
+
 test('still shows a Crossword clue revealed by an older version of the page', async ({ page }) => {
   // Older versions had every second clue in the puzzle, and saved only which were shown.
   await page.evaluate(() =>

@@ -274,11 +274,18 @@ export function recordWordleClue(
 }
 
 /**
- * The Wordle-clue row to show above an entry's guesses once its hint has been used: the player's
- * own greens (no star) plus the one hint letter (starred); other cells are blank. `undefined`
- * before a hint is used, so the row isn't shown at all.
+ * The Wordle-clue row to show above an entry's guesses once its hint has been used: every letter
+ * the player knows for the entry, unstarred (their own greens, and the letters the grid shows in
+ * its cells from solved crossings, or crossing greens where the puzzle locks them), plus the one
+ * hint letter, starred. Other cells are blank. `undefined` before a hint is used, so the row isn't
+ * shown at all.
+ *
+ * It's worked out from the current game, so a crossing solved after the hint shows up the next
+ * time the entry is open. It's only what the player sees: guessing, scoring and hints are
+ * unchanged.
  */
 export function wordleClueRow(
+  puzzle: ClientPuzzle,
   state: GameState,
   entry: ClientEntry,
 ): (RevealedCell | undefined)[] | undefined {
@@ -290,6 +297,11 @@ export function wordleClueRow(
       if (tile.mark === 'correct') row[i] = { letter: tile.letter, starred: false };
     });
   }
+  const locks = lockedLetters(puzzle, state);
+  entry.cells.forEach((cell, i) => {
+    const letter = locks.get(cellKey(cell));
+    if (letter !== undefined) row[i] = { letter, starred: false };
+  });
   row[hint.index] = { letter: hint.letter, starred: true };
   return row;
 }
