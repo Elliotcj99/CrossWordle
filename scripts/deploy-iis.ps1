@@ -9,8 +9,9 @@
     3. Copies dist\iis to <Root>\releases\<commit sha> on the server (<commit sha>-<time> when
        that commit is the live release, whose files are in use).
     4. Points the site at the new release and recycles its app pool.
-    5. Checks the home page and the API on the server. If either fails, the site goes back to the
-       release it was on before.
+    5. Checks the home page and the API on the server, through the site's first binding (HTTP or
+       HTTPS, straight to its address). If either fails, the site goes back to the release it was
+       on before.
     6. Keeps the newest folder of each of the five newest commits (always the live one).
 
     -Rollback skips the build and points the site at the newest release of an older commit than
@@ -112,32 +113,67 @@ try {
                 $Release = $older[0].Name
             }
 
-            function Test-Site {
-                # Bindings look like "<address>:<port>:<host name>". Test through the first one,
-                # sending its host name, if it has one, so IIS routes the request to this site.
-                $address, $port, $hostName = (@(Get-WebBinding -Name $SiteName -Protocol http)[0]).bindingInformation -split ':', 3
+            # One request to this site, straight to the address and port it's bound to (never out
+            # through DNS and Cloudflare), with its host name for IIS to route by and, over HTTPS,
+            # for SNI. Returns the status code and the raw body.
+            function Invoke-SiteRequest($Binding, [string] $Method, [string] $Path, [string] $Body = '') {
+                # Bindings look like "<address>:<port>:<host name>".
+                $address, $port, $hostName = $Binding.bindingInformation -split ':', 3
                 if ($address -eq '*') { $address = '127.0.0.1' }
-                $base = "http://${address}:$port"
-                # HttpClient, not Invoke-WebRequest: Windows PowerShell's Invoke-WebRequest throws
-                # on a 4xx and has already consumed the body, which this check needs to read.
-                Add-Type -AssemblyName System.Net.Http
-                $client = New-Object System.Net.Http.HttpClient
-                $client.Timeout = [TimeSpan]::FromSeconds(60)
-                if ($hostName) { $client.DefaultRequestHeaders.Host = $hostName }
+                $hostHeader = if ($hostName) { $hostName } else { "${address}:$port" }
+                $tcp = New-Object Net.Sockets.TcpClient($address, [int]$port)
                 try {
-                    $page = $client.GetAsync("$base/").Result
-                    if ([int]$page.StatusCode -ne 200) { throw "Home page returned $([int]$page.StatusCode)." }
-                    # 'sample' is always in the answers bundle; an unknown entry proves the API runs
-                    # and has the bundle, without scoring anything.
-                    $body = New-Object System.Net.Http.StringContent(
-                        '{"puzzleId":"sample","entryId":"-","guess":"A"}', [Text.Encoding]::UTF8, 'application/json')
-                    $api = $client.PostAsync("$base/api/guess", $body).Result
-                    $text = $api.Content.ReadAsStringAsync().Result
-                    if ([int]$api.StatusCode -ne 404 -or $text -notmatch '"unknown-entry"') {
-                        throw "The API check failed: $([int]$api.StatusCode) $text"
+                    $tcp.ReceiveTimeout = 60000   # the first request starts Node
+                    $tcp.SendTimeout = 60000
+                    $stream = $tcp.GetStream()
+                    if ($Binding.protocol -eq 'https') {
+                        # The certificate must chain to a root this server trusts. A name that
+                        # doesn't match is only a warning: the deploy checks the release, not which
+                        # names the certificate covers.
+                        $tls = @{ NameMismatch = $false }
+                        $validate = [Net.Security.RemoteCertificateValidationCallback] {
+                            param($sender, $certificate, $chain, $errors)
+                            if ($errors -eq 'RemoteCertificateNameMismatch') { $tls.NameMismatch = $true; return $true }
+                            return $errors -eq 'None'
+                        }.GetNewClosure()
+                        $stream = New-Object Net.Security.SslStream($stream, $false, $validate)
+                        # Windows PowerShell's .NET offers TLS 1.0 unless told otherwise, and the
+                        # binding refuses anything older than 1.2.
+                        $protocols = [Security.Authentication.SslProtocols]::Tls12
+                        if ([enum]::IsDefined([Security.Authentication.SslProtocols], 'Tls13')) {
+                            $protocols = $protocols -bor [Security.Authentication.SslProtocols]::Tls13
+                        }
+                        $stream.AuthenticateAsClient($hostHeader, $null, $protocols, $false)
+                        if ($tls.NameMismatch) {
+                            Write-Warning "The certificate on ${address}:$port doesn't cover $hostHeader."
+                        }
                     }
+                    $bytes = [Text.Encoding]::UTF8.GetBytes($Body)
+                    $head = "$Method $Path HTTP/1.1`r`nHost: $hostHeader`r`nConnection: close`r`n" +
+                        "Content-Type: application/json`r`nContent-Length: $($bytes.Length)`r`n`r`n"
+                    $headBytes = [Text.Encoding]::ASCII.GetBytes($head)
+                    $stream.Write($headBytes, 0, $headBytes.Length)
+                    $stream.Write($bytes, 0, $bytes.Length)
+                    $stream.Flush()
+                    $response = (New-Object IO.StreamReader($stream, [Text.Encoding]::UTF8)).ReadToEnd()
+                    if ($response -notmatch '^HTTP/1\.\d (\d{3})') { throw "No HTTP response from ${address}:$port." }
+                    @{ Status = [int]$Matches[1]; Body = ($response -split "`r`n`r`n", 2)[1] }
                 } finally {
-                    $client.Dispose()
+                    $tcp.Close()
+                }
+            }
+
+            function Test-Site {
+                # Through the site's first binding, HTTP or HTTPS.
+                $binding = @(Get-WebBinding -Name $SiteName | Where-Object { $_.protocol -in 'http', 'https' })[0]
+                if (-not $binding) { throw "Site $SiteName has no http or https binding." }
+                $page = Invoke-SiteRequest $binding 'GET' '/'
+                if ($page.Status -ne 200) { throw "Home page returned $($page.Status)." }
+                # 'sample' is always in the answers bundle; an unknown entry proves the API runs
+                # and has the bundle, without scoring anything.
+                $api = Invoke-SiteRequest $binding 'POST' '/api/guess' '{"puzzleId":"sample","entryId":"-","guess":"A"}'
+                if ($api.Status -ne 404 -or $api.Body -notmatch '"unknown-entry"') {
+                    throw "The API check failed: $($api.Status) $($api.Body)"
                 }
             }
 
