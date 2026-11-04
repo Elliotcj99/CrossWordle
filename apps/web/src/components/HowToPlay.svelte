@@ -41,8 +41,8 @@
     </li>
     {#if recovery}
       <li>
-        Your games are kept under an anonymous id in this browser. Open <b>Your record</b> to make a recovery
-        code, so you can get them back if this browser forgets them, or carry on on another device.
+        Your record is kept under an anonymous id in this browser. Open <b>Your record</b> to make a recovery
+        code, so you can get it back if this browser forgets it, or use it on another device.
       </li>
     {/if}
   </ul>
