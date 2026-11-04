@@ -6,87 +6,101 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
+      "col": 3,
       "direction": "across",
-      "answer": "SNATCH",
-      "clue": "Grab, or female anatomy"
+      "answer": "PEEPER",
+      "clue": "Eye, or a voyeur"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 6,
       "direction": "down",
-      "answer": "ARSEHOLE",
-      "clue": "Thoroughly unpleasant person"
+      "answer": "POOPS",
+      "clue": "Number twos"
     },
     {
       "row": 1,
-      "col": 8,
-      "direction": "down",
-      "answer": "TURDS",
-      "clue": "Solid droppings"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "FARTS",
-      "clue": "Lets off wind"
-    },
-    {
-      "row": 2,
       "col": 0,
       "direction": "down",
-      "answer": "FUCK",
-      "clue": "The big one: all-purpose expletive"
+      "answer": "DINGBAT",
+      "clue": "Scatterbrain"
     },
     {
-      "row": 2,
-      "col": 6,
-      "direction": "down",
-      "answer": "HORSESHIT",
-      "clue": "Complete and utter rubbish"
-    },
-    {
-      "row": 3,
+      "row": 1,
       "col": 10,
       "direction": "down",
-      "answer": "WANKERS",
-      "clue": "Contemptible pillocks"
+      "answer": "BAWDY",
+      "clue": "Ribald"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "direction": "across",
+      "answer": "HORN",
+      "clue": "Car hooter, or arousal"
     },
     {
       "row": 4,
       "col": 3,
       "direction": "across",
-      "answer": "WHORED",
-      "clue": "Sold affections"
+      "answer": "PISSHEAD",
+      "clue": "Drunkard (British)"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "PEACOCK",
+      "clue": "Show-off bird"
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "direction": "down",
+      "answer": "SHOOT",
+      "clue": "Fire, or climax"
     },
     {
       "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "PISSED",
-      "clue": "Plastered, or furious"
+      "col": 0,
+      "direction": "across",
+      "answer": "BLUE",
+      "clue": "Smutty, or sad"
     },
     {
       "row": 6,
+      "col": 3,
+      "direction": "across",
+      "answer": "AROUSAL",
+      "clue": "Turning on"
+    },
+    {
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "LOADS",
+      "clue": "Burdens, or lots"
+    },
+    {
+      "row": 8,
       "col": 1,
       "direction": "across",
-      "answer": "WILLIES",
-      "clue": "The heebie-jeebies"
+      "answer": "BLOTTO",
+      "clue": "Out of it"
     },
     {
       "row": 9,
-      "col": 5,
+      "col": 7,
       "direction": "across",
-      "answer": "DILDOS",
-      "clue": "Bedroom playthings"
+      "answer": "RIDE",
+      "clue": "Journey, or bonk"
     },
     {
       "row": 10,
       "col": 0,
       "direction": "across",
-      "answer": "NUDES",
-      "clue": "Saucy selfies"
+      "answer": "FUCKWIT",
+      "clue": "Utter moron"
     }
   ]
 }

@@ -6,115 +6,108 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
+      "col": 4,
       "direction": "down",
-      "answer": "JISM",
-      "clue": "Manly fluid"
+      "answer": "FLASH",
+      "clue": "Expose, or a moment"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 7,
       "direction": "across",
-      "answer": "BITCH",
-      "clue": "Grumble, or a female dog"
+      "answer": "ROMP",
+      "clue": "Frolic"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 10,
       "direction": "down",
-      "answer": "BOLLOCKED",
-      "clue": "Told off severely"
-    },
-    {
-      "row": 0,
-      "col": 6,
-      "direction": "down",
-      "answer": "TWAT",
-      "clue": "Fool, or female anatomy"
-    },
-    {
-      "row": 0,
-      "col": 8,
-      "direction": "down",
-      "answer": "HORNY",
-      "clue": "Feeling frisky"
+      "answer": "PUBES",
+      "clue": "Short and curlies"
     },
     {
       "row": 1,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "DILDO",
-      "clue": "Battery-operated bedroom toy"
+      "answer": "HARLOT",
+      "clue": "Biblical lady of the night"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "down",
+      "answer": "TEASING",
+      "clue": "Flirty"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "down",
+      "answer": "FECK",
+      "clue": "Irish curse"
     },
     {
       "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "CLIT",
-      "clue": "Sensitive little nub"
+      "col": 2,
+      "direction": "down",
+      "answer": "BONERS",
+      "clue": "Erections, or blunders"
+    },
+    {
+      "row": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "NATURIST",
+      "clue": "Nudist"
     },
     {
       "row": 4,
       "col": 0,
-      "direction": "down",
-      "answer": "PISSER",
-      "clue": "A real nuisance, or a loo"
-    },
-    {
-      "row": 5,
-      "col": 4,
       "direction": "across",
-      "answer": "CRAP",
-      "clue": "Rubbish, or a number two"
+      "answer": "COOCH",
+      "clue": "Lady bits"
     },
     {
-      "row": 5,
+      "row": 4,
       "col": 6,
-      "direction": "down",
-      "answer": "ARSING",
-      "clue": "Faffing about"
+      "direction": "across",
+      "answer": "SHAGS",
+      "clue": "Romps, or cormorants"
     },
     {
-      "row": 5,
+      "row": 6,
       "col": 10,
       "direction": "down",
-      "answer": "ARSED",
-      "clue": "Bothered, as in \"can't be ...\""
-    },
-    {
-      "row": 6,
-      "col": 2,
-      "direction": "down",
-      "answer": "KINK",
-      "clue": "Kooky twist in the bedroom"
-    },
-    {
-      "row": 6,
-      "col": 8,
-      "direction": "down",
-      "answer": "FANNY",
-      "clue": "Front bottom (British)"
+      "answer": "SAUCY",
+      "clue": "Cheeky and rude"
     },
     {
       "row": 7,
       "col": 0,
       "direction": "across",
-      "answer": "SHITE",
-      "clue": "Rubbish (British, strong)"
+      "answer": "DIRTBAG",
+      "clue": "Sleazy lowlife"
     },
     {
       "row": 7,
-      "col": 6,
-      "direction": "across",
-      "answer": "SLAGS",
-      "clue": "Bad-mouths"
+      "col": 0,
+      "direction": "down",
+      "answer": "DORK",
+      "clue": "Uncool nerd"
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "BERK",
+      "clue": "Dozy twit (Cockney)"
     },
     {
       "row": 10,
-      "col": 3,
+      "col": 6,
       "direction": "across",
-      "answer": "SHAG",
-      "clue": "Romp, or a cormorant"
+      "answer": "TOTTY",
+      "clue": "Talent, crudely (British)"
     }
   ]
 }
