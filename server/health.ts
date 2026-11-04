@@ -92,7 +92,7 @@ export class Health {
         const wanted = dates.flatMap((date) => [date, `naughty-${date}`]);
         const missing = wanted.filter((id) => !ids.includes(id));
         if (missing.length > 0) throw new Error(`missing ${missing.join(', ')}`);
-        return `daily and Naughty for ${dates.join(' to ')} (every time zone)`;
+        return `daily and Naughty for ${dates[0]} to ${latest} (every time zone)`;
       }),
     ];
     const runway = {
