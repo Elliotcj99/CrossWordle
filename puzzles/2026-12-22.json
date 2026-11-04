@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "id": "2026-12-22",
+  "title": "Tuesday 22 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "across",
+      "answer": "INANE",
+      "clue": "Silly"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "IMPETUOUS",
+      "clue": "Rash"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "AUSTERE",
+      "clue": "Severe"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "FLUID",
+      "clue": "Liquid"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "FORMAT",
+      "clue": "Layout"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "DOT",
+      "clue": "Spot"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "down",
+      "answer": "TRANSFER",
+      "clue": "Move"
+    },
+    {
+      "row": 2,
+      "col": 4,
+      "direction": "across",
+      "answer": "SOMBRE",
+      "clue": "Gloomy"
+    },
+    {
+      "row": 3,
+      "col": 2,
+      "direction": "across",
+      "answer": "EAT",
+      "clue": "Dine"
+    },
+    {
+      "row": 3,
+      "col": 11,
+      "direction": "down",
+      "answer": "STRUGGLE",
+      "clue": "Strive"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "ACT",
+      "clue": "Law passed by Parliament"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "down",
+      "answer": "EBB",
+      "clue": "Recede"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "direction": "across",
+      "answer": "BUTLER",
+      "clue": "Head servant"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "down",
+      "answer": "LIKE",
+      "clue": "Similar – enjoy"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "SHORE",
+      "clue": "Coast"
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "direction": "down",
+      "answer": "MOTOR",
+      "clue": "Engine"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "STOOP",
+      "clue": "Bend – lower yourself"
+    },
+    {
+      "row": 8,
+      "col": 3,
+      "direction": "down",
+      "answer": "THICK",
+      "clue": "Dense"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "across",
+      "answer": "BEIGE",
+      "clue": "Fawn"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "BREAD",
+      "clue": "Loaf – money"
+    },
+    {
+      "row": 10,
+      "col": 10,
+      "direction": "across",
+      "answer": "JET",
+      "clue": "Aircraft – spurt"
+    },
+    {
+      "row": 10,
+      "col": 12,
+      "direction": "down",
+      "answer": "TUG",
+      "clue": "Pull – small towing boat"
+    },
+    {
+      "row": 11,
+      "col": 3,
+      "direction": "across",
+      "answer": "CARAVAN",
+      "clue": "Trailer home"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "TANK",
+      "clue": "Armoured vehicle – reservoir"
+    },
+    {
+      "row": 12,
+      "col": 10,
+      "direction": "across",
+      "answer": "BUG",
+      "clue": "Insect – irritate"
+    }
+  ]
+}

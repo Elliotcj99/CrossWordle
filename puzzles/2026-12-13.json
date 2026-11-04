@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "id": "2026-12-13",
+  "title": "Sunday 13 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 1,
+      "direction": "down",
+      "answer": "DEVIATE",
+      "clue": "Stray"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "across",
+      "answer": "CAST",
+      "clue": "Throw – actors in a play"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "CONVOY",
+      "clue": "Escorted group"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "CELLO",
+      "clue": "Large string instrument"
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "direction": "down",
+      "answer": "MINOR",
+      "clue": "Lesser – child, legally"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "down",
+      "answer": "CONCEIT",
+      "clue": "Vanity"
+    },
+    {
+      "row": 2,
+      "col": 6,
+      "direction": "across",
+      "answer": "SAILOR",
+      "clue": "Seaman"
+    },
+    {
+      "row": 2,
+      "col": 6,
+      "direction": "down",
+      "answer": "SHELF",
+      "clue": "Ledge"
+    },
+    {
+      "row": 3,
+      "col": 12,
+      "direction": "down",
+      "answer": "SPECIAL",
+      "clue": "Exceptional"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "TADPOLE",
+      "clue": "Young frog"
+    },
+    {
+      "row": 5,
+      "col": 6,
+      "direction": "across",
+      "answer": "LARGE",
+      "clue": "Big"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "JERK",
+      "clue": "Tug – idiot"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "down",
+      "answer": "JUNIOR",
+      "clue": "Younger"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "direction": "down",
+      "answer": "KNACK",
+      "clue": "Flair"
+    },
+    {
+      "row": 7,
+      "col": 7,
+      "direction": "across",
+      "answer": "BOLT",
+      "clue": "Lock – dash"
+    },
+    {
+      "row": 7,
+      "col": 9,
+      "direction": "down",
+      "answer": "LIFT",
+      "clue": "Elevator – raise"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "BALMY",
+      "clue": "Mild – barmy"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "down",
+      "answer": "MOPED",
+      "clue": "Scooter"
+    },
+    {
+      "row": 9,
+      "col": 7,
+      "direction": "down",
+      "answer": "SIGN",
+      "clue": "Notice – omen"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "FOUL",
+      "clue": "Disgusting – illegal tackle"
+    },
+    {
+      "row": 9,
+      "col": 11,
+      "direction": "down",
+      "answer": "URGE",
+      "clue": "Impulse – press"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "across",
+      "answer": "PRINT",
+      "clue": "Publish"
+    },
+    {
+      "row": 11,
+      "col": 0,
+      "direction": "across",
+      "answer": "RAY",
+      "clue": "Beam – flat fish"
+    },
+    {
+      "row": 12,
+      "col": 5,
+      "direction": "across",
+      "answer": "DENIM",
+      "clue": "Jeans fabric"
+    }
+  ]
+}

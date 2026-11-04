@@ -1,0 +1,190 @@
+{
+  "version": 1,
+  "id": "2026-12-03",
+  "title": "Thursday 3 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 1,
+      "direction": "down",
+      "answer": "SPARSE",
+      "clue": "Scanty"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "POSH",
+      "clue": "Upmarket"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "VENT",
+      "clue": "Outlet"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "across",
+      "answer": "BURN",
+      "clue": "Scorch"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "BIN",
+      "clue": "Dustbin – throw away"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "across",
+      "answer": "PROWESS",
+      "clue": "Skill"
+    },
+    {
+      "row": 2,
+      "col": 9,
+      "direction": "across",
+      "answer": "NEWT",
+      "clue": "Small amphibian"
+    },
+    {
+      "row": 2,
+      "col": 12,
+      "direction": "down",
+      "answer": "TYRE",
+      "clue": "Wheel's rubber"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "ARCHITECT",
+      "clue": "Building designer"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "across",
+      "answer": "SOUR",
+      "clue": "Tart"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "down",
+      "answer": "SAP",
+      "clue": "Drain – fool"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "PEDANTIC",
+      "clue": "Nit-picking"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "PROD",
+      "clue": "Poke"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "DELUGE",
+      "clue": "Flood"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "direction": "down",
+      "answer": "CHEETAH",
+      "clue": "Fastest land animal"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "across",
+      "answer": "HIP",
+      "clue": "Trendy – joint"
+    },
+    {
+      "row": 6,
+      "col": 11,
+      "direction": "down",
+      "answer": "SERIOUS",
+      "clue": "Grave"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "OGLE",
+      "clue": "Leer"
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "direction": "down",
+      "answer": "ROACH",
+      "clue": "Freshwater fish – cockroach"
+    },
+    {
+      "row": 7,
+      "col": 10,
+      "direction": "across",
+      "answer": "VEX",
+      "clue": "Annoy"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "across",
+      "answer": "MODEL",
+      "clue": "Catwalk walker – replica"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "CHEF",
+      "clue": "Cook"
+    },
+    {
+      "row": 10,
+      "col": 3,
+      "direction": "down",
+      "answer": "FIX",
+      "clue": "Mend"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "across",
+      "answer": "CHAMPION",
+      "clue": "Winner"
+    },
+    {
+      "row": 12,
+      "col": 0,
+      "direction": "across",
+      "answer": "LYNX",
+      "clue": "Tufted-eared wild cat"
+    },
+    {
+      "row": 12,
+      "col": 8,
+      "direction": "across",
+      "answer": "MOOSE",
+      "clue": "Canadian elk"
+    }
+  ]
+}
