@@ -9,6 +9,7 @@ import { nickname } from './api/nickname';
 import { game, record } from './api/play';
 import { makeRecoveryCode, recoveryStatus, restore } from './api/recovery';
 import { recordedClue, recordedGuess, recordedHint, restart } from './api/records';
+import { saveCode } from './api/save-code';
 import type { Config } from './config';
 import type { Feedback } from './feedback';
 import type { Health } from './health';
@@ -60,6 +61,7 @@ export function apiRoutes(services: Services): Routes {
     '/api/contact': { GET: contact(config) },
     '/api/forget': { POST: forget(records) },
     '/api/feedback': { POST: feedback(services) },
+    '/api/save-code': { POST: saveCode() },
   });
 }
 
