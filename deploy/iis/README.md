@@ -105,8 +105,13 @@ What protects the public site, and what to keep doing.
 - **From the internet, the only way in is through Cloudflare.** The proxy accepts the host name only
   with Cloudflare's origin-pull certificate, and IIS answers only for its own host names (others
   get HTTP.sys's "Invalid Hostname"). Node listens on a loopback port that IIS picks and proxies
-  to. Machines on the server's own network can still reach IIS's port directly, so only trust
-  `CF-Connecting-IP` for logging, not for access decisions.
+  to.
+- **The forms' per-address rate limits trust `CF-Connecting-IP`.** That's sound only while nothing
+  but Cloudflare can reach IIS: true with the cloudflared tunnel and IIS bound to `127.0.0.1`.
+  If IIS is bound to a LAN address for a reverse proxy, machines on that network could send the
+  header themselves and dodge the limits; then accept connections only from the proxy's address
+  and have the proxy overwrite the header with Cloudflare's. (Deferred for now: decided
+  2026-11-04, to revisit if security is tightened.)
 - **Nothing on the server runs code from a request.** IIS has only static files,
   HttpPlatformHandler and URL Rewrite: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
   and compares letters. It never touches the file system, a shell or `eval`, and the site has no
