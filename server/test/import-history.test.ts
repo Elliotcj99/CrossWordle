@@ -12,12 +12,12 @@ const first = puzzleIds()
   .sort()[0]!;
 const now = () => new Date(`${first}T12:00:00Z`);
 
-function post(body: unknown, playerId: string | undefined = PLAYER) {
+function post(body: unknown, playerId: string | null = PLAYER) {
   return new Request('http://localhost/api/import-history', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
-      ...(playerId ? { 'x-player-id': playerId } : {}),
+      ...(playerId === null ? {} : { 'x-player-id': playerId }),
     },
     body: JSON.stringify(body),
   });
@@ -48,7 +48,7 @@ describe('POST /api/import-history', () => {
 
   it('refuses a request without a player id or results', async () => {
     const handler = importHistory(new Records(openDatabase(':memory:')), now);
-    expect((await handler({ request: post({ results: {} }, undefined) })).status).toBe(400);
+    expect((await handler({ request: post({ results: {} }, null) })).status).toBe(400);
     expect((await handler({ request: post({ nothing: true }) })).status).toBe(400);
   });
 });
