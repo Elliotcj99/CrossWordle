@@ -39,3 +39,21 @@ export function switchPlayer(id: string): boolean {
   current = id;
   return true;
 }
+
+/**
+ * Forgets the player in this browser: their id, nickname, saved games and results. Settings (high
+ * contrast) stay, as they aren't about the player. The next request makes a new id.
+ */
+export function forgetPlayer(): void {
+  try {
+    const keys = Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i));
+    for (const key of keys) {
+      if (key?.startsWith('crosswordle:') && key !== 'crosswordle:settings') {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch {
+    // Blocked storage: nothing was kept here to forget.
+  }
+  current = undefined;
+}

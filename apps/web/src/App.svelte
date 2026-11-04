@@ -1,5 +1,6 @@
 <script lang="ts">
   import HowToPlay from './components/HowToPlay.svelte';
+  import SiteInfo from './components/SiteInfo.svelte';
   import YourRecord from './components/YourRecord.svelte';
   import Game from './Game.svelte';
   import { NAUGHTY, NORMAL } from './lib/collections';
@@ -130,6 +131,7 @@
       <a href="https://wordlist.aspell.net">SCOWL</a>. Licences:
       <a href="puzzles/NOTICE.md">clues</a>, <a href="words/NOTICE.md">word lists</a>.
     </p>
+    <SiteInfo />
   </footer>
 </main>
 
