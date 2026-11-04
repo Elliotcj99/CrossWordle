@@ -1,6 +1,6 @@
 import { features } from './api/features';
 import { nickname } from './api/nickname';
-import { crosswordClue, recordedGuess, recordedHint, restart } from './api/records';
+import { recordedClue, recordedGuess, recordedHint, restart } from './api/records';
 import type { Config } from './config';
 import type { Nicknames } from './nicknames';
 import type { Routes } from './node-adapter';
@@ -17,8 +17,8 @@ export interface Services {
 
 /**
  * Every API route, for both the IIS server (`main.ts`) and the local preview (`preview.ts`), so
- * they can't drift apart. Guess and hint score with the Pages Function handlers and then record
- * the result; the rest are Node-only.
+ * they can't drift apart. Guess, hint and clue use the Pages Function handlers and then record
+ * what they returned; the rest are Node-only.
  */
 export function apiRoutes(services: Services): Routes {
   const { records, config } = services;
@@ -26,7 +26,7 @@ export function apiRoutes(services: Services): Routes {
     '/api/guess': { POST: recordedGuess(records) },
     '/api/hint': { POST: recordedHint(records) },
     '/api/restart': { POST: restart(records) },
-    '/api/clue': { POST: crosswordClue(records) },
+    '/api/clue': { POST: recordedClue(records) },
     '/api/nickname': { POST: nickname(services) },
     '/api/features': { GET: features(config) },
   };

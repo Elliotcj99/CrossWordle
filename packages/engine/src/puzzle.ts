@@ -13,6 +13,12 @@ export interface EntryFile {
   readonly direction: Direction;
   readonly answer: string;
   readonly clue: string;
+  /**
+   * An optional second clue, revealed on demand as a hint. Source files don't have one: publishing
+   * adds it from a clue list (`withSecondClues`) to the server's copy only, so the page has to ask
+   * the server for it and the server always knows it was seen.
+   */
+  readonly clue2?: string;
 }
 
 export interface PuzzleFile {
@@ -37,6 +43,7 @@ export interface Entry {
   readonly direction: Direction;
   readonly answer: string;
   readonly clue: string;
+  readonly clue2?: string;
   readonly cells: readonly Cell[];
 }
 
@@ -132,6 +139,7 @@ export function loadPuzzle(file: PuzzleFile): Puzzle {
         direction: entry.direction,
         answer: entry.answer,
         clue: entry.clue,
+        ...(entry.clue2 === undefined ? {} : { clue2: entry.clue2 }),
         cells: entryCells(entry),
       };
     })
@@ -172,8 +180,8 @@ export interface PublicEntryFile {
   /** The answer's length, so the grid and guesses can be sized without the answer itself. */
   readonly length: number;
   readonly clue: string;
-  /** An optional second clue, revealed on demand as a hint. A hint, not the answer, so it ships. */
-  readonly clue2?: string;
+  /** Present when the entry has a second clue. The clue itself is served only when revealed. */
+  readonly hasClue2?: true;
 }
 
 /**
@@ -189,37 +197,49 @@ export interface PublicPuzzleFile {
 }
 
 /**
- * Validates a source file and returns the answer-free copy that is published to the browser.
- * `secondClue`, when given, supplies an optional second clue per answer; it is attached only when
- * it differs from the entry's own clue.
+ * Gives each entry its second clue from `secondClue` (looked up by answer), where there is one
+ * that differs from the entry's own clue. The result is the server's copy of the puzzle.
  */
-export function toPublicFile(
+export function withSecondClues(
   file: PuzzleFile,
-  secondClue?: (answer: string) => string | undefined,
-): PublicPuzzleFile {
-  loadPuzzle(file); // Throws PuzzleError if the puzzle is invalid.
-  const answerOf = (entry: EntryFile): string =>
-    file.answerEncoding === 'plain' ? entry.answer : decodeAnswer(entry.answer, file.id);
+  secondClue: (answer: string) => string | undefined,
+): PuzzleFile {
   const normalise = (clue: string): string => clue.trim().toLowerCase();
+  return {
+    ...file,
+    entries: file.entries.map((entry) => {
+      const { row, col, direction, answer, clue } = entry;
+      const own = { row, col, direction, answer, clue };
+      const clue2 = secondClue(answerOf(file, entry));
+      return clue2 !== undefined && normalise(clue2) !== normalise(clue) ? { ...own, clue2 } : own;
+    }),
+  };
+}
+
+/**
+ * Validates a puzzle and returns the copy that is published to the browser: no answers and no
+ * second clues, only whether each entry has one.
+ */
+export function toPublicFile(file: PuzzleFile): PublicPuzzleFile {
+  loadPuzzle(file); // Throws PuzzleError if the puzzle is invalid.
   return {
     version: 1,
     id: file.id,
     title: file.title,
     ...(file.rules === undefined ? {} : { rules: file.rules }),
-    entries: file.entries.map((entry) => {
-      const answer = answerOf(entry);
-      const clue2 = secondClue?.(answer);
-      const distinct = clue2 !== undefined && normalise(clue2) !== normalise(entry.clue);
-      return {
-        row: entry.row,
-        col: entry.col,
-        direction: entry.direction,
-        length: answer.length,
-        clue: entry.clue,
-        ...(distinct ? { clue2 } : {}),
-      };
-    }),
+    entries: file.entries.map((entry) => ({
+      row: entry.row,
+      col: entry.col,
+      direction: entry.direction,
+      length: answerOf(file, entry).length,
+      clue: entry.clue,
+      ...(entry.clue2 === undefined ? {} : { hasClue2: true as const }),
+    })),
   };
+}
+
+function answerOf(file: PuzzleFile, entry: EntryFile): string {
+  return file.answerEncoding === 'plain' ? entry.answer : decodeAnswer(entry.answer, file.id);
 }
 
 /** The cells a placed entry fills, from its start, direction and length. */
@@ -389,6 +409,9 @@ function entryShapeProblems(entry: unknown, index: number): string[] {
   }
   if (typeof entry.clue !== 'string' || entry.clue.trim() === '') {
     problems.push(`${at}: "clue" must be a non-empty string.`);
+  }
+  if (entry.clue2 !== undefined && (typeof entry.clue2 !== 'string' || entry.clue2.trim() === '')) {
+    problems.push(`${at}: "clue2" must be a non-empty string when present.`);
   }
   return problems;
 }

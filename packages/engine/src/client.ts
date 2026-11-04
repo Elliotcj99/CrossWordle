@@ -20,8 +20,8 @@ export interface ClientEntry {
   readonly direction: Direction;
   readonly length: number;
   readonly clue: string;
-  /** An optional second clue, revealed on demand as a hint. */
-  readonly clue2?: string;
+  /** Whether the entry has a second clue. The server sends it when the player reveals it. */
+  readonly hasClue2: boolean;
   readonly cells: readonly Cell[];
 }
 
@@ -69,7 +69,7 @@ export function loadClientPuzzle(file: PublicPuzzleFile): ClientPuzzle {
         direction: entry.direction,
         length: entry.length,
         clue: entry.clue,
-        ...(entry.clue2 === undefined ? {} : { clue2: entry.clue2 }),
+        hasClue2: entry.hasClue2 === true,
         cells: cellsOf(entry),
       };
     })
@@ -101,8 +101,8 @@ function entryProblems(entry: unknown, index: number): string[] {
   if (typeof entry.clue !== 'string' || entry.clue.trim() === '') {
     problems.push(`${at}: "clue" must be a non-empty string.`);
   }
-  if (entry.clue2 !== undefined && (typeof entry.clue2 !== 'string' || entry.clue2.trim() === '')) {
-    problems.push(`${at}: "clue2" must be a non-empty string when present.`);
+  if (entry.hasClue2 !== undefined && entry.hasClue2 !== true) {
+    problems.push(`${at}: "hasClue2" must be true when present.`);
   }
   return problems;
 }

@@ -176,6 +176,26 @@ Pages builds from `main` on every push. IIS gets a release only when you run the
 are generated ahead of time, so **deploy again before the last committed puzzle date**, or the
 IIS site runs out of puzzles.
 
+## Reviewing leaderboard results
+
+When a ranked game finishes, the server flags it for a look if it seems too good: a strong first
+game from a new player id, every entry solved first time, an unusually fast finish, or one much
+faster than that player's usual (`server/review.ts` has the thresholds). **A flag never changes
+the leaderboard.** Only an admin's decision does:
+
+```powershell
+$admin = 'deploy\iis\Invoke-CrossWordleAdmin.ps1'
+$site = 'crosswordle', 'C:\inetpub\crosswordle'
+# Flagged results awaiting a decision (add '--all' for decided ones too):
+Invoke-Command -Session $session -FilePath $admin -ArgumentList ($site + ,@('review'))
+# Off the board, kept in the player's own record; or keep it on the board (undoes a hide):
+Invoke-Command -Session $session -FilePath $admin -ArgumentList ($site + ,@('hide', '2026-11-05', '0b6f8f4e'))
+Invoke-Command -Session $session -FilePath $admin -ArgumentList ($site + ,@('keep', '2026-11-05', '0b6f8f4e'))
+```
+
+The player is the id the list shows (its first 8 characters are enough). The script runs the live
+release's `serverdmin.mjs` on the site's database, so the command always matches the schema.
+
 ## Testing
 
 - **On your machine:** run `npm run build:iis`, then `$env:PORT = 8787; node dist\iis\server\server.mjs`,

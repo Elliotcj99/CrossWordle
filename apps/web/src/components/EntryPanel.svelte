@@ -22,7 +22,8 @@
     clueRow: (RevealedCell | undefined)[] | undefined;
     canRevealCrossword: boolean;
     canRevealWordle: boolean;
-    hinting: boolean;
+    /** The clue being fetched from the server, if any. */
+    revealing: 'crossword' | 'wordle' | null;
     oncrosswordclue: () => void;
     onwordleclue: () => void;
     onprev: () => void;
@@ -42,7 +43,7 @@
     clueRow,
     canRevealCrossword,
     canRevealWordle,
-    hinting,
+    revealing,
     oncrosswordclue,
     onwordleclue,
     onprev,
@@ -102,18 +103,23 @@
   {:else if canRevealCrossword || canRevealWordle}
     <div class="clue-buttons">
       {#if canRevealCrossword}
-        <button type="button" class="hint" onclick={() => (confirming = 'crossword')}>
-          Crossword clue
+        <button
+          type="button"
+          class="hint"
+          disabled={revealing !== null}
+          onclick={() => (confirming = 'crossword')}
+        >
+          {revealing === 'crossword' ? 'Revealing…' : 'Crossword clue'}
         </button>
       {/if}
       {#if canRevealWordle}
         <button
           type="button"
           class="hint"
-          disabled={hinting}
+          disabled={revealing !== null}
           onclick={() => (confirming = 'wordle')}
         >
-          {hinting ? 'Revealing…' : 'Wordle clue'}
+          {revealing === 'wordle' ? 'Revealing…' : 'Wordle clue'}
         </button>
       {/if}
     </div>

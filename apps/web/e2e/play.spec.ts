@@ -129,6 +129,36 @@ test('keeps progress after a reload, and restart clears it', async ({ page }) =>
   await expect(page.getByText('0 of 9 solved')).toBeVisible();
 });
 
+const SECOND_CLUE = 'A position on a scale of intensity or amount or quality';
+
+test('gets the Crossword clue from the server when revealed, and keeps it', async ({ page }) => {
+  // The page only knows that 1A has a second clue; the server sends it.
+  await expect(page.getByText(SECOND_CLUE)).toHaveCount(0);
+  const sent = page.waitForResponse('**/api/clue');
+  await panel(page).getByRole('button', { name: 'Crossword clue' }).click();
+  await panel(page).getByRole('button', { name: 'Reveal' }).click();
+  expect((await sent).status()).toBe(200);
+  await expect(panel(page).getByText(SECOND_CLUE)).toBeVisible();
+  await expect(clue(page, 'Flat and even')).toContainText(SECOND_CLUE);
+
+  await page.reload();
+  await expect(panel(page).getByText(SECOND_CLUE)).toBeVisible();
+  await expect(panel(page).getByRole('button', { name: 'Crossword clue' })).toHaveCount(0);
+});
+
+test('still shows a Crossword clue revealed by an older version of the page', async ({ page }) => {
+  // Older versions had every second clue in the puzzle, and saved only which were shown.
+  await page.evaluate(() =>
+    localStorage.setItem(
+      'crosswordle:game:sample',
+      JSON.stringify({ puzzleId: 'sample', guesses: {}, crosswordClues: ['1A'] }),
+    ),
+  );
+  await page.reload();
+  await expect(panel(page).getByText(SECOND_CLUE)).toBeVisible();
+  await expect(panel(page).getByRole('button', { name: 'Crossword clue' })).toHaveCount(0);
+});
+
 test('starts fresh when saved progress no longer fits the puzzle', async ({ page }) => {
   // Guesses saved for an earlier version of the puzzle, where 1A had a different length.
   await page.evaluate(() =>

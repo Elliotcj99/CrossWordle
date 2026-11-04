@@ -12,8 +12,8 @@ export interface GameState {
   readonly puzzleId: string;
   /** Scored guesses so far, keyed by entry id, oldest first. */
   readonly guesses: Readonly<Record<string, readonly (readonly ScoredLetter[])[]>>;
-  /** Entry ids whose second (crossword) clue has been revealed. Hints are free and stay revealed. */
-  readonly crosswordClues?: readonly string[];
+  /** The second (crossword) clue revealed per entry, keyed by entry id. Hints stay revealed. */
+  readonly crosswordClues?: Readonly<Record<string, string>>;
   /** The one Wordle-clue letter revealed per entry (single use), keyed by entry id. */
   readonly wordleClues?: Readonly<Record<string, HintLetter>>;
 }
@@ -186,7 +186,7 @@ export function gameSummary(puzzle: ClientPuzzle, state: GameState): GameSummary
   return {
     status: gameStatus(puzzle, state),
     guesses: puzzle.entries.reduce((sum, e) => sum + guessCount(state, e), 0),
-    crosswordHints: (state.crosswordClues ?? []).filter((id) => ids.has(id)).length,
+    crosswordHints: Object.keys(state.crosswordClues ?? {}).filter((id) => ids.has(id)).length,
     wordleHints: Object.keys(state.wordleClues ?? {}).filter((id) => ids.has(id)).length,
   };
 }
@@ -237,11 +237,17 @@ export function recordGuess(
 
 /** Whether an entry has a second clue to reveal, and whether it already has been. */
 export function hasSecondClue(entry: ClientEntry): boolean {
-  return entry.clue2 !== undefined;
+  return entry.hasClue2;
 }
 
 export function crosswordClueShown(state: GameState, entry: ClientEntry): boolean {
-  return state.crosswordClues?.includes(entry.id) ?? false;
+  return crosswordClueFor(state, entry) !== undefined;
+}
+
+/** The revealed second (crossword) clue for an entry, or `undefined` if it hasn't been revealed. */
+export function crosswordClueFor(state: GameState, entry: ClientEntry): string | undefined {
+  const clues = state.crosswordClues ?? {};
+  return Object.hasOwn(clues, entry.id) ? clues[entry.id] : undefined;
 }
 
 /** The revealed Wordle-clue letter for an entry, or `undefined` if none has been used. */
@@ -249,10 +255,13 @@ export function wordleClueFor(state: GameState, entry: ClientEntry): HintLetter 
   return state.wordleClues?.[entry.id];
 }
 
-/** Reveals an entry's second crossword clue (a no-op if it has none or it is already shown). */
-export function recordCrosswordClue(state: GameState, entry: ClientEntry): GameState {
+/**
+ * Records an entry's second (crossword) clue, as the server sent it when the player revealed it
+ * (a no-op if the entry has none or it is already shown).
+ */
+export function recordCrosswordClue(state: GameState, entry: ClientEntry, clue: string): GameState {
   if (!hasSecondClue(entry) || crosswordClueShown(state, entry)) return state;
-  return { ...state, crosswordClues: [...(state.crosswordClues ?? []), entry.id] };
+  return { ...state, crosswordClues: { ...state.crosswordClues, [entry.id]: clue } };
 }
 
 /** Records the Wordle-clue letter revealed for an entry (single use per entry). */

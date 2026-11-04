@@ -5,6 +5,7 @@ import {
   parsePublicPuzzleFile,
   PuzzleError,
   toPublicFile,
+  withSecondClues,
   type PuzzleFile,
 } from '../src';
 
@@ -57,6 +58,31 @@ describe('toPublicFile', () => {
       ],
     };
     expect(toPublicFile(encoded).entries[0]!.length).toBe(5);
+  });
+
+  it('says which entries have a second clue, but never what it is', () => {
+    const clues = new Map([
+      ['CAT', 'Feline'],
+      ['COD', 'white FISH '], // the same as the entry's own clue, so not a second clue
+    ]);
+    const full = withSecondClues(
+      {
+        ...file,
+        entries: file.entries.map((e, i) => (i === 1 ? { ...e, clue: 'White fish' } : e)),
+      },
+      (answer) => clues.get(answer),
+    );
+    expect(full.entries.map((e) => e.clue2)).toEqual(['Feline', undefined, undefined, undefined]);
+
+    const pub = toPublicFile(full);
+    expect(pub.entries.map((e) => e.hasClue2)).toEqual([true, undefined, undefined, undefined]);
+    expect(JSON.stringify(pub)).not.toContain('Feline');
+    expect(loadClientPuzzle(pub).entries.find((e) => e.id === '1A')!.hasClue2).toBe(true);
+  });
+
+  it("keeps the second clue in the server's copy of the puzzle", () => {
+    const full = withSecondClues(file, (answer) => (answer === 'TOE' ? 'Digit' : undefined));
+    expect(loadPuzzle(full).entries.find((e) => e.answer === 'TOE')!.clue2).toBe('Digit');
   });
 
   it('rejects an invalid puzzle', () => {
