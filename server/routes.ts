@@ -10,6 +10,7 @@ import { nickname } from './api/nickname';
 import { game, record } from './api/play';
 import { makeRecoveryCode, recoveryStatus, restore } from './api/recovery';
 import { recordedClue, recordedGuess, recordedHint, restart } from './api/records';
+import { saveCode } from './api/save-code';
 import type { Config } from './config';
 import type { Feedback } from './feedback';
 import type { Health } from './health';
@@ -63,6 +64,7 @@ export function apiRoutes(services: Services): Routes {
     '/api/feedback': { POST: feedback(services) },
     // TEMPORARY, a one-off: remove by Friday 6 November 2026 (see import-history.ts).
     '/api/import-history': { POST: importHistory(records) },
+    '/api/save-code': { POST: saveCode() },
   });
 }
 

@@ -428,6 +428,41 @@ test("sends the browser's finished puzzles to the server once, as history", asyn
   await page.reload();
   await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
   expect(again).toBe(false);
+test('saves a new recovery code by submitting the form where the browser has no PasswordCredential', async ({
+  page,
+}) => {
+  // As in Safari and Firefox: the form really posts, the page comes back, and shows the code again.
+  await page.evaluate(() => {
+    delete (window as { PasswordCredential?: unknown }).PasswordCredential;
+  });
+  const hash = new URL(page.url()).hash;
+  const record = page.locator('details', {
+    has: page.locator('summary', { hasText: /^Your record$/ }),
+  });
+  await record.locator('summary').click();
+  await record.getByRole('button', { name: 'Make a recovery code' }).click();
+  const shown = record.getByLabel('Your recovery code');
+  await expect(shown).toHaveText(/^[0-9A-Z]{5}(-[0-9A-Z]{5}){3}$/);
+  const code = (await shown.textContent())!;
+  // Edited fields are put back: the browser is always offered the code itself.
+  await record.getByLabel('Code', { exact: true }).fill('something else');
+
+  const [posted] = await Promise.all([
+    page.waitForRequest((request) => new URL(request.url()).pathname === '/api/save-code'),
+    page.waitForEvent('load'),
+    record.getByRole('button', { name: 'Save in my password manager' }).click(),
+  ]);
+  expect(new URLSearchParams(posted.postData() ?? '').get('password')).toBe(code);
+
+  await expect(record).toHaveAttribute('open', '');
+  await expect(shown).toHaveText(code);
+  await expect(
+    record.getByText("If your browser offered to save it, choose Save. If it didn't, use Copy"),
+  ).toBeVisible();
+  expect(new URL(page.url()).hash).toBe(hash);
+  expect(
+    await page.evaluate(() => sessionStorage.getItem('crosswordle:new-recovery-code')),
+  ).toBeNull();
 });
 
 test('shows the contact address only when asked, and what the site stores', async ({ page }) => {

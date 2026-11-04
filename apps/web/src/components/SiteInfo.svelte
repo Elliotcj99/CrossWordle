@@ -94,7 +94,9 @@
       <p>
         Your games in progress, the puzzles you've finished, your settings, your nickname, and a
         random player id that keeps your games apart from everyone else's. Clearing this site's data
-        removes them.
+        removes them. When you save a new recovery code in a browser that needs the page to reload
+        first (such as Safari), the code waits in that tab while it does, then is removed. The
+        reload passes through our server, which doesn't read or keep the code.
       </p>
 
       <h3>On our server</h3>
