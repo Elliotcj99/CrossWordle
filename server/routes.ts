@@ -4,6 +4,7 @@ import { contact } from './api/contact';
 import { feedback } from './api/feedback';
 import { forget } from './api/forget';
 import { health } from './api/health';
+import { importHistory } from './api/import-history';
 import { leaderboard } from './api/leaderboard';
 import { nickname } from './api/nickname';
 import { game, record } from './api/play';
@@ -60,6 +61,8 @@ export function apiRoutes(services: Services): Routes {
     '/api/contact': { GET: contact(config) },
     '/api/forget': { POST: forget(records) },
     '/api/feedback': { POST: feedback(services) },
+    // TEMPORARY, a one-off: remove by Friday 6 November 2026 (see import-history.ts).
+    '/api/import-history': { POST: importHistory(records) },
   });
 }
 

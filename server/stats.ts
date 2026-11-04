@@ -42,6 +42,8 @@ export interface StatsReport {
   readonly players: number;
   /** Of those, ids that never made a guess (only a clue, a recovery code and so on). */
   readonly playersWithoutGuesses: number;
+  /** Puzzles copied from browsers' history from before the server kept records, and whose. */
+  readonly imported: { readonly results: number; readonly players: number };
 }
 
 /** Counts page loads per UTC day. The page asks `/api/features` once per load. */
@@ -163,6 +165,11 @@ export class Stats {
            FROM players p`,
       )
       .get() as { players: number; without: number | null };
+    const imported = this.db
+      .prepare(
+        'SELECT count(*) AS results, count(DISTINCT player_id) AS players FROM imported_results',
+      )
+      .get() as { results: number; players: number };
 
     return {
       daily: puzzles.filter((id) => !id.startsWith('naughty-')).map(row),
@@ -170,6 +177,7 @@ export class Stats {
       days,
       players: totals.players,
       playersWithoutGuesses: totals.without ?? 0,
+      imported: { results: imported.results, players: imported.players },
     };
   }
 }

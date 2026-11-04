@@ -101,7 +101,9 @@
       <ul>
         <li>
           <b>Your games:</b> under that random player id, every guess and clue you use, restarts, and
-          how each puzzle ended. Kept until you delete your record.
+          how each puzzle ended. Puzzles this browser finished before we kept games (4 November 2026)
+          are copied once too, as won or lost and the guesses used, and never go on a leaderboard. Kept
+          until you delete your record.
         </li>
         <li>
           <b>Your nickname, if you give one.</b> It's shown on the leaderboard with your guesses, clues

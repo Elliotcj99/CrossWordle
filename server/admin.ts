@@ -320,6 +320,8 @@ function describeStats(report: StatsReport, from: string, to: string): string {
     '',
     'Page loads minus active players is roughly the visitors who looked but never played.',
     `Player ids ever: ${report.players}, of which ${report.playersWithoutGuesses} never made a guess.`,
+    `History copied from browsers (from before the server kept records, never ranked): ` +
+      `${report.imported.results} puzzles from ${report.imported.players} players.`,
   );
   return lines.join('\n');
 }

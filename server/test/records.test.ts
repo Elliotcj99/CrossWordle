@@ -270,6 +270,48 @@ describe('review flags', () => {
   });
 });
 
+describe('Records.importHistory', () => {
+  it("copies a browser's finished puzzles as history, once, and never as results", () => {
+    const copied = records.importHistory(ALICE, [
+      { puzzle: puzzleOn('one'), won: true, guesses: 6 },
+      { puzzle: puzzleOn('two'), won: false, guesses: 8 },
+    ]);
+    expect(copied).toBe(2);
+    expect(records.importedHistory(ALICE)).toEqual([
+      { puzzleId: 'one', won: true, guesses: 6 },
+      { puzzleId: 'two', won: false, guesses: 8 },
+    ]);
+    // Not a result: never ranked, never on a board.
+    expect(records.results(ALICE)).toEqual([]);
+
+    // Sent again (another tab), the first copy stands.
+    expect(
+      records.importHistory(ALICE, [{ puzzle: puzzleOn('one'), won: false, guesses: 3 }]),
+    ).toBe(0);
+    expect(records.importedHistory(ALICE)[0]).toEqual({ puzzleId: 'one', won: true, guesses: 6 });
+  });
+
+  it("skips a puzzle the server has its own result for, and numbers that can't be a game", () => {
+    SOLUTION.forEach(([id, word]) => guess(id, word));
+    const copied = records.importHistory(ALICE, [
+      { puzzle, won: true, guesses: 4 },
+      // A win needs a guess per entry, and four entries need four.
+      { puzzle: puzzleOn('one'), won: true, guesses: 3 },
+      { puzzle: puzzleOn('two'), won: false, guesses: -1 },
+      { puzzle: puzzleOn('three'), won: false, guesses: 1.5 },
+    ]);
+    expect(copied).toBe(0);
+    expect(records.importedHistory(ALICE)).toEqual([]);
+  });
+
+  it('goes when the player deletes their record', () => {
+    records.importHistory(ALICE, [{ puzzle, won: true, guesses: 4 }]);
+    expect(playerTables(db)).toContain('imported_results');
+    records.forget(ALICE);
+    expect(records.importedHistory(ALICE)).toEqual([]);
+  });
+});
+
 describe('playerIdFrom', () => {
   const request = (id?: string) =>
     new Request('http://localhost/api/guess', {

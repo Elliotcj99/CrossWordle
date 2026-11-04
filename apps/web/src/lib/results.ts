@@ -52,6 +52,26 @@ export function mergeResults(
   return merged;
 }
 
+// TEMPORARY, a one-off: remove by Friday 6 November 2026, with importHistory in api.ts.
+const SENT_KEY = 'crosswordle:history-sent';
+
+/** Whether this browser has sent its finished puzzles to the server as history. */
+export function historySent(): boolean {
+  try {
+    return localStorage.getItem(SENT_KEY) !== null;
+  } catch {
+    return true; // Blocked storage: nothing to send, and no way to remember sending it.
+  }
+}
+
+export function markHistorySent(): void {
+  try {
+    localStorage.setItem(SENT_KEY, new Date().toISOString());
+  } catch {
+    // Blocked storage: see historySent.
+  }
+}
+
 /** Forgets this browser's results (the player's, when they switch or delete). */
 export function clearResults(): void {
   try {
