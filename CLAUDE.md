@@ -10,9 +10,13 @@
 - The same handlers also run on Node for the IIS host (`server/`, bundled by `npm run build:iis`
   with the answers inlined into `dist/iis/server`, outside the served site). Keep the handlers to
   Web `Request`/`Response` so both hosts work, and keep the server bundle out of the site folder.
-- Game state is the _scored_ guesses the server returned (marks per tile), keyed by entry. The
-  browser can't recompute feedback without the answer, so it stores the marks; locks, budgets,
-  solved state, status and the share card all derive from those. Don't store anything else.
+- Game state is what the server returned: the _scored_ guesses (marks per tile) and the clues it
+  revealed (the Crossword clue's text, the Wordle clue's letter), keyed by entry. The browser
+  can't recompute either without the answers, so it stores them; locks, budgets, solved state,
+  status and the share card all derive from those. Don't store anything else in it. Beside it,
+  `lib/storage.ts` keeps two per-puzzle notes of what's still to send to the server (a restart
+  it hasn't confirmed, an older save's clues to fetch again); each module clears its own keys
+  when the player changes (`lib/player.ts`).
 - New rules go in `RuleSet` with a default, and puzzle files can override them. Don't hard-code
   rules in the UI.
 - Every engine change gets unit tests in `packages/engine/test`.

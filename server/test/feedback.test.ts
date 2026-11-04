@@ -34,7 +34,19 @@ describe('tidyFeedback', () => {
       'Red\u001b[31mtext\u0007',
       'Text\u001b]0;owned\u0007 with ‮override\u0000.',
     );
-    expect(tidy).toEqual({ title: 'Red [31mtext', description: 'Text]0;owned with override.' });
+    expect(tidy).toEqual({
+      title: 'Red [31mtext',
+      description: 'Text ]0;owned with override .',
+    });
+  });
+
+  it("keeps emoji and scripts that need joiners, and the writer's own spacing", () => {
+    expect(
+      tidyFeedback('Coder 👩\u200D💻 mode', 'می\u200Cخواهم   more   room\n  indented'),
+    ).toEqual({
+      title: 'Coder 👩\u200D💻 mode',
+      description: 'می\u200Cخواهم   more   room\n  indented',
+    });
   });
 
   it('counts characters, not bytes, and says which part is wrong', () => {

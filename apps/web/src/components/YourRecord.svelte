@@ -1,26 +1,28 @@
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { forgetMe, makeRecoveryCode, recoveryCodeStatus, restoreRecord } from '../lib/api';
   import { features } from '../lib/features';
   import { forgetPlayer, playerId, switchPlayer } from '../lib/player';
-  import { renderTurnstile, type Widget } from '../lib/turnstile';
+  import TurnstileCheck from './TurnstileCheck.svelte';
 
   /**
    * "Your record": a recovery code for the player's record on the server, so it can come back
-   * after this browser's data is cleared, or move to another device. Shown only where the server
-   * offers it. The code is shown once, with a form a password manager can save it from; the
-   * restore form is one a password manager can fill.
+   * after this browser's data is cleared, or move to another device, and deleting the record.
+   * Each part is shown only where the server offers it ('recovery', 'forget'). The code is shown
+   * once, with a form a password manager can save it from; the restore form is one a password
+   * manager can fill.
    */
 
-  const NICKNAME_KEY = 'crosswordle:nickname';
   // A fixed account name, so a password manager files the code under this site.
   const ACCOUNT = 'CrossWordle recovery code';
 
-  let available = $state(false);
+  let hasRecovery = $state(false);
+  let hasForget = $state(false);
   let siteKey = $state<string | undefined>();
   let open = $state(false);
 
   let hasCode = $state<boolean | undefined>();
+  let statusFailed = $state(false);
   let code = $state<string | undefined>();
   let making = $state(false);
   let offeredSave = $state(false);
@@ -30,39 +32,29 @@
   let entered = $state('');
   let showCode = $state(false);
   let token = $state<string | undefined>();
+  let check = $state<TurnstileCheck>();
   let restoring = $state(false);
   let restoreMessage = $state('');
 
   let confirmingDelete = $state(false);
   let deleting = $state(false);
   let deleteMessage = $state('');
-  let checkEl = $state<HTMLElement>();
-  let widget: Widget | undefined;
 
   onMount(async () => {
     const host = await features();
     siteKey = host.turnstileSiteKey;
-    available = host.names.has('recovery');
+    hasRecovery = host.names.has('recovery');
+    hasForget = host.names.has('forget');
   });
 
-  // Ask whether there's a code, and load the bot check, only once the panel is opened.
+  // Ask whether there's a code only once the panel is opened (and the bot check loads only then).
   $effect(() => {
-    if (!open || hasCode !== undefined) return;
+    if (!open || !hasRecovery || hasCode !== undefined || statusFailed) return;
     void recoveryCodeStatus().then((status) => {
       if (status.ok) hasCode = status.hasCode;
+      else statusFailed = true;
     });
   });
-
-  $effect(() => {
-    if (!open || checkEl === undefined || siteKey === undefined || widget !== undefined) return;
-    renderTurnstile(checkEl, siteKey, (t) => (token = t))
-      .then((w) => (widget = w))
-      .catch(
-        () => (restoreMessage = "The bot check couldn't load. Check your connection and reload."),
-      );
-  });
-
-  onDestroy(() => widget?.remove());
 
   async function make() {
     if (making) return;
@@ -98,15 +90,24 @@
 
   const waitingForCheck = $derived(siteKey !== undefined && token === undefined);
 
+  /** A code as typed (any case, spaces or dashes) has 20 letters and digits once tidied. */
+  function looksLikeCode(text: string): boolean {
+    return text.replace(/[\s-]/g, '').length === 20 && /^[0-9a-z\s-]+$/i.test(text.trim());
+  }
+
   async function restore(event: SubmitEvent) {
     event.preventDefault();
     if (restoring || waitingForCheck) return;
+    if (!looksLikeCode(entered)) {
+      restoreMessage =
+        "That isn't a recovery code: they're 20 letters and digits, like ABCDE-FGHJK-MNPQR-STVWX.";
+      return;
+    }
     restoring = true;
     restoreMessage = '';
     const outcome = await restoreRecord(entered, token);
     restoring = false;
-    widget?.reset(); // Each check token works once.
-    token = undefined;
+    check?.reset(); // Each check token works once.
     if (!outcome.ok) {
       restoreMessage = outcome.message;
       return;
@@ -115,15 +116,9 @@
       restoreMessage = 'This browser already has that record.';
       return;
     }
-    if (!switchPlayer(outcome.playerId)) {
+    if (!switchPlayer(outcome.playerId, outcome.nickname)) {
       restoreMessage = "Your browser isn't letting this site save anything, so it can't switch.";
       return;
-    }
-    try {
-      if (outcome.nickname === undefined) localStorage.removeItem(NICKNAME_KEY);
-      else localStorage.setItem(NICKNAME_KEY, outcome.nickname);
-    } catch {
-      // Storage worked a moment ago; the nickname field just won't be filled in.
     }
     restoreMessage = 'Record restored. Reloading…';
     location.reload();
@@ -146,7 +141,7 @@
   }
 </script>
 
-{#if available}
+{#if hasRecovery || hasForget}
   <details bind:open>
     <summary>Your record</summary>
     <div class="panel">
@@ -155,125 +150,146 @@
         brings that record back if this browser's data is cleared, or onto another device.
       </p>
 
-      <section aria-labelledby="make-code-title">
-        <h2 id="make-code-title">Keep your record</h2>
-        {#if code !== undefined}
-          <p>Here's your code. It's shown only this once, so keep it somewhere safe.</p>
-          <p class="code" aria-label="Your recovery code">{code}</p>
-          <div class="row">
-            <button type="button" onclick={copy}>{copied ? 'Copied' : 'Copy'}</button>
-          </div>
-          {#if !offeredSave}
-            <form class="row" onsubmit={offerSave} aria-label="Save the code in a password manager">
-              <input
-                class="hidden-field"
-                type="text"
-                name="username"
-                autocomplete="username"
-                value={ACCOUNT}
-                readonly
-                tabindex="-1"
-                aria-hidden="true"
-              />
-              <input
-                class="hidden-field"
-                type="password"
-                name="password"
-                autocomplete="new-password"
-                value={code}
-                readonly
-                tabindex="-1"
-                aria-hidden="true"
-              />
-              <button type="submit">Save in my password manager</button>
-            </form>
-          {:else}
-            <p class="status" role="status">
-              If your browser offered to save it, choose Save. Copying it somewhere safe works too.
-            </p>
-          {/if}
-        {:else}
-          <p>
-            {#if hasCode}
-              You've made a code before. Making a new one replaces it, and the old one stops
-              working.
+      {#if hasRecovery}
+        <section aria-labelledby="make-code-title">
+          <h2 id="make-code-title">Keep your record</h2>
+          {#if code !== undefined}
+            <p>Here's your code. It's shown only this once, so keep it somewhere safe.</p>
+            <p class="code" aria-label="Your recovery code">{code}</p>
+            <div class="row">
+              <button type="button" onclick={copy}>{copied ? 'Copied' : 'Copy'}</button>
+            </div>
+            {#if !offeredSave}
+              <form
+                class="row"
+                onsubmit={offerSave}
+                aria-label="Save the code in a password manager"
+              >
+                <input
+                  class="hidden-field"
+                  type="text"
+                  name="username"
+                  autocomplete="username"
+                  value={ACCOUNT}
+                  readonly
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
+                <input
+                  class="hidden-field"
+                  type="password"
+                  name="password"
+                  autocomplete="new-password"
+                  value={code}
+                  readonly
+                  tabindex="-1"
+                  aria-hidden="true"
+                />
+                <button type="submit">Save in my password manager</button>
+              </form>
             {:else}
-              Make a code now, before you need it.
+              <p class="status" role="status">
+                If your browser offered to save it, choose Save. Copying it somewhere safe works
+                too.
+              </p>
             {/if}
+          {:else}
+            <p>
+              {#if hasCode}
+                You've made a code before. Making a new one replaces it, and the old one stops
+                working.
+              {:else if statusFailed}
+                We couldn't check whether you've made a code before. If you have, making one now
+                replaces it.
+              {:else}
+                Make a code now, before you need it.
+              {/if}
+            </p>
+            <div class="row">
+              <button
+                type="button"
+                onclick={make}
+                disabled={making || (hasCode === undefined && !statusFailed)}
+              >
+                {making ? 'Making…' : hasCode ? 'Make a new code' : 'Make a recovery code'}
+              </button>
+            </div>
+          {/if}
+          <p class="status" role="status" aria-live="polite">{makeMessage}</p>
+        </section>
+
+        <section aria-labelledby="use-code-title">
+          <h2 id="use-code-title">Use a recovery code</h2>
+          <p>
+            This browser switches to that record. Games played here under its current one stay on
+            the server, but won't count towards it.
+          </p>
+          <form onsubmit={restore} aria-labelledby="use-code-title">
+            <input
+              class="hidden-field"
+              type="text"
+              name="username"
+              autocomplete="username"
+              value={ACCOUNT}
+              readonly
+              tabindex="-1"
+              aria-hidden="true"
+            />
+            <label for="recovery-code">Recovery code</label>
+            <div class="row">
+              <input
+                id="recovery-code"
+                name="password"
+                type={showCode ? 'text' : 'password'}
+                autocomplete="current-password"
+                spellcheck="false"
+                bind:value={entered}
+                required
+              />
+              <button type="submit" disabled={restoring || waitingForCheck}>
+                {restoring ? 'Restoring…' : 'Restore'}
+              </button>
+            </div>
+            <label class="show">
+              <input type="checkbox" bind:checked={showCode} /> Show the code
+            </label>
+            {#if open && siteKey !== undefined}
+              <TurnstileCheck
+                {siteKey}
+                ontoken={(t) => (token = t)}
+                bind:this={check}
+                onerror={(m) => (restoreMessage = m)}
+              />
+            {/if}
+            <p class="status" role="status" aria-live="polite">{restoreMessage}</p>
+          </form>
+        </section>
+      {/if}
+
+      {#if hasForget}
+        <section aria-labelledby="delete-title">
+          <h2 id="delete-title">Delete your record</h2>
+          <p>
+            Deletes your games, results, nickname, recovery code and feature requests from our
+            server and this browser. Your places on the leaderboards go too. It can't be undone.
           </p>
           <div class="row">
-            <button type="button" onclick={make} disabled={making || hasCode === undefined}>
-              {making ? 'Making…' : hasCode ? 'Make a new code' : 'Make a recovery code'}
-            </button>
+            {#if confirmingDelete}
+              <button type="button" class="danger" onclick={deleteRecord} disabled={deleting}>
+                {deleting ? 'Deleting…' : 'Yes, delete everything'}
+              </button>
+              <button type="button" class="secondary" onclick={() => (confirmingDelete = false)}
+                >Keep it</button
+              >
+            {:else}
+              <button type="button" class="secondary" onclick={() => (confirmingDelete = true)}
+                >Delete my record</button
+              >
+            {/if}
           </div>
-        {/if}
-        <p class="status" role="status" aria-live="polite">{makeMessage}</p>
-      </section>
-
-      <section aria-labelledby="use-code-title">
-        <h2 id="use-code-title">Use a recovery code</h2>
-        <p>
-          This browser switches to that record. Games played here under its current one stay on the
-          server, but won't count towards it.
-        </p>
-        <form onsubmit={restore} aria-labelledby="use-code-title">
-          <input
-            class="hidden-field"
-            type="text"
-            name="username"
-            autocomplete="username"
-            value={ACCOUNT}
-            readonly
-            tabindex="-1"
-            aria-hidden="true"
-          />
-          <label for="recovery-code">Recovery code</label>
-          <div class="row">
-            <input
-              id="recovery-code"
-              name="password"
-              type={showCode ? 'text' : 'password'}
-              autocomplete="current-password"
-              spellcheck="false"
-              bind:value={entered}
-              required
-            />
-            <button type="submit" disabled={restoring || waitingForCheck}>
-              {restoring ? 'Restoring…' : 'Restore'}
-            </button>
-          </div>
-          <label class="show">
-            <input type="checkbox" bind:checked={showCode} /> Show the code
-          </label>
-          {#if siteKey !== undefined}
-            <div class="check" bind:this={checkEl}></div>
-          {/if}
-          <p class="status" role="status" aria-live="polite">{restoreMessage}</p>
-        </form>
-      </section>
-
-      <section aria-labelledby="delete-title">
-        <h2 id="delete-title">Delete your record</h2>
-        <p>
-          Deletes your games, results, nickname, recovery code and feature requests from our server
-          and this browser. Your places on the leaderboards go too. It can't be undone.
-        </p>
-        <div class="row">
-          {#if confirmingDelete}
-            <button type="button" class="danger" onclick={deleteRecord} disabled={deleting}>
-              {deleting ? 'Deleting…' : 'Yes, delete everything'}
-            </button>
-            <button type="button" class="secondary" onclick={() => (confirmingDelete = false)}
-              >Keep it</button
-            >
-          {:else}
-            <button type="button" class="secondary" onclick={() => (confirmingDelete = true)}
-              >Delete my record</button
-            >
-          {/if}
-        </div>
-        <p class="status" role="status" aria-live="polite">{deleteMessage}</p>
-      </section>
+          <p class="status" role="status" aria-live="polite">{deleteMessage}</p>
+        </section>
+      {/if}
     </div>
   </details>
 {/if}
@@ -391,10 +407,6 @@
   .show {
     color: var(--ink-muted);
     font-size: 0.9rem;
-  }
-
-  .check:empty {
-    display: none;
   }
 
   .status {

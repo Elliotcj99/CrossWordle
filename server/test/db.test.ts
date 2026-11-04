@@ -86,4 +86,35 @@ describe('MIGRATIONS', () => {
       reviewed_at: null,
     });
   });
+
+  it('4 to 8 apply to a database with data, and 7 fills in old Crossword clues', () => {
+    const db = openDatabase(':memory:', MIGRATIONS.slice(0, 3));
+    const player = '0b6f8f4e-2c1a-4d3b-9e5f-1a2b3c4d5e6f';
+    // 1A of the sample puzzle (LEVEL) has a second clue in the bundle; an unknown entry has none.
+    db.exec(`
+      INSERT INTO players (id, created_at) VALUES ('${player}', '2026-11-04T09:00:00Z');
+      INSERT INTO hints (player_id, puzzle_id, attempt, entry_id, kind, detail, at) VALUES
+        ('${player}', 'sample', 1, '1A', 'crossword', NULL, '2026-11-04T09:01:00Z'),
+        ('${player}', 'sample', 1, '9Z', 'crossword', NULL, '2026-11-04T09:02:00Z'),
+        ('${player}', 'sample', 1, '1D', 'wordle', '{"index":0,"letter":"L"}', '2026-11-04T09:03:00Z');
+    `);
+
+    migrate(db, MIGRATIONS);
+
+    expect(schemaVersion(db)).toBe(MIGRATIONS.length);
+    const details = db.prepare('SELECT entry_id, detail FROM hints ORDER BY entry_id').all() as {
+      entry_id: string;
+      detail: string;
+    }[];
+    expect(JSON.parse(details.find((d) => d.entry_id === '1A')!.detail)).toMatch(/\w/);
+    expect(details.find((d) => d.entry_id === '9Z')!.detail).toBe('""');
+    expect(details.find((d) => d.entry_id === '1D')!.detail).toBe('{"index":0,"letter":"L"}');
+    // The later tables exist and work.
+    db.prepare("INSERT INTO visits (day, count) VALUES ('2026-11-04', 1)").run();
+    db.prepare(
+      "INSERT INTO feedback (player_id, title, description, created_at, status) VALUES (?, 'Hi', 'Hello there', 'now', 'open')",
+    ).run(player);
+    db.prepare("INSERT INTO forgotten_players (player_hash, at) VALUES ('abc', 'now')").run();
+    expect(db.prepare('SELECT count(*) AS n FROM players').get()).toEqual({ n: 1 });
+  });
 });

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { fetchLeaderboard, type Board, type YourPlace } from '../lib/api';
+  import { localDate } from '../lib/dates';
 
   /**
    * A puzzle's leaderboard: the top 100 named, unbroken first-attempt wins, then where this player
@@ -10,14 +11,17 @@
 
   let board = $state<Board | undefined>();
   let failed = $state(false);
+  // Fetches can overlap (naming yourself refetches): only the newest one's answer is shown.
+  let latest = 0;
 
   $effect(() => {
     void version;
     const id = puzzleId;
-    failed = false;
+    const request = ++latest;
     void fetchLeaderboard(id).then((result) => {
-      if (id !== puzzleId) return;
-      board = result;
+      if (request !== latest) return;
+      // A failed refresh keeps the board already shown.
+      if (result !== undefined) board = result;
       failed = result === undefined;
     });
   });
@@ -29,8 +33,7 @@
   function finished(at: string): string {
     const when = new Date(at);
     const date = /(\d{4}-\d{2}-\d{2})$/.exec(puzzleId)?.[1];
-    const local = `${when.getFullYear()}-${String(when.getMonth() + 1).padStart(2, '0')}-${String(when.getDate()).padStart(2, '0')}`;
-    return date === undefined || date === local
+    return date === undefined || date === localDate(when)
       ? time.format(when)
       : `${day.format(when)}, ${time.format(when)}`;
   }

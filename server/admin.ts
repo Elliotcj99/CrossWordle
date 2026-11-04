@@ -5,7 +5,8 @@ import { puzzleIds } from '../functions/api/_shared';
 import { databaseFile, pathsFromEnv, type Paths } from './config';
 import { openDatabase } from './db';
 import { Feedback, FeedbackError, type FeedbackItem } from './feedback';
-import { Health, RUNWAY_DAYS, type Runway } from './health';
+import { addDays, DAY_MS, isDate } from './dates';
+import { Health, RUNWAY_DAYS, type HealthReport } from './health';
 import { ErrorLog, type LogEntry } from './log';
 import { Review, ReviewError, type FlaggedResult } from './review';
 import { Stats, type PuzzleStats, type StatsReport } from './stats';
@@ -42,9 +43,6 @@ const USAGE = `Usage:
 
 <player> is the player id, or its first 8 or more characters as the list shows them.`;
 
-const DAY_MS = 24 * 60 * 60 * 1000;
-const DATE = /^\d{4}-\d{2}-\d{2}$/;
-
 function main(argv: readonly string[]): number {
   const { positionals, values } = parseArgs({
     args: [...argv],
@@ -67,8 +65,9 @@ function main(argv: readonly string[]): number {
   // The error log needs no database.
   if (command === 'errors') {
     const hours = Number(values.hours);
-    if (!Number.isFinite(hours) || hours <= 0) {
-      console.error('--hours must be a positive number.');
+    // The log keeps 14 days; a year is plenty and keeps the date valid.
+    if (!Number.isFinite(hours) || hours <= 0 || hours > 24 * 366) {
+      console.error('--hours must be a number of hours from 1 to 8784 (a year).');
       return 1;
     }
     const entries = new ErrorLog(paths.logs).since(new Date(Date.now() - hours * 60 * 60 * 1000));
@@ -80,7 +79,8 @@ function main(argv: readonly string[]): number {
     return 0;
   }
 
-  const db = openDatabase(databaseFile(paths));
+  // The health check reports the schema as it is, so it doesn't upgrade the database first.
+  const db = openDatabase(databaseFile(paths), undefined, { migrate: command !== 'health' });
   try {
     const review = new Review(db);
     switch (command) {
@@ -107,7 +107,7 @@ function main(argv: readonly string[]): number {
       }
       case 'health': {
         const report = new Health(db, paths.data, puzzleIds).check();
-        console.log(describeHealth(report.ok, report.checks, report.runway, paths));
+        console.log(describeHealth(report, paths));
         return report.ok ? 0 : 2;
       }
       case 'feedback': {
@@ -124,27 +124,33 @@ function main(argv: readonly string[]): number {
           );
           return 0;
         }
+        if (idText === undefined || !/^\d{1,9}$/.test(idText) || rest.length !== 2) break;
         const id = Number(idText);
-        if (!Number.isInteger(id) || rest.length !== 2) break;
         if (action === 'show') {
           console.log(describeRequest(requests.get(id)));
           return 0;
         }
         if (action === 'close' || action === 'reopen') {
-          const item = requests.setStatus(id, action === 'close' ? 'closed' : 'open');
+          const status = action === 'close' ? 'closed' : 'open';
+          if (requests.get(id).status === status) {
+            console.log(`Request ${id} is already ${status}.`);
+            return 0;
+          }
+          const item = requests.setStatus(id, status);
           console.log(`Request ${item.id} is ${item.status}: ${item.title}`);
           return 0;
         }
         break;
       }
       case 'stats': {
-        const today = new Date().toISOString().slice(0, 10);
-        const to = values.to ?? today;
-        const from =
-          values.from ??
-          new Date(Date.parse(`${to}T00:00:00Z`) - 6 * DAY_MS).toISOString().slice(0, 10);
-        if (!DATE.test(from) || !DATE.test(to) || from > to) {
-          console.error('--from and --to must be dates (YYYY-MM-DD), --from first.');
+        const to = values.to ?? new Date().toISOString().slice(0, 10);
+        if (!isDate(to) || (values.from !== undefined && !isDate(values.from))) {
+          console.error('--from and --to must be real dates (YYYY-MM-DD).');
+          return 1;
+        }
+        const from = values.from ?? addDays(to, -6);
+        if (from > to) {
+          console.error('--from must not be after --to.');
           return 1;
         }
         console.log(describeStats(new Stats(db).report(from, to), from, to));
@@ -188,7 +194,7 @@ function describeError(entry: LogEntry): string {
       ? []
       : entry.stack
           .split('\n')
-          .slice(1, 4)
+          .slice(0, 3)
           .map((line) => `  ${line.trim()}`)),
   ].join('\n');
 }
@@ -208,12 +214,7 @@ function describe(result: FlaggedResult): string {
   ].join('\n');
 }
 
-function describeHealth(
-  ok: boolean,
-  checks: readonly { name: string; ok: boolean; detail: string; ms: number }[],
-  runway: { daily: Runway; naughty: Runway },
-  paths: Paths,
-): string {
+function describeHealth({ ok, checks, runway }: HealthReport, paths: Paths): string {
   const lines = [`Status: ${ok ? 'ok' : 'DOWN'}`, ''];
   for (const check of checks) {
     lines.push(`  ${check.ok ? 'ok  ' : 'FAIL'}  ${check.name}: ${check.detail} (${check.ms} ms)`);
@@ -225,7 +226,9 @@ function describeHealth(
     ['Naughty', runway.naughty],
   ] as const) {
     const warn = r.daysLeft < RUNWAY_DAYS ? `  << under ${RUNWAY_DAYS} days: generate more` : '';
-    lines.push(`  ${name}: last ${r.last ?? 'none'}, ${r.daysLeft} days after today${warn}`);
+    lines.push(
+      `  ${name}: last ${r.last ?? 'none'}, ${r.daysLeft} days after the latest date anyone is on${warn}`,
+    );
   }
 
   // This command runs from releases\<sha>\server.

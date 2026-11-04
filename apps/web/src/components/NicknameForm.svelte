@@ -1,8 +1,9 @@
 <script lang="ts">
-  import { onDestroy, onMount } from 'svelte';
+  import { onMount } from 'svelte';
   import { submitNickname, type RecordedResult } from '../lib/api';
   import { features } from '../lib/features';
-  import { renderTurnstile, type Widget } from '../lib/turnstile';
+  import { rememberedNickname, rememberNickname } from '../lib/nickname';
+  import TurnstileCheck from './TurnstileCheck.svelte';
 
   /**
    * Names the player on the leaderboard after they solve a puzzle. Shown only where the server
@@ -11,41 +12,20 @@
    */
   let { puzzleId, onsaved }: { puzzleId: string; onsaved?: (() => void) | undefined } = $props();
 
-  const KEY = 'crosswordle:nickname';
-
   let available = $state(false);
   let siteKey = $state<string | undefined>();
-  let nickname = $state(remembered());
+  let nickname = $state(rememberedNickname());
   let token = $state<string | undefined>();
+  let check = $state<TurnstileCheck>();
   let submitting = $state(false);
   let message = $state('');
   let saved = $state<{ nickname: string; result: RecordedResult } | undefined>();
-  let checkEl = $state<HTMLElement>();
-  let widget: Widget | undefined;
-
-  function remembered(): string {
-    try {
-      return localStorage.getItem(KEY) ?? '';
-    } catch {
-      return '';
-    }
-  }
 
   onMount(async () => {
     const host = await features();
     siteKey = host.turnstileSiteKey;
     available = host.names.has('nicknames');
   });
-
-  // Show the bot check once its container exists.
-  $effect(() => {
-    if (checkEl === undefined || siteKey === undefined || widget !== undefined) return;
-    renderTurnstile(checkEl, siteKey, (t) => (token = t))
-      .then((w) => (widget = w))
-      .catch(() => (message = "The bot check couldn't load. Check your connection and reload."));
-  });
-
-  onDestroy(() => widget?.remove());
 
   const waitingForCheck = $derived(siteKey !== undefined && token === undefined);
 
@@ -60,7 +40,7 @@
     message = '';
     const outcome = await submitNickname(puzzleId, nickname, token);
     submitting = false;
-    widget?.reset(); // Each check token works once.
+    check?.reset(); // Each check token works once.
     if (!outcome.ok) {
       message = outcome.message;
       return;
@@ -68,11 +48,7 @@
     saved = { nickname: outcome.nickname, result: outcome.result };
     nickname = outcome.nickname;
     onsaved?.();
-    try {
-      localStorage.setItem(KEY, outcome.nickname);
-    } catch {
-      // Blocked storage: the field just won't be filled in next time.
-    }
+    rememberNickname(outcome.nickname);
   }
 </script>
 
@@ -96,7 +72,12 @@
       </button>
     </div>
     {#if siteKey !== undefined}
-      <div class="check" bind:this={checkEl}></div>
+      <TurnstileCheck
+        {siteKey}
+        ontoken={(t) => (token = t)}
+        bind:this={check}
+        onerror={(m) => (message = m)}
+      />
     {/if}
     <p class="status" role="status" aria-live="polite">
       {#if message !== ''}
@@ -109,9 +90,12 @@
             'guesses',
           )}, {count(saved.result.crosswordHints, 'Crossword clue')} and
           {count(saved.result.wordleHints, 'Wordle clue')}.
-        {:else}
+        {:else if saved.result.unrankedReason === 'restarted'}
           Saved as {saved.nickname}. This game isn't on the leaderboard because you restarted it,
           but it's kept in your own record.
+        {:else}
+          Saved as {saved.nickname}. Only wins on a first attempt go on the leaderboard; this game
+          is kept in your own record.
         {/if}
       {/if}
     </p>
@@ -166,10 +150,6 @@
   button:disabled {
     opacity: 0.6;
     cursor: default;
-  }
-
-  .check:empty {
-    display: none;
   }
 
   .status {

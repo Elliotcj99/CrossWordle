@@ -6,13 +6,15 @@
 .DESCRIPTION
     1. Refuses to deploy uncommitted work, so every release matches a commit.
     2. Runs `npm run build:iis`.
-    3. Copies dist\iis to <Root>\releases\<commit sha> on the server.
+    3. Copies dist\iis to <Root>\releases\<commit sha> on the server (<commit sha>-<time> when
+       that commit is the live release, whose files are in use).
     4. Points the site at the new release and recycles its app pool.
     5. Checks the home page and the API on the server. If either fails, the site goes back to the
        release it was on before.
-    6. Keeps the five newest releases (never the live one).
+    6. Keeps the newest folder of each of the five newest commits (always the live one).
 
-    -Rollback skips the build and points the site at the release deployed before the live one.
+    -Rollback skips the build and points the site at the newest release of an older commit than
+    the live one.
 
     The server's name and the account are never stored in the repo: pass -ComputerName or set
     CROSSWORDLE_IIS_HOST, and pass -Credential (or let it prompt).
@@ -57,13 +59,29 @@ try {
     $session = New-PSSession -ComputerName $ComputerName -Credential $Credential
     try {
         if (-not $Rollback) {
-            $target = "$Root\releases\$release"
-            Invoke-Command -Session $session -ScriptBlock {
-                param($Target)
-                if (Test-Path $Target) { Remove-Item $Target -Recurse -Force }
-                New-Item -ItemType Directory -Path $Target | Out-Null
-            } -ArgumentList $target
-            Copy-Item -Path 'dist\iis\*' -Destination $target -ToSession $session -Recurse
+            # The release's folder is named after the commit. Redeploying the commit that's live
+            # goes into a new folder: the live one's files are in use (IIS and Node hold them
+            # open), and deleting them would take the site down even if the delete then failed.
+            $release = Invoke-Command -Session $session -ScriptBlock {
+                param($SiteName, $Root, $Release)
+                $ErrorActionPreference = 'Stop'
+                Import-Module WebAdministration
+                # IIS may hold the path with environment variables or a trailing separator, and
+                # -Root may be spelled differently: compare full, plain paths.
+                function Get-PlainPath([string] $Path) {
+                    [IO.Path]::GetFullPath([Environment]::ExpandEnvironmentVariables($Path)).TrimEnd('\')
+                }
+                $live = Get-PlainPath (Get-ItemProperty "IIS:\Sites\$SiteName" -Name physicalPath)
+                $name = $Release
+                if ((Get-PlainPath "$Root\releases\$name\site") -eq $live) {
+                    $name = "$Release-$(Get-Date -Format 'yyyyMMddHHmmss')"
+                }
+                $target = "$Root\releases\$name"
+                if (Test-Path $target) { Remove-Item $target -Recurse -Force }
+                New-Item -ItemType Directory -Path $target | Out-Null
+                $name
+            } -ArgumentList $SiteName, $Root, $release
+            Copy-Item -Path 'dist\iis\*' -Destination "$Root\releases\$release" -ToSession $session -Recurse
         }
 
         $live = Invoke-Command -Session $session -ScriptBlock {
@@ -71,14 +89,26 @@ try {
             $ErrorActionPreference = 'Stop'
             Import-Module WebAdministration
 
+            function Get-PlainPath([string] $Path) {
+                [IO.Path]::GetFullPath([Environment]::ExpandEnvironmentVariables($Path)).TrimEnd('\')
+            }
+            # A release folder is named after its commit, with -<time> when the commit was
+            # deployed again while live.
+            function Get-Commit([string] $Name) { ($Name -split '-', 2)[0] }
+
             $site = "IIS:\Sites\$SiteName"
             $previous = (Get-ItemProperty $site -Name physicalPath)
             $releases = @(Get-ChildItem "$Root\releases" -Directory | Sort-Object CreationTime -Descending)
 
             if ($Rollback) {
-                $current = $releases | Where-Object { "$($_.FullName)\site" -eq $previous }
-                $older = $releases | Where-Object { $current -and $_.CreationTime -lt $current.CreationTime }
-                if (-not $older) { throw "There is no release older than the live one ($previous)." }
+                $current = $releases | Where-Object { (Get-PlainPath "$($_.FullName)\site") -eq (Get-PlainPath $previous) }
+                # The newest older release of a different commit: another folder of the live
+                # commit would be the same build.
+                $older = $releases | Where-Object {
+                    $current -and $_.CreationTime -lt $current.CreationTime -and
+                    (Get-Commit $_.Name) -ne (Get-Commit $current.Name)
+                }
+                if (-not $older) { throw "There is no release of an older commit than the live one ($previous)." }
                 $Release = $older[0].Name
             }
 
@@ -124,10 +154,28 @@ try {
             }
 
             if (-not $Rollback) {
-                $releases | Where-Object { $_.Name -ne $Release } |
-                    Select-Object -Skip ($KeepReleases - 1) |
-                    Where-Object { "$($_.FullName)\site" -ne $next } |
-                    Remove-Item -Recurse -Force
+                # Keep the newest folder of each of the newest $KeepReleases commits (the live one
+                # among them); delete the rest. A folder the previous worker still holds open is
+                # left for the next deploy to delete.
+                $releases = @(Get-ChildItem "$Root\releases" -Directory | Sort-Object CreationTime -Descending)
+                $newest = [ordered]@{}   # commit -> its newest folder, newest commits first
+                foreach ($folder in $releases) {
+                    $commit = Get-Commit $folder.Name
+                    if (-not $newest.Contains($commit)) { $newest[$commit] = $folder.Name }
+                }
+                $liveCommit = Get-Commit $Release
+                $keepCommits = @($liveCommit) +
+                    @($newest.Keys | Where-Object { $_ -ne $liveCommit } | Select-Object -First ($KeepReleases - 1))
+                foreach ($folder in $releases) {
+                    $commit = Get-Commit $folder.Name
+                    if ((Get-PlainPath "$($folder.FullName)\site") -eq (Get-PlainPath $next)) { continue }
+                    if ($keepCommits -contains $commit -and $newest[$commit] -eq $folder.Name) { continue }
+                    try {
+                        Remove-Item $folder.FullName -Recurse -Force
+                    } catch {
+                        Write-Warning "Couldn't delete $($folder.Name) yet (in use); the next deploy will. $_"
+                    }
+                }
             }
             $Release
         } -ArgumentList $SiteName, $Root, $release, $Rollback.IsPresent, $KeepReleases

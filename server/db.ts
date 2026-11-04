@@ -1,3 +1,4 @@
+import { puzzleFor } from '../functions/api/_shared';
 import { mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { DatabaseSync } from 'node:sqlite';
@@ -150,19 +151,47 @@ export const MIGRATIONS: readonly Migration[] = [
       ) STRICT;
       CREATE INDEX feedback_by_status ON feedback (status, created_at);
     `),
+
+  // 7. Crossword-clue hints recorded before schema 3 have no detail (the page had the clue then).
+  //    Fill it in from the puzzle, so every hint row has its text and is counted the same way.
+  (db) => {
+    const rows = db
+      .prepare(
+        "SELECT rowid AS id, puzzle_id, entry_id FROM hints WHERE kind = 'crossword' AND detail IS NULL",
+      )
+      .all() as { id: number; puzzle_id: string; entry_id: string }[];
+    const fill = db.prepare('UPDATE hints SET detail = ? WHERE rowid = ?');
+    for (const row of rows) {
+      const clue = puzzleFor(row.puzzle_id)?.entries.find((e) => e.id === row.entry_id)?.clue2;
+      fill.run(JSON.stringify(clue ?? ''), row.id);
+    }
+  },
+
+  // 8. Deleted player ids, as SHA-256 hashes, so a deleted record can't come back (players.ts).
+  (db) =>
+    db.exec(`
+      CREATE TABLE forgotten_players (
+        player_hash TEXT PRIMARY KEY,
+        at          TEXT NOT NULL
+      ) STRICT;
+    `),
 ];
 
-/** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */
+/**
+ * Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to
+ * date, unless `migrate` is false (the admin's health check, which reports the schema as it is).
+ */
 export function openDatabase(
   path: string,
   migrations: readonly Migration[] = MIGRATIONS,
+  { migrate: upgrade = true }: { migrate?: boolean } = {},
 ): DatabaseSync {
   if (path !== ':memory:') mkdirSync(dirname(path), { recursive: true });
   const db = new DatabaseSync(path);
   // WAL lets readers carry on while a write is in progress. The busy timeout covers the rare
   // overlap with a backup.
   db.exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000;');
-  migrate(db, migrations);
+  if (upgrade) migrate(db, migrations);
   return db;
 }
 

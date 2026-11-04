@@ -22,6 +22,11 @@ export const RECOVERY_CODE_LIMIT: Limit = { perPlayer: 5, perAddress: 20, window
  * can make up player ids); with codes of 100 random bits, ten tries an hour gets nowhere.
  */
 export const RESTORE_LIMIT: Limit = { perPlayer: 10, perAddress: 10, windowMs: HOUR };
+/**
+ * Bot checks on any form, passed or failed. Generous, so a real player never meets it; it's what
+ * stops junk tokens making the server call Cloudflare without end.
+ */
+export const BOT_CHECK_LIMIT: Limit = { perPlayer: 30, perAddress: 60, windowMs: HOUR };
 /** Sending a feature request. */
 export const FEEDBACK_LIMIT: Limit = { perPlayer: 3, perAddress: 10, windowMs: HOUR };
 

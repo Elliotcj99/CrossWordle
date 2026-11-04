@@ -1,4 +1,5 @@
 import type { Config } from '../config';
+import { BOT_CHECK_LIMIT, type RateLimits } from '../rate-limits';
 import { verifyTurnstile } from '../turnstile';
 
 /** What the form endpoints (nickname, recovery) share: the visitor's address and the bot check. */
@@ -9,6 +10,23 @@ import { verifyTurnstile } from '../turnstile';
  */
 export function clientAddress(request: Request): string {
   return request.headers.get('cf-connecting-ip')?.trim() || 'unknown';
+}
+
+/**
+ * Runs the Turnstile bot check: `ok` (always, where the site has no keys), `failed`, or
+ * `too-many` when this player or address has asked for too many checks (BOT_CHECK_LIMIT). Every
+ * check is counted, passed or failed, as each one calls Cloudflare.
+ */
+export async function botCheck(
+  config: Config,
+  limits: RateLimits,
+  playerId: string,
+  token: unknown,
+  ip: string,
+): Promise<'ok' | 'failed' | 'too-many'> {
+  if (config.turnstile === undefined) return 'ok';
+  if (!limits.allow('bot-check', playerId, ip, BOT_CHECK_LIMIT)) return 'too-many';
+  return (await passesBotCheck(config, token, ip)) ? 'ok' : 'failed';
 }
 
 /** Whether the request passes the Turnstile bot check; always true where the site has no keys. */

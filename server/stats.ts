@@ -1,4 +1,5 @@
 import type { DatabaseSync } from 'node:sqlite';
+import { addDays } from './dates';
 
 /**
  * Usage stats for the admin command (`admin.mjs stats`), from the server's own records: nothing
@@ -75,31 +76,39 @@ export class Stats {
         ]),
       );
 
-    const started = count(
+    // Only the puzzles in range: daily ids are their date, Naughty ones `naughty-<date>`.
+    const IN_RANGE = `(puzzle_id BETWEEN ?1 AND ?2 OR puzzle_id BETWEEN 'naughty-' || ?1 AND 'naughty-' || ?2)`;
+    const byPuzzle = (sql: string) => count(sql, from, to);
+
+    const started = byPuzzle(
       `SELECT puzzle_id AS key, count(DISTINCT player_id) AS n FROM (
-         SELECT puzzle_id, player_id FROM guesses UNION ALL SELECT puzzle_id, player_id FROM hints)
+         SELECT puzzle_id, player_id FROM guesses WHERE ${IN_RANGE}
+         UNION ALL SELECT puzzle_id, player_id FROM hints WHERE ${IN_RANGE})
        GROUP BY puzzle_id`,
     );
-    const finished = count(
-      'SELECT puzzle_id AS key, count(*) AS n FROM results GROUP BY puzzle_id',
+    const finished = byPuzzle(
+      `SELECT puzzle_id AS key, count(*) AS n FROM results WHERE ${IN_RANGE} GROUP BY puzzle_id`,
     );
-    const won = count(
-      'SELECT puzzle_id AS key, count(*) AS n FROM results WHERE won = 1 GROUP BY puzzle_id',
+    const won = byPuzzle(
+      `SELECT puzzle_id AS key, count(*) AS n FROM results WHERE ${IN_RANGE} AND won = 1 GROUP BY puzzle_id`,
     );
-    const ranked = count(
-      'SELECT puzzle_id AS key, count(*) AS n FROM results WHERE ranked = 1 GROUP BY puzzle_id',
+    const ranked = byPuzzle(
+      `SELECT puzzle_id AS key, count(*) AS n FROM results WHERE ${IN_RANGE} AND ranked = 1 GROUP BY puzzle_id`,
     );
-    const restarted = count(
-      'SELECT puzzle_id AS key, count(DISTINCT player_id) AS n FROM restarts GROUP BY puzzle_id',
+    const restarted = byPuzzle(
+      `SELECT puzzle_id AS key, count(DISTINCT player_id) AS n FROM restarts WHERE ${IN_RANGE} GROUP BY puzzle_id`,
     );
-    const guesses = count('SELECT puzzle_id AS key, count(*) AS n FROM guesses GROUP BY puzzle_id');
-    const crossword = count(
-      `SELECT puzzle_id AS key, count(*) AS n FROM hints WHERE kind = 'crossword' GROUP BY puzzle_id`,
+    const guesses = byPuzzle(
+      `SELECT puzzle_id AS key, count(*) AS n FROM guesses WHERE ${IN_RANGE} GROUP BY puzzle_id`,
     );
-    const wordle = count(
-      `SELECT puzzle_id AS key, count(*) AS n FROM hints WHERE kind = 'wordle' GROUP BY puzzle_id`,
+    const crossword = byPuzzle(
+      `SELECT puzzle_id AS key, count(*) AS n FROM hints WHERE ${IN_RANGE} AND kind = 'crossword' GROUP BY puzzle_id`,
+    );
+    const wordle = byPuzzle(
+      `SELECT puzzle_id AS key, count(*) AS n FROM hints WHERE ${IN_RANGE} AND kind = 'wordle' GROUP BY puzzle_id`,
     );
 
+    // The text ranges also take ids with something after the date; keep exact dated ids only.
     const inRange = (id: string) => {
       const date = PUZZLE_DATE.exec(id)?.[1];
       return date !== undefined && date >= from && date <= to;
@@ -123,20 +132,22 @@ export class Stats {
       from,
       to,
     );
+    // ISO times sort as text, so a plain range on the column works (and can use an index).
+    const until = addDays(to, 1);
     const newPlayers = count(
       `SELECT substr(created_at, 1, 10) AS key, count(*) AS n FROM players
-        WHERE substr(created_at, 1, 10) BETWEEN ? AND ? GROUP BY key`,
+        WHERE created_at >= ? AND created_at < ? GROUP BY key`,
       from,
-      to,
+      until,
     );
     const active = count(
       `SELECT substr(at, 1, 10) AS key, count(DISTINCT player_id) AS n FROM guesses
-        WHERE substr(at, 1, 10) BETWEEN ? AND ? GROUP BY key`,
+        WHERE at >= ? AND at < ? GROUP BY key`,
       from,
-      to,
+      until,
     );
     const days: DayStats[] = [];
-    for (let day = from; day <= to; day = nextDay(day)) {
+    for (let day = from; day <= to; day = addDays(day, 1)) {
       days.push({
         day,
         pageLoads: pageLoads.get(day) ?? 0,
@@ -161,8 +172,4 @@ export class Stats {
       playersWithoutGuesses: totals.without ?? 0,
     };
   }
-}
-
-function nextDay(day: string): string {
-  return new Date(Date.parse(`${day}T00:00:00Z`) + 86_400_000).toISOString().slice(0, 10);
 }

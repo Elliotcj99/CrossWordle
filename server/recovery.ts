@@ -1,5 +1,6 @@
 import { createHash, randomBytes } from 'node:crypto';
 import type { DatabaseSync } from 'node:sqlite';
+import { registerPlayer } from './players';
 
 /**
  * Recovery codes: a way back to a player's record after the browser's data is cleared, or onto
@@ -48,9 +49,7 @@ export class Recovery {
   create(playerId: string): string {
     const code = generateCode();
     const at = this.now().toISOString();
-    this.db
-      .prepare('INSERT OR IGNORE INTO players (id, created_at) VALUES (?, ?)')
-      .run(playerId, at);
+    registerPlayer(this.db, playerId, at);
     this.db
       .prepare('UPDATE players SET recovery_hash = ?, recovery_at = ? WHERE id = ?')
       .run(hashOf(normaliseCode(code)!), at, playerId);

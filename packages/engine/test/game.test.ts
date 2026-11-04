@@ -16,6 +16,7 @@ import {
   newGame,
   nextUnsolved,
   recordGuess,
+  recordWordleClue,
   toPublicFile,
   type ClientEntry,
   type ClientPuzzle,
@@ -23,6 +24,12 @@ import {
   type PuzzleFile,
   type RuleOverrides,
   type ScoredLetter,
+  canRevealWordleClue,
+  crosswordClueFor,
+  gridLetters,
+  hasSecondClue,
+  recordCrosswordClue,
+  wordleClueRow,
 } from '../src';
 
 /**
@@ -325,6 +332,129 @@ describe('game summary', () => {
       wordleClues: { '9D': { index: 0, letter: 'X' } },
     };
     expect(gameSummary(ctx.puzzle, state)).toMatchObject({ crosswordHints: 0, wordleHints: 0 });
+  });
+});
+
+describe('the Crossword clue', () => {
+  // A puzzle where 1A has a second clue and 1D doesn't.
+  function withClue2() {
+    const file: PuzzleFile = {
+      version: 1,
+      id: 'ring',
+      title: 'Ring',
+      answerEncoding: 'plain',
+      entries: [
+        { row: 0, col: 0, direction: 'across', answer: 'CAT', clue: 'Pet', clue2: 'Feline' },
+        { row: 0, col: 0, direction: 'down', answer: 'COD', clue: 'Fish' },
+      ],
+    };
+    return loadClientPuzzle(toPublicFile(file));
+  }
+
+  it('is offered only for entries with a second clue', () => {
+    const puzzle = withClue2();
+    expect(hasSecondClue(entry(puzzle, '1A'))).toBe(true);
+    expect(hasSecondClue(entry(puzzle, '1D'))).toBe(false);
+  });
+
+  it('keeps the clue text the server sent, once', () => {
+    const puzzle = withClue2();
+    const cat = entry(puzzle, '1A');
+    const shown = recordCrosswordClue(newGame(puzzle), cat, 'Feline');
+    expect(crosswordClueFor(shown, cat)).toBe('Feline');
+    // Already shown: unchanged, the same object.
+    expect(recordCrosswordClue(shown, cat, 'Something else')).toBe(shown);
+  });
+
+  it("ignores a clue for an entry that hasn't got one", () => {
+    const puzzle = withClue2();
+    const cod = entry(puzzle, '1D');
+    const state = newGame(puzzle);
+    expect(recordCrosswordClue(state, cod, 'Made up')).toBe(state);
+    expect(crosswordClueFor(state, cod)).toBeUndefined();
+  });
+});
+
+describe('the Wordle-clue row', () => {
+  const letters = (row: ReturnType<typeof wordleClueRow>) =>
+    row?.map((cell) => (cell === undefined ? '.' : cell.starred ? `${cell.letter}*` : cell.letter));
+
+  it('shows nothing until the hint is used', () => {
+    const ctx = ring();
+    expect(wordleClueRow(ctx.puzzle, newGame(ctx.puzzle), entry(ctx.puzzle, '1A'))).toBeUndefined();
+  });
+
+  it('adds letters the grid shows from solved crossings, including ones solved after the hint', () => {
+    const ctx = ring();
+    const cat = entry(ctx.puzzle, '1A');
+    // 1A CAT crosses 1D COD at its C and 2D TOE at its T.
+    let state = recordWordleClue(newGame(ctx.puzzle), cat, { index: 1, letter: 'A' });
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['.', 'A*', '.']);
+
+    state = play(ctx, [['2D', 'TOE']], state);
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['.', 'A*', 'T']);
+
+    state = play(ctx, [['1D', 'COD']], state);
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['C', 'A*', 'T']);
+  });
+
+  it("doesn't add a crossing's unconfirmed greens unless the puzzle locks them", () => {
+    const cat = (ctx: Ring) => entry(ctx.puzzle, '1A');
+    // COT on 1D has a green C (shared with 1A) but doesn't solve 1D.
+    for (const [lockGreens, expected] of [
+      [false, ['.', 'A*', '.']],
+      [true, ['C', 'A*', '.']],
+    ] as const) {
+      const ctx = ring({ lockGreens });
+      const state = play(
+        ctx,
+        [['1D', 'CAT']],
+        recordWordleClue(newGame(ctx.puzzle), cat(ctx), { index: 1, letter: 'A' }),
+      );
+      expect(letters(wordleClueRow(ctx.puzzle, state, cat(ctx)))).toEqual(expected);
+    }
+  });
+
+  it('lists the letters the grid shows in an entry, by position', () => {
+    const ctx = ring();
+    const state = play(ctx, [['2D', 'TOE']]);
+    expect(gridLetters(entry(ctx.puzzle, '1A'), lockedLetters(ctx.puzzle, state))).toEqual([
+      { index: 2, letter: 'T' },
+    ]);
+  });
+
+  it('offers a Wordle clue only while there is something left to reveal', () => {
+    const ctx = ring();
+    const cat = entry(ctx.puzzle, '1A');
+    const offered = (state: GameState) =>
+      canRevealWordleClue(state, cat, lockedLetters(ctx.puzzle, state));
+    expect(offered(newGame(ctx.puzzle))).toBe(true);
+    // C and T from the crossings, A green in a guess: nothing left.
+    const known = play(ctx, [
+      ['1D', 'COD'],
+      ['2D', 'TOE'],
+    ]);
+    expect(offered(known)).toBe(true);
+    expect(offered(play(ctx, [['1A', 'BAD']], known))).toBe(false);
+    // Used already, or solved: not offered.
+    expect(offered(recordWordleClue(newGame(ctx.puzzle), cat, { index: 0, letter: 'C' }))).toBe(
+      false,
+    );
+    expect(offered(play(ctx, [['1A', 'CAT']]))).toBe(false);
+  });
+
+  it('keeps the hint letter starred, and the player’s own greens', () => {
+    const ctx = ring();
+    const cat = entry(ctx.puzzle, '1A');
+    const state = play(
+      ctx,
+      [
+        ['1A', 'COT'],
+        ['1D', 'COD'],
+      ],
+      recordWordleClue(newGame(ctx.puzzle), cat, { index: 0, letter: 'C' }),
+    );
+    expect(letters(wordleClueRow(ctx.puzzle, state, cat))).toEqual(['C*', '.', 'T']);
   });
 });
 

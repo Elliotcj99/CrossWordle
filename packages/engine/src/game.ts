@@ -274,13 +274,53 @@ export function recordWordleClue(
 }
 
 /**
- * The Wordle-clue row to show above an entry's guesses once its hint has been used: the player's
- * own greens (no star) plus the one hint letter (starred); other cells are blank. `undefined`
- * before a hint is used, so the row isn't shown at all.
+ * The letters the grid shows in an entry's cells (`locks` from `lockedLetters`): from solved
+ * crossings, or locked crossing greens. Sent with a Wordle-clue request, so the clue reveals
+ * something new.
  */
-export function wordleClueRow(
+export function gridLetters(entry: ClientEntry, locks: ReadonlyMap<string, string>): HintLetter[] {
+  return entry.cells.flatMap((cell, index) => {
+    const letter = locks.get(cellKey(cell));
+    return letter === undefined ? [] : [{ index, letter }];
+  });
+}
+
+/**
+ * Whether a Wordle clue could still show the player something: the entry isn't solved, its clue
+ * hasn't been used, and some position is neither green in their guesses nor shown on the grid.
+ * The same rule `chooseHintLetter` applies on the server.
+ */
+export function canRevealWordleClue(
   state: GameState,
   entry: ClientEntry,
+  locks: ReadonlyMap<string, string>,
+): boolean {
+  if (isSolved(state, entry) || wordleClueFor(state, entry) !== undefined) return false;
+  const seen = new Set(gridLetters(entry, locks).map((l) => l.index));
+  for (const guess of feedbackFor(state, entry)) {
+    guess.forEach((tile, i) => {
+      if (tile.mark === 'correct') seen.add(i);
+    });
+  }
+  return seen.size < entry.length;
+}
+
+/**
+ * The Wordle-clue row to show above an entry's guesses once its hint has been used: every letter
+ * the player knows for the entry, unstarred (their own greens, and the letters the grid shows in
+ * its cells from solved crossings, or crossing greens where the puzzle locks them), plus the one
+ * hint letter, starred. Other cells are blank. `undefined` before a hint is used, so the row isn't
+ * shown at all.
+ *
+ * It's worked out from the current game, so a crossing solved after the hint shows up the next
+ * time the entry is open. It's only what the player sees: guessing, scoring and hints are
+ * unchanged.
+ */
+export function wordleClueRow(
+  puzzle: ClientPuzzle,
+  state: GameState,
+  entry: ClientEntry,
+  locks: ReadonlyMap<string, string> = lockedLetters(puzzle, state),
 ): (RevealedCell | undefined)[] | undefined {
   const hint = wordleClueFor(state, entry);
   if (hint === undefined) return undefined;
@@ -289,6 +329,9 @@ export function wordleClueRow(
     guess.forEach((tile, i) => {
       if (tile.mark === 'correct') row[i] = { letter: tile.letter, starred: false };
     });
+  }
+  for (const { index, letter } of gridLetters(entry, locks)) {
+    row[index] = { letter, starred: false };
   }
   row[hint.index] = { letter: hint.letter, starred: true };
   return row;

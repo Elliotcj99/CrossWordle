@@ -1,5 +1,5 @@
 import { evaluateGuess } from '@crosswordle/engine';
-import { json, puzzleFor } from './_shared';
+import { json, readEntryRequest } from './_shared';
 
 /**
  * Scores one guess against a hidden answer. The answers live only in `_puzzles.json`, which is
@@ -8,29 +8,10 @@ import { json, puzzleFor } from './_shared';
  * owns the budget, the win/lose state and the "real word" check.
  */
 
-interface GuessBody {
-  readonly puzzleId?: unknown;
-  readonly entryId?: unknown;
-  readonly guess?: unknown;
-}
-
 export const onRequestPost = async (context: { request: Request }): Promise<Response> => {
-  let body: GuessBody;
-  try {
-    body = (await context.request.json()) as GuessBody;
-  } catch {
-    return json({ error: 'bad-request' }, 400);
-  }
-
-  if (typeof body.puzzleId !== 'string' || typeof body.entryId !== 'string') {
-    return json({ error: 'bad-request' }, 400);
-  }
-
-  const puzzle = puzzleFor(body.puzzleId);
-  if (puzzle === undefined) return json({ error: 'unknown-puzzle' }, 404);
-
-  const entry = puzzle.entries.find((e) => e.id === body.entryId);
-  if (entry === undefined) return json({ error: 'unknown-entry' }, 404);
+  const found = await readEntryRequest(context.request);
+  if (found instanceof Response) return found;
+  const { body, puzzle, entry } = found;
 
   const guess = typeof body.guess === 'string' ? body.guess.toUpperCase() : '';
   if (guess.length !== entry.answer.length || !/^[A-Z]+$/.test(guess)) {

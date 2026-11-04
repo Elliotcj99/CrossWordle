@@ -1,11 +1,9 @@
 import { readFile, stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { extname, join, resolve, sep } from 'node:path';
-import { pathsFromEnv } from './config';
-import { ErrorLog } from './log';
 import { createRequestListener } from './node-adapter';
 import { apiRoutes } from './routes';
-import { startServices } from './services';
+import { startOrExit } from './services';
 
 /**
  * The whole site on one local Node server: the built static files (apps/web/dist) and the API,
@@ -92,15 +90,7 @@ async function serveStatic(req: IncomingMessage, res: ServerResponse): Promise<v
   res.end(req.method === 'HEAD' ? undefined : body);
 }
 
-const log = new ErrorLog(pathsFromEnv().logs);
-let services: ReturnType<typeof startServices>;
-try {
-  services = startServices(log);
-} catch (error) {
-  // Nothing else would show why: IIS doesn't keep Node's output.
-  log.error('start-up', error);
-  process.exit(1);
-}
+const { log, services } = startOrExit();
 const api = createRequestListener(apiRoutes(services), log);
 
 const server = createServer((req, res) => {

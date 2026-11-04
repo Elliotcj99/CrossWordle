@@ -6,7 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest';
 import { features } from '../api/features';
 import { CACHE_MS, health } from '../api/health';
 import { openDatabase } from '../db';
-import { Health, ukDate } from '../health';
+import { Health, playableDates } from '../health';
 
 let db: DatabaseSync;
 let folder: string;
@@ -30,11 +30,16 @@ function ids(first: string, days: number): string[] {
 
 const at = (iso: string) => () => new Date(iso);
 
-describe('ukDate', () => {
-  it('is the date in the UK, across both clock changes', () => {
-    expect(ukDate(new Date('2026-07-01T22:59:00Z'))).toBe('2026-07-01'); // 23:59 BST
-    expect(ukDate(new Date('2026-07-01T23:00:00Z'))).toBe('2026-07-02'); // 00:00 BST
-    expect(ukDate(new Date('2026-12-01T23:59:00Z'))).toBe('2026-12-01'); // GMT
+describe('playableDates', () => {
+  it('is every date a player somewhere can be on, from UTC−12 to UTC+14', () => {
+    // 12:00 UTC: 00:00 on the 4th at UTC−12, 02:00 on the 5th at UTC+14.
+    expect(playableDates(new Date('2026-11-04T12:00:00Z'))).toEqual(['2026-11-04', '2026-11-05']);
+    // 10:30 UTC: still the 3rd at UTC−12, already the 5th at UTC+14.
+    expect(playableDates(new Date('2026-11-04T10:30:00Z'))).toEqual([
+      '2026-11-03',
+      '2026-11-04',
+      '2026-11-05',
+    ]);
   });
 });
 
@@ -52,7 +57,8 @@ describe('Health', () => {
       ['data folder', true],
       ["today's puzzles", true],
     ]);
-    expect(report.runway.daily).toEqual({ last: '2026-11-30', daysLeft: 26 });
+    // Counted from the 5th, the latest date anyone is on.
+    expect(report.runway.daily).toEqual({ last: '2026-11-30', daysLeft: 25 });
     expect(report.warning).toBeUndefined();
   });
 
@@ -64,7 +70,7 @@ describe('Health', () => {
       at('2026-11-04T12:00:00Z'),
     ).check();
     expect(report.ok).toBe(true);
-    expect(report.runway.naughty.daysLeft).toBe(6);
+    expect(report.runway.naughty.daysLeft).toBe(5);
     expect(report.warning).toBe('puzzles');
   });
 
@@ -78,7 +84,7 @@ describe('Health', () => {
     expect(late.ok).toBe(false);
     expect(late.checks[2]).toMatchObject({
       ok: false,
-      detail: 'missing 2026-11-04, naughty-2026-11-04',
+      detail: 'missing 2026-11-04, naughty-2026-11-04, 2026-11-05, naughty-2026-11-05',
     });
 
     const file = join(folder, 'not-a-folder');

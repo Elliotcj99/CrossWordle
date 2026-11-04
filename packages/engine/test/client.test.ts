@@ -80,6 +80,21 @@ describe('toPublicFile', () => {
     expect(loadClientPuzzle(pub).entries.find((e) => e.id === '1A')!.hasClue2).toBe(true);
   });
 
+  it("keeps a source's own second clue where the list has none, and every other field", () => {
+    const withOwn: PuzzleFile = {
+      ...file,
+      entries: file.entries.map((e, i) => (i === 0 ? { ...e, clue2: 'Moggy' } : e)),
+    };
+    const full = withSecondClues(withOwn, (answer) => (answer === 'COD' ? 'Fish' : undefined));
+    expect(full.entries.map((e) => e.clue2)).toEqual(['Moggy', 'Fish', undefined, undefined]);
+    // A listed clue that's just the main clue again doesn't push out the source's own.
+    const same = withSecondClues(withOwn, (answer) =>
+      answer === 'CAT' ? 'pet that purrs' : undefined,
+    );
+    expect(same.entries[0]!.clue2).toBe('Moggy');
+    expect(full.entries[0]).toMatchObject({ row: 0, col: 0, direction: 'across', answer: 'CAT' });
+  });
+
   it("keeps the second clue in the server's copy of the puzzle", () => {
     const full = withSecondClues(file, (answer) => (answer === 'TOE' ? 'Digit' : undefined));
     expect(loadPuzzle(full).entries.find((e) => e.answer === 'TOE')!.clue2).toBe('Digit');

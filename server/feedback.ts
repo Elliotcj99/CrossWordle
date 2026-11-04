@@ -1,4 +1,5 @@
 import type { DatabaseSync } from 'node:sqlite';
+import { registerPlayer } from './players';
 
 /**
  * Feature requests: a title and a description from a player, stored for the admin to read on the
@@ -34,6 +35,10 @@ export function tidyFeedback(
 ): { title: string; description: string } | { problem: FeedbackProblem } {
   if (typeof title !== 'string') return { problem: 'title' };
   if (typeof description !== 'string') return { problem: 'description' };
+  // The upper limits are on what was typed (trimmed), counted as the browser counts them; the
+  // lower ones on what's left after tidying, so text that's all hidden characters doesn't pass.
+  if (tooLong(title, TITLE_LENGTH.max)) return { problem: 'title' };
+  if (tooLong(description, DESCRIPTION_LENGTH.max)) return { problem: 'description' };
   const line = stripControls(title.normalize('NFC'), false).replace(/\s+/g, ' ').trim();
   const text = stripControls(description.normalize('NFC').replace(/\r\n?/g, '\n'), true)
     .replace(/[ \t]+$/gm, '')
@@ -44,27 +49,52 @@ export function tidyFeedback(
   return { title: line, description: text };
 }
 
+function tooLong(text: string, max: number): boolean {
+  return [...text.trim()].length > max;
+}
+
 function within(text: string, length: { min: number; max: number }): boolean {
   const count = [...text].length;
   return count >= length.min && count <= length.max;
 }
 
 /**
- * Removes control characters: C0 and C1 (with DEL), and the bidi controls that can disguise text.
- * With `keepLines`, line breaks and tabs stay; otherwise every control becomes a space.
+ * Takes out control characters: C0 and C1 (with DEL), and the invisible characters that can
+ * disguise text in a terminal: zero-width spaces, the bidi marks, embeddings, overrides and
+ * isolates, the line and paragraph separators, and the byte order mark. The zero-width joiner and
+ * non-joiner stay: emoji (👩‍💻) and scripts such as Persian need them. Each one taken out becomes
+ * a space where it would otherwise join two words, and nothing where there's a space beside it
+ * already, so the writer's own spacing is kept. With `keepLines`, line breaks and tabs stay.
  */
 function stripControls(text: string, keepLines: boolean): string {
-  let out = '';
-  for (const char of text) {
+  const chars = [...text];
+  const hidden = (char: string | undefined): boolean => {
+    if (char === undefined) return false;
+    if (keepLines && (char === '\n' || char === '\t')) return false;
     const code = char.codePointAt(0)!;
-    const control =
+    return (
       code <= 0x1f ||
       (code >= 0x7f && code <= 0x9f) ||
-      (code >= 0x202a && code <= 0x202e) ||
-      (code >= 0x2066 && code <= 0x2069);
-    if (!control || (keepLines && (char === '\n' || char === '\t'))) out += char;
-    else if (!keepLines) out += ' ';
-  }
+      code === 0x061c ||
+      code === 0x200b ||
+      code === 0x200e ||
+      code === 0x200f ||
+      (code >= 0x2028 && code <= 0x202e) ||
+      (code >= 0x2060 && code <= 0x206f) ||
+      code === 0xfeff
+    );
+  };
+  let out = '';
+  chars.forEach((char, i) => {
+    if (!hidden(char)) {
+      out += char;
+      return;
+    }
+    const before = out.at(-1);
+    const after = chars.slice(i + 1).find((c) => !hidden(c));
+    const spaced = (c: string | undefined) => c === undefined || /\s/.test(c);
+    if (!spaced(before) && !spaced(after)) out += ' ';
+  });
   return out;
 }
 
@@ -79,16 +109,22 @@ export class Feedback {
   /** Stores a tidied request (see `tidyFeedback`); returns its id. */
   add(playerId: string, title: string, description: string): number {
     const at = this.now().toISOString();
-    this.db
-      .prepare('INSERT OR IGNORE INTO players (id, created_at) VALUES (?, ?)')
-      .run(playerId, at);
-    const result = this.db
-      .prepare(
-        `INSERT INTO feedback (player_id, title, description, created_at, status)
-         VALUES (?, ?, ?, ?, 'open')`,
-      )
-      .run(playerId, title, description, at);
-    return Number(result.lastInsertRowid);
+    // Both or neither: a player row with nothing attached would count as a new player.
+    this.db.exec('BEGIN IMMEDIATE');
+    try {
+      registerPlayer(this.db, playerId, at);
+      const result = this.db
+        .prepare(
+          `INSERT INTO feedback (player_id, title, description, created_at, status)
+           VALUES (?, ?, ?, ?, 'open')`,
+        )
+        .run(playerId, title, description, at);
+      this.db.exec('COMMIT');
+      return Number(result.lastInsertRowid);
+    } catch (error) {
+      this.db.exec('ROLLBACK');
+      throw error;
+    }
   }
 
   /** Open requests, oldest first; with `all`, closed ones too. */

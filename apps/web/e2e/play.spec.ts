@@ -156,6 +156,48 @@ test('gets the Crossword clue from the server when revealed, and keeps it', asyn
   await expect(panel(page).getByRole('button', { name: 'Crossword clue' })).toHaveCount(0);
 });
 
+test('fills the Wordle-clue row with letters solved crossings give, even after the clue', async ({
+  page,
+}) => {
+  // 1A LEVEL: LATTE crosses its first letter and VALET its third.
+  await panel(page).getByRole('button', { name: 'Wordle clue' }).click();
+  await panel(page).getByRole('button', { name: 'Reveal' }).click();
+  const row = panel(page).getByLabel('Revealed letters');
+  await expect(row.getByLabel(/, clue$/)).toHaveCount(1);
+
+  await clue(page, 'Milky coffee order').click();
+  await guess(page, 'LATTE');
+  await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 1');
+  await clue(page, 'Attendant who parks your car').click();
+  await guess(page, 'VALET');
+  await expect(clue(page, 'Attendant who parks your car')).toContainText('Solved in 1');
+
+  // Back on 1A, both crossing letters are in the row (one may be the clue letter itself).
+  await clue(page, 'Flat and even').click();
+  await expect(row.getByLabel(/^Position 1, L/)).toBeVisible();
+  await expect(row.getByLabel(/^Position 3, V/)).toBeVisible();
+  // It's only what the player sees: 1A still has its full guess budget.
+  await expect(panel(page).getByText('16 of 18 guesses left')).toBeVisible();
+});
+
+test('never spends a Wordle clue on a letter the grid already shows', async ({ page }) => {
+  // Solve LATTE and VALET first: LEVEL (1A) then shows L at position 1 and V at position 3.
+  await clue(page, 'Milky coffee order').click();
+  await guess(page, 'LATTE');
+  await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 1');
+  await clue(page, 'Attendant who parks your car').click();
+  await guess(page, 'VALET');
+  await expect(clue(page, 'Attendant who parks your car')).toContainText('Solved in 1');
+
+  await clue(page, 'Flat and even').click();
+  await panel(page).getByRole('button', { name: 'Wordle clue' }).click();
+  await panel(page).getByRole('button', { name: 'Reveal' }).click();
+  // Of L E V E L, the grid shows the first L and the V; the last L is then a letter already seen,
+  // so the clue is an E, the leftmost: position 2.
+  const row = panel(page).getByLabel('Revealed letters');
+  await expect(row.getByLabel(/, clue$/)).toHaveAccessibleName('Position 2, E, clue');
+});
+
 test('still shows a Crossword clue revealed by an older version of the page', async ({ page }) => {
   // Older versions had every second clue in the puzzle, and saved only which were shown.
   await page.evaluate(() =>
@@ -229,7 +271,9 @@ test('names a solved game on the leaderboard, refusing rude nicknames', async ({
 
   await field.fill('  Grid   Tester ');
   await expect(submit).toBeEnabled({ timeout: 15_000 });
-  await submit.click();
+  // From the keyboard: Enter on the focused Submit button is for the form, not the grid.
+  await submit.focus();
+  await page.keyboard.press('Enter');
   await expect(form.getByRole('status')).toHaveText(
     "Saved as Grid Tester. You're on the leaderboard with 9 guesses, 0 Crossword clues and 0 Wordle clues.",
   );
@@ -332,8 +376,22 @@ test('sends a feature request, saying what to fix first', async ({ page }) => {
   await expect(page.getByText('0 of 9 solved')).toBeVisible();
   const send = form.getByRole('button', { name: 'Send' });
   await expect(send).toBeEnabled({ timeout: 15_000 });
-  // The browser's own check stops a description under 10 characters before it's sent.
+
+  // A description under 10 characters is caught before anything is sent.
+  const sent = page.waitForRequest('**/api/feedback', { timeout: 2_000 }).catch(() => undefined);
+  await send.click();
+  await expect(form.getByRole('status')).toHaveText(/Tell us a bit more: 10 to 2,000 characters/);
+  expect(await sent).toBeUndefined();
+
   await form.getByLabel(/Tell us more/).fill('A dark colour scheme for night-time solving.');
+  await send.click();
+  await expect(footer.getByText("Thanks, it's sent.")).toBeVisible();
+
+  // Another one gets a fresh bot check, so it can be sent too.
+  await footer.getByRole('button', { name: 'Send another' }).click();
+  await form.getByLabel('What would you like?').fill('Bigger tiles');
+  await form.getByLabel(/Tell us more/).fill('Larger letters on the grid for phones, please.');
+  await expect(send).toBeEnabled({ timeout: 15_000 });
   await send.click();
   await expect(footer.getByText("Thanks, it's sent.")).toBeVisible();
 });
@@ -359,17 +417,36 @@ test('deletes a record from the server and this browser', async ({ page }) => {
     const response = await fetch('api/game?puzzle=sample', { headers: { 'x-player-id': id! } });
     return response.status;
   }, before);
-  expect(status).toBe(404);
+  // The deleted id can't be used again.
+  expect(status).toBe(410);
 });
 
 test('answers the uptime monitor in one word', async ({ request }) => {
+  // Every date a player can be on now (UTC−12 to UTC+14): "ok" is expected whenever the
+  // published puzzles cover them all, so only running out of puzzles may make it "down".
+  const dateAt = (offsetHours: number) =>
+    new Date(Date.now() + offsetHours * 3_600_000).toISOString().slice(0, 10);
+  const dates = [...new Set([dateAt(-12), dateAt(0), dateAt(14)])];
+  const ids = async (path: string) =>
+    ((await (await request.get(path)).json()) as { id: string }[]).map((p) => p.id);
+  const published = new Set([
+    ...(await ids('puzzles/index.json')),
+    ...(await ids('naughty/index.json')),
+  ]);
+  const covered = dates.every((d) => published.has(d) && published.has(`naughty-${d}`));
+
   const response = await request.get('api/health');
-  expect(response.status()).toBe(200);
   expect(response.headers()['cache-control']).toBe('no-store');
-  // "ok", perhaps with a reminder that the puzzles are running out; never any detail.
   const body = (await response.json()) as Record<string, unknown>;
-  expect(body.status).toBe('ok');
+  // One word (and maybe the puzzles reminder), never any detail.
   expect(Object.keys(body).filter((key) => key !== 'status' && key !== 'warning')).toEqual([]);
+  if (covered) {
+    expect(response.status()).toBe(200);
+    expect(body.status).toBe('ok');
+  } else {
+    expect(response.status()).toBe(503);
+    expect(body.status).toBe('down');
+  }
 });
 
 test('can switch to high-contrast colours', async ({ page }) => {
