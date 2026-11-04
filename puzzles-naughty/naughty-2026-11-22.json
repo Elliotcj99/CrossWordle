@@ -6,73 +6,94 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
-      "direction": "across",
-      "answer": "BOLLOCKS",
-      "clue": "Utter nonsense!"
+      "col": 2,
+      "direction": "down",
+      "answer": "SQUITS",
+      "clue": "The runs"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "VOYEUR",
+      "clue": "Peeping Tom"
     },
     {
       "row": 0,
       "col": 8,
       "direction": "down",
-      "answer": "SHITHEADS",
-      "clue": "Despicable sorts"
+      "answer": "OOER",
+      "clue": "Innuendo noise"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "WEDGIE",
+      "clue": "Underwear yanked skyward"
     },
     {
       "row": 1,
-      "col": 0,
-      "direction": "down",
-      "answer": "BITCHY",
-      "clue": "Cattily spiteful"
+      "col": 7,
+      "direction": "across",
+      "answer": "POLE",
+      "clue": "Dancer's prop"
     },
     {
-      "row": 3,
-      "col": 2,
-      "direction": "down",
-      "answer": "WHORING",
-      "clue": "Selling affections"
-    },
-    {
-      "row": 3,
-      "col": 6,
-      "direction": "down",
-      "answer": "TOSSER",
-      "clue": "Waste of space (British)"
-    },
-    {
-      "row": 3,
-      "col": 10,
-      "direction": "down",
-      "answer": "BULLSHIT",
-      "clue": "Utter codswallop"
+      "row": 2,
+      "col": 1,
+      "direction": "across",
+      "answer": "HUNKY",
+      "clue": "Ruggedly fit"
     },
     {
       "row": 4,
-      "col": 4,
+      "col": 7,
       "direction": "down",
-      "answer": "JERKOFF",
-      "clue": "Worthless layabout"
+      "answer": "WANKING",
+      "clue": "The solo act"
     },
     {
       "row": 5,
       "col": 0,
+      "direction": "down",
+      "answer": "DAMNED",
+      "clue": "Condemned to the fiery pit"
+    },
+    {
+      "row": 5,
+      "col": 2,
       "direction": "across",
-      "answer": "HOOTERS",
-      "clue": "An eyeful up top"
+      "answer": "SMARTARSE",
+      "clue": "Cocky know-it-all"
+    },
+    {
+      "row": 5,
+      "col": 9,
+      "direction": "down",
+      "answer": "SLEAZY",
+      "clue": "Seedy and lecherous"
     },
     {
       "row": 7,
-      "col": 1,
-      "direction": "across",
-      "answer": "DICKHEAD",
-      "clue": "Obnoxious oaf"
+      "col": 2,
+      "direction": "down",
+      "answer": "WEES",
+      "clue": "Tinkles"
     },
     {
-      "row": 10,
+      "row": 7,
       "col": 4,
       "direction": "across",
-      "answer": "FUCKWIT",
-      "clue": "Utter moron"
+      "answer": "COCKLES",
+      "clue": "Seafood, or the heart's warmth"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "ERECTION",
+      "clue": "Building, or a stiffy"
     }
   ]
 }

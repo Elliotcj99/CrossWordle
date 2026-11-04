@@ -6,80 +6,115 @@
   "entries": [
     {
       "row": 0,
+      "col": 0,
+      "direction": "across",
+      "answer": "SPEW",
+      "clue": "Throw up"
+    },
+    {
+      "row": 0,
       "col": 1,
       "direction": "down",
-      "answer": "ARSEHOLES",
-      "clue": "Thoroughly unpleasant people"
+      "answer": "PLONKERS",
+      "clue": "Daft idiots (British)"
     },
     {
       "row": 0,
-      "col": 5,
-      "direction": "across",
-      "answer": "BUMMER",
-      "clue": "A real downer, man"
-    },
-    {
-      "row": 0,
-      "col": 7,
-      "direction": "down",
-      "answer": "MINGING",
-      "clue": "Revolting and grotty"
-    },
-    {
-      "row": 2,
-      "col": 4,
-      "direction": "down",
-      "answer": "SHAGS",
-      "clue": "Romps, or cormorants"
-    },
-    {
-      "row": 2,
       "col": 6,
       "direction": "across",
-      "answer": "KNOB",
-      "clue": "Door handle, or a plonker"
+      "answer": "FRIG",
+      "clue": "Fiddle, or bonk"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "FUCKFACE",
+      "clue": "Gormless git"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "GIRTH",
+      "clue": "Width, cheekily"
+    },
+    {
+      "row": 1,
+      "col": 4,
+      "direction": "down",
+      "answer": "SPUNK",
+      "clue": "Semen, or guts"
     },
     {
       "row": 2,
-      "col": 9,
-      "direction": "down",
-      "answer": "BUGGERED",
-      "clue": "Done for, knackered"
-    },
-    {
-      "row": 4,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "WANKING",
-      "clue": "The solo act"
+      "answer": "WOODPECKER",
+      "clue": "Tree-tapping bird"
     },
     {
-      "row": 6,
+      "row": 5,
       "col": 4,
       "direction": "across",
-      "answer": "SHAGGED",
-      "clue": "Romped, or knackered"
+      "answer": "KHAZI",
+      "clue": "The loo (British slang)"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "down",
+      "answer": "WIENER",
+      "clue": "Hot dog, or a willy"
+    },
+    {
+      "row": 7,
+      "col": 3,
+      "direction": "across",
+      "answer": "COMES",
+      "clue": "Arrives, or climaxes"
     },
     {
       "row": 7,
       "col": 3,
       "direction": "down",
-      "answer": "WANK",
-      "clue": "Gentlemen's solo sport"
+      "answer": "CAME",
+      "clue": "Arrived, or climaxed"
+    },
+    {
+      "row": 7,
+      "col": 5,
+      "direction": "down",
+      "answer": "MINX",
+      "clue": "Cheeky flirt"
     },
     {
       "row": 8,
-      "col": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "RUB",
+      "clue": "Massage"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "NOB",
+      "clue": "Toff, or a todger"
+    },
+    {
+      "row": 9,
+      "col": 3,
       "direction": "across",
-      "answer": "SMARTARSE",
-      "clue": "Cocky know-it-all"
+      "answer": "MANWHORE",
+      "clue": "Bloke who puts it about"
     },
     {
       "row": 10,
       "col": 0,
       "direction": "across",
-      "answer": "FUCKED",
-      "clue": "Knackered, or ruined"
+      "answer": "BABE",
+      "clue": "Infant, or a hottie"
     }
   ]
 }
