@@ -104,9 +104,7 @@
       <ul>
         <li>
           <b>Your games:</b> under that random player id, every guess and clue you use, restarts, and
-          how each puzzle ended. Puzzles this browser finished before we kept games (4 November 2026)
-          are copied once too, as won or lost and the guesses used, and never go on a leaderboard. Kept
-          until you delete your record.
+          how each puzzle ended. Kept until you delete your record.
         </li>
         <li>
           <b>Your nickname, if you give one.</b> It's shown on the leaderboard with your guesses, clues
@@ -118,12 +116,13 @@
         </li>
         <li>
           <b>Your internet address</b>, with the time, when you submit a nickname, make a recovery
-          code or use one. Only to stop abuse (limits on how often), and deleted after 30 days, even
-          if you delete your record, so the limits can't be reset.
+          code or use one. Only to stop spam / abuse, and deleted after 30 days, kept for the
+          duration even if you delete your record, so the limits can't be reset.
         </li>
         <li>
-          <b>Error reports:</b> when something goes wrong on our side, what failed (which can include
-          a little of what was sent) and, if it was your request, your player id. Deleted after 14 days.
+          <b>Error reports:</b> when something goes wrong on our side. Containing what failed (which can
+          include a little of what was sent) and, if it was your request, your player id. Deleted after
+          14 days.
         </li>
         <li>
           <b>A count of page loads per day</b>, with nothing about who: no id and no address.
@@ -136,8 +135,8 @@
 
       <h3>Cloudflare</h3>
       <p>
-        The site is served through Cloudflare, which handles every request, as any host does, and
-        runs the bot check on the forms (<a href="https://www.cloudflare.com/privacypolicy/"
+        The site is served through Cloudflare, which handles every request and runs the bot check on
+        the forms (<a href="https://www.cloudflare.com/privacypolicy/"
           >Cloudflare's privacy policy</a
         >).
       </p>
