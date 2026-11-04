@@ -50,20 +50,22 @@ export type HintResult =
   | { readonly ok: false; readonly reason: 'none' | 'error' };
 
 /**
- * Asks the server for a letter to reveal for an entry, given the guesses made so far. The answer
- * never reaches the browser; only the one chosen letter comes back. `reason: 'none'` means every
- * position is already green, so there's nothing new to show.
+ * Asks the server for a letter to reveal for an entry, given the guesses made so far and the
+ * positions the grid already shows (`known`). The answer never reaches the browser; only the one
+ * chosen letter comes back. `reason: 'none'` means every position is already known, so there's
+ * nothing new to show.
  */
 export async function requestHint(
   puzzleId: string,
   entryId: string,
   guesses: readonly string[],
+  known: readonly number[],
 ): Promise<HintResult> {
   try {
     const response = await fetch('api/hint', {
       method: 'POST',
       headers: headers(),
-      body: JSON.stringify({ puzzleId, entryId, guesses }),
+      body: JSON.stringify({ puzzleId, entryId, guesses, known }),
     });
     if (response.status === 409) return { ok: false, reason: 'none' };
     if (!response.ok) return { ok: false, reason: 'error' };

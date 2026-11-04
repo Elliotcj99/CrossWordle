@@ -101,9 +101,20 @@
   const canRevealCrossword = $derived(
     status === 'playing' && hasSecondClue(selected) && secondClue === undefined,
   );
+  /** Positions of the selected entry the grid already shows (from solved or locked crossings). */
+  const gridKnown = $derived(
+    selected.cells.flatMap((cell, i) => (locks.has(cellKey(cell)) ? [i] : [])),
+  );
+  // Only offer a Wordle clue while it can reveal a letter the player can't already see.
+  const allKnown = $derived(
+    selected.cells.every(
+      (_, i) => gridKnown.includes(i) || feedback.some((guess) => guess[i]?.mark === 'correct'),
+    ),
+  );
   const canRevealWordle = $derived(
     status === 'playing' &&
       !solvedIds.has(selected.id) &&
+      !allKnown &&
       wordleClueFor(game, selected) === undefined,
   );
   const secondClues = $derived(game.crosswordClues ?? {});
@@ -248,7 +259,8 @@
     message = '';
     try {
       const guesses = feedbackFor(game, selected).map(wordOf);
-      const result = await requestHint(puzzle.id, selected.id, guesses);
+      // The grid's letters go too, so the clue reveals something new.
+      const result = await requestHint(puzzle.id, selected.id, guesses, gridKnown);
       if (result.ok) {
         game = recordWordleClue(game, selected, result.hint);
       } else {

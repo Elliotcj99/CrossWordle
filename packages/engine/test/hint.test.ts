@@ -39,4 +39,22 @@ describe('chooseHintLetter', () => {
   it('returns undefined when every position is already green', () => {
     expect(chooseHintLetter('CAT', ['CAT'])).toBeUndefined();
   });
+
+  it('never reveals a letter the grid already shows from a crossing', () => {
+    // CAT with C and A on the grid: only T is left.
+    expect(chooseHintLetter('CAT', [], [0, 1])).toEqual({ index: 2, letter: 'T' });
+    // Grid letters and greens together can leave nothing.
+    expect(chooseHintLetter('CAT', ['COT'], [1])).toBeUndefined();
+  });
+
+  it('treats a letter shown on the grid as seen, preferring one not seen anywhere', () => {
+    // TART with the first T on the grid: A and R are unseen singles, so A (leftmost) still wins,
+    // and the other T (now seen green) comes last.
+    expect(chooseHintLetter('TART', [], [0])).toEqual({ index: 1, letter: 'A' });
+    expect(chooseHintLetter('TART', [], [0, 1, 2])).toEqual({ index: 3, letter: 'T' });
+  });
+
+  it('ignores grid positions outside the word', () => {
+    expect(chooseHintLetter('CAT', [], [-1, 3, 1.5])).toEqual({ index: 0, letter: 'C' });
+  });
 });

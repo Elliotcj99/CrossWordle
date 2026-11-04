@@ -180,6 +180,24 @@ test('fills the Wordle-clue row with letters solved crossings give, even after t
   await expect(panel(page).getByText('16 of 18 guesses left')).toBeVisible();
 });
 
+test('never spends a Wordle clue on a letter the grid already shows', async ({ page }) => {
+  // Solve LATTE and VALET first: LEVEL (1A) then shows L at position 1 and V at position 3.
+  await clue(page, 'Milky coffee order').click();
+  await guess(page, 'LATTE');
+  await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 1');
+  await clue(page, 'Attendant who parks your car').click();
+  await guess(page, 'VALET');
+  await expect(clue(page, 'Attendant who parks your car')).toContainText('Solved in 1');
+
+  await clue(page, 'Flat and even').click();
+  await panel(page).getByRole('button', { name: 'Wordle clue' }).click();
+  await panel(page).getByRole('button', { name: 'Reveal' }).click();
+  // Of L E V E L, the grid shows the first L and the V; the last L is then a letter already seen,
+  // so the clue is an E, the leftmost: position 2.
+  const row = panel(page).getByLabel('Revealed letters');
+  await expect(row.getByLabel(/, clue$/)).toHaveAccessibleName('Position 2, E, clue');
+});
+
 test('still shows a Crossword clue revealed by an older version of the page', async ({ page }) => {
   // Older versions had every second clue in the puzzle, and saved only which were shown.
   await page.evaluate(() =>
