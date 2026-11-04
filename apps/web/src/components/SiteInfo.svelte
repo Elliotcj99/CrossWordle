@@ -97,6 +97,9 @@
           <b>Error reports:</b> when something goes wrong on our side, what failed and, if it was your
           request, your player id. Deleted after 14 days.
         </li>
+        <li>
+          <b>A count of page loads per day</b>, with nothing about who: no id and no address.
+        </li>
       </ul>
 
       <h3>Cloudflare</h3>

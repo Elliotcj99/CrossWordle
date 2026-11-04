@@ -346,6 +346,16 @@ test('deletes a record from the server and this browser', async ({ page }) => {
   expect(status).toBe(404);
 });
 
+test('answers the uptime monitor in one word', async ({ request }) => {
+  const response = await request.get('api/health');
+  expect(response.status()).toBe(200);
+  expect(response.headers()['cache-control']).toBe('no-store');
+  // "ok", perhaps with a reminder that the puzzles are running out; never any detail.
+  const body = (await response.json()) as Record<string, unknown>;
+  expect(body.status).toBe('ok');
+  expect(Object.keys(body).filter((key) => key !== 'status' && key !== 'warning')).toEqual([]);
+});
+
 test('can switch to high-contrast colours', async ({ page }) => {
   const toggle = page.getByRole('button', { name: 'High contrast' });
   await toggle.click();

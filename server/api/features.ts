@@ -22,17 +22,19 @@ export const FEATURES: readonly string[] = [
 
 /**
  * The feature list, plus the public Turnstile site key when the site has one, so the page can show
- * the bot check on its forms. (The secret key never leaves the server.)
+ * the bot check on its forms. (The secret key never leaves the server.) The page asks once per
+ * load, so this is also where page loads are counted (`onVisit`).
  */
-export function features(config: Config): Handler {
+export function features(config: Config, onVisit: () => void = () => undefined): Handler {
   // The contact link only where the site has an address to show.
   const names = config.contactEmail === undefined ? FEATURES : [...FEATURES, 'contact'];
   const body = JSON.stringify({
     features: names,
     ...(config.turnstile === undefined ? {} : { turnstileSiteKey: config.turnstile.siteKey }),
   });
-  return () =>
-    Promise.resolve(
+  return () => {
+    onVisit();
+    return Promise.resolve(
       new Response(body, {
         headers: {
           'content-type': 'application/json; charset=utf-8',
@@ -40,4 +42,5 @@ export function features(config: Config): Handler {
         },
       }),
     );
+  };
 }

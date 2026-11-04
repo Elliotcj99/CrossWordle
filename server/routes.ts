@@ -1,12 +1,14 @@
 import { features } from './api/features';
 import { contact } from './api/contact';
 import { forget } from './api/forget';
+import { health } from './api/health';
 import { leaderboard } from './api/leaderboard';
 import { nickname } from './api/nickname';
 import { game, record } from './api/play';
 import { makeRecoveryCode, recoveryStatus, restore } from './api/recovery';
 import { recordedClue, recordedGuess, recordedHint, restart } from './api/records';
 import type { Config } from './config';
+import type { Health } from './health';
 import type { Leaderboard } from './leaderboard';
 import type { ErrorLog } from './log';
 import type { Nicknames } from './nicknames';
@@ -14,10 +16,13 @@ import type { Routes } from './node-adapter';
 import type { RateLimits } from './rate-limits';
 import type { Records } from './records';
 import type { Recovery } from './recovery';
+import type { Visits } from './stats';
 
 /** What the routes need from the server. */
 export interface Services {
   readonly log: ErrorLog;
+  readonly health: Health;
+  readonly visits: Visits;
   readonly records: Records;
   readonly leaderboard: Leaderboard;
   readonly nicknames: Nicknames;
@@ -46,8 +51,18 @@ export function apiRoutes(services: Services): Routes {
     '/api/nickname': { POST: nickname(services) },
     '/api/recovery-code': { GET: recoveryStatus(services), POST: makeRecoveryCode(services) },
     '/api/restore': { POST: restore(services) },
-    '/api/features': { GET: features(config) },
+    '/api/features': { GET: features(config, () => countVisit(services)) },
+    '/api/health': { GET: health(services.health) },
     '/api/contact': { GET: contact(config) },
     '/api/forget': { POST: forget(records) },
   };
+}
+
+/** Counts a page load. A failure is logged, never passed on to the page. */
+function countVisit({ visits, log }: Services): void {
+  try {
+    visits.count();
+  } catch (error) {
+    log.error('counting a page load', error);
+  }
 }

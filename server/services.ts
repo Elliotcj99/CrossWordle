@@ -1,7 +1,10 @@
 import rudeWordList from './_rude-words.json';
 import { databaseFile, pathsFromEnv, readConfig } from './config';
 import { Leaderboard } from './leaderboard';
+import { puzzleIds } from '../functions/api/_shared';
+import { Health } from './health';
 import { ErrorLog } from './log';
+import { Visits } from './stats';
 import { openDatabase } from './db';
 import { Nicknames } from './nicknames';
 import { RateLimits } from './rate-limits';
@@ -20,6 +23,8 @@ export function startServices(log: ErrorLog): Services & { close(): void } {
   const db = openDatabase(databaseFile(paths));
   return {
     log,
+    health: new Health(db, paths.data, puzzleIds),
+    visits: new Visits(db),
     records: new Records(db),
     leaderboard: new Leaderboard(db),
     nicknames: new Nicknames(db),
