@@ -146,14 +146,18 @@ test('tells the player what a guess found', async ({ page }) => {
   await expect(panel(page).getByText('EERIE: 1 green, 1 yellow.')).toBeVisible();
 });
 
-test('shows stats and a spoiler-free result when the puzzle ends', async ({ page }) => {
-  // Solving a clue moves on to the next one in the list: every Across, then every Down.
+/** Solves the sample puzzle in nine guesses, in clue-list order (every Across, then every Down). */
+async function solveSample(page: Page) {
   const words = ['LEVEL', 'ABYSS', 'EXTRA', 'HELLO', 'LATTE', 'VALET', 'LLAMA', 'SETTLED', 'ODD'];
   for (const [i, word] of words.entries()) {
     await guess(page, word);
     // Keys are ignored while a guess is being scored, so wait for it before typing the next.
     await expect(page.getByText(`${i + 1} of 9 solved`)).toBeVisible();
   }
+}
+
+test('shows stats and a spoiler-free result when the puzzle ends', async ({ page }) => {
+  await solveSample(page);
   const end = page.getByRole('region', { name: 'Solved. Every entry cracked.' });
   await expect(end).toBeVisible();
   await expect(end.getByText('Played')).toBeVisible();
@@ -168,6 +172,29 @@ test('shows stats and a spoiler-free result when the puzzle ends', async ({ page
   // A key the game took would clear the last guess's result.
   await expect(panel(page).getByText(/^ODD solves \d+ Down\.$/)).toBeVisible();
   await expect(end).toBeVisible();
+});
+
+test('names a solved game on the leaderboard, refusing rude nicknames', async ({ page }) => {
+  await solveSample(page);
+  const form = page.getByRole('form', { name: 'Your nickname for the leaderboard' });
+  const field = form.getByLabel('Your nickname for the leaderboard');
+  const submit = form.getByRole('button', { name: 'Submit' });
+
+  // Typing in the field doesn't reach the grid.
+  await field.fill('B u m');
+  // On a site with a bot check, Submit waits for Cloudflare's widget (test keys pass at once).
+  await expect(submit).toBeEnabled({ timeout: 15_000 });
+  await submit.click();
+  await expect(form.getByRole('status')).toHaveText('Please choose a different nickname.');
+
+  await field.fill('  Grid   Tester ');
+  await expect(submit).toBeEnabled({ timeout: 15_000 });
+  await submit.click();
+  await expect(form.getByRole('status')).toHaveText(
+    "Saved as Grid Tester. You're on the leaderboard with 9 guesses, 0 Crossword clues and 0 Wordle clues.",
+  );
+  await expect(field).toHaveValue('Grid Tester');
+  await expect(form.getByRole('button', { name: 'Update' })).toBeVisible();
 });
 
 test('can switch to high-contrast colours', async ({ page }) => {

@@ -20,6 +20,9 @@ functions/_puzzles.naughty.json
 # The local preview server's database and settings (server/config.ts)
 .data/
 
+# Nickname filter words, built from the Naughty list by `npm run rude-words`
+server/_rude-words.json
+
 # Playwright
 test-results/
 playwright-report/

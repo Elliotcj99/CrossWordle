@@ -234,6 +234,10 @@
 
   function onKeydown(event: KeyboardEvent) {
     if (event.ctrlKey || event.metaKey || event.altKey) return;
+    // Typing in a form field (the nickname) is for that field, not the grid.
+    if (event.target instanceof HTMLElement && event.target.closest('input, textarea, select')) {
+      return;
+    }
     if (event.key === 'Enter' || event.key === 'Backspace' || /^[A-Za-z]$/.test(event.key)) {
       event.preventDefault();
       press(event.key);
@@ -262,7 +266,7 @@
 </div>
 
 {#if status !== 'playing'}
-  <EndPanel {status} {stats} share={shareText(puzzle, game)} />
+  <EndPanel puzzleId={puzzle.id} {status} {stats} share={shareText(puzzle, game)} />
 {/if}
 
 <div class="layout">

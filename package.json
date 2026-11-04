@@ -16,13 +16,14 @@
     "generate:naughty": "tsx packages/generator/src/cli.ts generate --clues data/clues-naughty/rude.tsv --words data/wordlists-naughty --puzzles puzzles-naughty --id-prefix naughty- --title-prefix \"Naughty · \" --min-entries 10 --max-entries 16 --max-size 11 --days 10 --recent-days 10",
     "puzzles": "tsx packages/generator/src/cli.ts publish --in puzzles --words data/wordlists --notice data/clues/NOTICE.md --out apps/web/public/puzzles --answers-out functions/_puzzles.json --clues2 data/clues/wordnet.tsv",
     "puzzles:naughty": "tsx packages/generator/src/cli.ts publish --in puzzles-naughty --words data/wordlists-naughty --notice data/clues-naughty/NOTICE.md --out apps/web/public/naughty --answers-out functions/_puzzles.naughty.json --clues2 data/clues-naughty/second.tsv",
+    "rude-words": "node scripts/build-rude-words.mjs",
     "words": "tsx packages/generator/src/cli.ts words --words data/wordlists --out apps/web/public/words",
     "words:naughty": "tsx packages/generator/src/cli.ts words --words data/wordlists --words data/wordlists-naughty --out apps/web/public/words-naughty",
     "reveal": "tsx packages/generator/src/cli.ts reveal --puzzles puzzles",
     "validate-puzzles": "tsx packages/generator/src/cli.ts validate puzzles --words data/wordlists",
-    "dev": "npm run puzzles && npm run puzzles:naughty && npm run words && npm run words:naughty && npm run dev -w @crosswordle/web",
+    "dev": "npm run rude-words && npm run puzzles && npm run puzzles:naughty && npm run words && npm run words:naughty && npm run dev -w @crosswordle/web",
     "preview": "npm run build && tsx server/preview.ts",
-    "build": "npm run puzzles && npm run puzzles:naughty && npm run words && npm run words:naughty && npm run build -w @crosswordle/web && node scripts/render-headers.mjs --format cloudflare --out apps/web/dist/_headers",
+    "build": "npm run rude-words && npm run puzzles && npm run puzzles:naughty && npm run words && npm run words:naughty && npm run build -w @crosswordle/web && node scripts/render-headers.mjs --format cloudflare --out apps/web/dist/_headers",
     "build:iis": "npm run build && node scripts/build-iis.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -48,5 +49,8 @@
     "typescript-eslint": "^8.72.1",
     "vitest": "^5.0.5",
     "wrangler": "^4.156.0"
+  },
+  "dependencies": {
+    "obscenity": "0.4.6"
   }
 }

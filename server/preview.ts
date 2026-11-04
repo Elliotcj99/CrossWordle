@@ -1,11 +1,9 @@
 import { readFile, stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { extname, join, resolve, sep } from 'node:path';
-import { pathsFromEnv, readConfig } from './config';
-import { openDatabase } from './db';
 import { createRequestListener } from './node-adapter';
-import { Records } from './records';
 import { apiRoutes } from './routes';
+import { startServices } from './services';
 
 /**
  * The whole site on one local Node server: the built static files (apps/web/dist) and the API,
@@ -92,10 +90,8 @@ async function serveStatic(req: IncomingMessage, res: ServerResponse): Promise<v
   res.end(req.method === 'HEAD' ? undefined : body);
 }
 
-const paths = pathsFromEnv();
-readConfig(paths.config);
-const db = openDatabase(join(paths.data, 'crosswordle.db'));
-const api = createRequestListener(apiRoutes({ records: new Records(db) }));
+const services = startServices();
+const api = createRequestListener(apiRoutes(services));
 
 const server = createServer((req, res) => {
   if ((req.url ?? '').startsWith('/api/')) return api(req, res);
@@ -108,7 +104,7 @@ const server = createServer((req, res) => {
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, () => {
     server.close();
-    db.close();
+    services.close();
     process.exit(0);
   });
 }

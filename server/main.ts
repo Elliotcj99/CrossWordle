@@ -1,10 +1,7 @@
 import { createServer } from 'node:http';
-import { join } from 'node:path';
-import { pathsFromEnv, readConfig } from './config';
-import { openDatabase } from './db';
 import { createRequestListener } from './node-adapter';
-import { Records } from './records';
 import { apiRoutes } from './routes';
+import { startServices } from './services';
 
 /**
  * The API as a standalone Node server, bundled by `scripts/build-iis.mjs` into `server.mjs` with
@@ -15,11 +12,9 @@ import { apiRoutes } from './routes';
  * broken config or an unwritable data folder stops it at start-up rather than on a player's guess.
  */
 const port = Number(process.env.HTTP_PLATFORM_PORT ?? process.env.PORT ?? 8787);
-const paths = pathsFromEnv();
-readConfig(paths.config);
-const db = openDatabase(join(paths.data, 'crosswordle.db'));
+const services = startServices();
 
-const server = createServer(createRequestListener(apiRoutes({ records: new Records(db) }))).listen(
+const server = createServer(createRequestListener(apiRoutes(services))).listen(
   port,
   '127.0.0.1',
   () => console.log(`CrossWordle API listening on http://127.0.0.1:${port}`),
@@ -29,7 +24,7 @@ const server = createServer(createRequestListener(apiRoutes({ records: new Recor
 for (const signal of ['SIGINT', 'SIGTERM'] as const) {
   process.once(signal, () => {
     server.close();
-    db.close();
+    services.close();
     process.exit(0);
   });
 }

@@ -78,6 +78,22 @@ export const MIGRATIONS: readonly Migration[] = [
       ) STRICT;
       CREATE INDEX results_by_rank ON results (puzzle_id, ranked, hidden, guesses);
     `),
+
+  // 2. Nicknames, and a log of form submissions for rate limits (pruned after 30 days).
+  (db) =>
+    db.exec(`
+      ALTER TABLE players ADD COLUMN nickname TEXT;
+      ALTER TABLE players ADD COLUMN nickname_at TEXT;
+
+      CREATE TABLE submissions (
+        kind        TEXT NOT NULL,              -- 'nickname', later 'feedback'
+        player_id   TEXT NOT NULL,
+        ip          TEXT NOT NULL,              -- the visitor's address, for rate limits only
+        at          TEXT NOT NULL
+      ) STRICT;
+      CREATE INDEX submissions_by_player ON submissions (kind, player_id, at);
+      CREATE INDEX submissions_by_ip ON submissions (kind, ip, at);
+    `),
 ];
 
 /** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */
