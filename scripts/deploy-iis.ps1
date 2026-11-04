@@ -6,7 +6,8 @@
 .DESCRIPTION
     1. Refuses to deploy uncommitted work, so every release matches a commit.
     2. Runs `npm run build:iis`.
-    3. Copies dist\iis to <Root>\releases\<commit sha> on the server.
+    3. Copies dist\iis to <Root>\releases\<commit sha> on the server (<commit sha>-<time> when
+       that commit is the live release, whose files are in use).
     4. Points the site at the new release and recycles its app pool.
     5. Checks the home page and the API on the server. If either fails, the site goes back to the
        release it was on before.
@@ -57,13 +58,24 @@ try {
     $session = New-PSSession -ComputerName $ComputerName -Credential $Credential
     try {
         if (-not $Rollback) {
-            $target = "$Root\releases\$release"
-            Invoke-Command -Session $session -ScriptBlock {
-                param($Target)
-                if (Test-Path $Target) { Remove-Item $Target -Recurse -Force }
-                New-Item -ItemType Directory -Path $Target | Out-Null
-            } -ArgumentList $target
-            Copy-Item -Path 'dist\iis\*' -Destination $target -ToSession $session -Recurse
+            # The release's folder is named after the commit. Redeploying the commit that's live
+            # goes into a new folder: the live one's files are in use (IIS and Node hold them
+            # open), and deleting them would take the site down even if the delete then failed.
+            $release = Invoke-Command -Session $session -ScriptBlock {
+                param($SiteName, $Root, $Release)
+                $ErrorActionPreference = 'Stop'
+                Import-Module WebAdministration
+                $live = (Get-ItemProperty "IIS:\Sites\$SiteName" -Name physicalPath)
+                $name = $Release
+                if ("$Root\releases\$name\site" -eq $live) {
+                    $name = "$Release-$(Get-Date -Format 'yyyyMMddHHmmss')"
+                }
+                $target = "$Root\releases\$name"
+                if (Test-Path $target) { Remove-Item $target -Recurse -Force }
+                New-Item -ItemType Directory -Path $target | Out-Null
+                $name
+            } -ArgumentList $SiteName, $Root, $release
+            Copy-Item -Path 'dist\iis\*' -Destination "$Root\releases\$release" -ToSession $session -Recurse
         }
 
         $live = Invoke-Command -Session $session -ScriptBlock {
