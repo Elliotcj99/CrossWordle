@@ -325,3 +325,36 @@ export async function forgetMe(): Promise<boolean> {
     return false;
   }
 }
+
+const FEEDBACK_ERRORS: Readonly<Record<string, string>> = {
+  'title-invalid': 'Give it a short title: 3 to 100 characters.',
+  'description-invalid': 'Tell us a bit more: 10 to 2,000 characters.',
+  'too-many': 'Thanks for all the ideas! Please wait a while before sending more.',
+  'check-failed': "The bot check didn't go through. Please try again.",
+};
+
+/** Sends a feature request. */
+export async function sendFeedback(
+  title: string,
+  description: string,
+  turnstileToken: string | undefined,
+): Promise<Outcome<{ id: number }>> {
+  try {
+    const response = await fetch('api/feedback', {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ title, description, turnstileToken }),
+    });
+    const data = (await response.json()) as { id?: number; error?: string };
+    if (response.ok && typeof data.id === 'number') return { ok: true, id: data.id };
+    return {
+      ok: false,
+      message: FEEDBACK_ERRORS[data.error ?? ''] ?? 'Something went wrong. Please try again.',
+    };
+  } catch {
+    return {
+      ok: false,
+      message: 'Could not reach the server. Check your connection and try again.',
+    };
+  }
+}

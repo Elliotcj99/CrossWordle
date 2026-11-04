@@ -289,12 +289,21 @@ export class Records {
   }
 
   /**
-   * Deletes everything kept about a player: their games, results, nickname, recovery code and
-   * form submissions. Their place on any leaderboard goes with it.
+   * Deletes everything kept about a player: their games, results, nickname, recovery code, form
+   * submissions and feature requests. Their place on any leaderboard goes with it.
    */
   forget(playerId: string): void {
     this.transaction(() => {
-      for (const table of ['hints', 'guesses', 'restarts', 'plays', 'results', 'submissions']) {
+      const tables = [
+        'hints',
+        'guesses',
+        'restarts',
+        'plays',
+        'results',
+        'submissions',
+        'feedback',
+      ];
+      for (const table of tables) {
         this.db.prepare(`DELETE FROM ${table} WHERE player_id = ?`).run(playerId);
       }
       this.db.prepare('DELETE FROM players WHERE id = ?').run(playerId);

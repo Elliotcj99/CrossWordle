@@ -1,7 +1,7 @@
 import type { DatabaseSync } from 'node:sqlite';
 
 /**
- * Rate limits on the forms (nicknames, recovery codes), counted in the `submissions` table per
+ * Rate limits on the forms (nicknames, recovery codes, feature requests), counted in the `submissions` table per
  * player id and per visitor address. Addresses are kept only for this, and only for 30 days.
  */
 
@@ -22,6 +22,8 @@ export const RECOVERY_CODE_LIMIT: Limit = { perPlayer: 5, perAddress: 20, window
  * can make up player ids); with codes of 100 random bits, ten tries an hour gets nowhere.
  */
 export const RESTORE_LIMIT: Limit = { perPlayer: 10, perAddress: 10, windowMs: HOUR };
+/** Sending a feature request. */
+export const FEEDBACK_LIMIT: Limit = { perPlayer: 3, perAddress: 10, windowMs: HOUR };
 
 /** Submission records older than this are deleted. */
 const KEEP_SUBMISSIONS_MS = 30 * 24 * HOUR;

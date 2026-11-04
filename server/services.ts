@@ -2,6 +2,7 @@ import rudeWordList from './_rude-words.json';
 import { databaseFile, pathsFromEnv, readConfig } from './config';
 import { Leaderboard } from './leaderboard';
 import { puzzleIds } from '../functions/api/_shared';
+import { Feedback } from './feedback';
 import { Health } from './health';
 import { ErrorLog } from './log';
 import { Visits } from './stats';
@@ -26,6 +27,7 @@ export function startServices(log: ErrorLog): Services & { close(): void } {
     health: new Health(db, paths.data, puzzleIds),
     visits: new Visits(db),
     records: new Records(db),
+    feedback: new Feedback(db),
     leaderboard: new Leaderboard(db),
     nicknames: new Nicknames(db),
     recovery: new Recovery(db),

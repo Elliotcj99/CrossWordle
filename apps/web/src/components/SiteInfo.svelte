@@ -2,16 +2,21 @@
   import { onMount } from 'svelte';
   import { fetchContact } from '../lib/api';
   import { features } from '../lib/features';
+  import FeedbackForm from './FeedbackForm.svelte';
 
   /**
-   * The footer's Contact and Privacy links, where the server offers them (the IIS site). The
+   * The footer's Contact, Request a feature and Privacy links, where the server offers them (the
+   * IIS site). The
    * contact address comes from the server only when asked for, so it isn't in the page for
    * address harvesters. The privacy note says what the site keeps, where and for how long:
    * keep it true whenever that changes.
    */
   let hasContact = $state(false);
   let hasRecords = $state(false);
+  let hasFeedback = $state(false);
+  let siteKey = $state<string | undefined>();
   let showContact = $state(false);
+  let showFeedback = $state(false);
   let showPrivacy = $state(false);
   let email = $state<string | undefined>();
   let contactFailed = $state(false);
@@ -20,6 +25,8 @@
     const host = await features();
     hasContact = host.names.has('contact');
     hasRecords = host.names.has('records');
+    hasFeedback = host.names.has('feedback');
+    siteKey = host.turnstileSiteKey;
   });
 
   async function openContact() {
@@ -31,11 +38,19 @@
   }
 </script>
 
-{#if hasContact || hasRecords}
+{#if hasContact || hasRecords || hasFeedback}
   <div class="links">
     {#if hasContact}
       <button type="button" class="link" aria-expanded={showContact} onclick={openContact}
         >Contact us</button
+      >
+    {/if}
+    {#if hasFeedback}
+      <button
+        type="button"
+        class="link"
+        aria-expanded={showFeedback}
+        onclick={() => (showFeedback = !showFeedback)}>Request a feature</button
       >
     {/if}
     {#if hasRecords}
@@ -58,6 +73,10 @@
         Loading…
       {/if}
     </p>
+  {/if}
+
+  {#if showFeedback}
+    <FeedbackForm {siteKey} />
   {/if}
 
   {#if showPrivacy}
@@ -99,6 +118,10 @@
         </li>
         <li>
           <b>A count of page loads per day</b>, with nothing about who: no id and no address.
+        </li>
+        <li>
+          <b>Feature requests you send:</b> what you wrote, with your player id and the time, for us to
+          read. Kept until you delete your record.
         </li>
       </ul>
 

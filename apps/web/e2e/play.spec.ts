@@ -322,6 +322,22 @@ test('shows the contact address only when asked, and what the site stores', asyn
   await expect(footer.getByText(/deleted after 30 days/)).toBeVisible();
 });
 
+test('sends a feature request, saying what to fix first', async ({ page }) => {
+  const footer = page.locator('footer');
+  await footer.getByRole('button', { name: 'Request a feature' }).click();
+  const form = footer.getByRole('form', { name: 'Request a feature' });
+  await form.getByLabel('What would you like?').fill('Dark mode');
+  // Typing in the form doesn't reach the grid.
+  await form.getByLabel(/Tell us more/).fill('Too short');
+  await expect(page.getByText('0 of 9 solved')).toBeVisible();
+  const send = form.getByRole('button', { name: 'Send' });
+  await expect(send).toBeEnabled({ timeout: 15_000 });
+  // The browser's own check stops a description under 10 characters before it's sent.
+  await form.getByLabel(/Tell us more/).fill('A dark colour scheme for night-time solving.');
+  await send.click();
+  await expect(footer.getByText("Thanks, it's sent.")).toBeVisible();
+});
+
 test('deletes a record from the server and this browser', async ({ page }) => {
   await guess(page, 'LEVEL');
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');

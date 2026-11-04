@@ -255,8 +255,8 @@
       <section aria-labelledby="delete-title">
         <h2 id="delete-title">Delete your record</h2>
         <p>
-          Deletes your games, results, nickname and recovery code from our server and this browser.
-          Your places on the leaderboards go too. It can't be undone.
+          Deletes your games, results, nickname, recovery code and feature requests from our server
+          and this browser. Your places on the leaderboards go too. It can't be undone.
         </p>
         <div class="row">
           {#if confirmingDelete}

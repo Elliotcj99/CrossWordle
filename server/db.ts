@@ -135,6 +135,21 @@ export const MIGRATIONS: readonly Migration[] = [
         count       INTEGER NOT NULL
       ) STRICT;
     `),
+
+  // 6. Feature requests, for the admin to read (admin.mjs feedback). No visitor address.
+  (db) =>
+    db.exec(`
+      CREATE TABLE feedback (
+        id          INTEGER PRIMARY KEY,
+        player_id   TEXT NOT NULL REFERENCES players (id),
+        title       TEXT NOT NULL,
+        description TEXT NOT NULL,
+        created_at  TEXT NOT NULL,
+        status      TEXT NOT NULL CHECK (status IN ('open', 'closed')),
+        closed_at   TEXT
+      ) STRICT;
+      CREATE INDEX feedback_by_status ON feedback (status, created_at);
+    `),
 ];
 
 /** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */

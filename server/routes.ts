@@ -1,5 +1,6 @@
 import { features } from './api/features';
 import { contact } from './api/contact';
+import { feedback } from './api/feedback';
 import { forget } from './api/forget';
 import { health } from './api/health';
 import { leaderboard } from './api/leaderboard';
@@ -8,6 +9,7 @@ import { game, record } from './api/play';
 import { makeRecoveryCode, recoveryStatus, restore } from './api/recovery';
 import { recordedClue, recordedGuess, recordedHint, restart } from './api/records';
 import type { Config } from './config';
+import type { Feedback } from './feedback';
 import type { Health } from './health';
 import type { Leaderboard } from './leaderboard';
 import type { ErrorLog } from './log';
@@ -24,6 +26,7 @@ export interface Services {
   readonly health: Health;
   readonly visits: Visits;
   readonly records: Records;
+  readonly feedback: Feedback;
   readonly leaderboard: Leaderboard;
   readonly nicknames: Nicknames;
   readonly recovery: Recovery;
@@ -55,6 +58,7 @@ export function apiRoutes(services: Services): Routes {
     '/api/health': { GET: health(services.health) },
     '/api/contact': { GET: contact(config) },
     '/api/forget': { POST: forget(records) },
+    '/api/feedback': { POST: feedback(services) },
   };
 }
 

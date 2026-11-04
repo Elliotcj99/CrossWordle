@@ -18,6 +18,8 @@ export const FEATURES: readonly string[] = [
   // Players can make a recovery code, to get their record back in another browser, and delete
   // their record.
   'recovery',
+  // Players can send a feature request.
+  'feedback',
 ];
 
 /**
