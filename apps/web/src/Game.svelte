@@ -1,6 +1,7 @@
 <script lang="ts">
   import {
     bestMarks,
+    canRevealWordleClue,
     cellKey,
     checkGuess,
     clueOrder,
@@ -13,6 +14,7 @@
     feedbackFor,
     gameStatus,
     gameSummary,
+    gridLetters,
     guessCount,
     guessesRemaining,
     guessLimit,
@@ -97,25 +99,13 @@
 
   // Clue hints for the selected entry (both free, and kept until restart).
   const secondClue = $derived(crosswordClueFor(game, selected));
-  const clueRow = $derived(wordleClueRow(puzzle, game, selected));
+  const clueRow = $derived(wordleClueRow(puzzle, game, selected, locks));
   const canRevealCrossword = $derived(
     status === 'playing' && hasSecondClue(selected) && secondClue === undefined,
   );
-  /** Positions of the selected entry the grid already shows (from solved or locked crossings). */
-  const gridKnown = $derived(
-    selected.cells.flatMap((cell, i) => (locks.has(cellKey(cell)) ? [i] : [])),
-  );
   // Only offer a Wordle clue while it can reveal a letter the player can't already see.
-  const allKnown = $derived(
-    selected.cells.every(
-      (_, i) => gridKnown.includes(i) || feedback.some((guess) => guess[i]?.mark === 'correct'),
-    ),
-  );
   const canRevealWordle = $derived(
-    status === 'playing' &&
-      !solvedIds.has(selected.id) &&
-      !allKnown &&
-      wordleClueFor(game, selected) === undefined,
+    status === 'playing' && canRevealWordleClue(game, selected, locks),
   );
   const secondClues = $derived(game.crosswordClues ?? {});
   // Finished players always see the board; while playing it's opened from the puzzle bar.
@@ -257,12 +247,14 @@
     if (revealing !== null || wordleClueFor(game, selected) !== undefined) return;
     revealing = 'wordle';
     message = '';
+    // The entry asked about: the player may select another before the answer comes back.
+    const entry = selected;
     try {
-      const guesses = feedbackFor(game, selected).map(wordOf);
+      const guesses = feedbackFor(game, entry).map(wordOf);
       // The grid's letters go too, so the clue reveals something new.
-      const result = await requestHint(puzzle.id, selected.id, guesses, gridKnown);
+      const result = await requestHint(puzzle.id, entry.id, guesses, gridLetters(entry, locks));
       if (result.ok) {
-        game = recordWordleClue(game, selected, result.hint);
+        game = recordWordleClue(game, entry, result.hint);
       } else {
         message =
           result.reason === 'none'

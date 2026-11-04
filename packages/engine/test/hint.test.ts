@@ -40,21 +40,43 @@ describe('chooseHintLetter', () => {
     expect(chooseHintLetter('CAT', ['CAT'])).toBeUndefined();
   });
 
+  const at = (index: number, letter: string) => ({ index, letter });
+
   it('never reveals a letter the grid already shows from a crossing', () => {
     // CAT with C and A on the grid: only T is left.
-    expect(chooseHintLetter('CAT', [], [0, 1])).toEqual({ index: 2, letter: 'T' });
+    expect(chooseHintLetter('CAT', [], [at(0, 'C'), at(1, 'A')])).toEqual({
+      index: 2,
+      letter: 'T',
+    });
     // Grid letters and greens together can leave nothing.
-    expect(chooseHintLetter('CAT', ['COT'], [1])).toBeUndefined();
+    expect(chooseHintLetter('CAT', ['COT'], [at(1, 'A')])).toBeUndefined();
   });
 
   it('treats a letter shown on the grid as seen, preferring one not seen anywhere', () => {
     // TART with the first T on the grid: A and R are unseen singles, so A (leftmost) still wins,
     // and the other T (now seen green) comes last.
-    expect(chooseHintLetter('TART', [], [0])).toEqual({ index: 1, letter: 'A' });
-    expect(chooseHintLetter('TART', [], [0, 1, 2])).toEqual({ index: 3, letter: 'T' });
+    expect(chooseHintLetter('TART', [], [at(0, 'T')])).toEqual({ index: 1, letter: 'A' });
+    expect(chooseHintLetter('TART', [], [at(0, 'T'), at(1, 'A'), at(2, 'R')])).toEqual({
+      index: 3,
+      letter: 'T',
+    });
   });
 
-  it('ignores grid positions outside the word', () => {
-    expect(chooseHintLetter('CAT', [], [-1, 3, 1.5])).toEqual({ index: 0, letter: 'C' });
+  it("can't be steered to a chosen letter by claiming positions the caller doesn't know", () => {
+    // Claiming every position but the first, with wrong letters, doesn't hide them: the clue is
+    // still the one it would be with nothing known, so the answer can't be read a letter at a time.
+    const claims = [at(1, 'X'), at(2, 'X'), at(3, 'X'), at(4, 'X')];
+    expect(chooseHintLetter('BRAIN', [], claims)).toEqual(chooseHintLetter('BRAIN', []));
+    expect(chooseHintLetter('BRAIN', [], [at(0, 'Q'), ...claims])).toEqual({
+      index: 0,
+      letter: 'B',
+    });
+  });
+
+  it('ignores grid letters outside the word', () => {
+    expect(chooseHintLetter('CAT', [], [at(-1, 'C'), at(3, 'T'), at(1.5, 'A')])).toEqual({
+      index: 0,
+      letter: 'C',
+    });
   });
 });

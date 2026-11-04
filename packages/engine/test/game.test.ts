@@ -24,6 +24,8 @@ import {
   type PuzzleFile,
   type RuleOverrides,
   type ScoredLetter,
+  canRevealWordleClue,
+  gridLetters,
   wordleClueRow,
 } from '../src';
 
@@ -368,6 +370,34 @@ describe('the Wordle-clue row', () => {
       );
       expect(letters(wordleClueRow(ctx.puzzle, state, cat(ctx)))).toEqual(expected);
     }
+  });
+
+  it('lists the letters the grid shows in an entry, by position', () => {
+    const ctx = ring();
+    const state = play(ctx, [['2D', 'TOE']]);
+    expect(gridLetters(entry(ctx.puzzle, '1A'), lockedLetters(ctx.puzzle, state))).toEqual([
+      { index: 2, letter: 'T' },
+    ]);
+  });
+
+  it('offers a Wordle clue only while there is something left to reveal', () => {
+    const ctx = ring();
+    const cat = entry(ctx.puzzle, '1A');
+    const offered = (state: GameState) =>
+      canRevealWordleClue(state, cat, lockedLetters(ctx.puzzle, state));
+    expect(offered(newGame(ctx.puzzle))).toBe(true);
+    // C and T from the crossings, A green in a guess: nothing left.
+    const known = play(ctx, [
+      ['1D', 'COD'],
+      ['2D', 'TOE'],
+    ]);
+    expect(offered(known)).toBe(true);
+    expect(offered(play(ctx, [['1A', 'BAD']], known))).toBe(false);
+    // Used already, or solved: not offered.
+    expect(offered(recordWordleClue(newGame(ctx.puzzle), cat, { index: 0, letter: 'C' }))).toBe(
+      false,
+    );
+    expect(offered(play(ctx, [['1A', 'CAT']]))).toBe(false);
   });
 
   it('keeps the hint letter starred, and the player’s own greens', () => {

@@ -51,7 +51,7 @@ export type HintResult =
 
 /**
  * Asks the server for a letter to reveal for an entry, given the guesses made so far and the
- * positions the grid already shows (`known`). The answer never reaches the browser; only the one
+ * letters the grid already shows in it (`known`). The answer never reaches the browser; only the one
  * chosen letter comes back. `reason: 'none'` means every position is already known, so there's
  * nothing new to show.
  */
@@ -59,7 +59,7 @@ export async function requestHint(
   puzzleId: string,
   entryId: string,
   guesses: readonly string[],
-  known: readonly number[],
+  known: readonly HintLetter[],
 ): Promise<HintResult> {
   try {
     const response = await fetch('api/hint', {

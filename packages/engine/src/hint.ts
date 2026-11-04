@@ -8,8 +8,13 @@ export interface HintLetter {
 
 /**
  * Picks a letter of the answer to reveal as a Wordle-clue hint, given the guesses made so far and
- * the positions the grid already shows (`known`: letters from solved crossings, or locked crossing
- * greens).
+ * the letters the grid already shows in the entry (`known`: from solved crossings, or locked
+ * crossing greens).
+ *
+ * A known letter counts only where it really is the answer's letter at that position, the same as
+ * a green in a guess. The browser sends `known`, so this check is what stops a caller naming
+ * positions it doesn't know to choose which letter is revealed (and so read the answer a letter at
+ * a time): to rule a position out, the caller has to know its letter already.
  *
  * It never reveals a position the player can already see (green in a guess, or on the grid), and
  * prefers, in order:
@@ -23,16 +28,16 @@ export interface HintLetter {
 export function chooseHintLetter(
   answer: string,
   guesses: readonly string[],
-  known: readonly number[] = [],
+  known: readonly HintLetter[] = [],
 ): HintLetter | undefined {
   const greenAt = new Set<number>();
   const greenLetters = new Set<string>();
   const yellowLetters = new Set<string>();
-  // A letter the grid shows counts as a green: the player can see it in place.
-  for (const i of known) {
-    if (Number.isInteger(i) && i >= 0 && i < answer.length) {
-      greenAt.add(i);
-      greenLetters.add(answer[i]!);
+  // A letter the grid shows counts as a green, if it's right: the player can see it in place.
+  for (const { index, letter } of known) {
+    if (answer[index] === letter) {
+      greenAt.add(index);
+      greenLetters.add(letter);
     }
   }
   for (const guess of guesses) {
