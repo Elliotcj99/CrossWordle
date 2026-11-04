@@ -5,6 +5,7 @@ import { loadPuzzle, parsePuzzleFile, type PuzzleFile } from '@crosswordle/engin
 import { candidatePool, readClueLists } from './clue-lists';
 import { addDays, generateDaily, isDate, RECENT_DAYS } from './daily';
 import { DEFAULT_LAYOUT, type LayoutOptions } from './layout';
+import { checkNaughty, parseBlocked, parseReviewed } from './naughty-check';
 import { publishFolder, readPuzzleFolder, type LoadedFile } from './puzzle-files';
 import { NOTICE_FILE, readWordLists, writeWordFiles } from './word-lists';
 import { clueFor, readWordNet } from './wordnet';
@@ -27,11 +28,16 @@ const USAGE = `Usage:
   crosswordle generate --clues <file> [--clues <file>...] --words <folder>... --puzzles <folder>
                        [--from <YYYY-MM-DD>] [--days <n>] [--id-prefix <s>] [--title-prefix <s>]
                        [--min-entries <n>] [--max-entries <n>] [--max-size <n>] [--candidates <n>]
-                       [--recent-days <n>]
+                       [--recent-days <n>] [--form-rest-days <n>]
       Write daily puzzles that don't exist yet (default: 14 days from today). Later clue lists
       override earlier ones. --id-prefix/--title-prefix name a separate collection (e.g. naughty-);
       the layout flags override the newspaper-size default. --recent-days is how many days either
-      side of a puzzle its answers can't be reused (default 60; less for a small word list).`;
+      side of a puzzle its answers can't be reused (default 60; less for a small word list), and
+      --form-rest-days how long their other forms (JIZZED after JIZZ) rest (default: the same).
+  crosswordle check-naughty --words <folder> --clues <file>... --blocked <file> --reviewed <file>
+                            [--wordnet <folder>]
+      Check a Naughty word list and its clues for slurs: blocked words (by hash), their forms and
+      compounds, and with --wordnet, words with a sense WordNet labels as a slur.`;
 
 async function main(argv: string[]): Promise<number> {
   const { positionals, values } = parseArgs({
@@ -48,6 +54,7 @@ async function main(argv: string[]): Promise<number> {
       from: { type: 'string' },
       days: { type: 'string' },
       'recent-days': { type: 'string' },
+      'form-rest-days': { type: 'string' },
       notice: { type: 'string' },
       'answers-out': { type: 'string' },
       clues2: { type: 'string', multiple: true },
@@ -57,6 +64,8 @@ async function main(argv: string[]): Promise<number> {
       'max-entries': { type: 'string' },
       'max-size': { type: 'string' },
       candidates: { type: 'string' },
+      blocked: { type: 'string' },
+      reviewed: { type: 'string' },
     },
   });
   const [command, folder] = positionals;
@@ -172,6 +181,8 @@ async function main(argv: string[]): Promise<number> {
       const recentDays = Number(values['recent-days'] ?? RECENT_DAYS);
       if (!isDate(from) || !Number.isInteger(days) || days < 1) return usage();
       if (!Number.isInteger(recentDays) || recentDays < 0) return usage();
+      const formRestDays = Number(values['form-rest-days'] ?? recentDays);
+      if (!Number.isInteger(formRestDays) || formRestDays < 0) return usage();
 
       const layout = layoutFromFlags(values);
       if (layout === undefined) return usage();
@@ -204,6 +215,7 @@ async function main(argv: string[]): Promise<number> {
           idPrefix,
           titlePrefix,
           recentDays,
+          formRestDays,
         });
         if (puzzle === undefined) {
           console.error(`FAIL  ${id}: no layout reached the minimum number of entries.`);
@@ -215,6 +227,28 @@ async function main(argv: string[]): Promise<number> {
         console.log(`new   ${id}: ${puzzle.entries.length} entries`);
       }
       return failed ? 1 : 0;
+    }
+    case 'check-naughty': {
+      const { words: wordsFolders, clues: clueFiles, blocked, reviewed } = values;
+      if (wordsFolders?.length !== 1 || !clueFiles?.length || !blocked || !reviewed) {
+        return usage();
+      }
+      const list = await readWordLists(wordsFolders[0]!);
+      const clues = await Promise.all(
+        clueFiles.map(async (name) => ({ name, clues: (await readClueLists([name])).clues })),
+      );
+      const problems = checkNaughty({
+        words: [...list.words],
+        clues,
+        blocked: parseBlocked(await readFile(blocked, 'utf8')),
+        reviewed: parseReviewed(await readFile(reviewed, 'utf8')),
+        ...(values.wordnet ? { wordnet: await readWordNet(values.wordnet) } : {}),
+      });
+      for (const problem of problems) console.error(`FAIL  ${problem}`);
+      if (problems.length > 0) return 1;
+      const how = values.wordnet ? 'blocked words and WordNet' : 'blocked words';
+      console.log(`ok    ${list.words.size} naughty words and their clues (${how})`);
+      return 0;
     }
     default:
       return usage();

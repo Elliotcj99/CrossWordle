@@ -6,115 +6,115 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "ARSE",
-      "clue": "Backside (British)"
+      "answer": "TRUMP",
+      "clue": "Fart (British), or a winning card"
     },
     {
       "row": 0,
-      "col": 2,
+      "col": 4,
       "direction": "down",
-      "answer": "SHITHEAD",
-      "clue": "Despicable sort"
-    },
-    {
-      "row": 0,
-      "col": 5,
-      "direction": "across",
-      "answer": "SLAG",
-      "clue": "Furnace waste, or to bad-mouth"
+      "answer": "MOOBS",
+      "clue": "Man boobs"
     },
     {
       "row": 0,
       "col": 7,
       "direction": "down",
-      "answer": "ASSHOLE",
-      "clue": "Contemptible so-and-so (US)"
+      "answer": "TOOL",
+      "clue": "Spanner, or a todger"
     },
     {
       "row": 1,
-      "col": 9,
+      "col": 10,
       "direction": "down",
-      "answer": "FUCKS",
-      "clue": "Gives a damn, with \"not a ...\""
+      "answer": "JUGS",
+      "clue": "Pitchers, or boobs"
     },
     {
       "row": 2,
-      "col": 1,
-      "direction": "across",
-      "answer": "NIPPLES",
-      "clue": "A pair of paps"
-    },
-    {
-      "row": 4,
-      "col": 4,
+      "col": 0,
       "direction": "down",
-      "answer": "TIT",
-      "clue": "Small garden bird, or a boob"
+      "answer": "LUSH",
+      "clue": "Drunkard, or luxuriant"
     },
     {
-      "row": 4,
-      "col": 6,
+      "row": 3,
+      "col": 2,
+      "direction": "down",
+      "answer": "MANBOOBS",
+      "clue": "Moobs"
+    },
+    {
+      "row": 3,
+      "col": 4,
       "direction": "across",
-      "answer": "COCK",
-      "clue": "Rooster, or a todger"
+      "answer": "BALLBAG",
+      "clue": "Scrotum, or a prat"
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "direction": "down",
+      "answer": "LEWD",
+      "clue": "Obscene"
+    },
+    {
+      "row": 3,
+      "col": 8,
+      "direction": "down",
+      "answer": "BRISTOLS",
+      "clue": "Boobs (rhyming slang)"
     },
     {
       "row": 5,
-      "col": 1,
-      "direction": "across",
-      "answer": "PENIS",
-      "clue": "Member, pecker, todger"
-    },
-    {
-      "row": 6,
       "col": 0,
-      "direction": "down",
-      "answer": "ASS",
-      "clue": "Donkey, or your backside"
+      "direction": "across",
+      "answer": "HUNG",
+      "clue": "Suspended, or well-endowed"
     },
     {
-      "row": 6,
+      "row": 5,
       "col": 6,
       "direction": "across",
-      "answer": "WEE",
-      "clue": "Tiny, or a tinkle"
+      "answer": "WHIP",
+      "clue": "Lash, or cream"
     },
     {
       "row": 6,
-      "col": 6,
+      "col": 10,
       "direction": "down",
-      "answer": "WHORE",
-      "clue": "Lady of negotiable affection"
+      "answer": "PUKE",
+      "clue": "Vomit"
     },
     {
       "row": 7,
       "col": 0,
       "direction": "across",
-      "answer": "SOD",
-      "clue": "Annoying so-and-so, or a lump of turf"
+      "answer": "MOON",
+      "clue": "Bare a bottom"
     },
     {
       "row": 7,
-      "col": 9,
+      "col": 0,
       "direction": "down",
-      "answer": "HELL",
-      "clue": "Damnation's destination"
+      "answer": "MELT",
+      "clue": "Pathetic wimp (British slang)"
     },
     {
       "row": 8,
       "col": 4,
       "direction": "across",
-      "answer": "PLONKER",
-      "clue": "Daft idiot (British)"
+      "answer": "PILLOCK",
+      "clue": "Silly twit (British)"
     },
     {
       "row": 10,
       "col": 2,
       "direction": "across",
-      "answer": "WANKER",
-      "clue": "Total pillock (British)"
+      "answer": "SMARTASS",
+      "clue": "Wise guy (US)"
     }
   ]
 }

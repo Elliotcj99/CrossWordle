@@ -6,73 +6,108 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "across",
-      "answer": "FUCKWIT",
-      "clue": "Utter moron"
-    },
-    {
-      "row": 0,
-      "col": 4,
+      "col": 1,
       "direction": "down",
-      "answer": "WILLIE",
-      "clue": "A chap's chap"
+      "answer": "FLINGS",
+      "clue": "Affairs"
     },
     {
       "row": 0,
+      "col": 3,
+      "direction": "across",
+      "answer": "GUFF",
+      "clue": "Fart, or nonsense"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "GOOLIES",
+      "clue": "Testicles (British)"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "direction": "across",
+      "answer": "LIMP",
+      "clue": "Floppy"
+    },
+    {
+      "row": 1,
       "col": 10,
       "direction": "down",
-      "answer": "BUGGERY",
-      "clue": "An unholy nuisance"
+      "answer": "PIDDLED",
+      "clue": "Weed"
     },
     {
       "row": 2,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "BOLLOCKING",
-      "clue": "A severe telling-off"
+      "answer": "WINO",
+      "clue": "Street drinker"
     },
     {
-      "row": 4,
-      "col": 2,
-      "direction": "down",
-      "answer": "FUCKER",
-      "clue": "Nasty piece of work"
-    },
-    {
-      "row": 4,
-      "col": 6,
+      "row": 3,
+      "col": 3,
       "direction": "across",
-      "answer": "BOOZE",
-      "clue": "The hard stuff"
+      "answer": "LOUSE",
+      "clue": "Rotter, or a nit"
     },
     {
       "row": 4,
       "col": 8,
       "direction": "down",
-      "answer": "ORGASMS",
-      "clue": "Climactic peaks"
+      "answer": "WANKERS",
+      "clue": "Contemptible pillocks"
     },
     {
       "row": 5,
       "col": 1,
       "direction": "across",
-      "answer": "PUBES",
-      "clue": "Short and curlies"
+      "answer": "SLEAZEBALL",
+      "clue": "Oily creep"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "down",
+      "answer": "SNOG",
+      "clue": "A good kiss and cuddle"
+    },
+    {
+      "row": 7,
+      "col": 4,
+      "direction": "down",
+      "answer": "CLIT",
+      "clue": "Sensitive little nub"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "across",
+      "answer": "POKED",
+      "clue": "Prodded, or bonked"
     },
     {
       "row": 8,
       "col": 1,
       "direction": "across",
-      "answer": "BELLENDS",
-      "clue": "Complete tools"
+      "answer": "NAIL",
+      "clue": "Hammer this, or bed someone"
+    },
+    {
+      "row": 9,
+      "col": 4,
+      "direction": "across",
+      "answer": "INSERT",
+      "clue": "Put in"
     },
     {
       "row": 10,
-      "col": 4,
+      "col": 1,
       "direction": "across",
-      "answer": "KNOBS",
-      "clue": "Handles, or bellends"
+      "answer": "GOAT",
+      "clue": "Lecherous beast"
     }
   ]
 }

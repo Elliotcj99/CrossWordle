@@ -6,80 +6,115 @@
   "entries": [
     {
       "row": 0,
-      "col": 2,
-      "direction": "down",
-      "answer": "KNOBHEAD",
-      "clue": "Pig-headed twit"
+      "col": 0,
+      "direction": "across",
+      "answer": "VAG",
+      "clue": "Lady bits, in short"
     },
     {
       "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "GOBBLE",
+      "clue": "Eat greedily, or a blowjob"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "across",
+      "answer": "WILLIES",
+      "clue": "The heebie-jeebies"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "WANGER",
+      "clue": "Willy"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "STUD",
+      "clue": "Ladies' man, or an earring"
+    },
+    {
+      "row": 2,
+      "col": 2,
+      "direction": "across",
+      "answer": "BUNNY",
+      "clue": "Rabbit, or a playmate"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "across",
+      "answer": "TURD",
+      "clue": "A single stool"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "down",
+      "answer": "TAINT",
+      "clue": "Bit between the bits"
+    },
+    {
+      "row": 3,
       "col": 9,
       "direction": "down",
-      "answer": "FUCK",
-      "clue": "The big one: all-purpose expletive"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "WANKERS",
-      "clue": "Contemptible pillocks"
-    },
-    {
-      "row": 3,
-      "col": 5,
-      "direction": "across",
-      "answer": "PRICKS",
-      "clue": "Small jabs, or nasty blokes"
-    },
-    {
-      "row": 3,
-      "col": 8,
-      "direction": "down",
-      "answer": "COCKUP",
-      "clue": "Right old mess"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "down",
-      "answer": "PISSED",
-      "clue": "Plastered, or furious"
+      "answer": "RAKE",
+      "clue": "Garden tool, or a libertine"
     },
     {
       "row": 5,
-      "col": 5,
-      "direction": "down",
-      "answer": "WHORED",
-      "clue": "Sold affections"
-    },
-    {
-      "row": 6,
-      "col": 0,
+      "col": 1,
       "direction": "across",
-      "answer": "SNATCH",
-      "clue": "Grab, or female anatomy"
+      "answer": "GEARSTICK",
+      "clue": "Lever you grip and shift"
     },
     {
-      "row": 6,
-      "col": 10,
+      "row": 7,
+      "col": 0,
       "direction": "down",
-      "answer": "TURDS",
-      "clue": "Solid droppings"
+      "answer": "SHAT",
+      "clue": "Did a number two"
     },
     {
-      "row": 8,
+      "row": 7,
+      "col": 2,
+      "direction": "across",
+      "answer": "NAUGHTY",
+      "clue": "Rude, or badly behaved"
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "direction": "down",
+      "answer": "NADS",
+      "clue": "Gonads"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "HUNK",
+      "clue": "Muscly dish"
+    },
+    {
+      "row": 9,
       "col": 4,
       "direction": "across",
-      "answer": "CRAPPER",
-      "clue": "The throne, the bog"
+      "answer": "CANED",
+      "clue": "Thrashed, or drunk"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "DILDOS",
-      "clue": "Bedroom playthings"
+      "answer": "TOSS",
+      "clue": "Flip, or a wank"
     }
   ]
 }

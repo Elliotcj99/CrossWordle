@@ -6,73 +6,115 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
-      "direction": "down",
-      "answer": "HORSESHITE",
-      "clue": "Total tripe (British)"
-    },
-    {
-      "row": 1,
-      "col": 5,
+      "col": 2,
       "direction": "across",
-      "answer": "NUDITY",
-      "clue": "The full bare-all"
+      "answer": "PADDLE",
+      "clue": "Oar, or a spanker"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "down",
+      "answer": "LOINS",
+      "clue": "Groin"
+    },
+    {
+      "row": 0,
+      "col": 10,
+      "direction": "down",
+      "answer": "TRYST",
+      "clue": "Secret rendezvous"
     },
     {
       "row": 1,
-      "col": 7,
+      "col": 0,
       "direction": "down",
-      "answer": "DICKHEAD",
-      "clue": "Obnoxious oaf"
+      "answer": "FROLIC",
+      "clue": "Romp"
     },
     {
       "row": 2,
-      "col": 3,
-      "direction": "down",
-      "answer": "BITCHY",
-      "clue": "Cattily spiteful"
+      "col": 0,
+      "direction": "across",
+      "answer": "RACK",
+      "clue": "Shelf, or a bust"
     },
     {
-      "row": 3,
-      "col": 1,
+      "row": 2,
+      "col": 5,
       "direction": "across",
-      "answer": "SHITFACED",
-      "clue": "Blind drunk"
+      "answer": "JIGGLY",
+      "clue": "Wobbly"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "down",
+      "answer": "GROPING",
+      "clue": "Feeling up"
     },
     {
       "row": 4,
-      "col": 10,
+      "col": 6,
+      "direction": "across",
+      "answer": "SPOUT",
+      "clue": "Gush, or a teapot part"
+    },
+    {
+      "row": 5,
+      "col": 2,
       "direction": "down",
-      "answer": "KNOBEND",
-      "clue": "An utter bellend"
+      "answer": "BAMPOT",
+      "clue": "Nutcase (Scottish)"
     },
     {
       "row": 5,
       "col": 5,
       "direction": "down",
-      "answer": "POOPED",
-      "clue": "Tuckered out"
+      "answer": "PERT",
+      "clue": "Cheeky, or perky"
     },
     {
       "row": 6,
-      "col": 3,
-      "direction": "across",
-      "answer": "HOOKER",
-      "clue": "Rugby position, or a working girl"
-    },
-    {
-      "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "WEDGIE",
-      "clue": "Underwear yanked skyward"
+      "answer": "CLAM",
+      "clue": "Shellfish, or a lady garden"
+    },
+    {
+      "row": 6,
+      "col": 5,
+      "direction": "across",
+      "answer": "EFFING",
+      "clue": "Swearing, or flipping"
+    },
+    {
+      "row": 6,
+      "col": 10,
+      "direction": "down",
+      "answer": "GOBBY",
+      "clue": "Mouthy"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "PETTING",
+      "clue": "Heavy fondling"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "DAMNED",
-      "clue": "Condemned to the fiery pit"
+      "answer": "HOTTIE",
+      "clue": "Looker"
+    },
+    {
+      "row": 10,
+      "col": 7,
+      "direction": "across",
+      "answer": "RACY",
+      "clue": "Risque"
     }
   ]
 }
