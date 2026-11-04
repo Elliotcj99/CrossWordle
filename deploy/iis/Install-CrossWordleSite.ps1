@@ -72,7 +72,7 @@ if (-not ($modules | Where-Object { $_.name -eq 'RewriteModule' })) {
     throw 'URL Rewrite is not installed. Install the URL Rewrite 2.1 MSI first.'
 }
 
-foreach ($folder in @($Root, "$Root\releases", "$Root\empty", "$Root\data", "$Root\backups")) {
+foreach ($folder in @($Root, "$Root\releases", "$Root\empty", "$Root\data", "$Root\logs", "$Root\backups")) {
     if (-not (Test-Path $folder)) { New-Item -ItemType Directory -Path $folder | Out-Null }
 }
 
@@ -119,12 +119,15 @@ foreach ($rule in @(
 }
 Set-Acl -Path $Root -AclObject $acl
 
-# The database lives in data, the one folder the app pool may write to. Backups are written by an
-# administrator's scheduled task, so backups keeps the read-only rights it inherits.
-$dataAcl = Get-Acl -Path "$Root\data"
-$dataAcl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
-            "IIS AppPool\$SiteName", 'Modify', $inherit, 'None', 'Allow')))
-Set-Acl -Path "$Root\data" -AclObject $dataAcl
+# The database lives in data and the API's error log in logs: the only folders the app pool may
+# write to. Backups are written by an administrator's scheduled task, so backups keeps the
+# read-only rights it inherits.
+foreach ($writable in @("$Root\data", "$Root\logs")) {
+    $writableAcl = Get-Acl -Path $writable
+    $writableAcl.AddAccessRule((New-Object System.Security.AccessControl.FileSystemAccessRule(
+                "IIS AppPool\$SiteName", 'Modify', $inherit, 'None', 'Allow')))
+    Set-Acl -Path $writable -AclObject $writableAcl
+}
 
 # The site's settings (contact address, Turnstile keys), read by the API. Never in a release or
 # the repo. Created empty, without a byte order mark, if it isn't there yet.

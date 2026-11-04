@@ -111,10 +111,11 @@ What protects the public site, and what to keep doing.
   HttpPlatformHandler and URL Rewrite: no ASP.NET, CGI, ISAPI, WebDAV or directory browsing. The API parses JSON
   and compares letters. It never touches the file system, a shell or `eval`, and the site has no
   upload or write path.
-- **Data and settings stay outside the releases.** `<root>\data` holds the database: the only
-  folder the app pool can write to. `<root>\config.json` holds the site's settings (contact
-  address, Turnstile keys); the install script creates it empty. `web.config` passes both paths to
-  Node (`CROSSWORDLE_DATA`, `CROSSWORDLE_CONFIG`), and deploys never touch either. Set it with
+- **Data and settings stay outside the releases.** `<root>\data` holds the database and
+  `<root>\logs` the API's error log: the only folders the app pool can write to.
+  `<root>\config.json` holds the site's settings (contact address, Turnstile keys); the install
+  script creates it empty. `web.config` passes all three paths to Node (`CROSSWORDLE_DATA`,
+  `CROSSWORDLE_LOGS`, `CROSSWORDLE_CONFIG`), and deploys never touch them. Set the settings with
   `Set-CrossWordleConfig.ps1` (contact address, Turnstile site key, and the secret key as a
   SecureString read from your secret store), which recycles the app pool so Node rereads it.
   Staging uses Cloudflare's always-pass Turnstile test keys. Node checks
@@ -213,9 +214,15 @@ release's `serverdmin.mjs` on the site's database, so the command always matche
   To run the browser tests against it, run them on the server with
   `$env:CROSSWORDLE_BASE_URL = 'http://127.0.0.1:8081'; npm run test:e2e`. Playwright then uses
   the deployed site and doesn't start its own.
-- **API logs:** if `/api` returns 502, set `stdoutLogEnabled="true"` and
-  `stdoutLogFile="..\..\..\logs\api"` on `<httpPlatform>` in the live release's `web.config`. Create
-  the `logs` folder, give the app pool modify rights on it, and read the log.
+- **API errors:** the API writes its own error log to `<root>\logs` (`errors-YYYY-MM-DD.log`, one
+  JSON line per error, 14 days kept), including a failure to start. Read it with the admin
+  command: `Invoke-CrossWordleAdmin.ps1` with `@('errors')` (last 24 hours) or
+  `@('errors', '--hours', '72')`. Sites installed before the log existed need the install script
+  run again (same parameters) to create `logs` with the app pool's write access.
+- **Node's own output:** only if the API won't start and the error log is empty (say, Node itself
+  is missing), set `stdoutLogEnabled="true"` and `stdoutLogFile="..\..\..\logs\node"` on
+  `<httpPlatform>` in the live release's `web.config`, and read that file. Turn it off again
+  afterwards: it isn't rotated.
 
 ## Switching hosts
 

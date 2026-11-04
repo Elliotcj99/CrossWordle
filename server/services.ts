@@ -1,6 +1,7 @@
 import rudeWordList from './_rude-words.json';
 import { databaseFile, pathsFromEnv, readConfig } from './config';
 import { Leaderboard } from './leaderboard';
+import { ErrorLog } from './log';
 import { openDatabase } from './db';
 import { Nicknames } from './nicknames';
 import { RateLimits } from './rate-limits';
@@ -13,11 +14,12 @@ import type { Services } from './routes';
  * opened and migrated. Called before taking requests, so a broken settings file or an unwritable
  * data folder stops the server at start-up rather than failing a player's guess.
  */
-export function startServices(): Services & { close(): void } {
+export function startServices(log: ErrorLog): Services & { close(): void } {
   const paths = pathsFromEnv();
   const config = readConfig(paths.config);
   const db = openDatabase(databaseFile(paths));
   return {
+    log,
     records: new Records(db),
     leaderboard: new Leaderboard(db),
     nicknames: new Nicknames(db),
