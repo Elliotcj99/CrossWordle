@@ -31,19 +31,19 @@ Files and folders under `functions/` whose names start with `_` are not routed, 
 bundle is served as a static asset. (The static site is served from `apps/web/dist`; `functions/`
 is compiled into the Worker, separately.)
 
-## Deliberately stateless
+## Stateless here, recorded on IIS
 
-The endpoint keeps no per-player state. It only reports how one guess scored, so the browser still
-owns the guess budget, the win/lose state and the "real word" check. That means a determined caller
-can score arbitrary guesses against an entry — the same as any Wordle — but can't read the answers
-outright. Rate limiting can be added later if abuse is a concern.
+These handlers keep no per-player state. They only report how one guess scored, so a determined
+caller can score arbitrary guesses against an entry (the same as any Wordle) but can't read the
+answers outright. On IIS, `server/` also records each player's guesses and hints in its database,
+for player records and the leaderboard, and rate-limits the forms.
 
 ## Caveat: the answers must come from a private source
 
 Hiding answers from the page only hides them from players if the answers aren't public elsewhere.
 The plain puzzle sources live in `puzzles/*.json`; if those are committed to a **public** repo, the
-answers are readable on the repo host regardless of this Function. See `docs/staging.md` and the
-project notes for the repo/deploy arrangement that keeps the answer source private.
+answers are readable on the repo host regardless of this Function. To keep them private, generate
+and build from a private repo.
 
 ## Testing locally
 

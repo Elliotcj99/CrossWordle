@@ -114,15 +114,15 @@ remembered**, and turning it on asks first, so nobody meets strong language with
 
 ## Hosting
 
-The same build runs on either host; the public name points at one of them.
-
-- **Cloudflare Pages** (the default): every push to `main` builds on Cloudflare (`npm run build`,
-  output `apps/web/dist`) and goes live. The API runs as Pages Functions (`functions/`).
-- **IIS:** `npm run build:iis` packages the site with a `web.config`, plus the API as a Node
-  server (`server/`) that IIS starts. `scripts/deploy-iis.ps1` deploys it over PowerShell
-  remoting. Cloudflare proxies the public name to the server, by default through a Cloudflare
-  Tunnel. See [deploy/iis/README.md](deploy/iis/README.md), including your own bindings and how to
-  switch the public name between the two hosts.
+- **Windows Server with IIS** (the default, and the full site): `npm run build:iis` packages the
+  site with a `web.config`, plus the API as a Node server (`server/`) that IIS starts, with its own
+  database for player records, the leaderboard and feature requests. `scripts/deploy-iis.ps1`
+  deploys it over PowerShell remoting. The public name is on a free Cloudflare account, reaching
+  the server through a Cloudflare Tunnel. [deploy/iis/README.md](deploy/iis/README.md) walks
+  through the setup.
+- **Cloudflare Pages** (the game only): Pages can build the site from the repo (`npm run build`,
+  output `apps/web/dist`), with the API as Pages Functions (`functions/`). There's no database
+  there, so the page hides the leaderboard, player records and feature requests.
 
 ## Known gaps
 

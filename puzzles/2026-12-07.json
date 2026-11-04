@@ -1,0 +1,176 @@
+{
+  "version": 1,
+  "id": "2026-12-07",
+  "title": "Monday 7 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "SHRILL",
+      "clue": "Piercing"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "DUPLICATE",
+      "clue": "Copy"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "DRAG",
+      "clue": "Haul – bore"
+    },
+    {
+      "row": 0,
+      "col": 11,
+      "direction": "down",
+      "answer": "GRANNY",
+      "clue": "Nan"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "HUNT",
+      "clue": "Search"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "down",
+      "answer": "THIEF",
+      "clue": "Robber"
+    },
+    {
+      "row": 1,
+      "col": 7,
+      "direction": "down",
+      "answer": "YODEL",
+      "clue": "Alpine song"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "direction": "across",
+      "answer": "HIPPO",
+      "clue": "River horse, for short"
+    },
+    {
+      "row": 3,
+      "col": 7,
+      "direction": "across",
+      "answer": "DEMAND",
+      "clue": "Insist on"
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "direction": "down",
+      "answer": "MILK",
+      "clue": "Dairy drink – exploit"
+    },
+    {
+      "row": 4,
+      "col": 2,
+      "direction": "across",
+      "answer": "DESIRE",
+      "clue": "Longing"
+    },
+    {
+      "row": 6,
+      "col": 12,
+      "direction": "down",
+      "answer": "SKIM",
+      "clue": "Glide over – read quickly"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "across",
+      "answer": "BIGOT",
+      "clue": "Zealot"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "down",
+      "answer": "BLAZER",
+      "clue": "School jacket"
+    },
+    {
+      "row": 7,
+      "col": 3,
+      "direction": "down",
+      "answer": "GREAT",
+      "clue": "Excellent"
+    },
+    {
+      "row": 7,
+      "col": 10,
+      "direction": "across",
+      "answer": "YAK",
+      "clue": "Shaggy ox – chatter"
+    },
+    {
+      "row": 7,
+      "col": 10,
+      "direction": "down",
+      "answer": "YELLOW",
+      "clue": "Colour of a lemon – cowardly"
+    },
+    {
+      "row": 8,
+      "col": 5,
+      "direction": "across",
+      "answer": "EMERGE",
+      "clue": "Come out"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "MOULD",
+      "clue": "Fungus – cast"
+    },
+    {
+      "row": 8,
+      "col": 8,
+      "direction": "down",
+      "answer": "RUGBY",
+      "clue": "Twickenham game"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "RAVEN",
+      "clue": "Large black bird"
+    },
+    {
+      "row": 10,
+      "col": 8,
+      "direction": "across",
+      "answer": "GOLD",
+      "clue": "First place medal"
+    },
+    {
+      "row": 11,
+      "col": 0,
+      "direction": "across",
+      "answer": "KESTREL",
+      "clue": "Hovering falcon"
+    },
+    {
+      "row": 12,
+      "col": 8,
+      "direction": "across",
+      "answer": "YAWN",
+      "clue": "Bore – sleepy gape"
+    }
+  ]
+}

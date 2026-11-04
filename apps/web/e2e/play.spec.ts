@@ -10,9 +10,10 @@ const clue = (page: Page, text: string) =>
   page.getByRole('region', { name: 'Clues' }).getByRole('button', { name: new RegExp(text) });
 
 test.beforeEach(async ({ page, baseURL }) => {
-  // Each test is its own visitor to the API. Without Cloudflare in front (staging on 127.0.0.1,
-  // npm run preview) every request would share one address, and the forms' per-address rate
-  // limits would trip across runs. Addresses are from 192.0.2.0/24, the documentation range.
+  // Each test is its own visitor to the API. The tests reach the server directly, never through
+  // Cloudflare (npm run preview, or a deployed site's binding: see playwright.config.ts), so every
+  // request would share one address, and the forms' per-address rate limits would trip across
+  // runs. Addresses are from 192.0.2.0/24, the documentation range.
   const visitor = `192.0.2.${1 + Math.floor(Math.random() * 254)}`;
   // Only the site's own API: Cloudflare's bot check makes requests of its own.
   const site = new URL(baseURL!).origin;

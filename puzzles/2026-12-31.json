@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "id": "2026-12-31",
+  "title": "Thursday 31 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "across",
+      "answer": "BUS",
+      "clue": "Double-decker"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "SWAY",
+      "clue": "Rock – influence"
+    },
+    {
+      "row": 0,
+      "col": 4,
+      "direction": "down",
+      "answer": "CIRCUIT",
+      "clue": "Lap"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "across",
+      "answer": "SNUFF",
+      "clue": "Put out – powdered tobacco"
+    },
+    {
+      "row": 0,
+      "col": 8,
+      "direction": "down",
+      "answer": "SCENE",
+      "clue": "Setting – fuss"
+    },
+    {
+      "row": 0,
+      "col": 12,
+      "direction": "down",
+      "answer": "FOUNTAIN",
+      "clue": "Spout"
+    },
+    {
+      "row": 1,
+      "col": 2,
+      "direction": "across",
+      "answer": "WEIGH",
+      "clue": "Consider"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "down",
+      "answer": "STING",
+      "clue": "Bee's weapon – con"
+    },
+    {
+      "row": 2,
+      "col": 7,
+      "direction": "across",
+      "answer": "HERD",
+      "clue": "Drove"
+    },
+    {
+      "row": 2,
+      "col": 10,
+      "direction": "down",
+      "answer": "DEVELOP",
+      "clue": "Grow"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "TRY",
+      "clue": "Attempt – rugby score"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "across",
+      "answer": "HUDDLE",
+      "clue": "Cluster"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "down",
+      "answer": "LAPSE",
+      "clue": "Slip"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "NEW",
+      "clue": "Fresh"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "down",
+      "answer": "CREPE",
+      "clue": "Thin pancake"
+    },
+    {
+      "row": 7,
+      "col": 3,
+      "direction": "down",
+      "answer": "SAVING",
+      "clue": "Economy"
+    },
+    {
+      "row": 7,
+      "col": 7,
+      "direction": "across",
+      "answer": "SALOON",
+      "clue": "Bar – car"
+    },
+    {
+      "row": 8,
+      "col": 0,
+      "direction": "across",
+      "answer": "ORGANISE",
+      "clue": "Arrange"
+    },
+    {
+      "row": 8,
+      "col": 6,
+      "direction": "down",
+      "answer": "SPEED",
+      "clue": "Pace"
+    },
+    {
+      "row": 9,
+      "col": 8,
+      "direction": "down",
+      "answer": "MASS",
+      "clue": "Bulk – church service"
+    },
+    {
+      "row": 9,
+      "col": 12,
+      "direction": "down",
+      "answer": "REST",
+      "clue": "Relax – remainder"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "across",
+      "answer": "SEPARATE",
+      "clue": "Apart – divide"
+    },
+    {
+      "row": 11,
+      "col": 0,
+      "direction": "across",
+      "answer": "LEAN",
+      "clue": "Thin – tilt"
+    },
+    {
+      "row": 12,
+      "col": 3,
+      "direction": "across",
+      "answer": "GRID",
+      "clue": "Network – crossword's frame"
+    },
+    {
+      "row": 12,
+      "col": 8,
+      "direction": "across",
+      "answer": "SWIFT",
+      "clue": "Fast – screaming summer bird"
+    }
+  ]
+}

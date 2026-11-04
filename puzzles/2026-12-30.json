@@ -1,0 +1,183 @@
+{
+  "version": 1,
+  "id": "2026-12-30",
+  "title": "Wednesday 30 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "PIKE",
+      "clue": "Fish – old spear"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "across",
+      "answer": "TYPE",
+      "clue": "Kind"
+    },
+    {
+      "row": 0,
+      "col": 11,
+      "direction": "down",
+      "answer": "PIOUS",
+      "clue": "Devout"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "down",
+      "answer": "RIGID",
+      "clue": "Stiff"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "across",
+      "answer": "SUBMIT",
+      "clue": "Hand in – yield"
+    },
+    {
+      "row": 1,
+      "col": 3,
+      "direction": "down",
+      "answer": "STEWARD",
+      "clue": "Cabin attendant"
+    },
+    {
+      "row": 2,
+      "col": 9,
+      "direction": "across",
+      "answer": "LOOK",
+      "clue": "Glance"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "GRUEL",
+      "clue": "Oliver Twist's thin porridge"
+    },
+    {
+      "row": 3,
+      "col": 6,
+      "direction": "across",
+      "answer": "KEY",
+      "clue": "Crucial – piano lever"
+    },
+    {
+      "row": 4,
+      "col": 5,
+      "direction": "down",
+      "answer": "GNARLED",
+      "clue": "Knotted"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "across",
+      "answer": "BUSH",
+      "clue": "Shrub"
+    },
+    {
+      "row": 4,
+      "col": 9,
+      "direction": "down",
+      "answer": "BRITTLE",
+      "clue": "Fragile"
+    },
+    {
+      "row": 4,
+      "col": 12,
+      "direction": "down",
+      "answer": "HURDLE",
+      "clue": "Obstacle"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "DOMAIN",
+      "clue": "Realm"
+    },
+    {
+      "row": 5,
+      "col": 1,
+      "direction": "down",
+      "answer": "ONLY",
+      "clue": "Sole"
+    },
+    {
+      "row": 5,
+      "col": 7,
+      "direction": "down",
+      "answer": "STAGNANT",
+      "clue": "Still"
+    },
+    {
+      "row": 6,
+      "col": 7,
+      "direction": "across",
+      "answer": "TRIM",
+      "clue": "Neat – cut"
+    },
+    {
+      "row": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "GLAD",
+      "clue": "Pleased"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "across",
+      "answer": "SLIGHT",
+      "clue": "Small – snub"
+    },
+    {
+      "row": 9,
+      "col": 2,
+      "direction": "down",
+      "answer": "DOPE",
+      "clue": "Idiot – drugs"
+    },
+    {
+      "row": 9,
+      "col": 9,
+      "direction": "across",
+      "answer": "LIFE",
+      "clue": "Existence"
+    },
+    {
+      "row": 9,
+      "col": 11,
+      "direction": "down",
+      "answer": "FAT",
+      "clue": "Plump"
+    },
+    {
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "BOOT",
+      "clue": "Car's luggage space"
+    },
+    {
+      "row": 10,
+      "col": 5,
+      "direction": "across",
+      "answer": "DRAPE",
+      "clue": "Hang loosely"
+    },
+    {
+      "row": 12,
+      "col": 1,
+      "direction": "across",
+      "answer": "DEDICATION",
+      "clue": "Commitment"
+    }
+  ]
+}

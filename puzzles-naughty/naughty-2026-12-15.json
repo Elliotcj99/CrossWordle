@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "id": "naughty-2026-12-15",
+  "title": "Naughty · Tuesday 15 December 2026",
+  "answerEncoding": "plain",
+  "entries": [
+    {
+      "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "NITWIT",
+      "clue": "Silly fool"
+    },
+    {
+      "row": 0,
+      "col": 3,
+      "direction": "down",
+      "answer": "MOFO",
+      "clue": "Mean so-and-so (US slang)"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "across",
+      "answer": "GROIN",
+      "clue": "Crotch"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "NETHERS",
+      "clue": "Bits down below"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "direction": "across",
+      "answer": "FUCKNUTS",
+      "clue": "Raving idiots"
+    },
+    {
+      "row": 2,
+      "col": 5,
+      "direction": "down",
+      "answer": "CURVY",
+      "clue": "Voluptuous"
+    },
+    {
+      "row": 3,
+      "col": 0,
+      "direction": "across",
+      "answer": "WINO",
+      "clue": "Street drinker"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "direction": "across",
+      "answer": "FRISKED",
+      "clue": "Patted down"
+    },
+    {
+      "row": 4,
+      "col": 7,
+      "direction": "down",
+      "answer": "SEDUCER",
+      "clue": "Lothario"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "KHAZI",
+      "clue": "The loo (British slang)"
+    },
+    {
+      "row": 7,
+      "col": 1,
+      "direction": "across",
+      "answer": "WANK",
+      "clue": "Gentlemen's solo sport"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "across",
+      "answer": "RUB",
+      "clue": "Massage"
+    },
+    {
+      "row": 7,
+      "col": 10,
+      "direction": "down",
+      "answer": "PUKE",
+      "clue": "Vomit"
+    },
+    {
+      "row": 9,
+      "col": 1,
+      "direction": "across",
+      "answer": "NIGHTIE",
+      "clue": "Flimsy gown for bed"
+    },
+    {
+      "row": 10,
+      "col": 7,
+      "direction": "across",
+      "answer": "ROUE",
+      "clue": "Dissolute old rake"
+    }
+  ]
+}
