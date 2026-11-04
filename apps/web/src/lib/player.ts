@@ -1,4 +1,5 @@
 const KEY = 'crosswordle:player';
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 
 let current: string | undefined;
 
@@ -11,7 +12,7 @@ export function playerId(): string {
   if (current !== undefined) return current;
   try {
     const saved = localStorage.getItem(KEY);
-    if (saved !== null && /^[0-9a-f-]{36}$/.test(saved)) return (current = saved);
+    if (saved !== null && UUID.test(saved)) return (current = saved);
   } catch {
     // Blocked storage: fall through to an id for this page only.
   }
@@ -22,4 +23,19 @@ export function playerId(): string {
     // Blocked storage: the id isn't remembered.
   }
   return current;
+}
+
+/**
+ * Switches this browser to another player id: the one a recovery code belongs to. Returns false
+ * if storage is blocked, as the switch wouldn't outlast the page.
+ */
+export function switchPlayer(id: string): boolean {
+  if (!UUID.test(id)) return false;
+  try {
+    localStorage.setItem(KEY, id);
+  } catch {
+    return false;
+  }
+  current = id;
+  return true;
 }

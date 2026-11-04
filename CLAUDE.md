@@ -26,6 +26,9 @@
   (the leaderboard) comes from that record, worked out with the engine, never from what the
   browser says. So every hint goes through the server: the published puzzle has neither answers
   nor second clues (`hasClue2` only), and `/api/clue` sends one when the player reveals it.
+- The player id is the only key to a player's record. Never show it in the page or a public API;
+  players move their record between browsers with a recovery code (`server/recovery.ts`), of
+  which the server keeps only a hash.
 - Ranked wins that look too good are flagged for review (`server/review.ts`). Flags never change
   the leaderboard on their own; an admin decides with `server/admin.ts` (`keep` or `hide`).
 - Database schema changes are new entries at the end of `MIGRATIONS` (`server/db.ts`), with

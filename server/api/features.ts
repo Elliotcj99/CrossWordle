@@ -12,6 +12,8 @@ export const FEATURES: readonly string[] = [
   'records',
   // Players can name themselves after finishing a puzzle.
   'nicknames',
+  // Players can make a recovery code, to get their record back in another browser.
+  'recovery',
 ];
 
 /**

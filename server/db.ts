@@ -117,6 +117,15 @@ export const MIGRATIONS: readonly Migration[] = [
         )
       );
     `),
+
+  // 4. Recovery codes: the hash of each player's current code (see recovery.ts).
+  (db) =>
+    db.exec(`
+      ALTER TABLE players ADD COLUMN recovery_hash TEXT;
+      ALTER TABLE players ADD COLUMN recovery_at TEXT;
+      CREATE UNIQUE INDEX players_by_recovery ON players (recovery_hash)
+        WHERE recovery_hash IS NOT NULL;
+    `),
 ];
 
 /** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */
