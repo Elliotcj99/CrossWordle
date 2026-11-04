@@ -84,7 +84,7 @@ On the server, as an administrator:
    | 4   | address                | `127.0.0.1`              | one of the server's addresses, or `*`                    |
    | 5   | host names             | any                      | the names to answer for, as an array                     |
    | 6   | protocol               | `http`                   | or `https`                                               |
-   | 7   | certificate thumbprint |                          | `https` only: in `LocalMachine\My`, with its private key |
+   | 7   | certificate            |                          | `https` only: its thumbprint, or a host name it covers   |
    | 8   | require SNI            | `$false`                 | `https` only: see [Your own binding](#your-own-binding)  |
 
    The staging site, beside the live one:
@@ -136,10 +136,14 @@ Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps
     'https', '0123456789ABCDEF0123456789ABCDEF01234567'
 ```
 
-- **The certificate** must be in the server's `LocalMachine\My` store with its private key, and
-  chain to a root the server trusts (a Cloudflare Origin CA certificate needs Cloudflare's Origin
-  CA root in `LocalMachine\Root`). The deploy's check connects through the binding and needs
-  that chain.
+- **The certificate** is attached to the binding automatically, when the site is created and on
+  every re-run, and deploys never touch it, so it stays through every redeploy. Name it by its
+  thumbprint, or by a host name it covers (`'crosswordle.example.com'` in place of the thumbprint
+  above): the script then uses the one certificate that covers that name (wildcards included),
+  has its private key and is valid now, and stops if there's none or more than one.
+- It must be in the server's `LocalMachine\My` store, and chain to a root the server trusts (a
+  Cloudflare Origin CA certificate needs Cloudflare's Origin CA root in `LocalMachine\Root`). The
+  deploy's check connects through the binding and needs that chain.
 - **TLS 1.0 and 1.1 are refused.**
 - **SNI.** Without it (the default), the certificate belongs to the address and port, and every
   site on them shares it: give it every site's name, or a wildcard. With SNI (`$true` as the

@@ -13,7 +13,8 @@
     except through the tunnel.
 
     To serve the site some other way, pass your own binding: the protocol (http or https), address,
-    port and host names, and for https the thumbprint of a certificate in LocalMachine\My. The
+    port and host names, and for https a certificate in LocalMachine\My (its thumbprint, or a name
+    it covers), which the binding gets automatically. Redeploys never touch it. The
     script leaves the server's firewall alone: which addresses can reach the port is up to the
     network.
 
@@ -39,6 +40,12 @@
     Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
         'crosswordle', 'C:\inetpub\crosswordle', 443, '192.0.2.20', @('crosswordle.example.com'),
         'https', '0123456789ABCDEF0123456789ABCDEF01234567'
+
+.EXAMPLE
+    # The same, picking the certificate by the name it covers.
+    Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
+        'crosswordle', 'C:\inetpub\crosswordle', 443, '192.0.2.20', @('crosswordle.example.com'),
+        'https', 'crosswordle.example.com'
 #>
 [CmdletBinding()]
 param(
@@ -52,8 +59,10 @@ param(
     [string[]] $HostName = @(),
     [ValidateSet('http', 'https')]
     [string] $Protocol = 'http',
-    # https only: the certificate's thumbprint, in LocalMachine\My with its private key.
-    [string] $CertificateThumbprint,
+    # https only: the certificate, in LocalMachine\My with its private key. Either its thumbprint,
+    # or a host name it covers (by its subject alternative names, wildcards included), which must
+    # pick out exactly one certificate that's valid now.
+    [string] $Certificate,
     # https only: pick the certificate by host name (SNI), so sites sharing an address and port can
     # each have their own. Off by default: the certificate then belongs to the address and port, and
     # every site on them shares it (and clients needn't send SNI).
@@ -62,15 +71,50 @@ param(
 
 $ErrorActionPreference = 'Stop'
 
+# The certificate -Certificate names: by thumbprint, or the one valid certificate covering a name.
+function Resolve-Certificate([string] $Wanted) {
+    $now = Get-Date
+    $thumbprint = $Wanted -replace '[\s:]', ''
+    if ($thumbprint -match '^[0-9A-Fa-f]{40}$') {
+        $found = Get-Item "Cert:\LocalMachine\My\$($thumbprint.ToUpperInvariant())" -ErrorAction SilentlyContinue
+        if (-not $found) { throw "No certificate $thumbprint in LocalMachine\My." }
+    } else {
+        $name = $Wanted.ToLowerInvariant()
+        $covers = {
+            param($certificate)
+            foreach ($dns in @($certificate.DnsNameList | ForEach-Object { "$($_.Unicode)".ToLowerInvariant() })) {
+                if ($dns -eq $name) { return $true }
+                # A wildcard covers one label: *.example.com covers www.example.com.
+                if ($dns.StartsWith('*.') -and $name.EndsWith($dns.Substring(1)) -and
+                    $name.Split('.').Count -eq $dns.Split('.').Count) { return $true }
+            }
+            $false
+        }
+        $candidates = @(Get-ChildItem Cert:\LocalMachine\My | Where-Object {
+                $_.HasPrivateKey -and $_.NotBefore -le $now -and $_.NotAfter -gt $now -and (& $covers $_)
+            })
+        if ($candidates.Count -eq 0) {
+            throw "No certificate in LocalMachine\My with a private key, valid now, covers $Wanted."
+        }
+        if ($candidates.Count -gt 1) {
+            $list = ($candidates | ForEach-Object { "$($_.Thumbprint) (until $($_.NotAfter.ToString('yyyy-MM-dd')))" }) -join ', '
+            throw "Several certificates cover ${Wanted}: $list. Pass the thumbprint of the one to use."
+        }
+        $found = $candidates[0]
+    }
+    if (-not $found.HasPrivateKey) { throw "Certificate $($found.Thumbprint) has no private key." }
+    if ($found.NotAfter -le $now -or $found.NotBefore -gt $now) {
+        throw "Certificate $($found.Thumbprint) isn't valid now ($($found.NotBefore) to $($found.NotAfter))."
+    }
+    $found
+}
+
 if ($Protocol -eq 'https') {
-    if (-not $CertificateThumbprint) { throw 'An https binding needs -CertificateThumbprint.' }
-    $CertificateThumbprint = ($CertificateThumbprint -replace '[^0-9A-Fa-f]', '').ToUpperInvariant()
-    $certificate = Get-Item "Cert:\LocalMachine\My\$CertificateThumbprint" -ErrorAction SilentlyContinue
-    if (-not $certificate) { throw "No certificate $CertificateThumbprint in LocalMachine\My." }
-    if (-not $certificate.HasPrivateKey) { throw "Certificate $CertificateThumbprint has no private key." }
+    if (-not $Certificate) { throw 'An https binding needs -Certificate (a thumbprint or a host name).' }
+    $CertificateThumbprint = (Resolve-Certificate $Certificate).Thumbprint.ToUpperInvariant()
     if ($RequireSni -and $HostName.Count -eq 0) { throw 'SNI needs at least one -HostName.' }
-} elseif ($CertificateThumbprint -or $RequireSni) {
-    throw '-CertificateThumbprint and -RequireSni are for https bindings only.'
+} elseif ($Certificate -or $RequireSni) {
+    throw '-Certificate and -RequireSni are for https bindings only.'
 }
 
 # Role services only: naming 'Web-Server' itself also adds its defaults, directory browsing among
