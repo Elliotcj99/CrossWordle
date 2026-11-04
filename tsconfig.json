@@ -8,6 +8,7 @@
     "packages/*/test/**/*.ts",
     "vitest.config.ts",
     "playwright.config.ts",
-    "apps/web/e2e/**/*.ts"
+    "apps/web/e2e/**/*.ts",
+    "apps/web/test/**/*.ts"
   ]
 }

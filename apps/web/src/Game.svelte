@@ -5,7 +5,7 @@
     checkGuess,
     clueOrder,
     computeStats,
-    crosswordClueShown,
+    crosswordClueFor,
     deleteLetter,
     draftCells,
     draftWord,
@@ -37,15 +37,15 @@
     wordleClueRow,
     wordOf,
   } from '@crosswordle/engine';
-  import { untrack } from 'svelte';
+  import { onMount, untrack } from 'svelte';
   import Clues from './components/Clues.svelte';
   import EndPanel from './components/EndPanel.svelte';
   import EntryPanel from './components/EntryPanel.svelte';
   import Grid from './components/Grid.svelte';
   import Keyboard from './components/Keyboard.svelte';
   import {
-    reportCrosswordClue,
     reportRestart,
+    requestCrosswordClue,
     requestHint,
     scoreGuess,
     ScoringError,
@@ -61,13 +61,15 @@
   // once on purpose. The engine returns new objects on every change, so raw state is enough.
   // `order` is the entries as the clue list shows them; every move between clues follows it.
   const order = clueOrder(untrack(() => puzzle));
-  let game = $state.raw<GameState>(untrack(() => loadGame(puzzle) ?? newGame(puzzle)));
+  const saved = untrack(() => loadGame(puzzle));
+  let game = $state.raw<GameState>(saved?.game ?? untrack(() => newGame(puzzle)));
   let selectedId = $state(untrack(() => (nextUnsolved(puzzle, game) ?? order[0]!).id));
   let draft = $state.raw<Draft>(emptyDraft());
   let message = $state('');
   let confirmingRestart = $state(false);
   let submitting = $state(false);
-  let hinting = $state(false);
+  /** The clue being fetched from the server, if any. One at a time. */
+  let revealing = $state<'crossword' | 'wordle' | null>(null);
   let results = $state.raw(loadResults());
   let boardEl = $state<HTMLElement>();
 
@@ -84,19 +86,30 @@
   const stats = $derived(computeStats(results, localDate()));
 
   // Clue hints for the selected entry (both free, and kept until restart).
-  const secondClue = $derived(crosswordClueShown(game, selected) ? selected.clue2 : undefined);
+  const secondClue = $derived(crosswordClueFor(game, selected));
   const clueRow = $derived(wordleClueRow(game, selected));
   const canRevealCrossword = $derived(
-    status === 'playing' && hasSecondClue(selected) && !crosswordClueShown(game, selected),
+    status === 'playing' && hasSecondClue(selected) && secondClue === undefined,
   );
   const canRevealWordle = $derived(
     status === 'playing' &&
       !solvedIds.has(selected.id) &&
       wordleClueFor(game, selected) === undefined,
   );
-  const crosswordClueIds = $derived(new Set(game.crosswordClues ?? []));
+  const secondClues = $derived(game.crosswordClues ?? {});
 
   $effect(() => saveGame(game));
+
+  // A game saved by an older version lists the Crossword clues it showed, without their text:
+  // fetch them again, so they still show (and the server, if it keeps records, has them).
+  onMount(() => {
+    for (const id of saved?.cluesToFetch ?? []) {
+      const entry = entryById(id);
+      void requestCrosswordClue(puzzle.id, id).then((clue) => {
+        if (clue !== undefined) game = recordCrosswordClue(game, entry, clue);
+      });
+    }
+  });
 
   // Record the result once the puzzle ends; the first result for a puzzle stands.
   $effect(() => {
@@ -183,14 +196,23 @@
     return `${word}: ${greens} green, ${yellows} yellow.`;
   }
 
-  function revealCrosswordClue() {
-    game = recordCrosswordClue(game, selected);
-    void reportCrosswordClue(puzzle.id, selected.id);
+  async function revealCrosswordClue() {
+    if (revealing !== null || crosswordClueFor(game, selected) !== undefined) return;
+    revealing = 'crossword';
+    message = '';
+    const entry = selected;
+    try {
+      const clue = await requestCrosswordClue(puzzle.id, entry.id);
+      if (clue !== undefined) game = recordCrosswordClue(game, entry, clue);
+      else message = 'Could not get the clue — check your connection and try again.';
+    } finally {
+      revealing = null;
+    }
   }
 
   async function revealWordleClue() {
-    if (hinting || wordleClueFor(game, selected) !== undefined) return;
-    hinting = true;
+    if (revealing !== null || wordleClueFor(game, selected) !== undefined) return;
+    revealing = 'wordle';
     message = '';
     try {
       const guesses = feedbackFor(game, selected).map(wordOf);
@@ -204,7 +226,7 @@
             : 'Could not get a hint — check your connection and try again.';
       }
     } finally {
-      hinting = false;
+      revealing = null;
     }
   }
 
@@ -294,7 +316,7 @@
       {clueRow}
       {canRevealCrossword}
       {canRevealWordle}
-      {hinting}
+      {revealing}
       oncrosswordclue={revealCrosswordClue}
       onwordleclue={revealWordleClue}
       onprev={() => step(-1)}
@@ -310,7 +332,7 @@
       {selectedId}
       {solvedIds}
       {guessCounts}
-      shownClue2Ids={crosswordClueIds}
+      {secondClues}
       onselect={selectFromClues}
     />
   </section>

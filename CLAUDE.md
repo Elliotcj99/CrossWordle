@@ -24,7 +24,10 @@
 - The Node server keeps its own record of each player's game (`server/records.ts`): guesses,
   hints and restarts, attempt by attempt, keyed by the browser's random player id. Anything ranked
   (the leaderboard) comes from that record, worked out with the engine, never from what the
-  browser says.
+  browser says. So every hint goes through the server: the published puzzle has neither answers
+  nor second clues (`hasClue2` only), and `/api/clue` sends one when the player reveals it.
+- Ranked wins that look too good are flagged for review (`server/review.ts`). Flags never change
+  the leaderboard on their own; an admin decides with `server/admin.ts` (`keep` or `hide`).
 - Database schema changes are new entries at the end of `MIGRATIONS` (`server/db.ts`), with
   tests. Never edit or reorder one that has shipped.
 - Naughty words are meant to be laughed at, never hurtful: no slurs (race, ethnicity, religion,

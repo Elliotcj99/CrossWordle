@@ -6,8 +6,10 @@ import {
   type PuzzleFile,
 } from '@crosswordle/engine';
 import { beforeEach, describe, expect, it } from 'vitest';
+import type { DatabaseSync } from 'node:sqlite';
 import { openDatabase } from '../db';
 import { playerIdFrom, Records } from '../records';
+import { Review } from '../review';
 
 /**
  *   C A T      1A CAT   1D COD
@@ -34,18 +36,26 @@ const SOLUTION: [string, string][] = Object.entries(answers);
 
 const ALICE = '0b6f8f4e-2c1a-4d3b-9e5f-1a2b3c4d5e6f';
 
+/** Another puzzle with the same grid, for a player's earlier games. */
+const puzzleOn = (id: string): ClientPuzzle => loadClientPuzzle(toPublicFile({ ...file, id }));
+
+let db: DatabaseSync;
 let records: Records;
 let clock: number;
 
 beforeEach(() => {
+  // Each stamp moves the clock on a second; `wait` moves it on further.
   clock = Date.parse('2026-11-04T09:00:00Z');
-  records = new Records(openDatabase(':memory:'), () => new Date((clock += 1000)));
+  db = openDatabase(':memory:');
+  records = new Records(db, () => new Date((clock += 1000)));
 });
 
-function guess(entryId: string, word: string, player = ALICE) {
+const wait = (minutes: number) => (clock += minutes * 60_000);
+
+function guess(entryId: string, word: string, player = ALICE, on = puzzle) {
   records.recordGuess(
     player,
-    puzzle,
+    on,
     entryId,
     evaluateGuess(word, answers[entryId]!, {
       duplicateCounts: puzzle.rules.duplicateCounts,
@@ -56,8 +66,8 @@ function guess(entryId: string, word: string, player = ALICE) {
 describe('Records', () => {
   it('ranks an unbroken first attempt that was won, with its guesses and hints', () => {
     guess('1A', 'COT');
-    records.recordHint(ALICE, puzzle, '1D', 'crossword');
-    records.recordHint(ALICE, puzzle, '3A', 'wordle', { index: 0, letter: 'D' });
+    records.recordHint(ALICE, puzzle, '1D', { kind: 'crossword', clue: 'Fish' });
+    records.recordHint(ALICE, puzzle, '3A', { kind: 'wordle', letter: { index: 0, letter: 'D' } });
     SOLUTION.forEach(([id, word]) => guess(id, word));
 
     expect(records.result(ALICE, 'ring')).toEqual({
@@ -129,12 +139,21 @@ describe('Records', () => {
   });
 
   it('counts each kind of hint once per entry', () => {
-    records.recordHint(ALICE, puzzle, '1A', 'crossword');
-    records.recordHint(ALICE, puzzle, '1A', 'crossword');
-    records.recordHint(ALICE, puzzle, '1A', 'wordle', { index: 1, letter: 'A' });
-    records.recordHint(ALICE, puzzle, '1A', 'wordle', { index: 2, letter: 'T' });
+    records.recordHint(ALICE, puzzle, '1A', { kind: 'crossword', clue: 'Feline' });
+    records.recordHint(ALICE, puzzle, '1A', { kind: 'crossword', clue: 'Feline' });
+    records.recordHint(ALICE, puzzle, '1A', { kind: 'wordle', letter: { index: 1, letter: 'A' } });
+    records.recordHint(ALICE, puzzle, '1A', { kind: 'wordle', letter: { index: 2, letter: 'T' } });
     SOLUTION.forEach(([id, word]) => guess(id, word));
     expect(records.result(ALICE, 'ring')).toMatchObject({ crosswordHints: 1, wordleHints: 1 });
+  });
+
+  it('keeps the revealed clue and letter in its record of the game', () => {
+    records.recordHint(ALICE, puzzle, '1D', { kind: 'crossword', clue: 'Fish' });
+    records.recordHint(ALICE, puzzle, '3A', { kind: 'wordle', letter: { index: 0, letter: 'D' } });
+    expect(records.state(ALICE, puzzle, 1)).toMatchObject({
+      crosswordClues: { '1D': 'Fish' },
+      wordleClues: { '3A': { index: 0, letter: 'D' } },
+    });
   });
 
   it('keeps players apart', () => {
@@ -143,6 +162,48 @@ describe('Records', () => {
     guess('1A', 'COT', bob);
     expect(records.result(ALICE, 'ring')).toMatchObject({ ranked: true });
     expect(records.result(bob, 'ring')).toBeUndefined();
+  });
+});
+
+describe('review flags', () => {
+  // The flags on this puzzle's result (a player's earlier games may have their own).
+  const flagged = () =>
+    new Review(db)
+      .flagged()
+      .filter((r) => r.puzzleId === 'ring')
+      .map((r) => [r.puzzleId, r.flags]);
+
+  /** Solves a puzzle with one wrong guess first, taking `minutes` over it. */
+  function solveSteadily(on: ClientPuzzle, minutes: number) {
+    guess('1A', 'COT', ALICE, on);
+    wait(minutes);
+    SOLUTION.forEach(([id, word]) => guess(id, word, ALICE, on));
+  }
+
+  it('flags a strong first game, leaving it ranked', () => {
+    SOLUTION.forEach(([id, word]) => guess(id, word));
+    expect(records.result(ALICE, 'ring')).toMatchObject({ ranked: true });
+    expect(flagged()).toEqual([['ring', ['first-game', 'flawless', 'fast']]]);
+  });
+
+  it('leaves an ordinary game alone', () => {
+    solveSteadily(puzzleOn('earlier'), 10);
+    solveSteadily(puzzle, 10);
+    expect(flagged()).toEqual([]);
+  });
+
+  it("flags a game much faster than the player's usual", () => {
+    ['one', 'two', 'three'].forEach((id) => solveSteadily(puzzleOn(id), 10));
+    solveSteadily(puzzle, 2);
+    expect(flagged()).toEqual([['ring', ['faster-than-usual']]]);
+  });
+
+  it("doesn't flag games that aren't on the leaderboard", () => {
+    guess('1A', 'COT');
+    records.recordRestart(ALICE, puzzle);
+    SOLUTION.forEach(([id, word]) => guess(id, word));
+    expect(records.result(ALICE, 'ring')).toMatchObject({ ranked: false });
+    expect(flagged()).toEqual([]);
   });
 });
 

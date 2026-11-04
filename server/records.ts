@@ -8,12 +8,15 @@ import {
   type ScoredLetter,
 } from '@crosswordle/engine';
 import type { DatabaseSync } from 'node:sqlite';
+import { reviewFlags, type ReviewFlag } from './review';
 
 /**
  * The server's own record of each player's game, so a leaderboard score is worked out from what
  * the server saw, not taken on the browser's word. Guesses and hints are kept attempt by attempt;
  * a restart starts the next attempt. When an attempt finishes, the engine sums it up and the first
  * finish for the puzzle is stored: ranked only if it was an unbroken first attempt that was won.
+ * A ranked win that looks too good is flagged for an admin to review (see `./review.ts`); the flag
+ * alone never changes the leaderboard.
  */
 
 /** Player ids are random UUIDs made by the browser (`crypto.randomUUID()`). */
@@ -26,6 +29,11 @@ export function playerIdFrom(request: Request): string | undefined {
 }
 
 export type HintKind = 'crossword' | 'wordle';
+
+/** A revealed hint, as the server sent it: the Crossword clue's text or the Wordle-clue letter. */
+export type RevealedHint =
+  | { readonly kind: 'crossword'; readonly clue: string }
+  | { readonly kind: 'wordle'; readonly letter: HintLetter };
 
 export interface StoredResult {
   readonly attempt: number;
@@ -69,26 +77,20 @@ export class Records {
   }
 
   /** Records a hint, once per entry and kind in an attempt. */
-  recordHint(
-    playerId: string,
-    puzzle: ClientPuzzle,
-    entryId: string,
-    kind: HintKind,
-    letter?: HintLetter,
-  ): void {
+  recordHint(playerId: string, puzzle: ClientPuzzle, entryId: string, hint: RevealedHint): void {
     this.transaction(() => {
       const attempt = this.currentAttempt(playerId, puzzle.id);
       this.db
         .prepare(
-          'INSERT OR IGNORE INTO hints (player_id, puzzle_id, attempt, entry_id, kind, letter, at) VALUES (?, ?, ?, ?, ?, ?, ?)',
+          'INSERT OR IGNORE INTO hints (player_id, puzzle_id, attempt, entry_id, kind, detail, at) VALUES (?, ?, ?, ?, ?, ?, ?)',
         )
         .run(
           playerId,
           puzzle.id,
           attempt,
           entryId,
-          kind,
-          letter === undefined ? null : JSON.stringify(letter),
+          hint.kind,
+          JSON.stringify(hint.kind === 'crossword' ? hint.clue : hint.letter),
           this.stamp(),
         );
     });
@@ -152,32 +154,38 @@ export class Records {
     }
     const hints = this.db
       .prepare(
-        'SELECT entry_id, kind, letter FROM hints WHERE player_id = ? AND puzzle_id = ? AND attempt = ?',
+        'SELECT entry_id, kind, detail FROM hints WHERE player_id = ? AND puzzle_id = ? AND attempt = ?',
       )
-      .all(playerId, puzzle.id, attempt) as {
-      entry_id: string;
-      kind: HintKind;
-      letter: string | null;
-    }[];
-    const crosswordClues = hints.filter((h) => h.kind === 'crossword').map((h) => h.entry_id);
-    const wordleClues = Object.fromEntries(
-      hints
-        .filter((h) => h.kind === 'wordle' && h.letter !== null)
-        .map((h) => [h.entry_id, JSON.parse(h.letter!) as HintLetter]),
-    );
-    return { ...newGame(puzzle), guesses, crosswordClues, wordleClues };
+      .all(playerId, puzzle.id, attempt) as { entry_id: string; kind: HintKind; detail: string }[];
+    const revealed = <T>(kind: HintKind): Record<string, T> =>
+      Object.fromEntries(
+        hints.filter((h) => h.kind === kind).map((h) => [h.entry_id, JSON.parse(h.detail) as T]),
+      );
+    return {
+      ...newGame(puzzle),
+      guesses,
+      crosswordClues: revealed<string>('crossword'),
+      wordleClues: revealed<HintLetter>('wordle'),
+    };
   }
 
   private finishIfOver(playerId: string, puzzle: ClientPuzzle, attempt: number): void {
     const summary = gameSummary(puzzle, this.state(playerId, puzzle, attempt));
     if (summary.status === 'playing') return;
+    if (this.result(playerId, puzzle.id) !== undefined) return; // The first finish stands.
     const won = summary.status === 'won';
     const reason = !won ? 'lost' : attempt > 1 ? 'restarted' : null;
-    // The first finish stands: a later attempt never replaces it.
+    const finishedAt = this.stamp();
+    const startedAt = this.startedAt(playerId, puzzle.id, attempt) ?? finishedAt;
+    const flags =
+      reason === null
+        ? this.flagsFor(playerId, puzzle, summary.guesses, startedAt, finishedAt)
+        : [];
     this.db
       .prepare(
-        `INSERT OR IGNORE INTO results (player_id, puzzle_id, attempt, won, guesses, crossword_hints,
-           wordle_hints, ranked, unranked_reason, finished_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+        `INSERT INTO results (player_id, puzzle_id, attempt, won, guesses, crossword_hints,
+           wordle_hints, ranked, unranked_reason, started_at, finished_at, review_flags)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .run(
         playerId,
@@ -189,8 +197,45 @@ export class Records {
         summary.wordleHints,
         reason === null ? 1 : 0,
         reason,
-        this.stamp(),
+        startedAt,
+        finishedAt,
+        flags.length === 0 ? null : JSON.stringify(flags),
       );
+  }
+
+  /** When an attempt began: its first guess or hint. */
+  private startedAt(playerId: string, puzzleId: string, attempt: number): string | undefined {
+    const row = this.db
+      .prepare(
+        `SELECT min(at) AS at FROM (
+           SELECT at FROM guesses WHERE player_id = ? AND puzzle_id = ? AND attempt = ?
+           UNION ALL
+           SELECT at FROM hints WHERE player_id = ? AND puzzle_id = ? AND attempt = ?)`,
+      )
+      .get(playerId, puzzleId, attempt, playerId, puzzleId, attempt) as { at: string | null };
+    return row.at ?? undefined;
+  }
+
+  /** Why a ranked win needs a look, given the player's earlier games (none means no flags). */
+  private flagsFor(
+    playerId: string,
+    puzzle: ClientPuzzle,
+    guesses: number,
+    startedAt: string,
+    finishedAt: string,
+  ): ReviewFlag[] {
+    const earlier = this.db
+      .prepare('SELECT won, started_at, finished_at FROM results WHERE player_id = ?')
+      .all(playerId) as { won: number; started_at: string | null; finished_at: string }[];
+    return reviewFlags({
+      entries: puzzle.entries.length,
+      guesses,
+      seconds: secondsBetween(startedAt, finishedAt),
+      firstGame: earlier.length === 0,
+      earlierSeconds: earlier
+        .filter((r) => r.won === 1 && r.started_at !== null)
+        .map((r) => secondsBetween(r.started_at!, r.finished_at)),
+    });
   }
 
   /** The attempt a player is on, registering the player and the play on first sight. */
@@ -238,4 +283,8 @@ export class Records {
       throw error;
     }
   }
+}
+
+function secondsBetween(from: string, to: string): number {
+  return (Date.parse(to) - Date.parse(from)) / 1000;
 }

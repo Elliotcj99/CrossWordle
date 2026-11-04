@@ -8,12 +8,12 @@
     solvedIds: ReadonlySet<string>;
     /** Guesses used so far on each entry. */
     guessCounts: ReadonlyMap<string, number>;
-    /** Entry ids whose second clue has been revealed, to show under the first. */
-    shownClue2Ids: ReadonlySet<string>;
+    /** Revealed second clues by entry id, to show under the first. */
+    secondClues: Readonly<Record<string, string>>;
     onselect: (entry: ClientEntry) => void;
   }
 
-  let { entries, selectedId, solvedIds, guessCounts, shownClue2Ids, onselect }: Props = $props();
+  let { entries, selectedId, solvedIds, guessCounts, secondClues, onselect }: Props = $props();
 
   const groups = $derived([
     { title: 'Across', entries: entries.filter((e) => e.direction === 'across') },
@@ -44,9 +44,9 @@
               <span class="number">{entry.number}</span>
               <span class="text">
                 {entry.clue} <span class="length">({entry.length})</span>
-                {#if shownClue2Ids.has(entry.id) && entry.clue2}
+                {#if Object.hasOwn(secondClues, entry.id)}
                   <span class="clue2"
-                    ><span class="star" aria-hidden="true">*</span> {entry.clue2}</span
+                    ><span class="star" aria-hidden="true">*</span> {secondClues[entry.id]}</span
                   >
                 {/if}
               </span>

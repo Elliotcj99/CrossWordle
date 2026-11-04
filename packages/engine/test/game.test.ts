@@ -296,7 +296,7 @@ describe('game summary', () => {
         ['1A', 'CAT'],
         ['3A', 'DUE'],
       ]),
-      crosswordClues: ['1A', '1D'],
+      crosswordClues: { '1A': 'Feline', '1D': 'Fish' },
       wordleClues: { '3A': { index: 0, letter: 'D' } },
     };
     expect(gameSummary(ctx.puzzle, state)).toEqual({
@@ -321,7 +321,7 @@ describe('game summary', () => {
     const ctx = ring();
     const state: GameState = {
       ...newGame(ctx.puzzle),
-      crosswordClues: ['9A'],
+      crosswordClues: { '9A': 'Not here' },
       wordleClues: { '9D': { index: 0, letter: 'X' } },
     };
     expect(gameSummary(ctx.puzzle, state)).toMatchObject({ crosswordHints: 0, wordleHints: 0 });

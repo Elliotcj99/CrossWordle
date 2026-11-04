@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { join, resolve } from 'node:path';
 
 /**
  * Where the server keeps its data and reads its settings. On IIS, web.config passes both as
@@ -17,6 +17,11 @@ export interface Paths {
 export function pathsFromEnv(env: NodeJS.ProcessEnv = process.env): Paths {
   const data = resolve(env.CROSSWORDLE_DATA ?? '.data');
   return { data, config: resolve(env.CROSSWORDLE_CONFIG ?? `${data}/config.json`) };
+}
+
+/** The database file, in the data folder. */
+export function databaseFile(paths: Paths): string {
+  return join(paths.data, 'crosswordle.db');
 }
 
 /**

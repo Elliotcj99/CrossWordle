@@ -1,6 +1,5 @@
-import { join } from 'node:path';
 import rudeWordList from './_rude-words.json';
-import { pathsFromEnv, readConfig } from './config';
+import { databaseFile, pathsFromEnv, readConfig } from './config';
 import { openDatabase } from './db';
 import { Nicknames } from './nicknames';
 import { Records } from './records';
@@ -14,7 +13,7 @@ import type { Services } from './routes';
 export function startServices(): Services & { close(): void } {
   const paths = pathsFromEnv();
   const config = readConfig(paths.config);
-  const db = openDatabase(join(paths.data, 'crosswordle.db'));
+  const db = openDatabase(databaseFile(paths));
   return {
     records: new Records(db),
     nicknames: new Nicknames(db),

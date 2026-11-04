@@ -78,27 +78,43 @@ export async function requestHint(
 }
 
 /**
- * Tells a server that keeps records about something the page did on its own: a restart, or
- * revealing an entry's second clue (the page already has those clues). Best effort: the game
- * carries on whatever happens, and hosts without records (Cloudflare Pages) aren't asked.
+ * Asks the server for an entry's second clue (the Crossword-clue hint). The page only knows that
+ * an entry has one, so revealing it always goes through the server, which records it. Returns
+ * `undefined` if the request fails, so the caller can tell the player to retry.
  */
-async function report(path: string, body: Record<string, string>): Promise<void> {
-  if (!(await features()).names.has('records')) return;
+export async function requestCrosswordClue(
+  puzzleId: string,
+  entryId: string,
+): Promise<string | undefined> {
   try {
-    await fetch(path, { method: 'POST', headers: headers(), body: JSON.stringify(body) });
+    const response = await fetch('api/clue', {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ puzzleId, entryId }),
+    });
+    if (!response.ok) return undefined;
+    const data = (await response.json()) as { clue?: unknown };
+    return typeof data.clue === 'string' ? data.clue : undefined;
   } catch {
-    // Offline: the server's record misses this one; the game itself is unaffected.
+    return undefined;
   }
 }
 
-/** The player restarted the puzzle: their next attempt can't be ranked. */
-export function reportRestart(puzzleId: string): Promise<void> {
-  return report('api/restart', { puzzleId });
-}
-
-/** The player revealed an entry's second (crossword) clue. */
-export function reportCrosswordClue(puzzleId: string, entryId: string): Promise<void> {
-  return report('api/clue', { puzzleId, entryId });
+/**
+ * The player restarted the puzzle: their next attempt can't be ranked. Best effort: the game
+ * carries on whatever happens, and hosts without records (Cloudflare Pages) aren't asked.
+ */
+export async function reportRestart(puzzleId: string): Promise<void> {
+  if (!(await features()).names.has('records')) return;
+  try {
+    await fetch('api/restart', {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ puzzleId }),
+    });
+  } catch {
+    // Offline: the server's record misses this one; the game itself is unaffected.
+  }
 }
 
 /** The server's record of a finished game, as it will appear on the leaderboard. */

@@ -5,6 +5,7 @@ import {
   publishPuzzle,
   PuzzleError,
   toPublicFile,
+  withSecondClues,
   type PuzzleFile,
 } from '@crosswordle/engine';
 
@@ -56,8 +57,8 @@ async function readPuzzle(path: string, words: ReadonlySet<string>): Promise<Loa
  * - `publicFolder` (served to the browser): the answer-free puzzle files, an `index.json` listing
  *   them, and the clues' licence notice as `NOTICE.md`. This folder is replaced wholesale.
  * - `answersFile` (bundled into the scoring Function, never served): every puzzle in full, with
- *   its answers, keyed by id. This is the only copy of the answers the site ships, and it stays
- *   on the server.
+ *   its answers and second clues (`secondClue`, looked up by answer), keyed by id. This is the
+ *   only copy of either that the site ships, and it stays on the server.
  */
 export async function publishFolder(
   files: readonly PuzzleFile[],
@@ -72,10 +73,11 @@ export async function publishFolder(
 
   const index: PuzzleIndexItem[] = [];
   const answers: Record<string, PuzzleFile> = {};
-  for (const file of files) {
+  for (const source of files) {
+    const file = secondClue === undefined ? source : withSecondClues(source, secondClue);
     await writeFile(
       join(publicFolder, `${file.id}.json`),
-      `${JSON.stringify(toPublicFile(file, secondClue))}\n`,
+      `${JSON.stringify(toPublicFile(file))}\n`,
     );
     index.push({ id: file.id, title: file.title });
     // The Function loads these directly, so keep the plain source (with its answers).

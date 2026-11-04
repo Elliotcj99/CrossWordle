@@ -1,7 +1,8 @@
 // Packages a release for the IIS host (deploy/iis/README.md) from an existing `npm run build`:
 //
 //   dist/iis/site     apps/web/dist without the Cloudflare _headers, plus the rendered web.config
-//   dist/iis/server   server.mjs: the scoring API with the answers bundles inlined
+//   dist/iis/server   server.mjs: the scoring API with the answers bundles inlined; admin.mjs:
+//                     the admin command (deploy/iis/Invoke-CrossWordleAdmin.ps1)
 //
 // Run it through `npm run build:iis`, which builds first. The server folder must stay outside the
 // site folder, so IIS can never serve the answers.
@@ -25,8 +26,9 @@ const headers = spawnSync(
 if (headers.status !== 0) process.exit(1);
 
 await build({
-  entryPoints: ['server/main.ts'],
-  outfile: `${out}/server/server.mjs`,
+  entryPoints: { server: 'server/main.ts', admin: 'server/admin.ts' },
+  outdir: `${out}/server`,
+  outExtension: { '.js': '.mjs' },
   bundle: true,
   platform: 'node',
   format: 'esm',

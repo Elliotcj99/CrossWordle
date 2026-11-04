@@ -94,6 +94,29 @@ export const MIGRATIONS: readonly Migration[] = [
       CREATE INDEX submissions_by_player ON submissions (kind, player_id, at);
       CREATE INDEX submissions_by_ip ON submissions (kind, ip, at);
     `),
+
+  // 3. The server sends the Crossword clue now, so a hint row keeps whichever was revealed (the
+  //    Wordle-clue letter or the clue). Results keep when the attempt started, and the review:
+  //    why a result was flagged (a JSON list) and when an admin decided on it.
+  (db) =>
+    db.exec(`
+      ALTER TABLE hints RENAME COLUMN letter TO detail;
+
+      ALTER TABLE results ADD COLUMN started_at TEXT;
+      ALTER TABLE results ADD COLUMN review_flags TEXT;
+      ALTER TABLE results ADD COLUMN reviewed_at TEXT;
+      UPDATE results SET started_at = (
+        SELECT min(at) FROM (
+          SELECT at FROM guesses g
+           WHERE g.player_id = results.player_id AND g.puzzle_id = results.puzzle_id
+             AND g.attempt = results.attempt
+          UNION ALL
+          SELECT at FROM hints h
+           WHERE h.player_id = results.player_id AND h.puzzle_id = results.puzzle_id
+             AND h.attempt = results.attempt
+        )
+      );
+    `),
 ];
 
 /** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */

@@ -1,4 +1,5 @@
 import type { HintLetter, ScoredLetter } from '@crosswordle/engine';
+import { onRequestPost as clue } from '../../functions/api/clue';
 import { onRequestPost as guess } from '../../functions/api/guess';
 import { onRequestPost as hint } from '../../functions/api/hint';
 import { clientPuzzleFor, json } from '../../functions/api/_shared';
@@ -7,7 +8,7 @@ import { playerIdFrom, type Records } from '../records';
 
 /**
  * The guess and hint endpoints, plus a record of each player's game (see `../records.ts`). Scoring
- * is the shared handler's, unchanged; afterwards, if the request carried a player id, what it
+ * and hints are the shared handlers', unchanged; afterwards, if the request carried a player id, what it
  * returned is recorded. A request without one (an older page) is scored but not recorded, and a
  * recording failure is logged without failing the guess: the player's game comes first.
  */
@@ -65,44 +66,37 @@ export function recordedHint(records: Records): Handler {
   return recorded(hint, 'a hint', (playerId, body, result) => {
     const puzzle = clientPuzzleFor(body.puzzleId as string);
     if (puzzle !== undefined) {
-      records.recordHint(playerId, puzzle, body.entryId as string, 'wordle', result as HintLetter);
+      records.recordHint(playerId, puzzle, body.entryId as string, {
+        kind: 'wordle',
+        letter: result as HintLetter,
+      });
     }
   });
 }
 
-/** Finds the player and puzzle (and entry, if `needsEntry`) a report is about, or the error. */
-async function reportOf(request: Request, needsEntry: boolean) {
-  const playerId = playerIdFrom(request);
-  const body = await bodyOf(request);
-  if (playerId === undefined || body === undefined || typeof body.puzzleId !== 'string') {
-    return { error: json({ error: 'bad-request' }, 400) } as const;
-  }
-  const puzzle = clientPuzzleFor(body.puzzleId);
-  if (puzzle === undefined) return { error: json({ error: 'unknown-puzzle' }, 404) } as const;
-  const entryId = typeof body.entryId === 'string' ? body.entryId : undefined;
-  if (needsEntry && !puzzle.entries.some((e) => e.id === entryId)) {
-    return { error: json({ error: 'unknown-entry' }, 404) } as const;
-  }
-  return { playerId, puzzle, entryId: entryId ?? '' } as const;
+export function recordedClue(records: Records): Handler {
+  return recorded(clue, 'a Crossword clue', (playerId, body, result) => {
+    const puzzle = clientPuzzleFor(body.puzzleId as string);
+    if (puzzle !== undefined) {
+      records.recordHint(playerId, puzzle, body.entryId as string, {
+        kind: 'crossword',
+        clue: (result as { clue: string }).clue,
+      });
+    }
+  });
 }
 
 /** The player pressed Restart: their next guesses are a new, unranked attempt. */
 export function restart(records: Records): Handler {
   return async ({ request }) => {
-    const report = await reportOf(request, false);
-    if ('error' in report) return report.error;
-    records.recordRestart(report.playerId, report.puzzle);
-    return new Response(null, { status: 204 });
-  };
-}
-
-/** The player revealed an entry's second (crossword) clue. The page has those clues already, so
- *  the server only hears about it from this report. */
-export function crosswordClue(records: Records): Handler {
-  return async ({ request }) => {
-    const report = await reportOf(request, true);
-    if ('error' in report) return report.error;
-    records.recordHint(report.playerId, report.puzzle, report.entryId, 'crossword');
+    const playerId = playerIdFrom(request);
+    const body = await bodyOf(request);
+    if (playerId === undefined || body === undefined || typeof body.puzzleId !== 'string') {
+      return json({ error: 'bad-request' }, 400);
+    }
+    const puzzle = clientPuzzleFor(body.puzzleId);
+    if (puzzle === undefined) return json({ error: 'unknown-puzzle' }, 404);
+    records.recordRestart(playerId, puzzle);
     return new Response(null, { status: 204 });
   };
 }
