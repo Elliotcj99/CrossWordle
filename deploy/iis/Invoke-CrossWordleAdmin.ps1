@@ -12,6 +12,7 @@
         review [--all]              Ranked results flagged for a look, awaiting a decision.
         keep <puzzle-id> <player>   Looked at and fine: stays on the leaderboard.
         hide <puzzle-id> <player>   Off the leaderboard; kept in the player's own record.
+        errors [--hours <n>]        The API's errors in the last n hours (default 24).
 
     Nothing comes off the leaderboard unless you hide it.
 
@@ -40,6 +41,7 @@ $node = Join-Path $env:ProgramFiles 'nodejs\node.exe'
 
 $env:CROSSWORDLE_DATA = Join-Path $Root 'data'
 $env:CROSSWORDLE_CONFIG = Join-Path $Root 'config.json'
+$env:CROSSWORDLE_LOGS = Join-Path $Root 'logs'
 # node:sqlite still reports itself as experimental on Node 22; on stderr that reads as an error.
 & $node --disable-warning=ExperimentalWarning $admin @Arguments
 if ($LASTEXITCODE -ne 0) { throw "The admin command failed (exit $LASTEXITCODE)." }

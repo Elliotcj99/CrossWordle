@@ -2,21 +2,28 @@ import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 
 /**
- * Where the server keeps its data and reads its settings. On IIS, web.config passes both as
- * environment variables, relative to the site folder (Node's working directory): the data folder
- * and config file sit in the site's root, beside the releases, so deploys never replace them.
- * Run by hand or by `npm run preview`, both default to a `.data` folder in the working directory.
+ * Where the server keeps its data and logs and reads its settings. On IIS, web.config passes them
+ * as environment variables, relative to the site folder (Node's working directory): the data and
+ * logs folders and the config file sit in the site's root, beside the releases, so deploys never
+ * replace them. Run by hand or by `npm run preview`, all default to a `.data` folder in the
+ * working directory.
  */
 export interface Paths {
   /** Folder for the database. The app pool can write here, and nowhere else. */
   readonly data: string;
   /** The site's settings file. Optional: a missing file means no settings. */
   readonly config: string;
+  /** Folder for the error log (see log.ts). The app pool can write here too. */
+  readonly logs: string;
 }
 
 export function pathsFromEnv(env: NodeJS.ProcessEnv = process.env): Paths {
   const data = resolve(env.CROSSWORDLE_DATA ?? '.data');
-  return { data, config: resolve(env.CROSSWORDLE_CONFIG ?? `${data}/config.json`) };
+  return {
+    data,
+    config: resolve(env.CROSSWORDLE_CONFIG ?? `${data}/config.json`),
+    logs: resolve(env.CROSSWORDLE_LOGS ?? `${data}/logs`),
+  };
 }
 
 /** The database file, in the data folder. */

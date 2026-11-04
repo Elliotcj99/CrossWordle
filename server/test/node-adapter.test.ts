@@ -26,14 +26,25 @@ const status: Handler = ({ request }) =>
 
 let server: Server;
 let base: string;
+const logged: { where: string; message: string; request?: string }[] = [];
 
 beforeAll(async () => {
   server = createServer(
-    createRequestListener({
-      '/api/echo': { POST: echo },
-      '/api/fail': { POST: failing },
-      '/api/status': { GET: status },
-    }),
+    createRequestListener(
+      {
+        '/api/echo': { POST: echo },
+        '/api/fail': { POST: failing },
+        '/api/status': { GET: status },
+      },
+      {
+        error: (where, error, context) =>
+          logged.push({
+            where,
+            message: (error as Error).message,
+            request: `${context?.request?.method} ${context?.request?.url}`,
+          }),
+      },
+    ),
   );
   await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve));
   base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
@@ -108,5 +119,6 @@ describe('createRequestListener', () => {
     const response = await post('/api/fail', '{}');
     expect(response.status).toBe(500);
     expect(await response.json()).toEqual({ error: 'server-error' });
+    expect(logged).toEqual([{ where: 'request', message: 'boom', request: 'POST /api/fail' }]);
   });
 });

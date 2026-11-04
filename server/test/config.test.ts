@@ -12,6 +12,7 @@ describe('pathsFromEnv', () => {
     expect(pathsFromEnv({})).toEqual({
       data: resolve('.data'),
       config: resolve('.data/config.json'),
+      logs: resolve('.data/logs'),
     });
   });
 
@@ -19,9 +20,11 @@ describe('pathsFromEnv', () => {
     const paths = pathsFromEnv({
       CROSSWORDLE_DATA: '..\\..\\..\\data',
       CROSSWORDLE_CONFIG: '..\\..\\..\\config.json',
+      CROSSWORDLE_LOGS: '..\\..\\..\\logs',
     });
     expect(paths.data).toBe(resolve('..\\..\\..\\data'));
     expect(paths.config).toBe(resolve('..\\..\\..\\config.json'));
+    expect(paths.logs).toBe(resolve('..\\..\\..\\logs'));
   });
 });
 

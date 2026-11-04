@@ -1,4 +1,6 @@
 import { createServer } from 'node:http';
+import { pathsFromEnv } from './config';
+import { ErrorLog } from './log';
 import { createRequestListener } from './node-adapter';
 import { apiRoutes } from './routes';
 import { startServices } from './services';
@@ -12,9 +14,17 @@ import { startServices } from './services';
  * broken config or an unwritable data folder stops it at start-up rather than on a player's guess.
  */
 const port = Number(process.env.HTTP_PLATFORM_PORT ?? process.env.PORT ?? 8787);
-const services = startServices();
+const log = new ErrorLog(pathsFromEnv().logs);
+let services: ReturnType<typeof startServices>;
+try {
+  services = startServices(log);
+} catch (error) {
+  // Nothing else would show why: IIS doesn't keep Node's output.
+  log.error('start-up', error);
+  process.exit(1);
+}
 
-const server = createServer(createRequestListener(apiRoutes(services))).listen(
+const server = createServer(createRequestListener(apiRoutes(services), log)).listen(
   port,
   '127.0.0.1',
   () => console.log(`CrossWordle API listening on http://127.0.0.1:${port}`),

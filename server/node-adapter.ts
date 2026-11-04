@@ -1,3 +1,4 @@
+import type { ErrorContext } from './log';
 import type {
   IncomingHttpHeaders,
   IncomingMessage,
@@ -97,10 +98,15 @@ async function handle(routes: Routes, req: IncomingMessage, res: ServerResponse)
   res.end(head ? undefined : Buffer.from(await response.arrayBuffer()));
 }
 
-export function createRequestListener(routes: Routes): RequestListener {
+/** A request that threw is logged here (see log.ts) and answered with a 500. */
+export interface ErrorSink {
+  error(where: string, error: unknown, context?: ErrorContext): void;
+}
+
+export function createRequestListener(routes: Routes, log: ErrorSink): RequestListener {
   return (req, res) => {
     handle(routes, req, res).catch((error: unknown) => {
-      console.error(error);
+      log.error('request', error, { request: req });
       if (res.headersSent) res.destroy();
       else json(res, 500, { error: 'server-error' });
     });

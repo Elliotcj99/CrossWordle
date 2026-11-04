@@ -1,6 +1,8 @@
 import { readFile, stat } from 'node:fs/promises';
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http';
 import { extname, join, resolve, sep } from 'node:path';
+import { pathsFromEnv } from './config';
+import { ErrorLog } from './log';
 import { createRequestListener } from './node-adapter';
 import { apiRoutes } from './routes';
 import { startServices } from './services';
@@ -90,13 +92,21 @@ async function serveStatic(req: IncomingMessage, res: ServerResponse): Promise<v
   res.end(req.method === 'HEAD' ? undefined : body);
 }
 
-const services = startServices();
-const api = createRequestListener(apiRoutes(services));
+const log = new ErrorLog(pathsFromEnv().logs);
+let services: ReturnType<typeof startServices>;
+try {
+  services = startServices(log);
+} catch (error) {
+  // Nothing else would show why: IIS doesn't keep Node's output.
+  log.error('start-up', error);
+  process.exit(1);
+}
+const api = createRequestListener(apiRoutes(services), log);
 
 const server = createServer((req, res) => {
   if ((req.url ?? '').startsWith('/api/')) return api(req, res);
   serveStatic(req, res).catch((error: unknown) => {
-    console.error(error);
+    log.error('static file', error, { request: req });
     if (!res.headersSent) plain(res, 500, 'Server error');
   });
 }).listen(port, '127.0.0.1', () => console.log(`CrossWordle preview on http://127.0.0.1:${port}/`));

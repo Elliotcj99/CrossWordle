@@ -93,6 +93,10 @@
           <b>Your internet address</b>, with the time, when you submit a nickname, make a recovery
           code or use one. Only to stop abuse (limits on how often), and deleted after 30 days.
         </li>
+        <li>
+          <b>Error reports:</b> when something goes wrong on our side, what failed and, if it was your
+          request, your player id. Deleted after 14 days.
+        </li>
       </ul>
 
       <h3>Cloudflare</h3>

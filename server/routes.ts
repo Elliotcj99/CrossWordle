@@ -8,6 +8,7 @@ import { makeRecoveryCode, recoveryStatus, restore } from './api/recovery';
 import { recordedClue, recordedGuess, recordedHint, restart } from './api/records';
 import type { Config } from './config';
 import type { Leaderboard } from './leaderboard';
+import type { ErrorLog } from './log';
 import type { Nicknames } from './nicknames';
 import type { Routes } from './node-adapter';
 import type { RateLimits } from './rate-limits';
@@ -16,6 +17,7 @@ import type { Recovery } from './recovery';
 
 /** What the routes need from the server. */
 export interface Services {
+  readonly log: ErrorLog;
   readonly records: Records;
   readonly leaderboard: Leaderboard;
   readonly nicknames: Nicknames;
@@ -34,13 +36,13 @@ export interface Services {
 export function apiRoutes(services: Services): Routes {
   const { records, config } = services;
   return {
-    '/api/guess': { POST: recordedGuess(records) },
-    '/api/hint': { POST: recordedHint(records) },
+    '/api/guess': { POST: recordedGuess(records, services.log) },
+    '/api/hint': { POST: recordedHint(records, services.log) },
     '/api/restart': { POST: restart(records) },
     '/api/game': { GET: game(records) },
     '/api/record': { GET: record(records) },
     '/api/leaderboard': { GET: leaderboard(services.leaderboard) },
-    '/api/clue': { POST: recordedClue(records) },
+    '/api/clue': { POST: recordedClue(records, services.log) },
     '/api/nickname': { POST: nickname(services) },
     '/api/recovery-code': { GET: recoveryStatus(services), POST: makeRecoveryCode(services) },
     '/api/restore': { POST: restore(services) },
