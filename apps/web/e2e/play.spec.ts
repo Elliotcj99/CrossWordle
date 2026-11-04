@@ -349,6 +349,41 @@ test('brings a record back with a recovery code after the browser forgets it', a
   expect(await playerId()).toBe(original);
 });
 
+test('asks the browser to save a new recovery code', async ({ page }) => {
+  // Note what the page asks Chrome's password manager to store, then let Chrome have it. A test
+  // can't see Chrome's own "Save password?" prompt, so this checks what the page hands it.
+  await page.evaluate(() => {
+    const original = navigator.credentials.store.bind(navigator.credentials);
+    navigator.credentials.store = (credential: Credential) => {
+      const saved = credential as Credential & { password?: string };
+      (window as { savedCredential?: unknown }).savedCredential = {
+        type: credential.type,
+        id: credential.id,
+        password: saved.password,
+      };
+      return original(credential);
+    };
+  });
+  const record = page.locator('details', {
+    has: page.locator('summary', { hasText: /^Your record$/ }),
+  });
+  await record.locator('summary').click();
+  await record.getByRole('button', { name: 'Make a recovery code' }).click();
+  const shown = record.getByLabel('Your recovery code');
+  await expect(shown).toHaveText(/^[0-9A-Z]{5}(-[0-9A-Z]{5}){3}$/);
+  const code = (await shown.textContent())!;
+  await record.getByRole('button', { name: 'Save in my password manager' }).click();
+
+  await expect(record.getByText('Your browser has been asked to save it')).toBeVisible();
+  expect(
+    await page.evaluate(() => (window as { savedCredential?: unknown }).savedCredential),
+  ).toEqual({
+    type: 'password',
+    id: 'CrossWordle recovery code',
+    password: code,
+  });
+});
+
 test('shows the contact address only when asked, and what the site stores', async ({ page }) => {
   // The footer is inside <main>, so it isn't a contentinfo landmark.
   const footer = page.locator('footer');

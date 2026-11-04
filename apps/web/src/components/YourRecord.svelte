@@ -16,6 +16,13 @@
   // A fixed account name, so a password manager files the code under this site.
   const ACCOUNT = 'CrossWordle recovery code';
 
+  /** `PasswordCredential` (Chrome and Edge only), which TypeScript's DOM types leave out. */
+  type PasswordCredentialType = new (data: {
+    id: string;
+    password: string;
+    name?: string;
+  }) => Credential;
+
   let hasRecovery = $state(false);
   let hasForget = $state(false);
   let siteKey = $state<string | undefined>();
@@ -26,6 +33,7 @@
   let code = $state<string | undefined>();
   let making = $state(false);
   let offeredSave = $state(false);
+  let askedToSave = $state(false);
   let copied = $state(false);
   let makeMessage = $state('');
 
@@ -69,6 +77,7 @@
     code = outcome.code;
     hasCode = true;
     offeredSave = false;
+    askedToSave = false;
     copied = false;
   }
 
@@ -82,9 +91,27 @@
     }
   }
 
-  /** Submitting the form is what prompts a password manager to save the code; nothing is sent. */
-  function offerSave(event: SubmitEvent) {
+  /**
+   * Asks the browser to save the code. Chrome and Edge take it straight from the page (the
+   * Credential Management API), and show their own "Save password?" prompt. They don't offer to
+   * save from the form alone, as its fields are filled in by the page rather than typed. Browsers
+   * without the API (Firefox, Safari) get the form's submission, which a password manager may
+   * pick up. Nothing is sent to the server either way.
+   */
+  async function offerSave(event: SubmitEvent) {
     event.preventDefault();
+    if (code === undefined) return;
+    const Password = (window as { PasswordCredential?: PasswordCredentialType }).PasswordCredential;
+    if (Password !== undefined && navigator.credentials?.store !== undefined) {
+      try {
+        await navigator.credentials.store(
+          new Password({ id: ACCOUNT, password: code, name: ACCOUNT }),
+        );
+        askedToSave = true;
+      } catch {
+        // Fall back to what the form's submission offers.
+      }
+    }
     offeredSave = true;
   }
 
@@ -189,8 +216,14 @@
               </form>
             {:else}
               <p class="status" role="status">
-                If your browser offered to save it, choose Save. Copying it somewhere safe works
-                too.
+                {#if askedToSave}
+                  Your browser has been asked to save it: choose Save when it offers. If it doesn't
+                  offer, saving passwords may be turned off, so use Copy and keep the code somewhere
+                  safe.
+                {:else}
+                  If your browser offered to save it, choose Save. If it didn't, use Copy and keep
+                  the code somewhere safe.
+                {/if}
               </p>
             {/if}
           {:else}
