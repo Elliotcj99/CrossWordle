@@ -197,6 +197,31 @@ Invoke-Command -Session $session -FilePath $admin -ArgumentList ($site + ,@('kee
 The player is the id the list shows (its first 8 characters are enough). The script runs the live
 release's `serverdmin.mjs` on the site's database, so the command always matches the schema.
 
+## Health and usage
+
+- **`GET /api/health`** is for an uptime monitor. It's public on purpose and linked from nowhere,
+  and answers in one word: `{"status":"ok"}` (200), `{"status":"ok","warning":"puzzles"}` (200,
+  under 7 days of puzzles left) or `{"status":"down"}` (503: the database, the data folder or
+  today's puzzles failed). Nothing else: no versions, paths or errors. The answer is kept for 30
+  seconds, and sent `no-store`.
+- **The monitor** must run somewhere other than this server, or it can't report the server being
+  down. A free service (UptimeRobot or similar) works:
+  1. Create a monitor of type **Keyword**, URL `https://crosswordle.example.com/api/health`,
+     every 5 minutes, alerting when the keyword `"ok"` is **missing**. That catches 503s, timeouts
+     and Cloudflare's own error pages.
+  2. Create a second **Keyword** monitor on the same URL alerting when `puzzles` **exists**, as a
+     reminder to generate more puzzles.
+  3. Alert contact: the admin mailbox.
+- **On the server,** with the admin wrapper (`Invoke-CrossWordleAdmin.ps1`):
+  - `@('health')`: every check with its result and time, the last puzzle date and days left
+    (daily and Naughty), the live release, database size, free disk, the last backup and the
+    errors in the last 24 hours.
+  - `@('stats')` or `@('stats', '--from', '2026-11-01', '--to', '2026-11-30')`: per puzzle
+    (started, finished, won, lost, ranked, restarted, guesses, both kinds of clue) and per UTC
+    day (page loads, new players, active players), plus player ids ever and those that never
+    made a guess. Page loads are counted when the page asks `/api/features`, once per load, with
+    nothing about who.
+
 ## Testing
 
 - **On your machine:** run `npm run build:iis`, then `$env:PORT = 8787; node dist\iis\server\server.mjs`,

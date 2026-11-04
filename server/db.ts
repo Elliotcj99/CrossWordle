@@ -126,6 +126,15 @@ export const MIGRATIONS: readonly Migration[] = [
       CREATE UNIQUE INDEX players_by_recovery ON players (recovery_hash)
         WHERE recovery_hash IS NOT NULL;
     `),
+
+  // 5. Page loads per day (UTC), for the usage stats: a count, nothing about who.
+  (db) =>
+    db.exec(`
+      CREATE TABLE visits (
+        day         TEXT PRIMARY KEY,           -- YYYY-MM-DD, UTC
+        count       INTEGER NOT NULL
+      ) STRICT;
+    `),
 ];
 
 /** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */

@@ -13,6 +13,10 @@
         keep <puzzle-id> <player>   Looked at and fine: stays on the leaderboard.
         hide <puzzle-id> <player>   Off the leaderboard; kept in the player's own record.
         errors [--hours <n>]        The API's errors in the last n hours (default 24).
+        health                      Every health check in detail, puzzles left, database and
+                                    disk, the last backup and recent errors (exit 2 if down).
+        stats [--from <date>] [--to <date>]
+                                    Usage per puzzle and per day (default: the last 7 days).
 
     Nothing comes off the leaderboard unless you hide it.
 

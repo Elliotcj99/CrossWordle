@@ -47,6 +47,11 @@ export function clientPuzzleFor(id: string): ClientPuzzle | undefined {
   return puzzle;
 }
 
+/** Every puzzle id the server can score, daily and Naughty. */
+export function puzzleIds(): string[] {
+  return Object.keys(files);
+}
+
 export function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
