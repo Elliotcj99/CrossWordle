@@ -299,24 +299,66 @@ export interface RecordedFinish extends RecordedResult {
   readonly finishedAt: string;
 }
 
+/** A finished puzzle copied from a browser's history, from before the server kept records. */
+export interface ImportedFinish {
+  readonly puzzleId: string;
+  readonly won: boolean;
+  readonly guesses: number;
+}
+
+/** The server's record of this player's finished puzzles. */
+export interface FinishedRecord {
+  readonly results: readonly RecordedFinish[];
+  /** History from before the server kept records: won and guesses only, never ranked. */
+  readonly imported: readonly ImportedFinish[];
+}
+
+function finishes<T extends ImportedFinish>(list: unknown): T[] {
+  return Array.isArray(list)
+    ? list.filter(
+        (r): r is T =>
+          typeof r === 'object' &&
+          r !== null &&
+          typeof (r as T).puzzleId === 'string' &&
+          typeof (r as T).won === 'boolean' &&
+          typeof (r as T).guesses === 'number',
+      )
+    : [];
+}
+
 /** Every puzzle this player has finished, as the server has it; empty if it can't be fetched. */
-export async function fetchRecord(): Promise<readonly RecordedFinish[]> {
+export async function fetchRecord(): Promise<FinishedRecord> {
   try {
     const response = await apiFetch('api/record', { headers: headers() });
-    if (!response.ok) return [];
-    const data = (await response.json()) as { results?: unknown };
-    return Array.isArray(data.results)
-      ? data.results.filter(
-          (r): r is RecordedFinish =>
-            typeof r === 'object' &&
-            r !== null &&
-            typeof (r as RecordedFinish).puzzleId === 'string' &&
-            typeof (r as RecordedFinish).won === 'boolean' &&
-            typeof (r as RecordedFinish).guesses === 'number',
-        )
-      : [];
+    if (!response.ok) return { results: [], imported: [] };
+    const data = (await response.json()) as { results?: unknown; imported?: unknown };
+    return {
+      results: finishes<RecordedFinish>(data.results),
+      imported: finishes<ImportedFinish>(data.imported),
+    };
   } catch {
-    return [];
+    return { results: [], imported: [] };
+  }
+}
+
+/**
+ * TEMPORARY, a one-off: remove by Friday 6 November 2026, with the server's endpoint.
+ *
+ * Sends the puzzles this browser finished to the server, to keep as the player's history from
+ * before it kept records. True once the server has them (the page then never sends them again).
+ */
+export async function importHistory(
+  results: Readonly<Record<string, { won: boolean; guesses: number }>>,
+): Promise<boolean> {
+  try {
+    const response = await apiFetch('api/import-history', {
+      method: 'POST',
+      headers: headers(),
+      body: JSON.stringify({ results }),
+    });
+    return response.ok;
+  } catch {
+    return false;
   }
 }
 

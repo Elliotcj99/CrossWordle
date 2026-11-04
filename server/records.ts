@@ -175,6 +175,58 @@ export class Records {
   }
 
   /**
+   * Copies a browser's finished puzzles from before the server kept records into the player's
+   * history (see migration 9 in `db.ts`). Only what the browser kept: won, and guesses. Never
+   * ranked. A puzzle the server has its own result for, or already has history for, is skipped,
+   * as is one whose numbers can't be a real game: a win needs at least a guess per entry. Returns
+   * how many were copied.
+   */
+  importHistory(
+    playerId: string,
+    finished: readonly { puzzle: ClientPuzzle; won: boolean; guesses: number }[],
+  ): number {
+    return this.transaction(() => {
+      const at = this.stamp();
+      registerPlayer(this.db, playerId, at);
+      const insert = this.db.prepare(
+        `INSERT OR IGNORE INTO imported_results (player_id, puzzle_id, won, guesses, imported_at)
+         SELECT ?, ?, ?, ?, ?
+          WHERE NOT EXISTS (SELECT 1 FROM results WHERE player_id = ? AND puzzle_id = ?)`,
+      );
+      let copied = 0;
+      for (const { puzzle, won, guesses } of finished) {
+        if (!Number.isInteger(guesses) || guesses < 0) continue;
+        if (won && guesses < puzzle.entries.length) continue;
+        const { changes } = insert.run(
+          playerId,
+          puzzle.id,
+          won ? 1 : 0,
+          guesses,
+          at,
+          playerId,
+          puzzle.id,
+        );
+        copied += Number(changes);
+      }
+      return copied;
+    });
+  }
+
+  /** The player's imported history (see `importHistory`), by puzzle id. */
+  importedHistory(playerId: string): { puzzleId: string; won: boolean; guesses: number }[] {
+    const rows = this.db
+      .prepare(
+        'SELECT puzzle_id, won, guesses FROM imported_results WHERE player_id = ? ORDER BY puzzle_id',
+      )
+      .all(playerId) as { puzzle_id: string; won: number; guesses: number }[];
+    return rows.map((row) => ({
+      puzzleId: row.puzzle_id,
+      won: row.won === 1,
+      guesses: row.guesses,
+    }));
+  }
+
+  /**
    * The player's current attempt at a puzzle, as the server has it, or `undefined` if they
    * haven't played it. Read-only: unlike recording, it never registers the player or the play.
    */
@@ -336,11 +388,12 @@ export class Records {
     return this.now().toISOString();
   }
 
-  private transaction(work: () => void): void {
+  private transaction<T>(work: () => T): T {
     this.db.exec('BEGIN IMMEDIATE');
     try {
-      work();
+      const outcome = work();
       this.db.exec('COMMIT');
+      return outcome;
     } catch (error) {
       this.db.exec('ROLLBACK');
       throw error;

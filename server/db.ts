@@ -175,6 +175,22 @@ export const MIGRATIONS: readonly Migration[] = [
         at          TEXT NOT NULL
       ) STRICT;
     `),
+
+  // 9. History from before the server kept records (4 November 2026): each puzzle a browser had
+  //    finished, copied once from that browser. Only won and guesses were ever kept there. Shown
+  //    in the player's stats, never on a leaderboard. A puzzle the server has its own result for
+  //    is never imported.
+  (db) =>
+    db.exec(`
+      CREATE TABLE imported_results (
+        player_id   TEXT NOT NULL REFERENCES players (id),
+        puzzle_id   TEXT NOT NULL,
+        won         INTEGER NOT NULL,
+        guesses     INTEGER NOT NULL,
+        imported_at TEXT NOT NULL,
+        PRIMARY KEY (player_id, puzzle_id)
+      ) STRICT;
+    `),
 ];
 
 /**

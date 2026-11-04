@@ -49,6 +49,7 @@
   import {
     fetchGame,
     fetchRecord,
+    importHistory,
     reportRestart,
     requestCrosswordClue,
     requestHint,
@@ -58,7 +59,13 @@
   import { localDate } from './lib/dates';
   import { features } from './lib/features';
   import { guessErrorText } from './lib/messages';
-  import { loadResults, mergeResults, recordResult } from './lib/results';
+  import {
+    historySent,
+    loadResults,
+    markHistorySent,
+    mergeResults,
+    recordResult,
+  } from './lib/results';
   import {
     clearCluesToFetch,
     clearRestartPending,
@@ -139,9 +146,24 @@
     // A restart the server never heard about (offline) is sent first. Until it's through, the
     // server's copy is the game before the restart, which mustn't come back.
     const restartSent = await sendPendingRestart();
+    // TEMPORARY, a one-off: remove by Friday 6 November 2026. The puzzles this browser finished
+    // before the server kept records go to the server once, as the player's history.
+    if (host.names.has('import-history') && !historySent()) {
+      const finished = loadResults();
+      if (Object.keys(finished).length === 0 || (await importHistory(finished))) {
+        markHistorySent();
+      }
+    }
     const [remote, record] = await Promise.all([fetchGame(puzzle.id), fetchRecord()]);
+    // The server's own results win over imported history for the same puzzle (it never has
+    // both, but the order says which counts).
     results = mergeResults(
-      Object.fromEntries(record.map((r) => [r.puzzleId, { won: r.won, guesses: r.guesses }])),
+      Object.fromEntries(
+        [...record.imported, ...record.results].map((r) => [
+          r.puzzleId,
+          { won: r.won, guesses: r.guesses },
+        ]),
+      ),
     );
     const server = remote === undefined ? undefined : readSavedGame(remote, puzzle)?.game;
     // Only if the player hasn't done anything yet (typed, guessed, asked for a clue, restarted),

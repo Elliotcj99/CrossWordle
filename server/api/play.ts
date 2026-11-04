@@ -6,7 +6,9 @@ import { playerIdFrom, type Records } from '../records';
  * The player's own side of the server's record, for their browser (any browser that has their
  * player id, such as one restored with a recovery code):
  *
- * - `GET /api/record`: every puzzle they've finished, for their stats.
+ * - `GET /api/record`: every puzzle they've finished, for their stats: the server's own results,
+ *   and `imported`, the history copied from their browser from before the server kept records
+ *   (won and guesses only).
  * - `GET /api/game?puzzle=<id>`: their current attempt at a puzzle, so a game started on one
  *   device carries on on another. 404 if they haven't played it.
  */
@@ -25,7 +27,7 @@ export function record(records: Records): Handler {
       unrankedReason: r.unrankedReason,
       finishedAt: r.finishedAt,
     }));
-    return Promise.resolve(json({ results }));
+    return Promise.resolve(json({ results, imported: records.importedHistory(playerId) }));
   };
 }
 
