@@ -1,4 +1,6 @@
 import { features } from './api/features';
+import { contact } from './api/contact';
+import { forget } from './api/forget';
 import { leaderboard } from './api/leaderboard';
 import { nickname } from './api/nickname';
 import { game, record } from './api/play';
@@ -43,5 +45,7 @@ export function apiRoutes(services: Services): Routes {
     '/api/recovery-code': { GET: recoveryStatus(services), POST: makeRecoveryCode(services) },
     '/api/restore': { POST: restore(services) },
     '/api/features': { GET: features(config) },
+    '/api/contact': { GET: contact(config) },
+    '/api/forget': { POST: forget(records) },
   };
 }

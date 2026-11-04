@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
-  import { makeRecoveryCode, recoveryCodeStatus, restoreRecord } from '../lib/api';
+  import { forgetMe, makeRecoveryCode, recoveryCodeStatus, restoreRecord } from '../lib/api';
   import { features } from '../lib/features';
-  import { playerId, switchPlayer } from '../lib/player';
+  import { forgetPlayer, playerId, switchPlayer } from '../lib/player';
   import { renderTurnstile, type Widget } from '../lib/turnstile';
 
   /**
@@ -32,6 +32,10 @@
   let token = $state<string | undefined>();
   let restoring = $state(false);
   let restoreMessage = $state('');
+
+  let confirmingDelete = $state(false);
+  let deleting = $state(false);
+  let deleteMessage = $state('');
   let checkEl = $state<HTMLElement>();
   let widget: Widget | undefined;
 
@@ -122,6 +126,22 @@
       // Storage worked a moment ago; the nickname field just won't be filled in.
     }
     restoreMessage = 'Record restored. Reloading…';
+    location.reload();
+  }
+
+  /** Deletes the player's record from the server, then from this browser, and starts afresh. */
+  async function deleteRecord() {
+    if (deleting) return;
+    deleting = true;
+    deleteMessage = '';
+    const done = await forgetMe();
+    deleting = false;
+    if (!done) {
+      deleteMessage = "Your record wasn't deleted. Check your connection and try again.";
+      return;
+    }
+    forgetPlayer();
+    deleteMessage = 'Your record is deleted. Reloading…';
     location.reload();
   }
 </script>
@@ -231,6 +251,29 @@
           <p class="status" role="status" aria-live="polite">{restoreMessage}</p>
         </form>
       </section>
+
+      <section aria-labelledby="delete-title">
+        <h2 id="delete-title">Delete your record</h2>
+        <p>
+          Deletes your games, results, nickname and recovery code from our server and this browser.
+          Your places on the leaderboards go too. It can't be undone.
+        </p>
+        <div class="row">
+          {#if confirmingDelete}
+            <button type="button" class="danger" onclick={deleteRecord} disabled={deleting}>
+              {deleting ? 'Deleting…' : 'Yes, delete everything'}
+            </button>
+            <button type="button" class="secondary" onclick={() => (confirmingDelete = false)}
+              >Keep it</button
+            >
+          {:else}
+            <button type="button" class="secondary" onclick={() => (confirmingDelete = true)}
+              >Delete my record</button
+            >
+          {/if}
+        </div>
+        <p class="status" role="status" aria-live="polite">{deleteMessage}</p>
+      </section>
     </div>
   </details>
 {/if}
@@ -327,6 +370,17 @@
     color: var(--paper);
     font-weight: 700;
     cursor: pointer;
+  }
+
+  button.secondary {
+    border: 2px solid var(--ink);
+    background: none;
+    color: var(--ink);
+  }
+
+  button.danger {
+    background: #b3261e;
+    color: #ffffff;
   }
 
   button:disabled {

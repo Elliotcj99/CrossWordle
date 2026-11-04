@@ -15,7 +15,8 @@ export const FEATURES: readonly string[] = [
   'leaderboard',
   // Players can name themselves after finishing a puzzle.
   'nicknames',
-  // Players can make a recovery code, to get their record back in another browser.
+  // Players can make a recovery code, to get their record back in another browser, and delete
+  // their record.
   'recovery',
 ];
 
@@ -24,8 +25,10 @@ export const FEATURES: readonly string[] = [
  * the bot check on its forms. (The secret key never leaves the server.)
  */
 export function features(config: Config): Handler {
+  // The contact link only where the site has an address to show.
+  const names = config.contactEmail === undefined ? FEATURES : [...FEATURES, 'contact'];
   const body = JSON.stringify({
-    features: FEATURES,
+    features: names,
     ...(config.turnstile === undefined ? {} : { turnstileSiteKey: config.turnstile.siteKey }),
   });
   return () =>

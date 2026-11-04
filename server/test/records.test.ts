@@ -178,6 +178,29 @@ describe('Records', () => {
     ]);
   });
 
+  it('forgets a player completely, leaving others alone', () => {
+    const bob = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
+    records.recordHint(ALICE, puzzle, '1D', { kind: 'crossword', clue: 'Fish' });
+    guess('1A', 'COT');
+    records.recordRestart(ALICE, puzzle);
+    SOLUTION.forEach(([id, word]) => guess(id, word));
+    SOLUTION.forEach(([id, word]) => guess(id, word, bob));
+    db.prepare(
+      "INSERT INTO submissions (kind, player_id, ip, at) VALUES ('nickname', ?, '192.0.2.1', 'now')",
+    ).run(ALICE);
+
+    records.forget(ALICE);
+
+    const tables = ['players', 'plays', 'restarts', 'guesses', 'hints', 'results', 'submissions'];
+    for (const table of tables) {
+      const column = table === 'players' ? 'id' : 'player_id';
+      expect(
+        db.prepare(`SELECT count(*) AS n FROM ${table} WHERE ${column} = ?`).get(ALICE),
+      ).toEqual({ n: 0 });
+    }
+    expect(records.result(bob, 'ring')).toMatchObject({ won: true });
+  });
+
   it('keeps players apart', () => {
     const bob = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
     SOLUTION.forEach(([id, word]) => guess(id, word));

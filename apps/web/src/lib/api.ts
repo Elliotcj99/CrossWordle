@@ -303,3 +303,25 @@ export async function fetchGame(puzzleId: string): Promise<unknown> {
     return undefined;
   }
 }
+
+/** The site's contact address, or `undefined` if it has none or it can't be fetched. */
+export async function fetchContact(): Promise<string | undefined> {
+  try {
+    const response = await fetch('api/contact');
+    if (!response.ok) return undefined;
+    const data = (await response.json()) as { email?: unknown };
+    return typeof data.email === 'string' ? data.email : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Asks the server to delete everything it keeps about this player. True once it has. */
+export async function forgetMe(): Promise<boolean> {
+  try {
+    const response = await fetch('api/forget', { method: 'POST', headers: headers(), body: '{}' });
+    return response.ok;
+  } catch {
+    return false;
+  }
+}
