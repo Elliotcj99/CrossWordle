@@ -76,16 +76,16 @@ On the server, as an administrator:
 
    The parameters, in `-ArgumentList` order:
 
-   | #   | Parameter              | Default                  |                                                          |
-   | --- | ---------------------- | ------------------------ | -------------------------------------------------------- |
-   | 1   | site name              | `crosswordle`            |                                                          |
-   | 2   | root folder            | `C:\inetpub\crosswordle` |                                                          |
-   | 3   | port                   | `8080`                   | staging uses `8081`                                      |
-   | 4   | address                | `127.0.0.1`              | one of the server's addresses, or `*`                    |
-   | 5   | host names             | any                      | the names to answer for, as an array                     |
-   | 6   | protocol               | `http`                   | or `https`                                               |
-   | 7   | certificate            |                          | `https` only: its thumbprint, or a host name it covers   |
-   | 8   | require SNI            | `$false`                 | `https` only: see [Your own binding](#your-own-binding)  |
+   | #   | Parameter   | Default                  |                                                         |
+   | --- | ----------- | ------------------------ | ------------------------------------------------------- |
+   | 1   | site name   | `crosswordle`            |                                                         |
+   | 2   | root folder | `C:\inetpub\crosswordle` |                                                         |
+   | 3   | port        | `8080`                   | staging uses `8081`                                     |
+   | 4   | address     | `127.0.0.1`              | one of the server's addresses, or `*`                   |
+   | 5   | host names  | any                      | the names to answer for, as an array                    |
+   | 6   | protocol    | `http`                   | or `https`                                              |
+   | 7   | certificate |                          | `https` only: its thumbprint, or a host name it covers  |
+   | 8   | require SNI | `$false`                 | `https` only: see [Your own binding](#your-own-binding) |
 
    The staging site, beside the live one:
 
