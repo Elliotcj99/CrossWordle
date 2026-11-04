@@ -136,7 +136,7 @@
       </p>
 
       <section aria-labelledby="make-code-title">
-        <h2 id="make-code-title">Recovery code</h2>
+        <h2 id="make-code-title">Keep your record</h2>
         {#if code !== undefined}
           <p>Here's your code. It's shown only this once, so keep it somewhere safe.</p>
           <p class="code" aria-label="Your recovery code">{code}</p>
