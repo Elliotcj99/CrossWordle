@@ -304,6 +304,48 @@ test('brings a record back with a recovery code after the browser forgets it', a
   expect(await playerId()).toBe(original);
 });
 
+test('shows the contact address only when asked, and what the site stores', async ({ page }) => {
+  // The footer is inside <main>, so it isn't a contentinfo landmark.
+  const footer = page.locator('footer');
+  const contact = footer.getByRole('button', { name: 'Contact us' });
+  // A site without a contact address in its config has no Contact link.
+  if ((await contact.count()) > 0) {
+    await expect(footer.getByRole('link', { name: /@/ })).toHaveCount(0);
+    await contact.click();
+    await expect(footer.getByRole('link', { name: /^[^@\s]+@[^@\s]+$/ })).toHaveAttribute(
+      'href',
+      /^mailto:/,
+    );
+  }
+  await footer.getByRole('button', { name: 'What we store' }).click();
+  await expect(footer.getByRole('heading', { name: 'What we store' })).toBeVisible();
+  await expect(footer.getByText(/deleted after 30 days/)).toBeVisible();
+});
+
+test('deletes a record from the server and this browser', async ({ page }) => {
+  await guess(page, 'LEVEL');
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+  const before = await page.evaluate(() => localStorage.getItem('crosswordle:player'));
+
+  const record = page.locator('details', {
+    has: page.locator('summary', { hasText: /^Your record$/ }),
+  });
+  await record.locator('summary').click();
+  await record.getByRole('button', { name: 'Delete my record' }).click();
+  await Promise.all([
+    page.waitForEvent('load'),
+    record.getByRole('button', { name: 'Yes, delete everything' }).click(),
+  ]);
+
+  // Nothing left here, and nothing on the server for the old id either.
+  await expect(page.getByText('0 of 9 solved')).toBeVisible();
+  const status = await page.evaluate(async (id) => {
+    const response = await fetch('api/game?puzzle=sample', { headers: { 'x-player-id': id! } });
+    return response.status;
+  }, before);
+  expect(status).toBe(404);
+});
+
 test('can switch to high-contrast colours', async ({ page }) => {
   const toggle = page.getByRole('button', { name: 'High contrast' });
   await toggle.click();
