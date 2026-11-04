@@ -24,7 +24,11 @@
   server IIS runs (`server/preview.ts`). See `docs/staging.md` for previewing a branch privately.
 - API features that need the database are Node-only (`server/api/`), listed in `FEATURES`
   (`server/api/features.ts`). The browser asks `/api/features` and hides what the host lacks, so
-  the same build keeps working on Cloudflare Pages until the move to IIS is finished.
+  the same build also works on Cloudflare Pages, which has no database.
+- IIS is the default host (`deploy/iis/README.md`): the install script's defaults (plain HTTP on
+  loopback, for a Cloudflare Tunnel) must keep working for someone with just a Windows Server and
+  a free Cloudflare account. Other bindings are opt-in parameters. Docs describe that default,
+  never a particular deployment of it.
 - The Node server keeps its own record of each player's game (`server/records.ts`): guesses,
   hints and restarts, attempt by attempt, keyed by the browser's random player id. Anything ranked
   (the leaderboard) comes from that record, worked out with the engine, never from what the

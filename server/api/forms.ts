@@ -5,8 +5,8 @@ import { verifyTurnstile } from '../turnstile';
 /** What the form endpoints (nickname, recovery) share: the visitor's address and the bot check. */
 
 /**
- * The visitor's address, from Cloudflare's `CF-Connecting-IP` (every request comes through the
- * proxy, so the socket's address is the proxy's). Used for rate limits only.
+ * The visitor's address, from Cloudflare's `CF-Connecting-IP` (every request comes through
+ * Cloudflare, so the socket's address is never the visitor's). Used for rate limits only.
  */
 export function clientAddress(request: Request): string {
   return request.headers.get('cf-connecting-ip')?.trim() || 'unknown';
