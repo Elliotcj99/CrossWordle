@@ -9,12 +9,15 @@ const panel = (page: Page) => page.getByRole('region', { name: 'Current entry' }
 const clue = (page: Page, text: string) =>
   page.getByRole('region', { name: 'Clues' }).getByRole('button', { name: new RegExp(text) });
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ page, baseURL }) => {
   // Each test is its own visitor to the API. Without Cloudflare in front (staging on 127.0.0.1,
   // npm run preview) every request would share one address, and the forms' per-address rate
   // limits would trip across runs. Addresses are from 192.0.2.0/24, the documentation range.
   const visitor = `192.0.2.${1 + Math.floor(Math.random() * 254)}`;
-  await page.route('**/api/**', (route) =>
+  // Only the site's own API: Cloudflare's bot check makes requests of its own.
+  const site = new URL(baseURL!).origin;
+  const ownApi = (url: URL) => url.origin === site && url.pathname.startsWith('/api/');
+  await page.route(ownApi, (route) =>
     route.continue({ headers: { ...route.request().headers(), 'cf-connecting-ip': visitor } }),
   );
   // The sample puzzle, so the tests don't depend on today's date.
