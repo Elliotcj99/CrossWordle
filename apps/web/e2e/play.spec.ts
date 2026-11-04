@@ -239,7 +239,10 @@ test('names a solved game on the leaderboard, refusing rude nicknames', async ({
 
 test('brings a record back with a recovery code after the browser forgets it', async ({ page }) => {
   // Only where the server keeps records (the Node server), like the nickname form.
-  const record = page.locator('details', { hasText: 'Your record' });
+  // The panel titled Your record (How to play mentions it too).
+  const record = page.locator('details', {
+    has: page.locator('summary', { hasText: /^Your record$/ }),
+  });
   const playerId = () => page.evaluate(() => localStorage.getItem('crosswordle:player'));
   await record.locator('summary').click();
   await record.getByRole('button', { name: 'Make a recovery code' }).click();
