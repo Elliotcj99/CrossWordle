@@ -40,8 +40,8 @@ function recorded(
     const body = playerId === undefined ? undefined : await bodyOf(request);
     const response = await handler({ request });
     if (playerId !== undefined && body !== undefined && response.status === 200) {
-      const result = (await response.clone().json()) as unknown;
       try {
+        const result = (await response.clone().json()) as unknown;
         record(playerId, body, result);
       } catch (error) {
         log.error(`recording ${what}`, error, { request, playerId });

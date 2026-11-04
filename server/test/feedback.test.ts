@@ -34,7 +34,10 @@ describe('tidyFeedback', () => {
       'Red\u001b[31mtext\u0007',
       'Text\u001b]0;owned\u0007 with ‮override\u0000.',
     );
-    expect(tidy).toEqual({ title: 'Red [31mtext', description: 'Text]0;owned with override.' });
+    expect(tidy).toEqual({
+      title: 'Red [31mtext',
+      description: 'Text ]0;owned with override .',
+    });
   });
 
   it('counts characters, not bytes, and says which part is wrong', () => {

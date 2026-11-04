@@ -3,7 +3,7 @@ import type { Config } from '../config';
 import type { Handler } from '../node-adapter';
 import { RECOVERY_CODE_LIMIT, RESTORE_LIMIT, type RateLimits } from '../rate-limits';
 import { playerIdFrom } from '../records';
-import type { Recovery } from '../recovery';
+import { normaliseCode, type Recovery } from '../recovery';
 import { clientAddress, jsonBody, passesBotCheck } from './forms';
 
 /**
@@ -48,15 +48,20 @@ export function restore({ recovery, limits, config }: RecoveryServices): Handler
     const body = await jsonBody<{ code: unknown; turnstileToken: unknown }>(request);
     if (playerId === undefined || body === undefined) return json({ error: 'bad-request' }, 400);
 
+    // Something that can't be a code costs nothing (and reveals nothing), nor does a failed bot
+    // check: the limit counts real tries at a code.
+    const code = typeof body.code === 'string' ? normaliseCode(body.code) : undefined;
+    if (code === undefined) return json({ error: 'code-invalid' }, 400);
+
     const ip = clientAddress(request);
-    if (!limits.allow('restore', playerId, ip, RESTORE_LIMIT)) {
-      return json({ error: 'too-many' }, 429);
-    }
     if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
       return json({ error: 'check-failed' }, 403);
     }
+    if (!limits.allow('restore', playerId, ip, RESTORE_LIMIT)) {
+      return json({ error: 'too-many' }, 429);
+    }
 
-    const restored = typeof body.code === 'string' ? recovery.restore(body.code) : undefined;
+    const restored = recovery.restore(code);
     if (restored === undefined) return json({ error: 'code-unknown' }, 404);
     limits.log('restored', restored.playerId, ip);
     return json(restored);

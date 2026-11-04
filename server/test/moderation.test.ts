@@ -15,6 +15,13 @@ describe('tidyNickname', () => {
     expect(tidyNickname('Anne-Marie')).toBe('Anne-Marie');
   });
 
+  it('accepts scripts written with combining marks, but nothing invisible', () => {
+    expect(tidyNickname('नमस्ते')).toBe('नमस्ते');
+    expect(tidyNickname('\u3164\u3164')).toBeUndefined();
+    expect(tidyNickname('Sam\u200Bantha')).toBeUndefined();
+    expect(tidyNickname('\u2800\u2800')).toBeUndefined();
+  });
+
   it('refuses other characters, a leading symbol, and the wrong length', () => {
     expect(tidyNickname('a')).toBeUndefined();
     expect(tidyNickname('x'.repeat(21))).toBeUndefined();
@@ -36,6 +43,8 @@ describe('nicknameAllowed', () => {
       'Dickens',
       'Grape Ape',
       'Bumblebee',
+      'J R R Fan',
+      'Kitty',
     ]) {
       expect(allowed(name), name).toBe(true);
     }
@@ -54,7 +63,13 @@ describe('nicknameAllowed', () => {
   });
 
   it('refuses our own rude words as whole words, with look-alike digits', () => {
-    for (const name of ['Big Bum', 'kn0b', 'b e l l e n d', 'MINGE_lord']) {
+    for (const name of ['Big Bum', 'kn0b', 'b e l l e n d', 'MINGE_lord', 'Be11end']) {
+      expect(allowed(name), name).toBe(false);
+    }
+  });
+
+  it('refuses our words inside a spelled-out run, even with letters beside them', () => {
+    for (const name of ['x b u m', 'b u m s', 'Mr k n o b s']) {
       expect(allowed(name), name).toBe(false);
     }
   });

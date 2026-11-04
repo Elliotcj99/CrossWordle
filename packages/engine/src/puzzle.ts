@@ -198,7 +198,8 @@ export interface PublicPuzzleFile {
 
 /**
  * Gives each entry its second clue from `secondClue` (looked up by answer), where there is one
- * that differs from the entry's own clue. The result is the server's copy of the puzzle.
+ * that differs from the entry's own clue; an entry the list has nothing for keeps any second clue
+ * of its own. Every other field is kept. The result is the server's copy of the puzzle.
  */
 export function withSecondClues(
   file: PuzzleFile,
@@ -208,10 +209,11 @@ export function withSecondClues(
   return {
     ...file,
     entries: file.entries.map((entry) => {
-      const { row, col, direction, answer, clue } = entry;
-      const own = { row, col, direction, answer, clue };
-      const clue2 = secondClue(answerOf(file, entry));
-      return clue2 !== undefined && normalise(clue2) !== normalise(clue) ? { ...own, clue2 } : own;
+      const { clue2: own, ...rest } = entry;
+      const clue2 = secondClue(answerOf(file, entry)) ?? own;
+      return clue2 !== undefined && normalise(clue2) !== normalise(entry.clue)
+        ? { ...rest, clue2 }
+        : rest;
     }),
   };
 }

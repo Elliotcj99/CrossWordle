@@ -8,6 +8,7 @@ import {
   type ScoredLetter,
 } from '@crosswordle/engine';
 import type { DatabaseSync } from 'node:sqlite';
+import { forgetPlayer, isForgotten, registerPlayer } from './players';
 import { reviewFlags, type ReviewFlag } from './review';
 
 /**
@@ -204,12 +205,12 @@ export class Records {
       kind: HintKind;
       detail: string | null;
     }[];
-    // Crossword clues recorded before the server sent them (schema 2) have no detail.
+    // Every row has its detail (migration 7 filled in the old Crossword clues).
     const revealed = <T>(kind: HintKind): Record<string, T> =>
       Object.fromEntries(
         hints
-          .filter((h) => h.kind === kind && h.detail !== null)
-          .map((h) => [h.entry_id, JSON.parse(h.detail!) as T]),
+          .filter((h) => h.kind === kind)
+          .map((h) => [h.entry_id, JSON.parse(h.detail ?? '""') as T]),
       );
     return {
       ...newGame(puzzle),
@@ -288,33 +289,23 @@ export class Records {
     });
   }
 
+  /** Whether a player id was deleted (see `players.ts`). */
+  isForgotten(playerId: string): boolean {
+    return isForgotten(this.db, playerId);
+  }
+
   /**
-   * Deletes everything kept about a player: their games, results, nickname, recovery code, form
-   * submissions and feature requests. Their place on any leaderboard goes with it.
+   * Deletes everything kept about a player: their games, results, nickname, recovery code and
+   * feature requests (see `players.ts`). Their place on any leaderboard goes with it, and the id
+   * can't be used again.
    */
   forget(playerId: string): void {
-    this.transaction(() => {
-      const tables = [
-        'hints',
-        'guesses',
-        'restarts',
-        'plays',
-        'results',
-        'submissions',
-        'feedback',
-      ];
-      for (const table of tables) {
-        this.db.prepare(`DELETE FROM ${table} WHERE player_id = ?`).run(playerId);
-      }
-      this.db.prepare('DELETE FROM players WHERE id = ?').run(playerId);
-    });
+    this.transaction(() => forgetPlayer(this.db, playerId, this.stamp()));
   }
 
   /** The attempt a player is on, registering the player and the play on first sight. */
   private currentAttempt(playerId: string, puzzleId: string): number {
-    this.db
-      .prepare('INSERT OR IGNORE INTO players (id, created_at) VALUES (?, ?)')
-      .run(playerId, this.stamp());
+    registerPlayer(this.db, playerId, this.stamp());
     this.db
       .prepare('INSERT OR IGNORE INTO plays (player_id, puzzle_id, attempt) VALUES (?, ?, 1)')
       .run(playerId, puzzleId);

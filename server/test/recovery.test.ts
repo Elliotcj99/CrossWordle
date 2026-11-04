@@ -110,6 +110,17 @@ describe('recovery endpoints', () => {
     expect(tries[10]!.status).toBe(429);
   });
 
+  it("doesn't count something that can't be a code as a try", async () => {
+    for (let i = 0; i < 12; i++) {
+      const response = await restore(services)({ request: request(NEW_BROWSER, { code: 'oops' }) });
+      expect(await response.json()).toEqual({ error: 'code-invalid' });
+    }
+    const real = await restore(services)({
+      request: request(NEW_BROWSER, { code: generateCode() }),
+    });
+    expect(real.status).toBe(404);
+  });
+
   it('needs a player id', async () => {
     const response = await makeRecoveryCode(services)({
       request: new Request('http://localhost/api/recovery-code', { method: 'POST' }),

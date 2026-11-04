@@ -9,6 +9,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import type { DatabaseSync } from 'node:sqlite';
 import { openDatabase } from '../db';
 import { playerIdFrom, Records } from '../records';
+import { ForgottenPlayerError, playerTables } from '../players';
 import { Review } from '../review';
 
 /**
@@ -191,14 +192,31 @@ describe('Records', () => {
 
     records.forget(ALICE);
 
-    const tables = ['players', 'plays', 'restarts', 'guesses', 'hints', 'results', 'submissions'];
-    for (const table of tables) {
+    // Every table with the player's own data, found the same way forget finds them.
+    const tables = playerTables(db);
+    expect(tables).toEqual(expect.arrayContaining(['feedback', 'guesses', 'hints', 'plays']));
+    for (const table of [...tables, 'players']) {
       const column = table === 'players' ? 'id' : 'player_id';
       expect(
         db.prepare(`SELECT count(*) AS n FROM ${table} WHERE ${column} = ?`).get(ALICE),
       ).toEqual({ n: 0 });
     }
     expect(records.result(bob, 'ring')).toMatchObject({ won: true });
+    // The rate-limit log keeps its rows for their 30 days, so deleting can't reset the limits.
+    expect(
+      db.prepare('SELECT count(*) AS n FROM submissions WHERE player_id = ?').get(ALICE),
+    ).toEqual({ n: 1 });
+  });
+
+  it("won't let a deleted player id come back", () => {
+    guess('1A', 'COT');
+    records.forget(ALICE);
+    expect(records.isForgotten(ALICE)).toBe(true);
+    expect(() => guess('1A', 'CAT')).toThrow(ForgottenPlayerError);
+    expect(records.currentGame(ALICE, puzzle)).toBeUndefined();
+    expect(JSON.stringify(db.prepare('SELECT * FROM forgotten_players').all())).not.toContain(
+      ALICE,
+    );
   });
 
   it('keeps players apart', () => {

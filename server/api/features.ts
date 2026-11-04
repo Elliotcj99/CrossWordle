@@ -15,9 +15,10 @@ export const FEATURES: readonly string[] = [
   'leaderboard',
   // Players can name themselves after finishing a puzzle.
   'nicknames',
-  // Players can make a recovery code, to get their record back in another browser, and delete
-  // their record.
+  // Players can make a recovery code, to get their record back in another browser.
   'recovery',
+  // Players can delete their record (/api/forget).
+  'forget',
   // Players can send a feature request.
   'feedback',
 ];

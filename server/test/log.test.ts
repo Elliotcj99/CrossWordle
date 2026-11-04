@@ -44,7 +44,7 @@ describe('ErrorLog', () => {
       },
       { where: 'start-up', message: 'not an Error' },
     ]);
-    expect(entries[0]!.stack).toContain('disk full');
+    expect(entries[0]!.stack).toMatch(/^\s+at /);
     expect(JSON.stringify(entries)).not.toContain('192.0.2.7');
   });
 
@@ -67,6 +67,26 @@ describe('ErrorLog', () => {
     expect(log.since(new Date(clock - 30 * 60 * 1000)).map((e) => e.message)).toEqual([
       'an hour later',
     ]);
+  });
+
+  it("never throws, even on a request URL it can't read", () => {
+    const odd = { method: 'GET', url: 'http://[x]/' };
+    expect(() => log.error('request', new Error('bad url'), { request: odd })).not.toThrow();
+    expect(log.since(new Date(0))).toMatchObject([
+      { message: 'bad url', request: "GET (a URL that couldn't be read)" },
+    ]);
+  });
+
+  it('trims long messages, which can quote what was sent', () => {
+    log.error('request', new Error(`Unexpected token in ${'x'.repeat(1000)}`));
+    expect(log.since(new Date(0))[0]!.message.length).toBeLessThanOrEqual(301);
+  });
+
+  it('deletes old files when asked, even with no new errors', () => {
+    writeFileSync(join(folder, 'errors-2026-10-01.log'), '');
+    writeFileSync(join(folder, 'errors-2026-11-19.log'), '');
+    log.prune();
+    expect(readdirSync(folder)).toEqual(['errors-2026-11-19.log']);
   });
 
   it('never throws when the folder cannot be written', () => {

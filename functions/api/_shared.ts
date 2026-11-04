@@ -4,6 +4,7 @@ import {
   parsePuzzleFile,
   toPublicFile,
   type ClientPuzzle,
+  type Entry,
   type Puzzle,
 } from '@crosswordle/engine';
 import puzzleData from '../_puzzles.json';
@@ -50,6 +51,39 @@ export function clientPuzzleFor(id: string): ClientPuzzle | undefined {
 /** Every puzzle id the server can score, daily and Naughty. */
 export function puzzleIds(): string[] {
   return Object.keys(files);
+}
+
+/** A request about one entry of a puzzle, once its puzzle and entry are found. */
+export interface EntryRequest {
+  readonly body: Readonly<Record<string, unknown>>;
+  readonly puzzle: Puzzle;
+  readonly entry: Entry;
+}
+
+/**
+ * Reads a `{ puzzleId, entryId, ... }` request body and finds the puzzle and entry, or returns the
+ * error response: 400 `bad-request`, 404 `unknown-puzzle` or `unknown-entry`. Shared by the
+ * guess, hint and clue endpoints, so they check requests the same way.
+ */
+export async function readEntryRequest(request: Request): Promise<EntryRequest | Response> {
+  let body: unknown;
+  try {
+    body = await request.json();
+  } catch {
+    return json({ error: 'bad-request' }, 400);
+  }
+  if (typeof body !== 'object' || body === null || Array.isArray(body)) {
+    return json({ error: 'bad-request' }, 400);
+  }
+  const fields = body as Record<string, unknown>;
+  if (typeof fields.puzzleId !== 'string' || typeof fields.entryId !== 'string') {
+    return json({ error: 'bad-request' }, 400);
+  }
+  const puzzle = puzzleFor(fields.puzzleId);
+  if (puzzle === undefined) return json({ error: 'unknown-puzzle' }, 404);
+  const entry = puzzle.entries.find((e) => e.id === fields.entryId);
+  if (entry === undefined) return json({ error: 'unknown-entry' }, 404);
+  return { body: fields, puzzle, entry };
 }
 
 export function json(body: unknown, status = 200): Response {

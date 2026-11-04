@@ -1,15 +1,18 @@
 import { appendFileSync, mkdirSync, readdirSync, readFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
+import { addDays } from './dates';
 
 /**
  * The server's error log. On IIS, Node's own output isn't kept, so without this a failure (a
  * game that couldn't be recorded, a request that crashed) would leave no trace.
  *
  * One JSON object per line, in a file per day (`errors-YYYY-MM-DD.log`, UTC), in the logs folder
- * outside the releases. Files older than `keepDays` are deleted. An entry holds the time, where it
- * happened, the error and the request's method and path; no addresses or other player data, only
- * a player id where the error concerns one. Writing to the log never fails the request: if the
- * folder can't be written, the entry goes to the console only.
+ * outside the releases. Files older than `keepDays` are deleted, at start-up and every few hours
+ * (`prune`), not only when an error comes. An entry holds the time, where it happened, the error
+ * (its message trimmed to `MESSAGE_LENGTH`, as a message can quote what was sent) and the
+ * request's method and path; no addresses, and a player id only where the error concerns one.
+ * Logging never throws, so it can't fail a request or crash the server: anything that goes wrong
+ * goes to the console instead.
  */
 
 export interface LogEntry {
@@ -30,7 +33,7 @@ export interface ErrorContext {
 }
 
 const FILE = /^errors-(\d{4}-\d{2}-\d{2})\.log$/;
-const DAY_MS = 24 * 60 * 60 * 1000;
+const MESSAGE_LENGTH = 300;
 
 export class ErrorLog {
   private prunedFor: string | undefined;
@@ -42,32 +45,42 @@ export class ErrorLog {
   ) {}
 
   error(where: string, error: unknown, context: ErrorContext = {}): void {
-    const at = this.now();
-    const url =
-      context.request === undefined
-        ? undefined
-        : new URL(context.request.url ?? '/', 'http://localhost');
-    const entry: LogEntry = {
-      at: at.toISOString(),
+    try {
+      const entry = this.entryFor(where, error, context);
+      console.error(`${entry.at} ${where}:`, error);
+      mkdirSync(this.folder, { recursive: true });
+      appendFileSync(
+        join(this.folder, `errors-${entry.at.slice(0, 10)}.log`),
+        `${JSON.stringify(entry)}\n`,
+      );
+      if (this.prunedFor !== entry.at.slice(0, 10)) this.prune();
+    } catch (failure) {
+      console.error(`Could not write to the error log (${where}):`, error, failure);
+    }
+  }
+
+  private entryFor(where: string, error: unknown, context: ErrorContext): LogEntry {
+    const trim = (text: string) =>
+      text.length > MESSAGE_LENGTH ? `${text.slice(0, MESSAGE_LENGTH)}…` : text;
+    let request: string | undefined;
+    if (context.request !== undefined) {
+      try {
+        const url = new URL(context.request.url ?? '/', 'http://localhost');
+        request = `${context.request.method ?? '?'} ${url.pathname}${url.search}`;
+      } catch {
+        request = `${context.request.method ?? '?'} (a URL that couldn't be read)`;
+      }
+    }
+    return {
+      at: this.now().toISOString(),
       where,
-      message: error instanceof Error ? error.message : String(error),
+      message: trim(error instanceof Error ? error.message : String(error)),
       ...(error instanceof Error && error.stack !== undefined
-        ? { stack: error.stack.split('\n').slice(0, 8).join('\n') }
+        ? { stack: error.stack.split('\n').slice(1, 8).join('\n') }
         : {}),
-      ...(url === undefined
-        ? {}
-        : { request: `${context.request!.method ?? '?'} ${url.pathname}${url.search}` }),
+      ...(request === undefined ? {} : { request: trim(request) }),
       ...(context.playerId === undefined ? {} : { playerId: context.playerId }),
     };
-    console.error(`${entry.at} ${where}:`, error);
-    try {
-      mkdirSync(this.folder, { recursive: true });
-      const day = entry.at.slice(0, 10);
-      appendFileSync(join(this.folder, `errors-${day}.log`), `${JSON.stringify(entry)}\n`);
-      if (this.prunedFor !== day) this.prune(day);
-    } catch (failure) {
-      console.error('Could not write to the error log:', failure);
-    }
   }
 
   /** Entries since a time, oldest first, from the files that can hold them. */
@@ -75,7 +88,13 @@ export class ErrorLog {
     const fromDay = from.toISOString().slice(0, 10);
     const entries: LogEntry[] = [];
     for (const name of this.files().filter((f) => f.day >= fromDay)) {
-      for (const line of readFileSync(join(this.folder, name.file), 'utf8').split('\n')) {
+      let text: string;
+      try {
+        text = readFileSync(join(this.folder, name.file), 'utf8');
+      } catch {
+        continue; // Pruned between listing and reading.
+      }
+      for (const line of text.split('\n')) {
         if (line.trim() === '') continue;
         try {
           const entry = JSON.parse(line) as LogEntry;
@@ -99,13 +118,21 @@ export class ErrorLog {
     }
   }
 
-  private prune(today: string): void {
-    this.prunedFor = today;
-    const oldest = new Date(Date.parse(`${today}T00:00:00Z`) - (this.keepDays - 1) * DAY_MS)
-      .toISOString()
-      .slice(0, 10);
-    for (const { file, day } of this.files()) {
-      if (day < oldest) rmSync(join(this.folder, file), { force: true });
+  /**
+   * Deletes the files older than `keepDays`. Runs when the day's first error is written, and the
+   * server also calls it at start-up and every few hours, so old entries go even when nothing
+   * fails. Never throws.
+   */
+  prune(): void {
+    try {
+      const today = this.now().toISOString().slice(0, 10);
+      this.prunedFor = today;
+      const oldest = addDays(today, -(this.keepDays - 1));
+      for (const { file, day } of this.files()) {
+        if (day < oldest) rmSync(join(this.folder, file), { force: true });
+      }
+    } catch (failure) {
+      console.error('Could not prune the error log:', failure);
     }
   }
 }

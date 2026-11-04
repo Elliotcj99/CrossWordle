@@ -36,18 +36,20 @@ export function nickname(services: NicknameServices): Handler {
     const result = records.result(playerId, body.puzzleId);
     if (result === undefined) return json({ error: 'not-finished' }, 409);
 
-    const ip = clientAddress(request);
-    if (!limits.allow('nickname', playerId, ip, NICKNAME_LIMIT)) {
-      return json({ error: 'too-many' }, 429);
-    }
-
+    // A name that isn't a name at all (length, characters) costs nothing, and nor does a failed
+    // bot check; the limit counts real tries, including names the filter refuses, so the filter
+    // can't be probed at will.
     const name = typeof body.nickname === 'string' ? tidyNickname(body.nickname) : undefined;
     if (name === undefined) return json({ error: 'nickname-invalid' }, 400);
-    if (!nicknameAllowed(name, rudeWords)) return json({ error: 'nickname-not-allowed' }, 422);
 
+    const ip = clientAddress(request);
     if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
       return json({ error: 'check-failed' }, 403);
     }
+    if (!limits.allow('nickname', playerId, ip, NICKNAME_LIMIT)) {
+      return json({ error: 'too-many' }, 429);
+    }
+    if (!nicknameAllowed(name, rudeWords)) return json({ error: 'nickname-not-allowed' }, 422);
 
     nicknames.setNickname(playerId, name);
     return json({ nickname: name, result });

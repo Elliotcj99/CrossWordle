@@ -30,12 +30,13 @@ export function feedback({ feedback: requests, limits, config }: FeedbackService
     const tidy = tidyFeedback(body.title, body.description);
     if ('problem' in tidy) return json({ error: `${tidy.problem}-invalid` }, 400);
 
+    // Nor does a failed bot check: the limit counts real sends.
     const ip = clientAddress(request);
-    if (!limits.allow('feedback', playerId, ip, FEEDBACK_LIMIT)) {
-      return json({ error: 'too-many' }, 429);
-    }
     if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
       return json({ error: 'check-failed' }, 403);
+    }
+    if (!limits.allow('feedback', playerId, ip, FEEDBACK_LIMIT)) {
+      return json({ error: 'too-many' }, 429);
     }
 
     const id = requests.add(playerId, tidy.title, tidy.description);

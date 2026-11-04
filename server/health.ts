@@ -1,6 +1,7 @@
 import { rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import type { DatabaseSync } from 'node:sqlite';
+import { addDays, dateIn, daysBetween } from './dates';
 import { MIGRATIONS, schemaVersion } from './db';
 
 /**
@@ -8,8 +9,10 @@ import { MIGRATIONS, schemaVersion } from './db';
  * one word (see `./api/health.ts`); `admin.mjs health` shows the detail on the server.
  *
  * The checks: the database answers and is at this release's schema; the data folder can be
- * written (recording a game needs it); today's daily and Naughty puzzles exist (UK date, when
- * the puzzles change). A warning, not a failure: under `RUNWAY_DAYS` of puzzles left.
+ * written (recording a game needs it); the daily and Naughty puzzles exist for every date a
+ * player can be on. The page picks the puzzle by the player's own date, so that's every date from
+ * the earliest time zone (UTC−12) to the latest (UTC+14). A warning, not a failure: under
+ * `RUNWAY_DAYS` of puzzles left after the latest of those dates.
  */
 
 export const RUNWAY_DAYS = 7;
@@ -24,7 +27,7 @@ export interface Check {
 export interface Runway {
   /** The last puzzle date, or `undefined` if there are none. */
   readonly last: string | undefined;
-  /** Whole days from today to the last puzzle (0: today is the last). */
+  /** Whole days from the latest date a player can be on to the last puzzle (0: it's the last). */
   readonly daysLeft: number;
 }
 
@@ -36,30 +39,25 @@ export interface HealthReport {
   readonly warning?: 'puzzles';
 }
 
-/** Today's date in the UK (YYYY-MM-DD): the puzzles change at UK midnight. */
-export function ukDate(now: Date): string {
-  return new Intl.DateTimeFormat('en-CA', {
-    timeZone: 'Europe/London',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-  }).format(now);
+/**
+ * The dates players can be on now, earliest first: from UTC−12 to UTC+14 (`Etc/GMT` names have
+ * the sign the other way round). Usually two dates, sometimes one or three.
+ */
+export function playableDates(now: Date): string[] {
+  const first = dateIn('Etc/GMT+12', now);
+  const last = dateIn('Etc/GMT-14', now);
+  const dates = [first];
+  while (dates.at(-1)! < last) dates.push(addDays(dates.at(-1)!, 1));
+  return dates;
 }
 
 const DAILY = /^(\d{4}-\d{2}-\d{2})$/;
 const NAUGHTY = /^naughty-(\d{4}-\d{2}-\d{2})$/;
-const DAY_MS = 24 * 60 * 60 * 1000;
 
-function runwayOf(ids: readonly string[], pattern: RegExp, today: string): Runway {
+function runwayOf(ids: readonly string[], pattern: RegExp, latest: string): Runway {
   const dates = ids.map((id) => pattern.exec(id)?.[1]).filter((d): d is string => d !== undefined);
   const last = dates.sort().at(-1);
-  return {
-    last,
-    daysLeft:
-      last === undefined
-        ? -1
-        : Math.round((Date.parse(`${last}T00:00:00Z`) - Date.parse(`${today}T00:00:00Z`)) / DAY_MS),
-  };
+  return { last, daysLeft: last === undefined ? -1 : daysBetween(latest, last) };
 }
 
 export class Health {
@@ -71,7 +69,8 @@ export class Health {
   ) {}
 
   check(): HealthReport {
-    const today = ukDate(this.now());
+    const dates = playableDates(this.now());
+    const latest = dates.at(-1)!;
     const ids = this.puzzleIds();
     const checks = [
       timed('database', () => {
@@ -90,14 +89,15 @@ export class Health {
         return 'writable';
       }),
       timed("today's puzzles", () => {
-        const missing = [today, `naughty-${today}`].filter((id) => !ids.includes(id));
+        const wanted = dates.flatMap((date) => [date, `naughty-${date}`]);
+        const missing = wanted.filter((id) => !ids.includes(id));
         if (missing.length > 0) throw new Error(`missing ${missing.join(', ')}`);
-        return `daily and Naughty for ${today}`;
+        return `daily and Naughty for ${dates.join(' to ')} (every time zone)`;
       }),
     ];
     const runway = {
-      daily: runwayOf(ids, DAILY, today),
-      naughty: runwayOf(ids, NAUGHTY, today),
+      daily: runwayOf(ids, DAILY, latest),
+      naughty: runwayOf(ids, NAUGHTY, latest),
     };
     const short = Math.min(runway.daily.daysLeft, runway.naughty.daysLeft) < RUNWAY_DAYS;
     return {
