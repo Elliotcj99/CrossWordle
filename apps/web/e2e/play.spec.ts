@@ -394,40 +394,6 @@ for (const browserSaves of [true, false]) {
   });
 }
 
-// TEMPORARY, a one-off: remove by Friday 6 November 2026, with the import.
-test("sends the browser's finished puzzles to the server once, as history", async ({ page }) => {
-  // A puzzle finished before the server kept records: the first daily puzzle, lost.
-  const finished = { '2026-10-23': { won: false, guesses: 3 } };
-  await page.evaluate((results) => {
-    localStorage.setItem('crosswordle:results', JSON.stringify(results));
-    localStorage.removeItem('crosswordle:history-sent');
-  }, finished);
-  const [sent] = await Promise.all([
-    page.waitForRequest((r) => new URL(r.url()).pathname === '/api/import-history'),
-    page.reload(),
-  ]);
-  expect(sent.postDataJSON()).toEqual({ results: finished });
-  await expect
-    .poll(() => page.evaluate(() => localStorage.getItem('crosswordle:history-sent')))
-    .not.toBeNull();
-
-  const record = await page.evaluate(async () => {
-    const response = await fetch('/api/record', {
-      headers: { 'x-player-id': localStorage.getItem('crosswordle:player') ?? '' },
-    });
-    return (await response.json()) as { results: unknown[]; imported: unknown[] };
-  });
-  expect(record.imported).toEqual([{ puzzleId: '2026-10-23', won: false, guesses: 3 }]);
-  expect(record.results).toEqual([]);
-
-  // Never sent again.
-  let again = false;
-  page.on('request', (r) => {
-    if (new URL(r.url()).pathname === '/api/import-history') again = true;
-  });
-  await page.reload();
-  await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
-  expect(again).toBe(false);
 test('saves a new recovery code by submitting the form where the browser has no PasswordCredential', async ({
   page,
 }) => {
@@ -463,6 +429,42 @@ test('saves a new recovery code by submitting the form where the browser has no 
   expect(
     await page.evaluate(() => sessionStorage.getItem('crosswordle:new-recovery-code')),
   ).toBeNull();
+});
+
+// TEMPORARY, a one-off: remove by Friday 6 November 2026, with the import.
+test("sends the browser's finished puzzles to the server once, as history", async ({ page }) => {
+  // A puzzle finished before the server kept records: the first daily puzzle, lost.
+  const finished = { '2026-10-23': { won: false, guesses: 3 } };
+  await page.evaluate((results) => {
+    localStorage.setItem('crosswordle:results', JSON.stringify(results));
+    localStorage.removeItem('crosswordle:history-sent');
+  }, finished);
+  const [sent] = await Promise.all([
+    page.waitForRequest((r) => new URL(r.url()).pathname === '/api/import-history'),
+    page.reload(),
+  ]);
+  expect(sent.postDataJSON()).toEqual({ results: finished });
+  await expect
+    .poll(() => page.evaluate(() => localStorage.getItem('crosswordle:history-sent')))
+    .not.toBeNull();
+
+  const record = await page.evaluate(async () => {
+    const response = await fetch('/api/record', {
+      headers: { 'x-player-id': localStorage.getItem('crosswordle:player') ?? '' },
+    });
+    return (await response.json()) as { results: unknown[]; imported: unknown[] };
+  });
+  expect(record.imported).toEqual([{ puzzleId: '2026-10-23', won: false, guesses: 3 }]);
+  expect(record.results).toEqual([]);
+
+  // Never sent again.
+  let again = false;
+  page.on('request', (r) => {
+    if (new URL(r.url()).pathname === '/api/import-history') again = true;
+  });
+  await page.reload();
+  await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
+  expect(again).toBe(false);
 });
 
 test('shows the contact address only when asked, and what the site stores', async ({ page }) => {
