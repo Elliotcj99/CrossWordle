@@ -118,11 +118,11 @@ The same build runs on either host; the public name points at one of them.
 
 - **Cloudflare Pages** (the default): every push to `main` builds on Cloudflare (`npm run build`,
   output `apps/web/dist`) and goes live. The API runs as Pages Functions (`functions/`).
-- **IIS behind a reverse proxy:** `npm run build:iis` packages the site with a `web.config`, plus
-  the API as a Node server (`server/`) that IIS starts. `scripts/deploy-iis.ps1` deploys it over
-  PowerShell remoting. Cloudflare proxies the public name to a reverse proxy in front of the server.
-  See [deploy/iis/README.md](deploy/iis/README.md), including how to switch the public name between
-  the two hosts.
+- **IIS:** `npm run build:iis` packages the site with a `web.config`, plus the API as a Node
+  server (`server/`) that IIS starts. `scripts/deploy-iis.ps1` deploys it over PowerShell
+  remoting. Cloudflare proxies the public name to the server, by default through a Cloudflare
+  Tunnel. See [deploy/iis/README.md](deploy/iis/README.md), including your own bindings and how to
+  switch the public name between the two hosts.
 
 ## Known gaps
 
