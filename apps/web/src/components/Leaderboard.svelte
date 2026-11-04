@@ -84,7 +84,7 @@
               <tr class:you={entry.isYou} aria-current={entry.isYou ? 'true' : undefined}>
                 <td>{entry.rank}</td>
                 <th scope="row"
-                  >{entry.nickname}{#if entry.isYou}<span class="tag"> (you)</span>{/if}</th
+                  >{entry.nickname}{#if entry.isYou}{' '}<span class="tag">(you)</span>{/if}</th
                 >
                 <td>{entry.guesses}</td>
                 <td>{entry.crosswordHints}</td>
