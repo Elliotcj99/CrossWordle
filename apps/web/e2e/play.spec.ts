@@ -271,7 +271,9 @@ test('names a solved game on the leaderboard, refusing rude nicknames', async ({
 
   await field.fill('  Grid   Tester ');
   await expect(submit).toBeEnabled({ timeout: 15_000 });
-  await submit.click();
+  // From the keyboard: Enter on the focused Submit button is for the form, not the grid.
+  await submit.focus();
+  await page.keyboard.press('Enter');
   await expect(form.getByRole('status')).toHaveText(
     "Saved as Grid Tester. You're on the leaderboard with 9 guesses, 0 Crossword clues and 0 Wordle clues.",
   );
@@ -374,8 +376,22 @@ test('sends a feature request, saying what to fix first', async ({ page }) => {
   await expect(page.getByText('0 of 9 solved')).toBeVisible();
   const send = form.getByRole('button', { name: 'Send' });
   await expect(send).toBeEnabled({ timeout: 15_000 });
-  // The browser's own check stops a description under 10 characters before it's sent.
+
+  // A description under 10 characters is caught before anything is sent.
+  const sent = page.waitForRequest('**/api/feedback', { timeout: 2_000 }).catch(() => undefined);
+  await send.click();
+  await expect(form.getByRole('status')).toHaveText(/Tell us a bit more: 10 to 2,000 characters/);
+  expect(await sent).toBeUndefined();
+
   await form.getByLabel(/Tell us more/).fill('A dark colour scheme for night-time solving.');
+  await send.click();
+  await expect(footer.getByText("Thanks, it's sent.")).toBeVisible();
+
+  // Another one gets a fresh bot check, so it can be sent too.
+  await footer.getByRole('button', { name: 'Send another' }).click();
+  await form.getByLabel('What would you like?').fill('Bigger tiles');
+  await form.getByLabel(/Tell us more/).fill('Larger letters on the grid for phones, please.');
+  await expect(send).toBeEnabled({ timeout: 15_000 });
   await send.click();
   await expect(footer.getByText("Thanks, it's sent.")).toBeVisible();
 });
@@ -401,16 +417,18 @@ test('deletes a record from the server and this browser', async ({ page }) => {
     const response = await fetch('api/game?puzzle=sample', { headers: { 'x-player-id': id! } });
     return response.status;
   }, before);
-  expect(status).toBe(404);
+  // The deleted id can't be used again.
+  expect(status).toBe(410);
 });
 
 test('answers the uptime monitor in one word', async ({ request }) => {
   const response = await request.get('api/health');
-  expect(response.status()).toBe(200);
   expect(response.headers()['cache-control']).toBe('no-store');
-  // "ok", perhaps with a reminder that the puzzles are running out; never any detail.
+  // ok, perhaps with a reminder that the puzzles are running out, or down; never any detail.
+  // (Which one depends on the date and the puzzles committed, so either is accepted here.)
   const body = (await response.json()) as Record<string, unknown>;
-  expect(body.status).toBe('ok');
+  expect([200, 503]).toContain(response.status());
+  expect(body.status).toBe(response.status() === 200 ? 'ok' : 'down');
   expect(Object.keys(body).filter((key) => key !== 'status' && key !== 'warning')).toEqual([]);
 });
 

@@ -25,7 +25,10 @@ import {
   type RuleOverrides,
   type ScoredLetter,
   canRevealWordleClue,
+  crosswordClueFor,
   gridLetters,
+  hasSecondClue,
+  recordCrosswordClue,
   wordleClueRow,
 } from '../src';
 
@@ -329,6 +332,46 @@ describe('game summary', () => {
       wordleClues: { '9D': { index: 0, letter: 'X' } },
     };
     expect(gameSummary(ctx.puzzle, state)).toMatchObject({ crosswordHints: 0, wordleHints: 0 });
+  });
+});
+
+describe('the Crossword clue', () => {
+  // A puzzle where 1A has a second clue and 1D doesn't.
+  function withClue2() {
+    const file: PuzzleFile = {
+      version: 1,
+      id: 'ring',
+      title: 'Ring',
+      answerEncoding: 'plain',
+      entries: [
+        { row: 0, col: 0, direction: 'across', answer: 'CAT', clue: 'Pet', clue2: 'Feline' },
+        { row: 0, col: 0, direction: 'down', answer: 'COD', clue: 'Fish' },
+      ],
+    };
+    return loadClientPuzzle(toPublicFile(file));
+  }
+
+  it('is offered only for entries with a second clue', () => {
+    const puzzle = withClue2();
+    expect(hasSecondClue(entry(puzzle, '1A'))).toBe(true);
+    expect(hasSecondClue(entry(puzzle, '1D'))).toBe(false);
+  });
+
+  it('keeps the clue text the server sent, once', () => {
+    const puzzle = withClue2();
+    const cat = entry(puzzle, '1A');
+    const shown = recordCrosswordClue(newGame(puzzle), cat, 'Feline');
+    expect(crosswordClueFor(shown, cat)).toBe('Feline');
+    // Already shown: unchanged, the same object.
+    expect(recordCrosswordClue(shown, cat, 'Something else')).toBe(shown);
+  });
+
+  it("ignores a clue for an entry that hasn't got one", () => {
+    const puzzle = withClue2();
+    const cod = entry(puzzle, '1D');
+    const state = newGame(puzzle);
+    expect(recordCrosswordClue(state, cod, 'Made up')).toBe(state);
+    expect(crosswordClueFor(state, cod)).toBeUndefined();
   });
 });
 

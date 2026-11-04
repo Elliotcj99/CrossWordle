@@ -1,6 +1,11 @@
 import { fitsPuzzle, type ClientPuzzle, type GameState } from '@crosswordle/engine';
 
-const key = (puzzleId: string) => `crosswordle:game:${puzzleId}`;
+const PREFIX = 'crosswordle:game:';
+const key = (puzzleId: string) => `${PREFIX}${puzzleId}`;
+/** Crossword clues an older save showed, still to fetch again (kept until each one is). */
+const cluesKey = (puzzleId: string) => `${PREFIX}${puzzleId}:clues-to-fetch`;
+/** A restart the server hasn't heard about yet. */
+const restartKey = (puzzleId: string) => `${PREFIX}${puzzleId}:restart-pending`;
 
 /** A saved game, and the entries whose Crossword clue it needs to fetch again (see below). */
 export interface SavedGame {
@@ -14,9 +19,68 @@ export interface SavedGame {
  */
 export function loadGame(puzzle: ClientPuzzle): SavedGame | undefined {
   try {
-    return readSavedGame(JSON.parse(localStorage.getItem(key(puzzle.id)) ?? 'null'), puzzle);
+    const saved = readSavedGame(JSON.parse(localStorage.getItem(key(puzzle.id)) ?? 'null'), puzzle);
+    if (saved === undefined) return undefined;
+    // An older save's clues are remembered until they're fetched, so a failed fetch (offline)
+    // doesn't lose them once the game is saved in the new form.
+    const waiting = readIds(localStorage.getItem(cluesKey(puzzle.id)));
+    const cluesToFetch = [...new Set([...waiting, ...saved.cluesToFetch])].filter(
+      (id) => !Object.hasOwn(saved.game.crosswordClues ?? {}, id),
+    );
+    if (cluesToFetch.length > 0)
+      localStorage.setItem(cluesKey(puzzle.id), JSON.stringify(cluesToFetch));
+    else localStorage.removeItem(cluesKey(puzzle.id));
+    return { ...saved, cluesToFetch };
   } catch {
     return undefined;
+  }
+}
+
+/** An older save's clue has been fetched again. */
+export function clueFetched(puzzleId: string, entryId: string): void {
+  try {
+    const left = readIds(localStorage.getItem(cluesKey(puzzleId))).filter((id) => id !== entryId);
+    if (left.length > 0) localStorage.setItem(cluesKey(puzzleId), JSON.stringify(left));
+    else localStorage.removeItem(cluesKey(puzzleId));
+  } catch {
+    // Blocked storage: nothing was waiting.
+  }
+}
+
+/** Marks a restart the server hasn't confirmed, or clears the mark once it has. */
+export function setRestartPending(puzzleId: string, pending: boolean): void {
+  try {
+    if (pending) localStorage.setItem(restartKey(puzzleId), '1');
+    else localStorage.removeItem(restartKey(puzzleId));
+  } catch {
+    // Blocked storage: the restart is only in this page.
+  }
+}
+
+export function restartPending(puzzleId: string): boolean {
+  try {
+    return localStorage.getItem(restartKey(puzzleId)) !== null;
+  } catch {
+    return false;
+  }
+}
+
+/** Forgets every saved game in this browser (the player's, when they switch or delete). */
+export function clearSavedGames(): void {
+  try {
+    const keys = Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i));
+    for (const k of keys) if (k?.startsWith(PREFIX)) localStorage.removeItem(k);
+  } catch {
+    // Blocked storage: nothing was saved.
+  }
+}
+
+function readIds(text: string | null): string[] {
+  try {
+    const value: unknown = JSON.parse(text ?? '[]');
+    return Array.isArray(value) ? value.filter((id): id is string => typeof id === 'string') : [];
+  } catch {
+    return [];
   }
 }
 

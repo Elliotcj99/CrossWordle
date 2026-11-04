@@ -1,10 +1,36 @@
 import type { HintLetter, ScoredLetter } from '@crosswordle/engine';
 import { features } from './features';
-import { playerId } from './player';
+import { forgetPlayer, playerId } from './player';
 
 /** Every API request carries the player id, so the server can keep its record of their game. */
 function headers(): Record<string, string> {
   return { 'content-type': 'application/json', 'x-player-id': playerId() };
+}
+
+/**
+ * `fetch` for the API. A 410 `forgotten` means this player's record was deleted (in another tab,
+ * say): this browser forgets it too and starts afresh, so nothing is recorded under it again.
+ */
+async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
+  const response = await fetch(path, init);
+  if (response.status === 410) {
+    const { error } = await readJson<{ error?: string }>(response.clone());
+    if (error === 'forgotten') {
+      forgetPlayer();
+      location.reload();
+    }
+  }
+  return response;
+}
+
+/** A reply's JSON body, or `{}` when it has none (an HTML error page from a proxy, say). */
+async function readJson<T extends object>(response: Response): Promise<Partial<T>> {
+  try {
+    const body = (await response.json()) as unknown;
+    return typeof body === 'object' && body !== null ? (body as Partial<T>) : {};
+  } catch {
+    return {};
+  }
 }
 
 /** What the scoring Function returns for a guess it accepted. */
@@ -27,7 +53,7 @@ export async function scoreGuess(
 ): Promise<ScoredGuess> {
   let response: Response;
   try {
-    response = await fetch('api/guess', {
+    response = await apiFetch('api/guess', {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({ puzzleId, entryId, guess }),
@@ -62,7 +88,7 @@ export async function requestHint(
   known: readonly HintLetter[],
 ): Promise<HintResult> {
   try {
-    const response = await fetch('api/hint', {
+    const response = await apiFetch('api/hint', {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({ puzzleId, entryId, guesses, known }),
@@ -89,7 +115,7 @@ export async function requestCrosswordClue(
   entryId: string,
 ): Promise<string | undefined> {
   try {
-    const response = await fetch('api/clue', {
+    const response = await apiFetch('api/clue', {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({ puzzleId, entryId }),
@@ -103,19 +129,21 @@ export async function requestCrosswordClue(
 }
 
 /**
- * The player restarted the puzzle: their next attempt can't be ranked. Best effort: the game
- * carries on whatever happens, and hosts without records (Cloudflare Pages) aren't asked.
+ * The player restarted the puzzle: their next attempt can't be ranked. The game carries on
+ * whatever happens; false means the server hasn't heard (offline), so the page can say so again
+ * later. Hosts without records (Cloudflare Pages) aren't asked.
  */
-export async function reportRestart(puzzleId: string): Promise<void> {
-  if (!(await features()).names.has('records')) return;
+export async function reportRestart(puzzleId: string): Promise<boolean> {
+  if (!(await features()).names.has('records')) return true;
   try {
-    await fetch('api/restart', {
+    const response = await apiFetch('api/restart', {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({ puzzleId }),
     });
+    return response.ok;
   } catch {
-    // Offline: the server's record misses this one; the game itself is unaffected.
+    return false;
   }
 }
 
@@ -151,16 +179,14 @@ export async function submitNickname(
   turnstileToken: string | undefined,
 ): Promise<NicknameOutcome> {
   try {
-    const response = await fetch('api/nickname', {
+    const response = await apiFetch('api/nickname', {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({ puzzleId, nickname, turnstileToken }),
     });
-    const data = (await response.json()) as {
-      error?: string;
-      nickname?: string;
-      result?: RecordedResult;
-    };
+    const data = await readJson<{ error: string; nickname: string; result: RecordedResult }>(
+      response,
+    );
     if (response.ok && data.nickname !== undefined && data.result !== undefined) {
       return { ok: true, nickname: data.nickname, result: data.result };
     }
@@ -183,15 +209,17 @@ export type Outcome<T> =
 const RECOVERY_ERRORS: Readonly<Record<string, string>> = {
   'too-many': 'Too many tries. Please wait a while and try again.',
   'check-failed': "The bot check didn't go through. Please try again.",
+  'code-invalid':
+    "That isn't a recovery code: they're 20 letters and digits, like ABCDE-FGHJK-MNPQR-STVWX.",
   'code-unknown':
     "That code isn't one we know. Check it, and use your newest code: making a new one replaces the old.",
 };
 
 async function recoveryRequest<T>(path: string, init: RequestInit): Promise<Outcome<T>> {
   try {
-    const response = await fetch(path, { ...init, headers: headers() });
-    const data = (await response.json()) as T & { error?: string };
-    if (response.ok) return { ok: true, ...data };
+    const response = await apiFetch(path, { ...init, headers: headers() });
+    const data = await readJson<T & { error: string }>(response);
+    if (response.ok) return { ok: true, ...(data as T) };
     return {
       ok: false,
       message: RECOVERY_ERRORS[data.error ?? ''] ?? 'Something went wrong. Please try again.',
@@ -252,7 +280,7 @@ export interface Board {
 /** A puzzle's leaderboard, or `undefined` if it couldn't be fetched. */
 export async function fetchLeaderboard(puzzleId: string): Promise<Board | undefined> {
   try {
-    const response = await fetch(`api/leaderboard?puzzle=${encodeURIComponent(puzzleId)}`, {
+    const response = await apiFetch(`api/leaderboard?puzzle=${encodeURIComponent(puzzleId)}`, {
       headers: headers(),
     });
     if (!response.ok) return undefined;
@@ -272,7 +300,7 @@ export interface RecordedFinish extends RecordedResult {
 /** Every puzzle this player has finished, as the server has it; empty if it can't be fetched. */
 export async function fetchRecord(): Promise<readonly RecordedFinish[]> {
   try {
-    const response = await fetch('api/record', { headers: headers() });
+    const response = await apiFetch('api/record', { headers: headers() });
     if (!response.ok) return [];
     const data = (await response.json()) as { results?: unknown };
     return Array.isArray(data.results)
@@ -296,7 +324,7 @@ export async function fetchRecord(): Promise<readonly RecordedFinish[]> {
  */
 export async function fetchGame(puzzleId: string): Promise<unknown> {
   try {
-    const response = await fetch(`api/game?puzzle=${encodeURIComponent(puzzleId)}`, {
+    const response = await apiFetch(`api/game?puzzle=${encodeURIComponent(puzzleId)}`, {
       headers: headers(),
     });
     if (!response.ok) return undefined;
@@ -321,7 +349,11 @@ export async function fetchContact(): Promise<string | undefined> {
 /** Asks the server to delete everything it keeps about this player. True once it has. */
 export async function forgetMe(): Promise<boolean> {
   try {
-    const response = await fetch('api/forget', { method: 'POST', headers: headers(), body: '{}' });
+    const response = await apiFetch('api/forget', {
+      method: 'POST',
+      headers: headers(),
+      body: '{}',
+    });
     return response.ok;
   } catch {
     return false;
@@ -342,12 +374,12 @@ export async function sendFeedback(
   turnstileToken: string | undefined,
 ): Promise<Outcome<{ id: number }>> {
   try {
-    const response = await fetch('api/feedback', {
+    const response = await apiFetch('api/feedback', {
       method: 'POST',
       headers: headers(),
       body: JSON.stringify({ title, description, turnstileToken }),
     });
-    const data = (await response.json()) as { id?: number; error?: string };
+    const data = await readJson<{ id: number; error: string }>(response);
     if (response.ok && typeof data.id === 'number') return { ok: true, id: data.id };
     return {
       ok: false,

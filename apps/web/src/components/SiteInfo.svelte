@@ -14,6 +14,7 @@
   let hasContact = $state(false);
   let hasRecords = $state(false);
   let hasFeedback = $state(false);
+  let hasForget = $state(false);
   let siteKey = $state<string | undefined>();
   let showContact = $state(false);
   let showFeedback = $state(false);
@@ -26,6 +27,7 @@
     hasContact = host.names.has('contact');
     hasRecords = host.names.has('records');
     hasFeedback = host.names.has('feedback');
+    hasForget = host.names.has('forget');
     siteKey = host.turnstileSiteKey;
   });
 
@@ -63,8 +65,9 @@
     {/if}
   </div>
 
-  {#if showContact}
-    <p class="contact" role="status">
+  <!-- Always in the page, so screen readers announce what appears in it. -->
+  <p class="contact" role="status">
+    {#if showContact}
       {#if email !== undefined}
         Questions, problems or ideas? Email <a href="mailto:{email}">{email}</a>.
       {:else if contactFailed}
@@ -72,8 +75,8 @@
       {:else}
         Loading…
       {/if}
-    </p>
-  {/if}
+    {/if}
+  </p>
 
   {#if showFeedback}
     <FeedbackForm {siteKey} />
@@ -110,11 +113,12 @@
         </li>
         <li>
           <b>Your internet address</b>, with the time, when you submit a nickname, make a recovery
-          code or use one. Only to stop abuse (limits on how often), and deleted after 30 days.
+          code or use one. Only to stop abuse (limits on how often), and deleted after 30 days, even
+          if you delete your record, so the limits can't be reset.
         </li>
         <li>
-          <b>Error reports:</b> when something goes wrong on our side, what failed and, if it was your
-          request, your player id. Deleted after 14 days.
+          <b>Error reports:</b> when something goes wrong on our side, what failed (which can include
+          a little of what was sent) and, if it was your request, your player id. Deleted after 14 days.
         </li>
         <li>
           <b>A count of page loads per day</b>, with nothing about who: no id and no address.
@@ -134,11 +138,18 @@
       </p>
 
       <h3>Deleting your record</h3>
-      <p>
-        Open <b>Your record</b> at the top of the page and choose <b>Delete my record</b>.
-        Everything above goes from our server, and from this browser.
-        {#if hasContact}Anything else, use <b>Contact us</b>.{/if}
-      </p>
+      {#if hasForget}
+        <p>
+          Open <b>Your record</b> at the top of the page and choose <b>Delete my record</b>. Your
+          games, results, nickname, recovery code and feature requests go from our server, and the
+          game data from this browser (your display settings stay). We keep a scrambled form of the
+          deleted id, so it can't be used again. If this browser switched records with a recovery
+          code, delete each record from a browser using it.
+          {#if hasContact}Anything else, use <b>Contact us</b>.{/if}
+        </p>
+      {:else if hasContact}
+        <p>Use <b>Contact us</b> to ask for your record to be deleted.</p>
+      {/if}
     </section>
   {/if}
 {/if}

@@ -36,17 +36,27 @@ export function recordResult(puzzleId: string, result: PuzzleResult): Record<str
 
 /**
  * Adds the server's record of this player's finished puzzles to this browser's, and saves the
- * result. The server's wins where both have a puzzle: it's the player's first finish anywhere,
- * on any device that shares their player id.
+ * result. It fills in puzzles this browser hasn't finished (played on another device, or before
+ * a restore); where both have one, this browser's stands, as the first result always does
+ * (`recordResult`). The browser's results are cleared when the player switches, so they're theirs.
  */
 export function mergeResults(
   server: Readonly<Record<string, PuzzleResult>>,
 ): Record<string, PuzzleResult> {
-  const merged = { ...loadResults(), ...server };
+  const merged = { ...server, ...loadResults() };
   try {
     localStorage.setItem(KEY, JSON.stringify(merged));
   } catch {
     // Blocked storage: the merged stats last for this page.
   }
   return merged;
+}
+
+/** Forgets this browser's results (the player's, when they switch or delete). */
+export function clearResults(): void {
+  try {
+    localStorage.removeItem(KEY);
+  } catch {
+    // Blocked storage: nothing was kept.
+  }
 }

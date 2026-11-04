@@ -1,3 +1,7 @@
+import { rememberNickname } from './nickname';
+import { clearResults } from './results';
+import { clearSavedGames } from './storage';
+
 const KEY = 'crosswordle:player';
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
 
@@ -26,34 +30,41 @@ export function playerId(): string {
 }
 
 /**
- * Switches this browser to another player id: the one a recovery code belongs to. Returns false
- * if storage is blocked, as the switch wouldn't outlast the page.
+ * Everything this browser keeps about the player (saved games, results, nickname), cleared when
+ * the player changes, so one player's games never carry on under another's id. Each module clears
+ * its own. Settings (high contrast) aren't about the player and stay.
  */
-export function switchPlayer(id: string): boolean {
+function clearPlayerState(): void {
+  clearSavedGames();
+  clearResults();
+  rememberNickname(undefined);
+}
+
+/**
+ * Switches this browser to another player id (the one a recovery code belongs to), starting from
+ * that player's own record: their games and results come from the server. Returns false if
+ * storage is blocked, as the switch wouldn't outlast the page.
+ */
+export function switchPlayer(id: string, nickname: string | undefined): boolean {
   if (!UUID.test(id)) return false;
   try {
     localStorage.setItem(KEY, id);
   } catch {
     return false;
   }
+  clearPlayerState();
+  rememberNickname(nickname);
   current = id;
   return true;
 }
 
-/**
- * Forgets the player in this browser: their id, nickname, saved games and results. Settings (high
- * contrast) stay, as they aren't about the player. The next request makes a new id.
- */
+/** Forgets the player in this browser (their record was deleted). The next request makes a new id. */
 export function forgetPlayer(): void {
+  clearPlayerState();
   try {
-    const keys = Array.from({ length: localStorage.length }, (_, i) => localStorage.key(i));
-    for (const key of keys) {
-      if (key?.startsWith('crosswordle:') && key !== 'crosswordle:settings') {
-        localStorage.removeItem(key);
-      }
-    }
+    localStorage.removeItem(KEY);
   } catch {
-    // Blocked storage: nothing was kept here to forget.
+    // Blocked storage: the id wasn't kept.
   }
   current = undefined;
 }

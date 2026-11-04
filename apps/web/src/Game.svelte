@@ -59,7 +59,14 @@
   import { features } from './lib/features';
   import { guessErrorText } from './lib/messages';
   import { loadResults, mergeResults, recordResult } from './lib/results';
-  import { loadGame, readSavedGame, saveGame } from './lib/storage';
+  import {
+    clueFetched,
+    loadGame,
+    readSavedGame,
+    restartPending,
+    saveGame,
+    setRestartPending,
+  } from './lib/storage';
   import { preferServerGame } from './lib/sync';
 
   let { puzzle, isWord }: { puzzle: ClientPuzzle; isWord: WordChecker | undefined } = $props();
@@ -84,6 +91,13 @@
   let boardOpen = $state(false);
   /** Bumped when the board may have changed (the player named themselves), to fetch it again. */
   let boardVersion = $state(0);
+  /**
+   * Bumped by every restart. An answer from the server (a scored guess, a clue) that comes back
+   * after a restart belongs to the game before it, so it's dropped.
+   */
+  let generation = 0;
+  /** Whether the player has done anything since the page loaded (see the server-copy check). */
+  let touched = false;
 
   const locks = $derived(lockedLetters(puzzle, game));
   const status = $derived(gameStatus(puzzle, game));
@@ -120,14 +134,21 @@
     const host = await features();
     hasBoard = host.names.has('leaderboard');
     if (!host.names.has('records')) return;
-    const before = game;
+    // A restart the server never heard about (offline) is sent first. Until it's through, the
+    // server's copy is the game before the restart, which mustn't come back.
+    let restartSent = true;
+    if (restartPending(puzzle.id)) {
+      restartSent = await reportRestart(puzzle.id);
+      if (restartSent) setRestartPending(puzzle.id, false);
+    }
     const [remote, record] = await Promise.all([fetchGame(puzzle.id), fetchRecord()]);
     results = mergeResults(
       Object.fromEntries(record.map((r) => [r.puzzleId, { won: r.won, guesses: r.guesses }])),
     );
     const server = remote === undefined ? undefined : readSavedGame(remote, puzzle)?.game;
-    // Only if the player hasn't done anything meanwhile, so nothing they did is lost.
-    if (server !== undefined && game === before && preferServerGame(puzzle, game, server)) {
+    // Only if the player hasn't done anything yet (typed, guessed, asked for a clue, restarted),
+    // so nothing they did is lost or counted twice.
+    if (server !== undefined && restartSent && !touched && preferServerGame(puzzle, game, server)) {
       game = server;
       select(nextUnsolved(puzzle, game) ?? order[0]!);
     }
@@ -138,8 +159,11 @@
   onMount(() => {
     for (const id of saved?.cluesToFetch ?? []) {
       const entry = entryById(id);
+      const asked = generation;
       void requestCrosswordClue(puzzle.id, id).then((clue) => {
-        if (clue !== undefined) game = recordCrosswordClue(game, entry, clue);
+        if (clue === undefined || asked !== generation) return;
+        game = recordCrosswordClue(game, entry, clue);
+        clueFetched(puzzle.id, id);
       });
     }
   });
@@ -161,17 +185,24 @@
     message = '';
   }
 
+  /** The player picked an entry themselves (rather than the game moving on). */
+  function choose(entry: ClientEntry) {
+    touched = true;
+    select(entry);
+  }
+
   /** Tapping a cell picks its entry; tapping the selected entry again switches to its crossing. */
   function selectCell(cell: Cell) {
     const key = cellKey(cell);
     const containing = puzzle.entries.filter((e) => e.cells.some((c) => cellKey(c) === key));
     const other = containing.find((e) => e.id !== selectedId);
     const next = containing.some((e) => e.id === selectedId) ? (other ?? selected) : containing[0];
-    if (next !== undefined && next.id !== selectedId) select(next);
+    if (next !== undefined && next.id !== selectedId) choose(next);
   }
 
   function press(key: string) {
     if (status !== 'playing' || solvedIds.has(selectedId) || submitting) return;
+    touched = true;
     message = '';
     if (key === 'Enter') {
       void submit();
@@ -197,8 +228,10 @@
     // Scoring happens on the server so the answer never reaches the page.
     submitting = true;
     message = '';
+    const asked = generation;
     try {
       const scored = await scoreGuess(puzzle.id, check.entry.id, check.guess);
+      if (asked !== generation) return; // Restarted meanwhile: it was the old game's guess.
       game = recordGuess(game, check.entry, scored.letters);
       // Once every clue is solved there is no next one: stay on this clue and the game ends.
       const next = scored.solved ? nextUnsolved(puzzle, game, check.entry.id) : undefined;
@@ -231,11 +264,14 @@
 
   async function revealCrosswordClue() {
     if (revealing !== null || crosswordClueFor(game, selected) !== undefined) return;
+    touched = true;
     revealing = 'crossword';
     message = '';
     const entry = selected;
+    const asked = generation;
     try {
       const clue = await requestCrosswordClue(puzzle.id, entry.id);
+      if (asked !== generation) return;
       if (clue !== undefined) game = recordCrosswordClue(game, entry, clue);
       else message = 'Could not get the clue — check your connection and try again.';
     } finally {
@@ -245,14 +281,17 @@
 
   async function revealWordleClue() {
     if (revealing !== null || wordleClueFor(game, selected) !== undefined) return;
+    touched = true;
     revealing = 'wordle';
     message = '';
     // The entry asked about: the player may select another before the answer comes back.
     const entry = selected;
+    const asked = generation;
     try {
       const guesses = feedbackFor(game, entry).map(wordOf);
       // The grid's letters go too, so the clue reveals something new.
       const result = await requestHint(puzzle.id, entry.id, guesses, gridLetters(entry, locks));
+      if (asked !== generation) return;
       if (result.ok) {
         game = recordWordleClue(game, entry, result.hint);
       } else {
@@ -267,7 +306,13 @@
   }
 
   function restart() {
-    void reportRestart(puzzle.id);
+    touched = true;
+    generation++;
+    // If the server doesn't hear about it now, it's sent again next time (see onMount).
+    setRestartPending(puzzle.id, true);
+    void reportRestart(puzzle.id).then((sent) => {
+      if (sent) setRestartPending(puzzle.id, false);
+    });
     game = newGame(puzzle);
     confirmingRestart = false;
     select(order[0]!);
@@ -281,19 +326,23 @@
   /** Moves to the next or previous clue in the list (across before down), wrapping round. */
   function step(delta: number) {
     const i = order.findIndex((e) => e.id === selectedId);
-    select(order[(i + delta + order.length) % order.length]!);
+    choose(order[(i + delta + order.length) % order.length]!);
   }
 
   /** Selecting from the clue list jumps back up to the grid on a phone, to save scrolling. */
   function selectFromClues(entry: ClientEntry) {
-    select(entry);
+    choose(entry);
     if (isPhone()) boardEl?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function onKeydown(event: KeyboardEvent) {
     if (event.ctrlKey || event.metaKey || event.altKey) return;
-    // Typing in a form field (the nickname) is for that field, not the grid.
-    if (event.target instanceof HTMLElement && event.target.closest('input, textarea, select')) {
+    // Keys in a form (the nickname, a feature request, a recovery code), its fields and buttons
+    // alike, are for that form: Enter on its Submit button submits it.
+    if (
+      event.target instanceof HTMLElement &&
+      event.target.closest('input, textarea, select, form')
+    ) {
       return;
     }
     if (event.key === 'Enter' || event.key === 'Backspace' || /^[A-Za-z]$/.test(event.key)) {

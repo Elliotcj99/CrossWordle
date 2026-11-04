@@ -1,48 +1,53 @@
 <script lang="ts">
-  import { onDestroy } from 'svelte';
   import { sendFeedback } from '../lib/api';
-  import { renderTurnstile, type Widget } from '../lib/turnstile';
+  import TurnstileCheck from './TurnstileCheck.svelte';
 
   /**
    * "Request a feature": a title and a description, sent to the server for the admin to read.
    * Shown from the footer where the server offers it, with Cloudflare's bot check where the site
-   * has a Turnstile key. The limits match the server's (server/feedback.ts).
+   * has a Turnstile key. The limits match the server's (server/feedback.ts) and, like the server,
+   * count characters, so an emoji is one; the browser's own maxlength would count it as two.
    */
   let { siteKey }: { siteKey: string | undefined } = $props();
 
-  const TITLE_MAX = 100;
-  const DESCRIPTION_MAX = 2000;
+  const TITLE = { min: 3, max: 100 };
+  const DESCRIPTION = { min: 10, max: 2000 };
 
   let title = $state('');
   let description = $state('');
   let token = $state<string | undefined>();
+  let check = $state<TurnstileCheck>();
   let sending = $state(false);
   let message = $state('');
   let sent = $state(false);
-  let checkEl = $state<HTMLElement>();
-  let widget: Widget | undefined;
 
-  $effect(() => {
-    if (checkEl === undefined || siteKey === undefined || widget !== undefined) return;
-    renderTurnstile(checkEl, siteKey, (t) => (token = t))
-      .then((w) => (widget = w))
-      .catch(() => (message = "The bot check couldn't load. Check your connection and reload."));
-  });
-
-  onDestroy(() => widget?.remove());
-
+  const length = (text: string) => [...text.trim()].length;
   const waitingForCheck = $derived(siteKey !== undefined && token === undefined);
-  const length = (text: string) => [...text].length;
+
+  /** What to fix before sending, if anything. */
+  function problem(): string | undefined {
+    if (length(title) < TITLE.min || length(title) > TITLE.max) {
+      return `Give it a short title: ${TITLE.min} to ${TITLE.max} characters.`;
+    }
+    if (length(description) < DESCRIPTION.min || length(description) > DESCRIPTION.max) {
+      return `Tell us a bit more: ${DESCRIPTION.min} to ${DESCRIPTION.max.toLocaleString('en-GB')} characters.`;
+    }
+    return undefined;
+  }
 
   async function send(event: SubmitEvent) {
     event.preventDefault();
     if (sending || waitingForCheck) return;
+    const fix = problem();
+    if (fix !== undefined) {
+      message = fix;
+      return;
+    }
     sending = true;
     message = '';
     const outcome = await sendFeedback(title, description, token);
     sending = false;
-    widget?.reset(); // Each check token works once.
-    token = undefined;
+    check?.reset(); // Each check token works once.
     if (!outcome.ok) {
       message = outcome.message;
       return;
@@ -62,26 +67,18 @@
   <form class="feedback" onsubmit={send} aria-labelledby="feedback-title">
     <h2 id="feedback-title">Request a feature</h2>
     <label for="feedback-summary">What would you like?</label>
-    <input
-      id="feedback-summary"
-      type="text"
-      bind:value={title}
-      minlength="3"
-      maxlength={TITLE_MAX}
-      required
-    />
+    <input id="feedback-summary" type="text" bind:value={title} required />
     <label for="feedback-description">
-      Tell us more <span class="count">{length(description)} / {DESCRIPTION_MAX}</span>
+      Tell us more <span class="count">{length(description)} / {DESCRIPTION.max}</span>
     </label>
-    <textarea
-      id="feedback-description"
-      bind:value={description}
-      minlength="10"
-      maxlength={DESCRIPTION_MAX}
-      rows="5"
-      required></textarea>
+    <textarea id="feedback-description" bind:value={description} rows="5" required></textarea>
     {#if siteKey !== undefined}
-      <div class="check" bind:this={checkEl}></div>
+      <TurnstileCheck
+        {siteKey}
+        ontoken={(t) => (token = t)}
+        bind:this={check}
+        onerror={(m) => (message = m)}
+      />
     {/if}
     <div>
       <button type="submit" disabled={sending || waitingForCheck}>
@@ -162,10 +159,6 @@
     font: inherit;
     text-decoration: underline;
     cursor: pointer;
-  }
-
-  .check:empty {
-    display: none;
   }
 
   .status {
