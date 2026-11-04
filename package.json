@@ -13,9 +13,10 @@
   },
   "scripts": {
     "generate": "tsx packages/generator/src/cli.ts generate --clues data/clues/quick.tsv --clues data/clues/edits.tsv --words data/wordlists --puzzles puzzles",
-    "generate:naughty": "tsx packages/generator/src/cli.ts generate --clues data/clues-naughty/rude.tsv --words data/wordlists-naughty --puzzles puzzles-naughty --id-prefix naughty- --title-prefix \"Naughty · \" --min-entries 10 --max-entries 16 --max-size 11 --days 10 --recent-days 10",
+    "check:naughty": "tsx packages/generator/src/cli.ts check-naughty --words data/wordlists-naughty --clues data/clues-naughty/rude.tsv --clues data/clues-naughty/second.tsv --blocked data/wordlists-naughty/blocked.sha256 --reviewed data/wordlists-naughty/reviewed.tsv",
+    "generate:naughty": "npm run check:naughty && tsx packages/generator/src/cli.ts generate --clues data/clues-naughty/rude.tsv --words data/wordlists-naughty --puzzles puzzles-naughty --id-prefix naughty- --title-prefix \"Naughty · \" --min-entries 10 --max-entries 16 --max-size 11 --days 10 --recent-days 30 --form-rest-days 10",
     "puzzles": "tsx packages/generator/src/cli.ts publish --in puzzles --words data/wordlists --notice data/clues/NOTICE.md --out apps/web/public/puzzles --answers-out functions/_puzzles.json --clues2 data/clues/wordnet.tsv",
-    "puzzles:naughty": "tsx packages/generator/src/cli.ts publish --in puzzles-naughty --words data/wordlists-naughty --notice data/clues-naughty/NOTICE.md --out apps/web/public/naughty --answers-out functions/_puzzles.naughty.json --clues2 data/clues-naughty/second.tsv",
+    "puzzles:naughty": "npm run check:naughty && tsx packages/generator/src/cli.ts publish --in puzzles-naughty --words data/wordlists-naughty --notice data/clues-naughty/NOTICE.md --out apps/web/public/naughty --answers-out functions/_puzzles.naughty.json --clues2 data/clues-naughty/second.tsv",
     "words": "tsx packages/generator/src/cli.ts words --words data/wordlists --out apps/web/public/words",
     "words:naughty": "tsx packages/generator/src/cli.ts words --words data/wordlists --words data/wordlists-naughty --out apps/web/public/words-naughty",
     "reveal": "tsx packages/generator/src/cli.ts reveal --puzzles puzzles",

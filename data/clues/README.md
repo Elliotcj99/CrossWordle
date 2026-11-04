@@ -37,8 +37,9 @@ answers were then added for variety: animals, food, household things, clothes, m
 arts, sport, nature, the body, people, places, materials and colours, and livelier words such as
 ASTUTE, GAZEBO and MIASMA. Prefer adding words like these to more abstract ones.
 
-Puzzles fill to 24 to 26 entries from the pool after excluding 60 days of answers, and about
-4,500 answers last about 170 days before one has to repeat.
+Puzzles fill to 24 to 26 entries from the pool after excluding 60 days of answers (and other forms
+of them: LEVEL rests LEVELLED too), and about 4,500 answers last about 170 days before one has to
+repeat. One puzzle never uses two forms of a word.
 
 Each line is `ANSWER<tab>clue`. Blank lines and lines starting with `#` are ignored. Answers must
 be in the guess dictionary (`data/wordlists`), and a clue may not contain its answer.

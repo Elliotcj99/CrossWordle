@@ -6,73 +6,108 @@
   "entries": [
     {
       "row": 0,
+      "col": 0,
+      "direction": "down",
+      "answer": "FETISH",
+      "clue": "Kinky obsession"
+    },
+    {
+      "row": 0,
       "col": 3,
       "direction": "down",
-      "answer": "BOOBIES",
-      "clue": "Booby birds, or a buxom pair"
+      "answer": "LUBE",
+      "clue": "Slippery stuff"
     },
     {
       "row": 0,
-      "col": 7,
-      "direction": "down",
-      "answer": "FANNIES",
-      "clue": "Front bottoms (British)"
-    },
-    {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "WHORING",
-      "clue": "Selling affections"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "FLOOZY",
-      "clue": "Brassy good-time girl"
-    },
-    {
-      "row": 3,
       "col": 5,
       "direction": "across",
-      "answer": "MINGER",
-      "clue": "A right old howler (British)"
+      "answer": "MOFO",
+      "clue": "Mean so-and-so (US slang)"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "down",
+      "answer": "MASSEUSE",
+      "clue": "Rubber"
+    },
+    {
+      "row": 2,
+      "col": 3,
+      "direction": "across",
+      "answer": "BASTARD",
+      "clue": "Difficult swine, or one born out of wedlock"
+    },
+    {
+      "row": 2,
+      "col": 8,
+      "direction": "down",
+      "answer": "RIMMING",
+      "clue": "Anal licking"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "down",
+      "answer": "BEHIND",
+      "clue": "Bottom"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "HANDFUL",
+      "clue": "Fistful, or a bust"
     },
     {
       "row": 5,
       "col": 1,
       "direction": "down",
-      "answer": "BONKED",
-      "clue": "Had it off"
+      "answer": "ASSHAT",
+      "clue": "Pompous jerk (US)"
     },
     {
       "row": 5,
-      "col": 5,
+      "col": 3,
       "direction": "down",
-      "answer": "TOSSER",
-      "clue": "Waste of space (British)"
+      "answer": "DICK",
+      "clue": "Detective, or a willy"
     },
     {
-      "row": 6,
-      "col": 0,
+      "row": 7,
+      "col": 1,
       "direction": "across",
-      "answer": "TOSSPOTS",
-      "clue": "Drunken fools"
+      "answer": "SUCKER",
+      "clue": "Mug, or a lolly"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "ROUE",
+      "clue": "Dissolute old rake"
     },
     {
       "row": 8,
-      "col": 3,
+      "col": 6,
       "direction": "across",
-      "answer": "BASTARDS",
-      "clue": "Rotten swines"
+      "answer": "ORGAN",
+      "clue": "Church pipes, or a member"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "CAD",
+      "clue": "Dastardly ladies' man"
     },
     {
       "row": 10,
       "col": 3,
       "direction": "across",
-      "answer": "PERVERT",
-      "clue": "Creepy deviant"
+      "answer": "HOSE",
+      "clue": "Garden pipe, or tights"
     }
   ]
 }

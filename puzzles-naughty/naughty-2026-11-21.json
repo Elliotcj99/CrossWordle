@@ -6,73 +6,101 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
+      "col": 0,
       "direction": "across",
-      "answer": "KNOBHEAD",
-      "clue": "Pig-headed twit"
+      "answer": "LICK",
+      "clue": "Taste with the tongue"
     },
     {
       "row": 0,
-      "col": 6,
+      "col": 2,
       "direction": "down",
-      "answer": "BUTTOCK",
-      "clue": "One cheek of the rear"
+      "answer": "COME",
+      "clue": "Arrive, or climax"
     },
     {
-      "row": 2,
-      "col": 0,
+      "row": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "PERVERTS",
-      "clue": "Creepy deviants"
+      "answer": "KNOBS",
+      "clue": "Handles, or bellends"
     },
     {
-      "row": 2,
-      "col": 9,
+      "row": 0,
+      "col": 8,
       "direction": "down",
-      "answer": "BASTARD",
-      "clue": "Difficult swine, or one born out of wedlock"
+      "answer": "BOUNDER",
+      "clue": "Caddish rogue"
     },
     {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "SHITSTORMS",
-      "clue": "Utter chaos and uproar"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "down",
-      "answer": "SHITTY",
-      "clue": "Thoroughly rotten"
-    },
-    {
-      "row": 4,
+      "row": 1,
       "col": 4,
       "direction": "down",
-      "answer": "SNOGGED",
-      "clue": "Kissed and canoodled"
+      "answer": "MADAM",
+      "clue": "Brothel keeper, or a minx"
+    },
+    {
+      "row": 1,
+      "col": 10,
+      "direction": "down",
+      "answer": "CANE",
+      "clue": "Walking stick, or a spanker"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "across",
+      "answer": "DUMBASS",
+      "clue": "Idiot (US)"
+    },
+    {
+      "row": 2,
+      "col": 0,
+      "direction": "down",
+      "answer": "DERRIERE",
+      "clue": "Posh word for a bottom"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "across",
+      "answer": "CANOODLE",
+      "clue": "Kiss and cuddle"
+    },
+    {
+      "row": 5,
+      "col": 2,
+      "direction": "down",
+      "answer": "SEXPOT",
+      "clue": "Sultry stunner"
     },
     {
       "row": 6,
-      "col": 3,
+      "col": 6,
       "direction": "across",
-      "answer": "COCKHEAD",
-      "clue": "Colossal idiot"
+      "answer": "TARTY",
+      "clue": "Brassy and overdone"
     },
     {
-      "row": 8,
-      "col": 2,
+      "row": 6,
+      "col": 9,
+      "direction": "down",
+      "answer": "TWONK",
+      "clue": "Gormless git"
+    },
+    {
+      "row": 9,
+      "col": 0,
       "direction": "across",
-      "answer": "BUGGERED",
-      "clue": "Done for, knackered"
+      "answer": "EROTICA",
+      "clue": "Sexy literature"
     },
     {
       "row": 10,
-      "col": 2,
+      "col": 7,
       "direction": "across",
-      "answer": "WEDGIE",
-      "clue": "Underwear yanked skyward"
+      "answer": "POKE",
+      "clue": "Prod, or a bonk"
     }
   ]
 }

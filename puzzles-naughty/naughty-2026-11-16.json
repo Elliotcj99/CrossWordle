@@ -6,101 +6,108 @@
   "entries": [
     {
       "row": 0,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "FARTED",
-      "clue": "Broke wind"
+      "answer": "BUXOM",
+      "clue": "Bosomy"
     },
     {
       "row": 0,
-      "col": 8,
+      "col": 0,
       "direction": "down",
-      "answer": "TWATS",
-      "clue": "Fools, or thumps"
+      "answer": "BUSHBABY",
+      "clue": "Small primate, cheekily"
+    },
+    {
+      "row": 0,
+      "col": 6,
+      "direction": "across",
+      "answer": "HUSSY",
+      "clue": "Brazen minx"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "STRIP",
+      "clue": "Undress"
     },
     {
       "row": 1,
-      "col": 1,
-      "direction": "down",
-      "answer": "DAMN",
-      "clue": "Mild curse of condemnation"
-    },
-    {
-      "row": 2,
-      "col": 0,
-      "direction": "across",
-      "answer": "FART",
-      "clue": "Bottom burp"
-    },
-    {
-      "row": 2,
       "col": 5,
-      "direction": "across",
-      "answer": "GONADS",
-      "clue": "The family jewels"
+      "direction": "down",
+      "answer": "DONKEY",
+      "clue": "Hung beast, cheekily"
     },
     {
-      "row": 3,
-      "col": 4,
-      "direction": "down",
-      "answer": "SHITTER",
-      "clue": "The bog, the loo"
+      "row": 2,
+      "col": 2,
+      "direction": "across",
+      "answer": "FLOOZY",
+      "clue": "Brassy good-time girl"
     },
     {
       "row": 4,
       "col": 0,
       "direction": "across",
-      "answer": "KNOBHEADS",
-      "clue": "Pig-headed twits"
+      "answer": "BUMS",
+      "clue": "Rears, or tramps"
+    },
+    {
+      "row": 4,
+      "col": 3,
+      "direction": "down",
+      "answer": "SLOSHED",
+      "clue": "Drunk"
     },
     {
       "row": 4,
       "col": 7,
-      "direction": "down",
-      "answer": "DICK",
-      "clue": "Detective, or a willy"
-    },
-    {
-      "row": 6,
-      "col": 2,
-      "direction": "down",
-      "answer": "HUMP",
-      "clue": "The deed, or a camel's lump"
-    },
-    {
-      "row": 6,
-      "col": 10,
-      "direction": "down",
-      "answer": "WANKY",
-      "clue": "Pretentious and naff"
-    },
-    {
-      "row": 7,
-      "col": 1,
       "direction": "across",
-      "answer": "BUTTOCKS",
-      "clue": "The two cheeks"
+      "answer": "BAPS",
+      "clue": "Bread rolls, or boobs"
     },
     {
-      "row": 7,
+      "row": 4,
       "col": 8,
       "direction": "down",
-      "answer": "SNOG",
-      "clue": "A good kiss and cuddle"
+      "answer": "AROUSED",
+      "clue": "Turned on"
+    },
+    {
+      "row": 4,
+      "col": 10,
+      "direction": "down",
+      "answer": "SODDED",
+      "clue": "Messed (about) (British)"
+    },
+    {
+      "row": 6,
+      "col": 0,
+      "direction": "across",
+      "answer": "BLOODY",
+      "clue": "Blasted, or gory"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "across",
+      "answer": "POUND",
+      "clue": "Quid, or bonk"
+    },
+    {
+      "row": 7,
+      "col": 6,
+      "direction": "down",
+      "answer": "POOS",
+      "clue": "Number twos"
     },
     {
       "row": 9,
-      "col": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "PORN",
-      "clue": "Blue movies"
-    },
-    {
-      "row": 9,
-      "col": 7,
-      "direction": "across",
-      "answer": "BONK",
-      "clue": "Have it off"
+      "answer": "THREESOME",
+      "clue": "Trio in bed"
     }
   ]
 }
