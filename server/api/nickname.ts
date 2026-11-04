@@ -5,7 +5,7 @@ import type { Nicknames } from '../nicknames';
 import type { Handler } from '../node-adapter';
 import { NICKNAME_LIMIT, type RateLimits } from '../rate-limits';
 import { playerIdFrom, type Records } from '../records';
-import { clientAddress, jsonBody, passesBotCheck } from './forms';
+import { clientAddress, jsonBody, botCheck } from './forms';
 
 /**
  * POST /api/nickname `{ puzzleId, nickname, turnstileToken? }`: names the player on the
@@ -43,9 +43,9 @@ export function nickname(services: NicknameServices): Handler {
     if (name === undefined) return json({ error: 'nickname-invalid' }, 400);
 
     const ip = clientAddress(request);
-    if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
-      return json({ error: 'check-failed' }, 403);
-    }
+    const check = await botCheck(config, limits, playerId, body.turnstileToken, ip);
+    if (check === 'too-many') return json({ error: 'too-many' }, 429);
+    if (check === 'failed') return json({ error: 'check-failed' }, 403);
     if (!limits.allow('nickname', playerId, ip, NICKNAME_LIMIT)) {
       return json({ error: 'too-many' }, 429);
     }

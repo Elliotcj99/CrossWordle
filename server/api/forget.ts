@@ -3,9 +3,10 @@ import type { Handler } from '../node-adapter';
 import { playerIdFrom, type Records } from '../records';
 
 /**
- * `POST /api/forget`: deletes everything the server keeps about the calling player (their games,
- * results, nickname, recovery code, form submissions and feature requests). Only the player's own browser has its
- * id, so only they can ask. 204, whether or not there was anything to delete.
+ * `POST /api/forget`: deletes the calling player's record (games, results, nickname, recovery
+ * code and feature requests; see `../players.ts`). The rate-limit log keeps its rows for their 30
+ * days. Only the player's own browser has its id, so only they can ask. 204, whether or not there
+ * was anything to delete.
  */
 export function forget(records: Records): Handler {
   return ({ request }) => {

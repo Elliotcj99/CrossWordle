@@ -47,21 +47,44 @@ export function clueFetched(puzzleId: string, entryId: string): void {
   }
 }
 
-/** Marks a restart the server hasn't confirmed, or clears the mark once it has. */
-export function setRestartPending(puzzleId: string, pending: boolean): void {
+/**
+ * Marks a restart the server hasn't confirmed yet. Each restart has its own `token`, so confirming
+ * an earlier one can't clear the mark of a later one.
+ */
+export function markRestartPending(puzzleId: string, token: string): void {
   try {
-    if (pending) localStorage.setItem(restartKey(puzzleId), '1');
-    else localStorage.removeItem(restartKey(puzzleId));
+    localStorage.setItem(restartKey(puzzleId), token);
   } catch {
     // Blocked storage: the restart is only in this page.
   }
 }
 
-export function restartPending(puzzleId: string): boolean {
+/** Clears the mark, if it's still this restart's. */
+export function clearRestartPending(puzzleId: string, token: string): void {
   try {
-    return localStorage.getItem(restartKey(puzzleId)) !== null;
+    if (localStorage.getItem(restartKey(puzzleId)) === token) {
+      localStorage.removeItem(restartKey(puzzleId));
+    }
   } catch {
-    return false;
+    // Blocked storage: nothing was marked.
+  }
+}
+
+/** The token of a restart the server hasn't confirmed, if there is one. */
+export function pendingRestart(puzzleId: string): string | undefined {
+  try {
+    return localStorage.getItem(restartKey(puzzleId)) ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** Drops an older save's clues still to fetch (they were the game before a restart). */
+export function clearCluesToFetch(puzzleId: string): void {
+  try {
+    localStorage.removeItem(cluesKey(puzzleId));
+  } catch {
+    // Blocked storage: nothing was waiting.
   }
 }
 

@@ -60,12 +60,14 @@
   import { guessErrorText } from './lib/messages';
   import { loadResults, mergeResults, recordResult } from './lib/results';
   import {
+    clearCluesToFetch,
+    clearRestartPending,
     clueFetched,
     loadGame,
+    markRestartPending,
+    pendingRestart,
     readSavedGame,
-    restartPending,
     saveGame,
-    setRestartPending,
   } from './lib/storage';
   import { preferServerGame } from './lib/sync';
 
@@ -136,11 +138,7 @@
     if (!host.names.has('records')) return;
     // A restart the server never heard about (offline) is sent first. Until it's through, the
     // server's copy is the game before the restart, which mustn't come back.
-    let restartSent = true;
-    if (restartPending(puzzle.id)) {
-      restartSent = await reportRestart(puzzle.id);
-      if (restartSent) setRestartPending(puzzle.id, false);
-    }
+    const restartSent = await sendPendingRestart();
     const [remote, record] = await Promise.all([fetchGame(puzzle.id), fetchRecord()]);
     results = mergeResults(
       Object.fromEntries(record.map((r) => [r.puzzleId, { won: r.won, guesses: r.guesses }])),
@@ -184,6 +182,20 @@
     draft = emptyDraft();
     message = '';
   }
+
+  /**
+   * Sends a restart the server hasn't heard about, before anything else about this game, so the
+   * server's attempt and this page's stay the same game. False while it still can't be sent.
+   */
+  async function sendPendingRestart(): Promise<boolean> {
+    const token = pendingRestart(puzzle.id);
+    if (token === undefined) return true;
+    const sent = await reportRestart(puzzle.id);
+    if (sent) clearRestartPending(puzzle.id, token);
+    return sent;
+  }
+
+  const OFFLINE = 'Could not reach the server — check your connection and try again.';
 
   /** The player picked an entry themselves (rather than the game moving on). */
   function choose(entry: ClientEntry) {
@@ -230,6 +242,10 @@
     message = '';
     const asked = generation;
     try {
+      if (!(await sendPendingRestart())) {
+        message = OFFLINE;
+        return;
+      }
       const scored = await scoreGuess(puzzle.id, check.entry.id, check.guess);
       if (asked !== generation) return; // Restarted meanwhile: it was the old game's guess.
       game = recordGuess(game, check.entry, scored.letters);
@@ -270,6 +286,10 @@
     const entry = selected;
     const asked = generation;
     try {
+      if (!(await sendPendingRestart())) {
+        message = OFFLINE;
+        return;
+      }
       const clue = await requestCrosswordClue(puzzle.id, entry.id);
       if (asked !== generation) return;
       if (clue !== undefined) game = recordCrosswordClue(game, entry, clue);
@@ -288,6 +308,10 @@
     const entry = selected;
     const asked = generation;
     try {
+      if (!(await sendPendingRestart())) {
+        message = OFFLINE;
+        return;
+      }
       const guesses = feedbackFor(game, entry).map(wordOf);
       // The grid's letters go too, so the clue reveals something new.
       const result = await requestHint(puzzle.id, entry.id, guesses, gridLetters(entry, locks));
@@ -308,10 +332,13 @@
   function restart() {
     touched = true;
     generation++;
-    // If the server doesn't hear about it now, it's sent again next time (see onMount).
-    setRestartPending(puzzle.id, true);
+    // Marked until the server confirms it; if it doesn't hear now, the restart goes before the
+    // next guess or clue (sendPendingRestart). An older save's queued clues were the old game's.
+    const token = `${Date.now()}-${Math.random()}`;
+    markRestartPending(puzzle.id, token);
+    clearCluesToFetch(puzzle.id);
     void reportRestart(puzzle.id).then((sent) => {
-      if (sent) setRestartPending(puzzle.id, false);
+      if (sent) clearRestartPending(puzzle.id, token);
     });
     game = newGame(puzzle);
     confirmingRestart = false;

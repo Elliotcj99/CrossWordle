@@ -210,10 +210,11 @@ export function withSecondClues(
     ...file,
     entries: file.entries.map((entry) => {
       const { clue2: own, ...rest } = entry;
-      const clue2 = secondClue(answerOf(file, entry)) ?? own;
-      return clue2 !== undefined && normalise(clue2) !== normalise(entry.clue)
-        ? { ...rest, clue2 }
-        : rest;
+      const differs = (clue: string | undefined): clue is string =>
+        clue !== undefined && normalise(clue) !== normalise(entry.clue);
+      const listed = secondClue(answerOf(file, entry));
+      const clue2 = differs(listed) ? listed : differs(own) ? own : undefined;
+      return clue2 === undefined ? rest : { ...rest, clue2 };
     }),
   };
 }

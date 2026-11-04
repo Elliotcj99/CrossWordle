@@ -1,6 +1,6 @@
 import type { HintLetter, ScoredLetter } from '@crosswordle/engine';
 import { features } from './features';
-import { forgetPlayer, playerId } from './player';
+import { forgetPlayerIfStill, playerId } from './player';
 
 /** Every API request carries the player id, so the server can keep its record of their game. */
 function headers(): Record<string, string> {
@@ -8,15 +8,17 @@ function headers(): Record<string, string> {
 }
 
 /**
- * `fetch` for the API. A 410 `forgotten` means this player's record was deleted (in another tab,
- * say): this browser forgets it too and starts afresh, so nothing is recorded under it again.
+ * `fetch` for the API. A 410 `forgotten` means the player id sent was deleted (in another tab,
+ * say). If it's still this browser's, the browser forgets it too; either way the page reloads, to
+ * carry on with whichever player this browser has now.
  */
 async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
+  const sent = new Headers(init?.headers).get('x-player-id');
   const response = await fetch(path, init);
-  if (response.status === 410) {
+  if (response.status === 410 && sent !== null) {
     const { error } = await readJson<{ error?: string }>(response.clone());
     if (error === 'forgotten') {
-      forgetPlayer();
+      forgetPlayerIfStill(sent);
       location.reload();
     }
   }

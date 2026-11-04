@@ -35,15 +35,22 @@ export function tidyFeedback(
 ): { title: string; description: string } | { problem: FeedbackProblem } {
   if (typeof title !== 'string') return { problem: 'title' };
   if (typeof description !== 'string') return { problem: 'description' };
+  // The upper limits are on what was typed (trimmed), counted as the browser counts them; the
+  // lower ones on what's left after tidying, so text that's all hidden characters doesn't pass.
+  if (tooLong(title, TITLE_LENGTH.max)) return { problem: 'title' };
+  if (tooLong(description, DESCRIPTION_LENGTH.max)) return { problem: 'description' };
   const line = stripControls(title.normalize('NFC'), false).replace(/\s+/g, ' ').trim();
   const text = stripControls(description.normalize('NFC').replace(/\r\n?/g, '\n'), true)
     .replace(/[ \t]+$/gm, '')
-    .replace(/ {2,}/g, ' ')
     .replace(/\n{3,}/g, '\n\n')
     .trim();
   if (!within(line, TITLE_LENGTH)) return { problem: 'title' };
   if (!within(text, DESCRIPTION_LENGTH)) return { problem: 'description' };
   return { title: line, description: text };
+}
+
+function tooLong(text: string, max: number): boolean {
+  return [...text.trim()].length > max;
 }
 
 function within(text: string, length: { min: number; max: number }): boolean {
@@ -52,25 +59,42 @@ function within(text: string, length: { min: number; max: number }): boolean {
 }
 
 /**
- * Replaces control characters with a space: C0 and C1 (with DEL), and the invisible characters
- * that can disguise text in a terminal: zero-width characters, the bidi marks, embeddings,
- * overrides and isolates, the line and paragraph separators, and the byte order mark. With
- * `keepLines`, line breaks and tabs stay.
+ * Takes out control characters: C0 and C1 (with DEL), and the invisible characters that can
+ * disguise text in a terminal: zero-width spaces, the bidi marks, embeddings, overrides and
+ * isolates, the line and paragraph separators, and the byte order mark. The zero-width joiner and
+ * non-joiner stay: emoji (👩‍💻) and scripts such as Persian need them. Each one taken out becomes
+ * a space where it would otherwise join two words, and nothing where there's a space beside it
+ * already, so the writer's own spacing is kept. With `keepLines`, line breaks and tabs stay.
  */
 function stripControls(text: string, keepLines: boolean): string {
-  let out = '';
-  for (const char of text) {
+  const chars = [...text];
+  const hidden = (char: string | undefined): boolean => {
+    if (char === undefined) return false;
+    if (keepLines && (char === '\n' || char === '\t')) return false;
     const code = char.codePointAt(0)!;
-    const hidden =
+    return (
       code <= 0x1f ||
       (code >= 0x7f && code <= 0x9f) ||
       code === 0x061c ||
-      (code >= 0x200b && code <= 0x200f) ||
+      code === 0x200b ||
+      code === 0x200e ||
+      code === 0x200f ||
       (code >= 0x2028 && code <= 0x202e) ||
       (code >= 0x2060 && code <= 0x206f) ||
-      code === 0xfeff;
-    out += !hidden || (keepLines && (char === '\n' || char === '\t')) ? char : ' ';
-  }
+      code === 0xfeff
+    );
+  };
+  let out = '';
+  chars.forEach((char, i) => {
+    if (!hidden(char)) {
+      out += char;
+      return;
+    }
+    const before = out.at(-1);
+    const after = chars.slice(i + 1).find((c) => !hidden(c));
+    const spaced = (c: string | undefined) => c === undefined || /\s/.test(c);
+    if (!spaced(before) && !spaced(after)) out += ' ';
+  });
   return out;
 }
 

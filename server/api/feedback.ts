@@ -4,7 +4,7 @@ import { tidyFeedback, type Feedback } from '../feedback';
 import type { Handler } from '../node-adapter';
 import { FEEDBACK_LIMIT, type RateLimits } from '../rate-limits';
 import { playerIdFrom } from '../records';
-import { clientAddress, jsonBody, passesBotCheck } from './forms';
+import { clientAddress, jsonBody, botCheck } from './forms';
 
 /**
  * `POST /api/feedback` `{ title, description, turnstileToken? }`: a feature request, stored for
@@ -32,9 +32,9 @@ export function feedback({ feedback: requests, limits, config }: FeedbackService
 
     // Nor does a failed bot check: the limit counts real sends.
     const ip = clientAddress(request);
-    if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
-      return json({ error: 'check-failed' }, 403);
-    }
+    const check = await botCheck(config, limits, playerId, body.turnstileToken, ip);
+    if (check === 'too-many') return json({ error: 'too-many' }, 429);
+    if (check === 'failed') return json({ error: 'check-failed' }, 403);
     if (!limits.allow('feedback', playerId, ip, FEEDBACK_LIMIT)) {
       return json({ error: 'too-many' }, 429);
     }

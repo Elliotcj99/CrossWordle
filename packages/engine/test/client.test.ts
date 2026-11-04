@@ -87,6 +87,11 @@ describe('toPublicFile', () => {
     };
     const full = withSecondClues(withOwn, (answer) => (answer === 'COD' ? 'Fish' : undefined));
     expect(full.entries.map((e) => e.clue2)).toEqual(['Moggy', 'Fish', undefined, undefined]);
+    // A listed clue that's just the main clue again doesn't push out the source's own.
+    const same = withSecondClues(withOwn, (answer) =>
+      answer === 'CAT' ? 'pet that purrs' : undefined,
+    );
+    expect(same.entries[0]!.clue2).toBe('Moggy');
     expect(full.entries[0]).toMatchObject({ row: 0, col: 0, direction: 'across', answer: 'CAT' });
   });
 

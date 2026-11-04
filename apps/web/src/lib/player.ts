@@ -13,13 +13,14 @@ let current: string | undefined;
  * is made if storage is cleared. Where storage is blocked it lasts until the page closes.
  */
 export function playerId(): string {
-  if (current !== undefined) return current;
+  // Read each time: another tab may have switched player (a restore) or forgotten this one.
   try {
     const saved = localStorage.getItem(KEY);
     if (saved !== null && UUID.test(saved)) return (current = saved);
   } catch {
     // Blocked storage: fall through to an id for this page only.
   }
+  if (current !== undefined) return current;
   current = crypto.randomUUID();
   try {
     localStorage.setItem(KEY, current);
@@ -56,6 +57,20 @@ export function switchPlayer(id: string, nickname: string | undefined): boolean 
   rememberNickname(nickname);
   current = id;
   return true;
+}
+
+/**
+ * The server says `id` was deleted: forget it here, unless this browser has moved on to another
+ * player since (a stale tab's request must not wipe the current player).
+ */
+export function forgetPlayerIfStill(id: string): void {
+  let stored: string | null = null;
+  try {
+    stored = localStorage.getItem(KEY);
+  } catch {
+    // Blocked storage: compare with this page's id instead.
+  }
+  if ((stored ?? current) === id) forgetPlayer();
 }
 
 /** Forgets the player in this browser (their record was deleted). The next request makes a new id. */

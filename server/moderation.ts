@@ -16,10 +16,30 @@ const MIN_LENGTH = 2;
 const MAX_LENGTH = 20;
 
 /**
- * Letters that show as nothing: the Hangul fillers, the braille blank, and zero-width and
- * invisible formatting characters. A name made of them would be a blank row on the board.
+ * Characters that show as nothing: the Hangul fillers, the braille blank, zero-width and invisible
+ * formatting characters, and the marks that draw nothing (the grapheme joiner and variation
+ * selectors), which could otherwise split a word unseen. A name with any of them is refused.
  */
-const INVISIBLE = /[\u115F\u1160\u3164\uFFA0\u2800\u200B-\u200F\u2060-\u2064\uFEFF]/u;
+const INVISIBLE: readonly (readonly [number, number])[] = [
+  [0x034f, 0x034f],
+  [0x115f, 0x1160],
+  [0x180b, 0x180f],
+  [0x200b, 0x200f],
+  [0x2060, 0x2064],
+  [0x2800, 0x2800],
+  [0x3164, 0x3164],
+  [0xfe00, 0xfe0f],
+  [0xfeff, 0xfeff],
+  [0xffa0, 0xffa0],
+  [0xe0100, 0xe01ef],
+];
+
+function hasInvisible(text: string): boolean {
+  return [...text].some((char) => {
+    const code = char.codePointAt(0)!;
+    return INVISIBLE.some(([from, to]) => code >= from && code <= to);
+  });
+}
 
 /**
  * A nickname tidied up (trimmed, inner spaces collapsed), or `undefined` if it isn't 2–20
@@ -29,7 +49,7 @@ const INVISIBLE = /[\u115F\u1160\u3164\uFFA0\u2800\u200B-\u200F\u2060-\u2064\uFE
 export function tidyNickname(raw: string): string | undefined {
   const nickname = raw.normalize('NFKC').trim().replace(/\s+/g, ' ');
   const length = [...nickname].length;
-  if (length < MIN_LENGTH || length > MAX_LENGTH || INVISIBLE.test(nickname)) return undefined;
+  if (length < MIN_LENGTH || length > MAX_LENGTH || hasInvisible(nickname)) return undefined;
   return /^[\p{L}\p{N}][\p{L}\p{M}\p{N} ._-]*$/u.test(nickname) ? nickname : undefined;
 }
 
@@ -77,6 +97,13 @@ function wordsOf(text: string): string[] {
  * of the library's list.
  */
 export function nicknameAllowed(nickname: string, rudeWords: ReadonlySet<string>): boolean {
+  // A mark on a letter ("Bel̵lend") mustn't hide the word: check the name with every mark
+  // removed too. Only for checking; the name keeps its marks.
+  const bare = nickname.normalize('NFD').replace(/\p{M}/gu, '').normalize('NFC');
+  return allowedAsWritten(nickname, rudeWords) && allowedAsWritten(bare, rudeWords);
+}
+
+function allowedAsWritten(nickname: string, rudeWords: ReadonlySet<string>): boolean {
   const joined = joinSpelledOut(nickname);
   if (matcher.hasMatch(nickname) || matcher.hasMatch(joined)) return false;
   if (wordsOf(joined).some((word) => rudeWords.has(word))) return false;

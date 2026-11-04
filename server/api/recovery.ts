@@ -4,7 +4,7 @@ import type { Handler } from '../node-adapter';
 import { RECOVERY_CODE_LIMIT, RESTORE_LIMIT, type RateLimits } from '../rate-limits';
 import { playerIdFrom } from '../records';
 import { normaliseCode, type Recovery } from '../recovery';
-import { clientAddress, jsonBody, passesBotCheck } from './forms';
+import { clientAddress, jsonBody, botCheck } from './forms';
 
 /**
  * Recovery codes (see `../recovery.ts`):
@@ -54,9 +54,9 @@ export function restore({ recovery, limits, config }: RecoveryServices): Handler
     if (code === undefined) return json({ error: 'code-invalid' }, 400);
 
     const ip = clientAddress(request);
-    if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
-      return json({ error: 'check-failed' }, 403);
-    }
+    const check = await botCheck(config, limits, playerId, body.turnstileToken, ip);
+    if (check === 'too-many') return json({ error: 'too-many' }, 429);
+    if (check === 'failed') return json({ error: 'check-failed' }, 403);
     if (!limits.allow('restore', playerId, ip, RESTORE_LIMIT)) {
       return json({ error: 'too-many' }, 429);
     }

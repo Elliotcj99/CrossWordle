@@ -40,6 +40,15 @@ describe('tidyFeedback', () => {
     });
   });
 
+  it("keeps emoji and scripts that need joiners, and the writer's own spacing", () => {
+    expect(
+      tidyFeedback('Coder 👩\u200D💻 mode', 'می\u200Cخواهم   more   room\n  indented'),
+    ).toEqual({
+      title: 'Coder 👩\u200D💻 mode',
+      description: 'می\u200Cخواهم   more   room\n  indented',
+    });
+  });
+
   it('counts characters, not bytes, and says which part is wrong', () => {
     expect(tidyFeedback('🎉'.repeat(100), 'Ten chars!')).toMatchObject({ title: '🎉'.repeat(100) });
     expect(tidyFeedback('🎉'.repeat(101), 'Ten chars!')).toEqual({ problem: 'title' });

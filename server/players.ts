@@ -26,10 +26,14 @@ export function isForgotten(db: DatabaseSync, playerId: string): boolean {
   );
 }
 
-/** Registers a player id on first sight. Throws `ForgottenPlayerError` for a deleted one. */
+/**
+ * Registers a player id on first sight. Throws `ForgottenPlayerError` for a deleted one. A known
+ * player can't be a deleted one (deleting removes the row), so only a new id is looked up.
+ */
 export function registerPlayer(db: DatabaseSync, playerId: string, at: string): void {
+  if (db.prepare('SELECT 1 FROM players WHERE id = ?').get(playerId) !== undefined) return;
   if (isForgotten(db, playerId)) throw new ForgottenPlayerError();
-  db.prepare('INSERT OR IGNORE INTO players (id, created_at) VALUES (?, ?)').run(playerId, at);
+  db.prepare('INSERT INTO players (id, created_at) VALUES (?, ?)').run(playerId, at);
 }
 
 /**

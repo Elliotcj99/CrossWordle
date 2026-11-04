@@ -422,14 +422,31 @@ test('deletes a record from the server and this browser', async ({ page }) => {
 });
 
 test('answers the uptime monitor in one word', async ({ request }) => {
+  // Every date a player can be on now (UTC−12 to UTC+14): "ok" is expected whenever the
+  // published puzzles cover them all, so only running out of puzzles may make it "down".
+  const dateAt = (offsetHours: number) =>
+    new Date(Date.now() + offsetHours * 3_600_000).toISOString().slice(0, 10);
+  const dates = [...new Set([dateAt(-12), dateAt(0), dateAt(14)])];
+  const ids = async (path: string) =>
+    ((await (await request.get(path)).json()) as { id: string }[]).map((p) => p.id);
+  const published = new Set([
+    ...(await ids('puzzles/index.json')),
+    ...(await ids('naughty/index.json')),
+  ]);
+  const covered = dates.every((d) => published.has(d) && published.has(`naughty-${d}`));
+
   const response = await request.get('api/health');
   expect(response.headers()['cache-control']).toBe('no-store');
-  // ok, perhaps with a reminder that the puzzles are running out, or down; never any detail.
-  // (Which one depends on the date and the puzzles committed, so either is accepted here.)
   const body = (await response.json()) as Record<string, unknown>;
-  expect([200, 503]).toContain(response.status());
-  expect(body.status).toBe(response.status() === 200 ? 'ok' : 'down');
+  // One word (and maybe the puzzles reminder), never any detail.
   expect(Object.keys(body).filter((key) => key !== 'status' && key !== 'warning')).toEqual([]);
+  if (covered) {
+    expect(response.status()).toBe(200);
+    expect(body.status).toBe('ok');
+  } else {
+    expect(response.status()).toBe(503);
+    expect(body.status).toBe('down');
+  }
 });
 
 test('can switch to high-contrast colours', async ({ page }) => {

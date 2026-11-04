@@ -194,7 +194,7 @@ function describeError(entry: LogEntry): string {
       ? []
       : entry.stack
           .split('\n')
-          .slice(1, 4)
+          .slice(0, 3)
           .map((line) => `  ${line.trim()}`)),
   ].join('\n');
 }
