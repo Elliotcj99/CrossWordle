@@ -7,79 +7,107 @@
     {
       "row": 0,
       "col": 1,
-      "direction": "across",
-      "answer": "PISSING",
-      "clue": "Tinkling, or chucking it down"
+      "direction": "down",
+      "answer": "EROTIC",
+      "clue": "Arousing"
     },
     {
       "row": 0,
       "col": 3,
       "direction": "down",
-      "answer": "SLUTS",
-      "clue": "Promiscuous sorts"
+      "answer": "NECKING",
+      "clue": "Snogging"
+    },
+    {
+      "row": 0,
+      "col": 5,
+      "direction": "across",
+      "answer": "FUCKER",
+      "clue": "Nasty piece of work"
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "direction": "down",
+      "answer": "CURVES",
+      "clue": "Bends, or a figure"
     },
     {
       "row": 0,
       "col": 10,
       "direction": "down",
-      "answer": "TITTY",
-      "clue": "Childish word for a boob"
+      "answer": "ROTTER",
+      "clue": "Dastardly cad"
     },
     {
       "row": 2,
-      "col": 2,
+      "col": 0,
       "direction": "across",
-      "answer": "NUDIST",
-      "clue": "Naturist in the buff"
-    },
-    {
-      "row": 2,
-      "col": 6,
-      "direction": "down",
-      "answer": "SCROTUM",
-      "clue": "The ball bag"
+      "answer": "GOOCH",
+      "clue": "Perineum"
     },
     {
       "row": 3,
-      "col": 1,
-      "direction": "down",
-      "answer": "SLAPPERS",
-      "clue": "Tarty sorts (British)"
-    },
-    {
-      "row": 4,
       "col": 5,
-      "direction": "across",
-      "answer": "CRAPPY",
-      "clue": "Rubbish quality"
+      "direction": "down",
+      "answer": "POOHEAD",
+      "clue": "Silly billy (childish)"
     },
     {
       "row": 5,
-      "col": 4,
-      "direction": "down",
-      "answer": "COCKS",
-      "clue": "Roosters, or todgers"
+      "col": 1,
+      "direction": "across",
+      "answer": "CONDOMS",
+      "clue": "Johnnies"
     },
     {
       "row": 6,
-      "col": 3,
-      "direction": "across",
-      "answer": "BOOTY",
-      "clue": "Pirate's loot, or a rump"
+      "col": 0,
+      "direction": "down",
+      "answer": "BOOBY",
+      "clue": "Seabird, or a blunder"
     },
     {
-      "row": 8,
-      "col": 6,
+      "row": 6,
+      "col": 8,
+      "direction": "down",
+      "answer": "STIFF",
+      "clue": "Rigid, or a corpse"
+    },
+    {
+      "row": 7,
+      "col": 2,
+      "direction": "down",
+      "answer": "FOOF",
+      "clue": "Fanny"
+    },
+    {
+      "row": 7,
+      "col": 4,
       "direction": "across",
-      "answer": "MINGE",
-      "clue": "Lady garden (vulgar)"
+      "answer": "EEJIT",
+      "clue": "Idiot (Irish)"
+    },
+    {
+      "row": 7,
+      "col": 10,
+      "direction": "down",
+      "answer": "BUNS",
+      "clue": "Bread rolls, or a bum"
     },
     {
       "row": 9,
       "col": 0,
       "direction": "across",
-      "answer": "ORGASM",
-      "clue": "The big finish"
+      "answer": "BOOZED",
+      "clue": "Drank heavily"
+    },
+    {
+      "row": 10,
+      "col": 6,
+      "direction": "across",
+      "answer": "CUFFS",
+      "clue": "Sleeve ends, or bracelets"
     }
   ]
 }

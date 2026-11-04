@@ -23,6 +23,9 @@
   the same build keeps working on Cloudflare Pages until the move to IIS is finished.
 - Database schema changes are new entries at the end of `MIGRATIONS` (`server/db.ts`), with
   tests. Never edit or reorder one that has shipped.
+- Naughty words are meant to be laughed at, never hurtful: no slurs (race, ethnicity, religion,
+  sexuality, gender identity, disability), and keep insults balanced between men and women. Every
+  new word needs both clues, and `npm run check:naughty` must pass.
 - Name branches `feat/<topic>`. Cloudflare Pages only builds preview deployments for `feat/*`
   branches, so a branch with any other name gets no preview.
 - Never commit real host names, IP addresses, domains or account names. Use `example.com`,

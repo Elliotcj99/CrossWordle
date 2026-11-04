@@ -1,5 +1,6 @@
 import { loadPuzzle, PuzzleError, type Direction, type EntryFile } from '@crosswordle/engine';
 import type { Random } from './random';
+import { sharesStem, stemsOf } from './word-forms';
 
 export interface Candidate {
   readonly answer: string;
@@ -172,7 +173,8 @@ function buildBoard(pool: readonly Candidate[], options: LayoutOptions, random: 
   if (seed === undefined) return board;
   board.place(seed, { row: 0, col: 0, direction: random.int(2) === 0 ? 'across' : 'down' });
 
-  const used = new Set([seed.answer]);
+  // One puzzle never uses two forms of a word (JIZZ and JIZZED).
+  const usedStems = stemsOf([seed.answer]);
   // Synonyms often share a clue, but one puzzle never shows the same clue twice.
   const usedClues = new Set([seed.clue.toLowerCase()]);
   let placedThisPass = true;
@@ -180,7 +182,8 @@ function buildBoard(pool: readonly Candidate[], options: LayoutOptions, random: 
     placedThisPass = false;
     for (const candidate of order) {
       if (board.entries.length >= options.maxEntries) break;
-      if (used.has(candidate.answer) || usedClues.has(candidate.clue.toLowerCase())) continue;
+      if (sharesStem(candidate.answer, usedStems)) continue;
+      if (usedClues.has(candidate.clue.toLowerCase())) continue;
       const spots = board.placements(candidate.answer, options.maxSize);
       if (spots.length === 0) continue;
       // Prefer more crossings, then the least growth of the grid; break ties at random.
@@ -194,7 +197,7 @@ function buildBoard(pool: readonly Candidate[], options: LayoutOptions, random: 
         }))
         .sort((a, b) => b.score - a.score)[0]!.spot;
       board.place(candidate, best);
-      used.add(candidate.answer);
+      for (const stem of stemsOf([candidate.answer])) usedStems.add(stem);
       usedClues.add(candidate.clue.toLowerCase());
       placedThisPass = true;
     }

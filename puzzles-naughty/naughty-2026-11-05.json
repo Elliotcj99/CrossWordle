@@ -6,94 +6,115 @@
   "entries": [
     {
       "row": 0,
-      "col": 3,
-      "direction": "down",
-      "answer": "PISSING",
-      "clue": "Tinkling, or chucking it down"
-    },
-    {
-      "row": 0,
-      "col": 6,
+      "col": 2,
       "direction": "across",
-      "answer": "SNOG",
-      "clue": "A good kiss and cuddle"
+      "answer": "GROIN",
+      "clue": "Crotch"
     },
     {
       "row": 0,
-      "col": 7,
+      "col": 2,
       "direction": "down",
-      "answer": "NUDES",
-      "clue": "Saucy selfies"
+      "answer": "GUSHER",
+      "clue": "Oil well, or an overflow"
     },
     {
-      "row": 0,
+      "row": 1,
       "col": 9,
       "direction": "down",
-      "answer": "GONADS",
-      "clue": "The family jewels"
+      "answer": "ROD",
+      "clue": "Pole, or a willy"
     },
     {
-      "row": 1,
-      "col": 0,
+      "row": 2,
+      "col": 4,
       "direction": "across",
-      "answer": "ORGIES",
-      "clue": "Group romps"
+      "answer": "FUCKBOY",
+      "clue": "Bloke only after one thing"
     },
     {
-      "row": 1,
+      "row": 2,
+      "col": 4,
+      "direction": "down",
+      "answer": "FIT",
+      "clue": "Healthy, or hot"
+    },
+    {
+      "row": 2,
+      "col": 7,
+      "direction": "down",
+      "answer": "KNOCKERS",
+      "clue": "Door bangers, or boobs"
+    },
+    {
+      "row": 4,
+      "col": 4,
+      "direction": "across",
+      "answer": "THROB",
+      "clue": "Pulse, cheekily"
+    },
+    {
+      "row": 4,
       "col": 5,
       "direction": "down",
-      "answer": "SHITSTORMS",
-      "clue": "Utter chaos and uproar"
-    },
-    {
-      "row": 3,
-      "col": 1,
-      "direction": "across",
-      "answer": "ASSWIPE",
-      "clue": "Utterly worthless person"
+      "answer": "HOOTERS",
+      "clue": "An eyeful up top"
     },
     {
       "row": 5,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "WANKS",
-      "clue": "Plays the one-handed game"
+      "answer": "PARP",
+      "clue": "Bottom toot"
     },
     {
-      "row": 6,
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "PLANK",
+      "clue": "Thick idiot, or a board"
+    },
+    {
+      "row": 5,
+      "col": 3,
+      "direction": "down",
+      "answer": "PORK",
+      "clue": "Pig meat, or bonk"
+    },
+    {
+      "row": 5,
       "col": 10,
       "direction": "down",
-      "answer": "WANKY",
-      "clue": "Pretentious and naff"
+      "answer": "LEGGY",
+      "clue": "Long-limbed"
     },
     {
       "row": 7,
-      "col": 1,
-      "direction": "down",
-      "answer": "NUDE",
-      "clue": "In the altogether"
-    },
-    {
-      "row": 7,
-      "col": 8,
-      "direction": "down",
-      "answer": "FART",
-      "clue": "Bottom burp"
+      "col": 5,
+      "direction": "across",
+      "answer": "TOERAG",
+      "clue": "Scruffy little rascal"
     },
     {
       "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "FUCKERS",
-      "clue": "Rotten swine"
+      "answer": "NOOKIE",
+      "clue": "A bit of how's your father"
+    },
+    {
+      "row": 9,
+      "col": 7,
+      "direction": "across",
+      "answer": "SEXY",
+      "clue": "Hot"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 1,
       "direction": "across",
-      "answer": "SHITTY",
-      "clue": "Thoroughly rotten"
+      "answer": "FINISH",
+      "clue": "End, cheekily"
     }
   ]
 }

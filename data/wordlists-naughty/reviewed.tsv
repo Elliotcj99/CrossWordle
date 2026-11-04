@@ -1,0 +1,5 @@
+# Naughty words that a check flagged, looked at and kept. word<tab>why it's fine.
+# They pass the compound and WordNet checks; an exact blocked word never passes.
+bastard	WordNet's "derogatory" sense is about things (a bastard file); ends in a blocked word by chance
+bastards	As bastard
+nightie	A nightdress; starts with a blocked word by chance
