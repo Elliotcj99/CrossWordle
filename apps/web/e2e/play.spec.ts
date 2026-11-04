@@ -237,6 +237,40 @@ test('names a solved game on the leaderboard, refusing rude nicknames', async ({
   await expect(form.getByRole('button', { name: 'Update' })).toBeVisible();
 });
 
+test('brings a record back with a recovery code after the browser forgets it', async ({ page }) => {
+  // Only where the server keeps records (the Node server), like the nickname form.
+  // The panel titled Your record (How to play mentions it too).
+  const record = page.locator('details', {
+    has: page.locator('summary', { hasText: /^Your record$/ }),
+  });
+  const playerId = () => page.evaluate(() => localStorage.getItem('crosswordle:player'));
+  await record.locator('summary').click();
+  await record.getByRole('button', { name: 'Make a recovery code' }).click();
+  const shown = record.getByLabel('Your recovery code');
+  await expect(shown).toHaveText(/^[0-9A-Z]{5}(-[0-9A-Z]{5}){3}$/);
+  const code = (await shown.textContent())!;
+  // The id is made on the first request to the server, so it exists by now.
+  const original = await playerId();
+  expect(original).not.toBeNull();
+
+  // The browser's data is cleared: a new player id.
+  await page.evaluate(() => localStorage.clear());
+  await page.reload();
+  await record.locator('summary').click();
+  // Opening the panel asks the server about this browser's (new) id.
+  await expect.poll(playerId).not.toBeNull();
+  expect(await playerId()).not.toBe(original);
+
+  // Typed as people do: lower case, with spaces.
+  await record
+    .getByLabel('Recovery code', { exact: true })
+    .fill(code.toLowerCase().replace(/-/g, ' '));
+  const restore = record.getByRole('button', { name: 'Restore' });
+  await expect(restore).toBeEnabled({ timeout: 15_000 });
+  await Promise.all([page.waitForEvent('load'), restore.click()]);
+  expect(await playerId()).toBe(original);
+});
+
 test('can switch to high-contrast colours', async ({ page }) => {
   const toggle = page.getByRole('button', { name: 'High contrast' });
   await toggle.click();

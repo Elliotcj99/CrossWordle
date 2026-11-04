@@ -1,10 +1,11 @@
 import { clientPuzzleFor, json } from '../../functions/api/_shared';
 import type { Config } from '../config';
 import { nicknameAllowed, tidyNickname } from '../moderation';
-import { NICKNAME_LIMIT, type Nicknames } from '../nicknames';
+import type { Nicknames } from '../nicknames';
 import type { Handler } from '../node-adapter';
+import { NICKNAME_LIMIT, type RateLimits } from '../rate-limits';
 import { playerIdFrom, type Records } from '../records';
-import { verifyTurnstile } from '../turnstile';
+import { clientAddress, jsonBody, passesBotCheck } from './forms';
 
 /**
  * POST /api/nickname `{ puzzleId, nickname, turnstileToken? }`: names the player on the
@@ -15,28 +16,19 @@ import { verifyTurnstile } from '../turnstile';
 export interface NicknameServices {
   readonly records: Records;
   readonly nicknames: Nicknames;
+  readonly limits: RateLimits;
   readonly config: Config;
   readonly rudeWords: ReadonlySet<string>;
 }
 
-interface NicknameBody {
-  readonly puzzleId?: unknown;
-  readonly nickname?: unknown;
-  readonly turnstileToken?: unknown;
-}
-
-export function nickname({ records, nicknames, config, rudeWords }: NicknameServices): Handler {
+export function nickname(services: NicknameServices): Handler {
+  const { records, nicknames, limits, config, rudeWords } = services;
   return async ({ request }) => {
     const playerId = playerIdFrom(request);
-    let body: NicknameBody;
-    try {
-      body = (await request.json()) as NicknameBody;
-    } catch {
-      return json({ error: 'bad-request' }, 400);
-    }
-    if (playerId === undefined || typeof body !== 'object' || body === null) {
-      return json({ error: 'bad-request' }, 400);
-    }
+    const body = await jsonBody<{ puzzleId: unknown; nickname: unknown; turnstileToken: unknown }>(
+      request,
+    );
+    if (playerId === undefined || body === undefined) return json({ error: 'bad-request' }, 400);
     if (typeof body.puzzleId !== 'string' || clientPuzzleFor(body.puzzleId) === undefined) {
       return json({ error: 'unknown-puzzle' }, 404);
     }
@@ -44,8 +36,8 @@ export function nickname({ records, nicknames, config, rudeWords }: NicknameServ
     const result = records.result(playerId, body.puzzleId);
     if (result === undefined) return json({ error: 'not-finished' }, 409);
 
-    const ip = request.headers.get('cf-connecting-ip')?.trim() || 'unknown';
-    if (!nicknames.allow('nickname', playerId, ip, NICKNAME_LIMIT)) {
+    const ip = clientAddress(request);
+    if (!limits.allow('nickname', playerId, ip, NICKNAME_LIMIT)) {
       return json({ error: 'too-many' }, 429);
     }
 
@@ -53,14 +45,8 @@ export function nickname({ records, nicknames, config, rudeWords }: NicknameServ
     if (name === undefined) return json({ error: 'nickname-invalid' }, 400);
     if (!nicknameAllowed(name, rudeWords)) return json({ error: 'nickname-not-allowed' }, 422);
 
-    if (config.turnstile !== undefined) {
-      const token = typeof body.turnstileToken === 'string' ? body.turnstileToken : '';
-      const passed = await verifyTurnstile({
-        secretKey: config.turnstile.secretKey,
-        token,
-        ...(ip === 'unknown' ? {} : { ip }),
-      });
-      if (!passed) return json({ error: 'check-failed' }, 403);
+    if (!(await passesBotCheck(config, body.turnstileToken, ip))) {
+      return json({ error: 'check-failed' }, 403);
     }
 
     nicknames.setNickname(playerId, name);

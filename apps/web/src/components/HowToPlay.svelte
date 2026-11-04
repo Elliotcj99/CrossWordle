@@ -1,5 +1,12 @@
 <script lang="ts">
-  // Static help text; no props.
+  import { onMount } from 'svelte';
+  import { features } from '../lib/features';
+
+  // Help text; the last tip only where the server offers recovery codes.
+  let recovery = $state(false);
+  onMount(async () => {
+    recovery = (await features()).names.has('recovery');
+  });
 </script>
 
 <details>
@@ -32,6 +39,12 @@
       Prefer orange and blue? Turn on high-contrast colours. When you finish, copy your result to
       share it without giving the answers away.
     </li>
+    {#if recovery}
+      <li>
+        Your record is kept under an anonymous id in this browser. Open <b>Your record</b> to make a recovery
+        code, so you can get it back if this browser forgets it, or use it on another device.
+      </li>
+    {/if}
   </ul>
 </details>
 

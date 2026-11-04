@@ -2,7 +2,9 @@ import rudeWordList from './_rude-words.json';
 import { databaseFile, pathsFromEnv, readConfig } from './config';
 import { openDatabase } from './db';
 import { Nicknames } from './nicknames';
+import { RateLimits } from './rate-limits';
 import { Records } from './records';
+import { Recovery } from './recovery';
 import type { Services } from './routes';
 
 /**
@@ -17,6 +19,8 @@ export function startServices(): Services & { close(): void } {
   return {
     records: new Records(db),
     nicknames: new Nicknames(db),
+    recovery: new Recovery(db),
+    limits: new RateLimits(db),
     config,
     rudeWords: new Set(rudeWordList),
     close: () => db.close(),

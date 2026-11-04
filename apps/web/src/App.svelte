@@ -1,5 +1,6 @@
 <script lang="ts">
   import HowToPlay from './components/HowToPlay.svelte';
+  import YourRecord from './components/YourRecord.svelte';
   import Game from './Game.svelte';
   import { NAUGHTY, NORMAL } from './lib/collections';
   import { loadPuzzleFor } from './lib/puzzles';
@@ -84,6 +85,7 @@
         <span class="naughty-word" aria-hidden="true">Naughty</span>
       </button>
       <HowToPlay />
+      <YourRecord />
     </div>
   </header>
 

@@ -173,3 +173,52 @@ export async function submitNickname(
     };
   }
 }
+
+/** A request to the recovery endpoints either works or has a message for the player. */
+export type Outcome<T> =
+  ({ readonly ok: true } & T) | { readonly ok: false; readonly message: string };
+
+const RECOVERY_ERRORS: Readonly<Record<string, string>> = {
+  'too-many': 'Too many tries. Please wait a while and try again.',
+  'check-failed': "The bot check didn't go through. Please try again.",
+  'code-unknown':
+    "That code isn't one we know. Check it, and use your newest code: making a new one replaces the old.",
+};
+
+async function recoveryRequest<T>(path: string, init: RequestInit): Promise<Outcome<T>> {
+  try {
+    const response = await fetch(path, { ...init, headers: headers() });
+    const data = (await response.json()) as T & { error?: string };
+    if (response.ok) return { ok: true, ...data };
+    return {
+      ok: false,
+      message: RECOVERY_ERRORS[data.error ?? ''] ?? 'Something went wrong. Please try again.',
+    };
+  } catch {
+    return {
+      ok: false,
+      message: 'Could not reach the server. Check your connection and try again.',
+    };
+  }
+}
+
+/** Whether this player has made a recovery code. */
+export function recoveryCodeStatus(): Promise<Outcome<{ hasCode: boolean }>> {
+  return recoveryRequest('api/recovery-code', { method: 'GET' });
+}
+
+/** Makes a new recovery code for this player, replacing any earlier one. Shown once. */
+export function makeRecoveryCode(): Promise<Outcome<{ code: string }>> {
+  return recoveryRequest('api/recovery-code', { method: 'POST', body: '{}' });
+}
+
+/** The player a recovery code belongs to, for this browser to switch to. */
+export function restoreRecord(
+  code: string,
+  turnstileToken: string | undefined,
+): Promise<Outcome<{ playerId: string; nickname?: string }>> {
+  return recoveryRequest('api/restore', {
+    method: 'POST',
+    body: JSON.stringify({ code, turnstileToken }),
+  });
+}

@@ -1,7 +1,8 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { parseConfig } from '../config';
 import { openDatabase } from '../db';
-import { Nicknames, type Limit } from '../nicknames';
+import { Nicknames } from '../nicknames';
+import { RateLimits, type Limit } from '../rate-limits';
 import { verifyTurnstile } from '../turnstile';
 
 const ALICE = '0b6f8f4e-2c1a-4d3b-9e5f-1a2b3c4d5e6f';
@@ -9,6 +10,7 @@ const BOB = 'f47ac10b-58cc-4372-a567-0e02b2c3d479';
 const limit: Limit = { perPlayer: 2, perAddress: 3, windowMs: 60_000 };
 
 let nicknames: Nicknames;
+let limits: RateLimits;
 let clock: number;
 
 beforeEach(() => {
@@ -18,6 +20,7 @@ beforeEach(() => {
     db.prepare('INSERT INTO players (id, created_at) VALUES (?, ?)').run(id, 'then');
   }
   nicknames = new Nicknames(db, () => new Date(clock));
+  limits = new RateLimits(db, () => new Date(clock));
 });
 
 describe('Nicknames', () => {
@@ -28,20 +31,22 @@ describe('Nicknames', () => {
     expect(nicknames.nicknameOf(ALICE)).toBe('Grid Queen');
     expect(nicknames.nicknameOf(BOB)).toBeUndefined();
   });
+});
 
+describe('RateLimits', () => {
   it('limits submissions per player and per address within the window', () => {
-    expect(nicknames.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(true);
-    expect(nicknames.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(true);
-    expect(nicknames.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(false); // player limit
+    expect(limits.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(true);
+    expect(limits.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(true);
+    expect(limits.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(false); // player limit
 
-    expect(nicknames.allow('nickname', BOB, '192.0.2.1', limit)).toBe(true);
-    expect(nicknames.allow('nickname', BOB, '192.0.2.1', limit)).toBe(false); // address limit
-    expect(nicknames.allow('nickname', BOB, '192.0.2.2', limit)).toBe(true);
+    expect(limits.allow('nickname', BOB, '192.0.2.1', limit)).toBe(true);
+    expect(limits.allow('nickname', BOB, '192.0.2.1', limit)).toBe(false); // address limit
+    expect(limits.allow('nickname', BOB, '192.0.2.2', limit)).toBe(true);
 
     // Other kinds have their own counts, and the window moves on.
-    expect(nicknames.allow('feedback', ALICE, '192.0.2.1', limit)).toBe(true);
+    expect(limits.allow('feedback', ALICE, '192.0.2.1', limit)).toBe(true);
     clock += 61_000;
-    expect(nicknames.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(true);
+    expect(limits.allow('nickname', ALICE, '192.0.2.1', limit)).toBe(true);
   });
 });
 
