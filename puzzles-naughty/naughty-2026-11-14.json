@@ -6,115 +6,108 @@
   "entries": [
     {
       "row": 0,
-      "col": 10,
+      "col": 1,
       "direction": "down",
-      "answer": "BONKS",
-      "clue": "Has it away"
+      "answer": "INCHES",
+      "clue": "Length, cheekily"
     },
     {
-      "row": 1,
-      "col": 2,
-      "direction": "across",
-      "answer": "BELLEND",
-      "clue": "Complete tool, or a knob's tip"
-    },
-    {
-      "row": 1,
-      "col": 2,
+      "row": 0,
+      "col": 4,
       "direction": "down",
-      "answer": "BIMBO",
-      "clue": "Airheaded bombshell"
+      "answer": "PISSY",
+      "clue": "Stinking of wee, or grumpy"
     },
     {
-      "row": 1,
+      "row": 0,
       "col": 7,
-      "direction": "down",
-      "answer": "NIPPLE",
-      "clue": "Bottle top, or a pap"
-    },
-    {
-      "row": 3,
-      "col": 0,
       "direction": "across",
-      "answer": "CUM",
-      "clue": "Adult-film finale"
+      "answer": "ARSY",
+      "clue": "Bolshy"
     },
     {
-      "row": 3,
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "STEAMY",
+      "clue": "Hot and sexy"
+    },
+    {
+      "row": 1,
+      "col": 6,
+      "direction": "down",
+      "answer": "BIGMOUTH",
+      "clue": "Blabbermouth"
+    },
+    {
+      "row": 2,
       "col": 4,
       "direction": "across",
-      "answer": "POOP",
-      "clue": "Doggy-bag deposit"
-    },
-    {
-      "row": 3,
-      "col": 5,
-      "direction": "down",
-      "answer": "ORGASMIC",
-      "clue": "Toe-curlingly good"
+      "answer": "SWINGER",
+      "clue": "Partner-swapper"
     },
     {
       "row": 4,
-      "col": 7,
-      "direction": "across",
-      "answer": "PISS",
-      "clue": "Wee, or to take the mickey"
-    },
-    {
-      "row": 5,
       "col": 0,
       "direction": "across",
-      "answer": "BOOB",
-      "clue": "Blunder, or a breast"
+      "answer": "PERKY",
+      "clue": "Lively, or pert"
     },
     {
       "row": 5,
-      "col": 1,
-      "direction": "down",
-      "answer": "ORGY",
-      "clue": "Group romp"
-    },
-    {
-      "row": 5,
-      "col": 3,
-      "direction": "down",
-      "answer": "BOOBS",
-      "clue": "Knockers"
-    },
-    {
-      "row": 7,
-      "col": 8,
-      "direction": "down",
-      "answer": "BUTT",
-      "clue": "Rump, or a cigarette end"
-    },
-    {
-      "row": 8,
-      "col": 3,
+      "col": 5,
       "direction": "across",
-      "answer": "BUM",
-      "clue": "Layabout, or a cheeky rear"
+      "answer": "BOOTY",
+      "clue": "Pirate's loot, or a rump"
     },
     {
-      "row": 8,
-      "col": 7,
-      "direction": "across",
-      "answer": "MUFF",
-      "clue": "Hand-warmer, or a lady garden"
+      "row": 6,
+      "col": 0,
+      "direction": "down",
+      "answer": "BARF",
+      "clue": "Throw up"
     },
     {
-      "row": 8,
+      "row": 6,
+      "col": 2,
+      "direction": "down",
+      "answer": "RIGID",
+      "clue": "Stiff"
+    },
+    {
+      "row": 6,
+      "col": 4,
+      "direction": "down",
+      "answer": "LUSTY",
+      "clue": "Vigorous, or randy"
+    },
+    {
+      "row": 6,
       "col": 10,
       "direction": "down",
-      "answer": "FAP",
-      "clue": "Solo gentlemen's pastime"
+      "answer": "SAGGY",
+      "clue": "Droopy"
+    },
+    {
+      "row": 8,
+      "col": 4,
+      "direction": "across",
+      "answer": "SCHLONG",
+      "clue": "Large penis"
+    },
+    {
+      "row": 9,
+      "col": 0,
+      "direction": "across",
+      "answer": "FLIRT",
+      "clue": "Tease"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 6,
       "direction": "across",
-      "answer": "CUNT",
-      "clue": "The strongest insult of all"
+      "answer": "BOTTY",
+      "clue": "Rear end (childish)"
     }
   ]
 }

@@ -1,10 +1,13 @@
 import type { PuzzleFile } from '@crosswordle/engine';
 import { DEFAULT_LAYOUT, generateLayout, type Candidate, type LayoutOptions } from './layout';
 import { seededRandom } from './random';
+import { sharesStem, stemsOf } from './word-forms';
 
 /**
- * By default an answer isn't reused within this many days either side of a puzzle. A collection
- * with a small word list (Naughty mode) needs a shorter window, or it runs out of fresh answers.
+ * By default an answer, or another form of it (JIZZ, JIZZED), isn't reused within this many days
+ * either side of a puzzle. A collection can rest a word's other forms for less time than the word
+ * itself (`formRestDays`), and one with a small word list needs a shorter window, or it runs out
+ * of fresh answers.
  */
 export const RECENT_DAYS = 60;
 
@@ -79,13 +82,36 @@ export interface Naming {
 export interface DailyOptions extends Naming {
   /** Days either side of a puzzle in which its answers aren't reused. Defaults to `RECENT_DAYS`. */
   readonly recentDays?: number;
+  /**
+   * Days either side of a puzzle in which other forms of its answers aren't used (JIZZED after
+   * JIZZ). Defaults to `recentDays`; longer than that has no effect beyond it.
+   */
+  readonly formRestDays?: number;
+}
+
+/**
+ * The answers `date` can use: `pool` minus answers used within `options.recentDays` of it, and
+ * minus other forms of answers used within `options.formRestDays`.
+ */
+export function freshPool(
+  date: string,
+  pool: readonly Candidate[],
+  existing: readonly PuzzleFile[],
+  options: DailyOptions = {},
+): Candidate[] {
+  const recentDays = options.recentDays ?? RECENT_DAYS;
+  const recent = recentAnswers(date, existing, recentDays);
+  const formStems = stemsOf(recentAnswers(date, existing, options.formRestDays ?? recentDays));
+  return pool.filter(
+    (candidate) => !recent.has(candidate.answer) && !sharesStem(candidate.answer, formStems),
+  );
 }
 
 /**
  * The puzzle for `date`, laid out from `pool` minus recently used answers. The same inputs
  * always give the same puzzle; a different `naming.idPrefix` seeds a different puzzle for the same
  * date, so a prefixed collection doesn't clone the daily one. Answers used within `options.recentDays`
- * of `date` are left out. `undefined` if no layout reached the
+ * of `date` are left out, and so are their other forms within `options.formRestDays`. `undefined` if no layout reached the
  * minimum size.
  */
 export function generateDaily(
@@ -96,9 +122,11 @@ export function generateDaily(
   options: DailyOptions = {},
 ): PuzzleFile | undefined {
   const id = `${options.idPrefix ?? ''}${date}`;
-  const recent = recentAnswers(date, existing, options.recentDays);
-  const fresh = pool.filter((candidate) => !recent.has(candidate.answer));
-  const entries = generateLayout(fresh, seededRandom(id), layout);
+  const entries = generateLayout(
+    freshPool(date, pool, existing, options),
+    seededRandom(id),
+    layout,
+  );
   return entries === undefined
     ? undefined
     : {

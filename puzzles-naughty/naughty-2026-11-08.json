@@ -8,85 +8,113 @@
       "row": 0,
       "col": 2,
       "direction": "down",
-      "answer": "SNOGGED",
-      "clue": "Kissed and canoodled"
+      "answer": "GASBAG",
+      "clue": "Chatterbox"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 5,
       "direction": "across",
-      "answer": "HUMPING",
-      "clue": "Going at it"
+      "answer": "LICKED",
+      "clue": "Lapped, or beaten"
     },
     {
       "row": 0,
-      "col": 4,
+      "col": 10,
       "direction": "down",
-      "answer": "HOOTERS",
-      "clue": "An eyeful up top"
+      "answer": "DISHY",
+      "clue": "Good-looking"
+    },
+    {
+      "row": 1,
+      "col": 0,
+      "direction": "across",
+      "answer": "SPANK",
+      "clue": "Smack a bottom"
     },
     {
       "row": 1,
       "col": 0,
       "direction": "down",
-      "answer": "BIMBOS",
-      "clue": "Airheaded bombshells"
+      "answer": "SQUEEZED",
+      "clue": "Pressed, or hugged"
     },
     {
       "row": 2,
-      "col": 4,
+      "col": 6,
       "direction": "across",
-      "answer": "ORGASM",
-      "clue": "The big finish"
+      "answer": "FLAPS",
+      "clue": "Wing parts, or labia"
     },
     {
-      "row": 2,
+      "row": 3,
+      "col": 2,
+      "direction": "across",
+      "answer": "BLOW",
+      "clue": "Puff, or oral sex"
+    },
+    {
+      "row": 4,
+      "col": 6,
+      "direction": "across",
+      "answer": "BUSTY",
+      "clue": "Well-endowed up top"
+    },
+    {
+      "row": 4,
       "col": 8,
       "direction": "down",
-      "answer": "SHITTING",
-      "clue": "Having a dump, or terrified"
+      "answer": "STUNNER",
+      "clue": "Looker"
     },
     {
-      "row": 4,
-      "col": 0,
+      "row": 5,
+      "col": 4,
+      "direction": "down",
+      "answer": "TUSHIE",
+      "clue": "Little bottom"
+    },
+    {
+      "row": 6,
+      "col": 3,
       "direction": "across",
-      "answer": "BUGGER",
-      "clue": "Pesky nuisance (British)"
+      "answer": "BUMFLUFF",
+      "clue": "Feeble teenage beard"
     },
     {
-      "row": 4,
+      "row": 6,
       "col": 10,
       "direction": "down",
-      "answer": "HUMPED",
-      "clue": "Bonked"
+      "answer": "FRISK",
+      "clue": "Pat down"
     },
     {
-      "row": 6,
-      "col": 4,
-      "direction": "across",
-      "answer": "SCROTUM",
-      "clue": "The ball bag"
-    },
-    {
-      "row": 6,
-      "col": 5,
+      "row": 7,
+      "col": 2,
       "direction": "down",
-      "answer": "COCKS",
-      "clue": "Roosters, or todgers"
+      "answer": "QUIM",
+      "clue": "Vulva (old slang)"
     },
     {
       "row": 8,
       "col": 0,
       "direction": "across",
-      "answer": "BUTTOCK",
-      "clue": "One cheek of the rear"
+      "answer": "DOUCHE",
+      "clue": "Smug jerk, or a rinse"
+    },
+    {
+      "row": 9,
+      "col": 7,
+      "direction": "across",
+      "answer": "PECS",
+      "clue": "Chest muscles"
     },
     {
       "row": 10,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "SLUTS",
-      "clue": "Promiscuous sorts"
+      "answer": "PUMPED",
+      "clue": "Inflated, or bonked"
     }
   ]
 }

@@ -6,115 +6,108 @@
   "entries": [
     {
       "row": 0,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "POO",
-      "clue": "Number two"
+      "answer": "BUSH",
+      "clue": "Shrub, or pubic hair"
     },
     {
       "row": 0,
-      "col": 1,
+      "col": 3,
       "direction": "down",
-      "answer": "PERVE",
-      "clue": "Ogle lustily"
+      "answer": "HAREM",
+      "clue": "Sultan's ladies"
     },
     {
-      "row": 1,
-      "col": 4,
+      "row": 0,
+      "col": 7,
       "direction": "across",
-      "answer": "SLUT",
-      "clue": "Promiscuous sort"
+      "answer": "PIPE",
+      "clue": "Laying down some"
     },
     {
-      "row": 1,
-      "col": 4,
-      "direction": "down",
-      "answer": "SHAGGY",
-      "clue": "Unkempt and hairy"
-    },
-    {
-      "row": 1,
+      "row": 0,
       "col": 7,
       "direction": "down",
-      "answer": "TOSSPOT",
-      "clue": "Drunken fool (British)"
+      "answer": "PEES",
+      "clue": "Goes for a wee"
     },
     {
-      "row": 3,
-      "col": 3,
-      "direction": "across",
-      "answer": "BALLS",
-      "clue": "Nonsense, or testicles"
-    },
-    {
-      "row": 3,
+      "row": 0,
       "col": 9,
       "direction": "down",
-      "answer": "JIZZED",
-      "clue": "Reached the finish"
+      "answer": "PINUP",
+      "clue": "Poster babe"
     },
     {
-      "row": 4,
-      "col": 0,
-      "direction": "across",
-      "answer": "PEE",
-      "clue": "Answer nature's call"
-    },
-    {
-      "row": 4,
-      "col": 0,
-      "direction": "down",
-      "answer": "PERVY",
-      "clue": "Creepily lecherous"
-    },
-    {
-      "row": 4,
-      "col": 7,
-      "direction": "across",
-      "answer": "SHIT",
-      "clue": "Crap (strong)"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "RANDY",
-      "clue": "Gagging for it"
-    },
-    {
-      "row": 6,
-      "col": 3,
-      "direction": "down",
-      "answer": "DONG",
-      "clue": "Deep chime, or a phallus"
-    },
-    {
-      "row": 6,
-      "col": 6,
-      "direction": "across",
-      "answer": "BOOZY",
-      "clue": "Tipsy and merry"
-    },
-    {
-      "row": 7,
+      "row": 1,
       "col": 5,
       "direction": "down",
-      "answer": "TITS",
-      "clue": "Baps, melons, puppies"
+      "answer": "FARTFACE",
+      "clue": "Playground insult"
     },
     {
-      "row": 9,
+      "row": 3,
+      "col": 1,
+      "direction": "down",
+      "answer": "PANKY",
+      "clue": "Hanky-___"
+    },
+    {
+      "row": 3,
+      "col": 5,
+      "direction": "across",
+      "answer": "RISQUE",
+      "clue": "Racy"
+    },
+    {
+      "row": 4,
+      "col": 0,
+      "direction": "across",
+      "answer": "DAMMIT",
+      "clue": "Curse!"
+    },
+    {
+      "row": 5,
+      "col": 8,
+      "direction": "down",
+      "answer": "DRILL",
+      "clue": "Bore holes, cheekily"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "down",
+      "answer": "PISSUP",
+      "clue": "Boozy session"
+    },
+    {
+      "row": 6,
       "col": 3,
       "direction": "across",
-      "answer": "GIT",
-      "clue": "Contemptible fool (British)"
+      "answer": "PRAT",
+      "clue": "Silly fool"
+    },
+    {
+      "row": 6,
+      "col": 3,
+      "direction": "down",
+      "answer": "PORNY",
+      "clue": "Smutty"
+    },
+    {
+      "row": 8,
+      "col": 2,
+      "direction": "across",
+      "answer": "ARSEHOLES",
+      "clue": "Thoroughly unpleasant people"
     },
     {
       "row": 10,
-      "col": 5,
+      "col": 0,
       "direction": "across",
-      "answer": "SHITS",
-      "clue": "The runs, with \"the ...\""
+      "answer": "FOXY",
+      "clue": "Sly, or sexy"
     }
   ]
 }

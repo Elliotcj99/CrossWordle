@@ -6,94 +6,108 @@
   "entries": [
     {
       "row": 0,
-      "col": 5,
-      "direction": "down",
-      "answer": "SCROTE",
-      "clue": "Lowlife (British slang)"
+      "col": 0,
+      "direction": "across",
+      "answer": "RUMP",
+      "clue": "Bottom, or a steak"
     },
     {
       "row": 0,
-      "col": 7,
+      "col": 2,
+      "direction": "down",
+      "answer": "MANEATER",
+      "clue": "Shark, or a femme fatale"
+    },
+    {
+      "row": 0,
+      "col": 5,
       "direction": "across",
-      "answer": "KNOB",
-      "clue": "Door handle, or a plonker"
+      "answer": "DONGLE",
+      "clue": "Plug-in gadget, cheekily"
     },
     {
       "row": 0,
       "col": 9,
       "direction": "down",
-      "answer": "ORGIES",
-      "clue": "Group romps"
-    },
-    {
-      "row": 1,
-      "col": 0,
-      "direction": "across",
-      "answer": "BOLLOCK",
-      "clue": "To tear a strip off"
+      "answer": "LECH",
+      "clue": "Dirty old man"
     },
     {
       "row": 2,
-      "col": 7,
+      "col": 0,
+      "direction": "across",
+      "answer": "WAND",
+      "clue": "Magic stick, cheekily"
+    },
+    {
+      "row": 2,
+      "col": 6,
+      "direction": "across",
+      "answer": "JUICY",
+      "clue": "Succulent, or saucy"
+    },
+    {
+      "row": 2,
+      "col": 6,
       "direction": "down",
-      "answer": "TURD",
-      "clue": "A single stool"
+      "answer": "JERK",
+      "clue": "Yank, or a prat"
     },
     {
       "row": 3,
-      "col": 3,
-      "direction": "down",
-      "answer": "WANK",
-      "clue": "Gentlemen's solo sport"
-    },
-    {
-      "row": 4,
-      "col": 1,
-      "direction": "across",
-      "answer": "SMARTARSE",
-      "clue": "Cocky know-it-all"
-    },
-    {
-      "row": 4,
-      "col": 1,
-      "direction": "down",
-      "answer": "SHAGGED",
-      "clue": "Romped, or knackered"
-    },
-    {
-      "row": 6,
-      "col": 0,
-      "direction": "across",
-      "answer": "WANKS",
-      "clue": "Plays the one-handed game"
-    },
-    {
-      "row": 6,
       "col": 4,
       "direction": "down",
-      "answer": "SHAGS",
-      "clue": "Romps, or cormorants"
+      "answer": "WHORES",
+      "clue": "Ladies of negotiable affection"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "across",
+      "answer": "BUTTOCK",
+      "clue": "One cheek of the rear"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "BOTTOM",
+      "clue": "Backside, or lowest point"
+    },
+    {
+      "row": 5,
+      "col": 8,
+      "direction": "down",
+      "answer": "FART",
+      "clue": "Bottom burp"
+    },
+    {
+      "row": 5,
+      "col": 10,
+      "direction": "down",
+      "answer": "WOODY",
+      "clue": "Forested, or an erection"
     },
     {
       "row": 7,
-      "col": 9,
+      "col": 6,
       "direction": "down",
-      "answer": "NUDE",
-      "clue": "In the altogether"
+      "answer": "JUNK",
+      "clue": "Rubbish, or a man's bits"
     },
     {
       "row": 8,
       "col": 4,
       "direction": "across",
-      "answer": "ANUS",
-      "clue": "Ring at the end of the line"
+      "answer": "SPURTED",
+      "clue": "Gushed"
     },
     {
       "row": 10,
-      "col": 4,
+      "col": 3,
       "direction": "across",
-      "answer": "SHAGGER",
-      "clue": "Prolific bonker"
+      "answer": "PECKER",
+      "clue": "Woodpecker part, or a willy"
     }
   ]
 }

@@ -6,101 +6,115 @@
   "entries": [
     {
       "row": 0,
-      "col": 0,
-      "direction": "down",
-      "answer": "ARSED",
-      "clue": "Bothered, as in \"can't be ...\""
-    },
-    {
-      "row": 0,
-      "col": 4,
-      "direction": "across",
-      "answer": "BASTARD",
-      "clue": "Difficult swine, or one born out of wedlock"
-    },
-    {
-      "row": 0,
       "col": 6,
-      "direction": "down",
-      "answer": "SCROTE",
-      "clue": "Lowlife (British slang)"
+      "direction": "across",
+      "answer": "SMUT",
+      "clue": "Filth"
     },
     {
       "row": 0,
-      "col": 10,
+      "col": 7,
       "direction": "down",
-      "answer": "DILDO",
-      "clue": "Battery-operated bedroom toy"
+      "answer": "MOIST",
+      "clue": "Damp, cheekily"
+    },
+    {
+      "row": 0,
+      "col": 9,
+      "direction": "down",
+      "answer": "TUG",
+      "clue": "Pull, or a wank"
+    },
+    {
+      "row": 1,
+      "col": 1,
+      "direction": "down",
+      "answer": "BONER",
+      "clue": "Erection, or a blunder"
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "direction": "down",
+      "answer": "KNOB",
+      "clue": "Door handle, or a plonker"
     },
     {
       "row": 2,
-      "col": 0,
+      "col": 3,
       "direction": "across",
-      "answer": "SLAPPERS",
-      "clue": "Tarty sorts (British)"
+      "answer": "BANGING",
+      "clue": "Excellent, or bonking"
     },
     {
       "row": 2,
-      "col": 4,
+      "col": 3,
       "direction": "down",
-      "answer": "PLONKERS",
-      "clue": "Daft idiots (British)"
+      "answer": "BOOBIES",
+      "clue": "Booby birds, or a buxom pair"
     },
     {
       "row": 4,
-      "col": 3,
-      "direction": "across",
-      "answer": "BOOTY",
-      "clue": "Pirate's loot, or a rump"
+      "col": 10,
+      "direction": "down",
+      "answer": "WET",
+      "clue": "Damp, or a wimp"
     },
     {
       "row": 5,
-      "col": 2,
-      "direction": "down",
-      "answer": "PISSER",
-      "clue": "A real nuisance, or a loo"
-    },
-    {
-      "row": 6,
-      "col": 1,
+      "col": 0,
       "direction": "across",
-      "answer": "DICK",
-      "clue": "Detective, or a willy"
+      "answer": "CRABS",
+      "clue": "Shellfish, or an itch"
+    },
+    {
+      "row": 5,
+      "col": 0,
+      "direction": "down",
+      "answer": "CONDOM",
+      "clue": "Johnny"
+    },
+    {
+      "row": 5,
+      "col": 8,
+      "direction": "down",
+      "answer": "MELONS",
+      "clue": "Big fruit, or boobs"
     },
     {
       "row": 6,
-      "col": 7,
-      "direction": "down",
-      "answer": "MINGE",
-      "clue": "Lady garden (vulgar)"
+      "col": 6,
+      "direction": "across",
+      "answer": "ERECT",
+      "clue": "Upright, cheekily"
     },
     {
       "row": 7,
       "col": 0,
-      "direction": "down",
-      "answer": "CLIT",
-      "clue": "Sensitive little nub"
+      "direction": "across",
+      "answer": "NUDE",
+      "clue": "In the altogether"
     },
     {
       "row": 7,
-      "col": 6,
-      "direction": "across",
-      "answer": "TITTY",
-      "clue": "Childish word for a boob"
+      "col": 5,
+      "direction": "down",
+      "answer": "TART",
+      "clue": "Pastry, or a hussy"
     },
     {
-      "row": 9,
-      "col": 4,
+      "row": 8,
+      "col": 3,
       "direction": "across",
-      "answer": "SLAGS",
-      "clue": "Bad-mouths"
+      "answer": "SWALLOW",
+      "clue": "Gulp, or a bird"
     },
     {
       "row": 10,
-      "col": 0,
+      "col": 2,
       "direction": "across",
-      "answer": "TURD",
-      "clue": "A single stool"
+      "answer": "PANTIES",
+      "clue": "Knickers"
     }
   ]
 }

@@ -97,12 +97,18 @@ remembered**, and turning it on asks first, so nobody meets strong language with
 - Its words and clues are a hand-written, public-domain (CC0) set in `data/wordlists-naughty/` and
   `data/clues-naughty/`. They are swearing and crude vocabulary only — **no slurs** (words attacking
   people for race, sexuality and the like are kept out on purpose; see the `NOTICE.md` files).
+  `npm run check:naughty` enforces that against a hashed list of blocked words, and runs before
+  the naughty puzzles are generated or published.
 - The puzzles are a separate collection: smaller, denser grids (a rude-only vocabulary doesn't fill
   a newspaper-size grid), ids prefixed `naughty-<date>`, published to `apps/web/public/naughty/`
   with their own guess dictionary in `apps/web/public/words-naughty/` (the ordinary dictionary plus
   the rude words, so normal words are still valid guesses). Answers stay server-side exactly as for
   the daily puzzles (`functions/_puzzles.naughty.json`). The "Crossword clue" hint works here too,
   using the second clues in `data/clues-naughty/second.tsv`.
+- A word rests for 30 days after it's used. A puzzle never uses two forms of a word (JIZZ and
+  JIZZED), and other forms rest for 10 days, so JIZZED can follow JIZZ after a week and a half.
+- Besides swearing and crude words, the list has innuendo: ordinary words with a rude second
+  meaning (SAUSAGE, KNOCKER, PLOUGH), clued for both.
 - Regenerate the puzzle sources with `npm run generate:naughty` (smaller-grid layout flags are baked
   into that script). `npm run build`/`dev` publish them alongside the daily ones automatically.
 

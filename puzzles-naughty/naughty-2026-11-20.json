@@ -6,87 +6,101 @@
   "entries": [
     {
       "row": 0,
+      "col": 2,
+      "direction": "across",
+      "answer": "BLOOMING",
+      "clue": "Flowering, or flipping"
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "direction": "down",
+      "answer": "BANG",
+      "clue": "Explosion, or bonk"
+    },
+    {
+      "row": 0,
       "col": 5,
       "direction": "down",
-      "answer": "PRICKS",
-      "clue": "Small jabs, or nasty blokes"
+      "answer": "ORGIES",
+      "clue": "Group romps"
     },
     {
       "row": 0,
       "col": 8,
       "direction": "down",
-      "answer": "FUCKER",
-      "clue": "Nasty piece of work"
+      "answer": "NAILED",
+      "clue": "Got right, or bedded"
     },
     {
-      "row": 0,
-      "col": 10,
-      "direction": "down",
-      "answer": "CRAPPER",
-      "clue": "The throne, the bog"
-    },
-    {
-      "row": 1,
+      "row": 2,
       "col": 0,
       "direction": "across",
-      "answer": "BUGGER",
-      "clue": "Pesky nuisance (British)"
+      "answer": "WANG",
+      "clue": "Penis (US)"
     },
     {
       "row": 3,
+      "col": 4,
+      "direction": "across",
+      "answer": "TINKLED",
+      "clue": "Weed"
+    },
+    {
+      "row": 3,
+      "col": 10,
+      "direction": "down",
+      "answer": "DRIPPING",
+      "clue": "Soaked, or fat"
+    },
+    {
+      "row": 4,
       "col": 1,
       "direction": "down",
-      "answer": "SHITHOLE",
-      "clue": "Grotty dump of a place"
-    },
-    {
-      "row": 3,
-      "col": 5,
-      "direction": "across",
-      "answer": "COCKUP",
-      "clue": "Right old mess"
+      "answer": "EXPLODE",
+      "clue": "Go off"
     },
     {
       "row": 5,
-      "col": 0,
+      "col": 3,
       "direction": "across",
-      "answer": "BIMBOS",
-      "clue": "Airheaded bombshells"
+      "answer": "TOSSED",
+      "clue": "Flipped, or wanked"
     },
     {
       "row": 5,
       "col": 3,
       "direction": "down",
-      "answer": "BUMMER",
-      "clue": "A real downer, man"
+      "answer": "TUSH",
+      "clue": "Bottom (US)"
     },
     {
-      "row": 6,
+      "row": 5,
       "col": 6,
       "direction": "down",
-      "answer": "KNOBS",
-      "clue": "Handles, or bellends"
+      "answer": "SQUIRT",
+      "clue": "Spurt, or a little twerp"
     },
     {
-      "row": 7,
-      "col": 1,
+      "row": 8,
+      "col": 0,
       "direction": "across",
-      "answer": "HUMPING",
-      "clue": "Going at it"
+      "answer": "LOTHARIO",
+      "clue": "Womaniser"
     },
     {
-      "row": 7,
-      "col": 9,
-      "direction": "down",
-      "answer": "JIZZ",
-      "clue": "Spunk"
+      "row": 10,
+      "col": 0,
+      "direction": "across",
+      "answer": "LETCH",
+      "clue": "Ogling old goat"
     },
     {
-      "row": 9,
+      "row": 10,
       "col": 6,
       "direction": "across",
-      "answer": "BOOZE",
-      "clue": "The hard stuff"
+      "answer": "THONG",
+      "clue": "Bum-floss knickers"
     }
   ]
 }
