@@ -12,6 +12,7 @@
     emptyDraft,
     feedbackFor,
     gameStatus,
+    gameSummary,
     guessCount,
     guessesRemaining,
     guessLimit,
@@ -42,7 +43,13 @@
   import EntryPanel from './components/EntryPanel.svelte';
   import Grid from './components/Grid.svelte';
   import Keyboard from './components/Keyboard.svelte';
-  import { requestHint, scoreGuess, ScoringError } from './lib/api';
+  import {
+    reportCrosswordClue,
+    reportRestart,
+    requestHint,
+    scoreGuess,
+    ScoringError,
+  } from './lib/api';
   import { localDate } from './lib/dates';
   import { guessErrorText } from './lib/messages';
   import { loadResults, recordResult } from './lib/results';
@@ -94,8 +101,8 @@
   // Record the result once the puzzle ends; the first result for a puzzle stands.
   $effect(() => {
     if (status === 'playing') return;
-    const used = puzzle.entries.reduce((sum, e) => sum + guessCount(game, e), 0);
-    results = recordResult(puzzle.id, { won: status === 'won', guesses: used });
+    const { guesses } = gameSummary(puzzle, game);
+    results = recordResult(puzzle.id, { won: status === 'won', guesses });
   });
 
   function entryById(id: string): ClientEntry {
@@ -178,6 +185,7 @@
 
   function revealCrosswordClue() {
     game = recordCrosswordClue(game, selected);
+    void reportCrosswordClue(puzzle.id, selected.id);
   }
 
   async function revealWordleClue() {
@@ -201,6 +209,7 @@
   }
 
   function restart() {
+    void reportRestart(puzzle.id);
     game = newGame(puzzle);
     confirmingRestart = false;
     select(order[0]!);

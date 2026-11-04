@@ -4,6 +4,7 @@ import { extname, join, resolve, sep } from 'node:path';
 import { pathsFromEnv, readConfig } from './config';
 import { openDatabase } from './db';
 import { createRequestListener } from './node-adapter';
+import { Records } from './records';
 import { apiRoutes } from './routes';
 
 /**
@@ -94,7 +95,7 @@ async function serveStatic(req: IncomingMessage, res: ServerResponse): Promise<v
 const paths = pathsFromEnv();
 readConfig(paths.config);
 const db = openDatabase(join(paths.data, 'crosswordle.db'));
-const api = createRequestListener(apiRoutes());
+const api = createRequestListener(apiRoutes({ records: new Records(db) }));
 
 const server = createServer((req, res) => {
   if ((req.url ?? '').startsWith('/api/')) return api(req, res);

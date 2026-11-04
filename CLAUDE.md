@@ -21,6 +21,10 @@
 - API features that need the database are Node-only (`server/api/`), listed in `FEATURES`
   (`server/api/features.ts`). The browser asks `/api/features` and hides what the host lacks, so
   the same build keeps working on Cloudflare Pages until the move to IIS is finished.
+- The Node server keeps its own record of each player's game (`server/records.ts`): guesses,
+  hints and restarts, attempt by attempt, keyed by the browser's random player id. Anything ranked
+  (the leaderboard) comes from that record, worked out with the engine, never from what the
+  browser says.
 - Database schema changes are new entries at the end of `MIGRATIONS` (`server/db.ts`), with
   tests. Never edit or reorder one that has shipped.
 - Naughty words are meant to be laughed at, never hurtful: no slurs (race, ethnicity, religion,

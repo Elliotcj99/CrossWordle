@@ -3,6 +3,7 @@ import { join } from 'node:path';
 import { pathsFromEnv, readConfig } from './config';
 import { openDatabase } from './db';
 import { createRequestListener } from './node-adapter';
+import { Records } from './records';
 import { apiRoutes } from './routes';
 
 /**
@@ -18,8 +19,10 @@ const paths = pathsFromEnv();
 readConfig(paths.config);
 const db = openDatabase(join(paths.data, 'crosswordle.db'));
 
-const server = createServer(createRequestListener(apiRoutes())).listen(port, '127.0.0.1', () =>
-  console.log(`CrossWordle API listening on http://127.0.0.1:${port}`),
+const server = createServer(createRequestListener(apiRoutes({ records: new Records(db) }))).listen(
+  port,
+  '127.0.0.1',
+  () => console.log(`CrossWordle API listening on http://127.0.0.1:${port}`),
 );
 
 // IIS stops Node when it recycles the app pool; close the database cleanly when that happens.

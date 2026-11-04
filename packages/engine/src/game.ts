@@ -168,6 +168,29 @@ export function gameStatus(puzzle: ClientPuzzle, state: GameState): GameStatus {
   return unsolved.some((entry) => guessesRemaining(puzzle, state, entry) <= 0) ? 'lost' : 'playing';
 }
 
+/** How a game stands: its status, the guesses spent, and each kind of hint used. */
+export interface GameSummary {
+  readonly status: GameStatus;
+  readonly guesses: number;
+  readonly crosswordHints: number;
+  readonly wordleHints: number;
+}
+
+/**
+ * Sums up a game the same way everywhere: the browser's own stats, and the server's record of each
+ * player's game, which it rebuilds from the guesses and hints it has seen. Hints count only for the
+ * puzzle's own entries.
+ */
+export function gameSummary(puzzle: ClientPuzzle, state: GameState): GameSummary {
+  const ids = new Set(puzzle.entries.map((e) => e.id));
+  return {
+    status: gameStatus(puzzle, state),
+    guesses: puzzle.entries.reduce((sum, e) => sum + guessCount(state, e), 0),
+    crosswordHints: (state.crosswordClues ?? []).filter((id) => ids.has(id)).length,
+    wordleHints: Object.keys(state.wordleClues ?? {}).filter((id) => ids.has(id)).length,
+  };
+}
+
 /**
  * Checks a guess against every rule the browser can enforce without the answer: the game is still
  * going, the entry exists and isn't solved, there are guesses left, and the word is the right

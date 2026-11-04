@@ -97,6 +97,25 @@ test('never changes a solved answer on the grid', async ({ page }) => {
   await expect(clue(page, 'Milky coffee order')).toContainText('Solved in 2');
 });
 
+test('sends the player id with guesses, and reports a restart to a server that keeps records', async ({
+  page,
+}) => {
+  const scored = page.waitForRequest((r) => r.url().endsWith('/api/guess'));
+  await guess(page, 'LEVEL');
+  const id = (await scored).headers()['x-player-id'];
+  expect(id).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/);
+  await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+
+  // The same id after a reload, and on the restart report.
+  await page.reload();
+  const restarted = page.waitForRequest((r) => r.url().endsWith('/api/restart'));
+  await page.getByRole('button', { name: 'Restart' }).click();
+  await page.getByRole('button', { name: 'Restart' }).click();
+  const report = await restarted;
+  expect(report.headers()['x-player-id']).toBe(id);
+  expect(report.postDataJSON()).toEqual({ puzzleId: 'sample' });
+});
+
 test('keeps progress after a reload, and restart clears it', async ({ page }) => {
   await guess(page, 'LEVEL');
   // Progress is saved once the server has scored the guess.

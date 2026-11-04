@@ -6,6 +6,7 @@ import {
   evaluateGuess,
   fitsPuzzle,
   gameStatus,
+  gameSummary,
   guessesRemaining,
   guessLimit,
   isSolved,
@@ -283,6 +284,47 @@ describe('game status', () => {
 
     const done = play(ctx, [['2D', 'TOE']], state);
     expect(gameStatus(ctx.puzzle, done)).toBe('won');
+  });
+});
+
+describe('game summary', () => {
+  it('counts guesses and each kind of hint, with the status', () => {
+    const ctx = ring();
+    const state: GameState = {
+      ...play(ctx, [
+        ['1A', 'COT'],
+        ['1A', 'CAT'],
+        ['3A', 'DUE'],
+      ]),
+      crosswordClues: ['1A', '1D'],
+      wordleClues: { '3A': { index: 0, letter: 'D' } },
+    };
+    expect(gameSummary(ctx.puzzle, state)).toEqual({
+      status: 'playing',
+      guesses: 3,
+      crosswordHints: 2,
+      wordleHints: 1,
+    });
+
+    const done = play(
+      ctx,
+      [
+        ['1D', 'COD'],
+        ['2D', 'TOE'],
+      ],
+      state,
+    );
+    expect(gameSummary(ctx.puzzle, done)).toMatchObject({ status: 'won', guesses: 5 });
+  });
+
+  it("ignores hints for entries that aren't in the puzzle", () => {
+    const ctx = ring();
+    const state: GameState = {
+      ...newGame(ctx.puzzle),
+      crosswordClues: ['9A'],
+      wordleClues: { '9D': { index: 0, letter: 'X' } },
+    };
+    expect(gameSummary(ctx.puzzle, state)).toMatchObject({ crosswordHints: 0, wordleHints: 0 });
   });
 });
 

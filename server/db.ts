@@ -14,7 +14,71 @@ import { DatabaseSync } from 'node:sqlite';
  */
 export type Migration = (db: DatabaseSync) => void;
 
-export const MIGRATIONS: readonly Migration[] = [];
+export const MIGRATIONS: readonly Migration[] = [
+  // 1. Players and what they do: each guess and hint, attempt by attempt, and each finished game.
+  (db) =>
+    db.exec(`
+      CREATE TABLE players (
+        id          TEXT PRIMARY KEY,
+        created_at  TEXT NOT NULL
+      ) STRICT;
+
+      -- The attempt a player is on for a puzzle. A restart starts the next one.
+      CREATE TABLE plays (
+        player_id   TEXT NOT NULL REFERENCES players (id),
+        puzzle_id   TEXT NOT NULL,
+        attempt     INTEGER NOT NULL,
+        PRIMARY KEY (player_id, puzzle_id)
+      ) STRICT;
+
+      CREATE TABLE restarts (
+        player_id   TEXT NOT NULL REFERENCES players (id),
+        puzzle_id   TEXT NOT NULL,
+        attempt     INTEGER NOT NULL,           -- the attempt this restart started
+        reason      TEXT NOT NULL CHECK (reason IN ('reported', 'detected')),
+        at          TEXT NOT NULL
+      ) STRICT;
+
+      CREATE TABLE guesses (
+        id          INTEGER PRIMARY KEY,
+        player_id   TEXT NOT NULL REFERENCES players (id),
+        puzzle_id   TEXT NOT NULL,
+        attempt     INTEGER NOT NULL,
+        entry_id    TEXT NOT NULL,
+        letters     TEXT NOT NULL,              -- the scored guess, as JSON
+        at          TEXT NOT NULL
+      ) STRICT;
+      CREATE INDEX guesses_by_play ON guesses (player_id, puzzle_id, attempt);
+
+      CREATE TABLE hints (
+        player_id   TEXT NOT NULL REFERENCES players (id),
+        puzzle_id   TEXT NOT NULL,
+        attempt     INTEGER NOT NULL,
+        entry_id    TEXT NOT NULL,
+        kind        TEXT NOT NULL CHECK (kind IN ('crossword', 'wordle')),
+        letter      TEXT,                       -- the Wordle-clue letter, as JSON
+        at          TEXT NOT NULL,
+        PRIMARY KEY (player_id, puzzle_id, attempt, entry_id, kind)
+      ) STRICT;
+
+      -- Every finished game, first finish only: lost or won, ranked or not.
+      CREATE TABLE results (
+        player_id       TEXT NOT NULL REFERENCES players (id),
+        puzzle_id       TEXT NOT NULL,
+        attempt         INTEGER NOT NULL,
+        won             INTEGER NOT NULL,
+        guesses         INTEGER NOT NULL,
+        crossword_hints INTEGER NOT NULL,
+        wordle_hints    INTEGER NOT NULL,
+        ranked          INTEGER NOT NULL,
+        unranked_reason TEXT CHECK (unranked_reason IN ('lost', 'restarted')),
+        hidden          INTEGER NOT NULL DEFAULT 0,
+        finished_at     TEXT NOT NULL,
+        PRIMARY KEY (player_id, puzzle_id)
+      ) STRICT;
+      CREATE INDEX results_by_rank ON results (puzzle_id, ranked, hidden, guesses);
+    `),
+];
 
 /** Opens (creating if needed) the database at `path`, or an in-memory one, and brings it up to date. */
 export function openDatabase(

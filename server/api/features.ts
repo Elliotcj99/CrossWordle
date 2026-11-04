@@ -6,7 +6,10 @@ import type { Handler } from '../node-adapter';
  * answers 404, so the same build hides features that need the database. Each feature adds its
  * name here when it ships.
  */
-export const FEATURES: readonly string[] = [];
+export const FEATURES: readonly string[] = [
+  // The server keeps its own record of each player's game (guesses, hints, restarts).
+  'records',
+];
 
 export const features: Handler = () =>
   Promise.resolve(
