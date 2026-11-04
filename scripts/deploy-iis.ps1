@@ -17,11 +17,19 @@
     -Rollback skips the build and points the site at the newest release of an older commit than
     the live one.
 
+    The site is named as for deploy\iis\Install-CrossWordleSite.ps1: -SiteName ('crosswordle' by
+    default), plus '-staging' with -Staging, in C:\inetpub\<site name> on the server unless -Root
+    says otherwise.
+
     The server's name and the account are never stored in the repo: pass -ComputerName or set
     CROSSWORDLE_IIS_HOST, and pass -Credential (or let it prompt).
 
 .EXAMPLE
     .\scripts\deploy-iis.ps1 -ComputerName web01.example.com -Credential $credential
+
+.EXAMPLE
+    # The staging site, crosswordle-staging.
+    .\scripts\deploy-iis.ps1 -ComputerName web01.example.com -Credential $credential -Staging
 
 .EXAMPLE
     .\scripts\deploy-iis.ps1 -ComputerName web01.example.com -Credential $credential -Rollback
@@ -30,13 +38,17 @@
 param(
     [string] $ComputerName = $env:CROSSWORDLE_IIS_HOST,
     [pscredential] $Credential,
+    [ValidatePattern('^[A-Za-z0-9][A-Za-z0-9_.-]*$')]
     [string] $SiteName = 'crosswordle',
-    [string] $Root = 'C:\inetpub\crosswordle',
+    [switch] $Staging,
+    [string] $Root,
     [switch] $Rollback
 )
 
 $ErrorActionPreference = 'Stop'
 $KeepReleases = 5
+
+if ($Staging) { $SiteName = "$SiteName-staging" }
 
 if (-not $ComputerName) {
     throw 'Pass -ComputerName or set CROSSWORDLE_IIS_HOST.'
@@ -59,6 +71,13 @@ try {
 
     $session = New-PSSession -ComputerName $ComputerName -Credential $Credential
     try {
+        if (-not $Root) {
+            # C:\inetpub\<site name>, on the server's system drive.
+            $Root = Invoke-Command -Session $session -ScriptBlock {
+                param($SiteName)
+                Join-Path $env:SystemDrive "inetpub\$SiteName"
+            } -ArgumentList $SiteName
+        }
         if (-not $Rollback) {
             # The release's folder is named after the commit. Redeploying the commit that's live
             # goes into a new folder: the live one's files are in use (IIS and Node hold them

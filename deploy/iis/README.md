@@ -25,6 +25,21 @@ Browser ─HTTPS─▶ Cloudflare (crosswordle.example.com)
 - **A machine to deploy from,** with this repository, Node.js 22 and npm, and PowerShell remoting
   to the server.
 
+### Recommended
+
+All free, and all covered in the steps below:
+
+- **A Cloudflare Tunnel** to reach the server (step 3): no open ports, no certificate to manage,
+  and the server's address stays private.
+- **A staging site** beside the live one (step 2), kept private with **Cloudflare Access**, to
+  try a change before players see it.
+- **Turnstile**, Cloudflare's bot check, on the site's forms (step 5).
+- **A rate-limiting rule** on `/api/` in Cloudflare (step 4).
+- **An uptime monitor** on `/api/health` (see [Health and usage](#health-and-usage)).
+
+The site works without any of them except a way in: if you already serve sites from IIS some
+other way, see [Your own binding](#your-own-binding).
+
 ## Setting up
 
 ### 1. Install the prerequisites on the server
@@ -66,30 +81,33 @@ up:
   release's `web.config` maps `/api` to HttpPlatformHandler);
 - a `CF-Connecting-IP` field in the IIS log, so you can see visitors' addresses.
 
-**A staging site** beside it, so you can try a change before it goes live, on
-`http://127.0.0.1:8081/`:
+**A staging site** beside it, so you can try a change before it goes live: `crosswordle-staging`
+on `http://127.0.0.1:8081/`, in `C:\inetpub\crosswordle-staging`:
 
 ```powershell
 Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
-    'Crosswordle-Staging', 'C:\inetpub\crosswordle-staging', 8081
+    'crosswordle', $true
 ```
 
 The script's parameters, in `-ArgumentList` order:
 
 | #   | Parameter   | Default                  |                                                         |
 | --- | ----------- | ------------------------ | ------------------------------------------------------- |
-| 1   | site name   | `crosswordle`            |                                                         |
-| 2   | root folder | `C:\inetpub\crosswordle` |                                                         |
-| 3   | port        | `8080`                   | the staging site uses `8081`                            |
+| 1   | site name   | `crosswordle`            | the app pool and the root folder take the same name     |
+| 2   | staging     | `$false`                 | `$true` adds `-staging` to the name                     |
+| 3   | port        | `8080`                   | `8081` for the staging site                             |
 | 4   | address     | `127.0.0.1`              | one of the server's addresses, or `*`                   |
 | 5   | host names  | any                      | the names to answer for, as an array                    |
 | 6   | protocol    | `http`                   | or `https`                                              |
 | 7   | certificate |                          | `https` only: its thumbprint, or a host name it covers  |
 | 8   | require SNI | `$false`                 | `https` only: see [Your own binding](#your-own-binding) |
+| 9   | root folder | `C:\inetpub\<site name>` |                                                         |
 
-Only the first three matter for the default setup. **The script sets the site's binding to exactly
-what the parameters describe**, so when you run it again, use the parameters you installed the
-site with.
+Only the first two matter for the default setup. To call the sites something else, pass your own
+name: `'wordgame'` makes `wordgame` (and, with `$true`, `wordgame-staging`). The other scripts
+take the same name and staging flag, so pass them the same values. **The script sets the site's
+binding to exactly what the parameters describe**, so when you run it again, use the parameters
+you installed the site with.
 
 ### 3. Connect Cloudflare with a tunnel
 
@@ -136,8 +154,10 @@ so it never appears in a command line or a transcript:
 ```powershell
 $secret = ConvertTo-SecureString (Get-Secret ...) -AsPlainText -Force
 Invoke-Command -Session $session -FilePath deploy\iis\Set-CrossWordleConfig.ps1 -ArgumentList `
-    'crosswordle', 'C:\inetpub\crosswordle', 'admin@example.com', '<site key>', $secret
+    'crosswordle', $false, 'admin@example.com', '<site key>', $secret
 ```
+
+For the staging site, pass `$true` in place of `$false`.
 
 ### 6. Deploy
 
@@ -153,7 +173,8 @@ $env:CROSSWORDLE_IIS_HOST = 'web01.example.com'
 .\scripts\deploy-iis.ps1 -Credential $credential
 ```
 
-For the staging site, add `-SiteName Crosswordle-Staging -Root C:\inetpub\crosswordle-staging`.
+For the staging site, add `-Staging`. If you installed under another name, add `-SiteName` with
+that name (and `-Root` if you gave the install a root folder of your own).
 
 The deploy works like this:
 
@@ -181,7 +202,7 @@ server's addresses, answering only for one name:
 
 ```powershell
 Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
-    'crosswordle', 'C:\inetpub\crosswordle', 443, '192.0.2.20', @('crosswordle.example.com'),
+    'crosswordle', $false, 443, '192.0.2.20', @('crosswordle.example.com'),
     'https', '0123456789ABCDEF0123456789ABCDEF01234567'
 ```
 
@@ -270,7 +291,7 @@ release's `server\admin.mjs` on the site's database, so the commands always matc
 
 ```powershell
 $admin = 'deploy\iis\Invoke-CrossWordleAdmin.ps1'
-$site = 'crosswordle', 'C:\inetpub\crosswordle'
+$site = 'crosswordle', $false   # the site's name, and $true for the staging site
 Invoke-Command -Session $session -FilePath $admin -ArgumentList ($site + ,@('health'))
 ```
 
@@ -344,8 +365,16 @@ shows one in full, and `close` or `reopen` with its id marks it.
   - check the browser console for CSP errors;
   - check the response headers: `curl -I https://crosswordle-staging.example.com/assets/<file>`.
 - **Browser tests** against a deployed site: on the server, set `CROSSWORDLE_BASE_URL` to the
-  site's address (`http://127.0.0.1:8081` for the default staging site) and run
-  `npm run test:e2e`. Playwright then uses that site and doesn't start its own.
+  site's address and run `npm run test:e2e`. Playwright then uses that site and doesn't start its
+  own. Run them against the site's binding, never through Cloudflare: every test then counts as
+  a visitor of its own, where through Cloudflare they would all share your address and trip the
+  forms' rate limits.
+  - With the default binding, that's `http://127.0.0.1:8081` for the staging site.
+  - With [your own binding](#your-own-binding), set `CROSSWORDLE_BASE_URL` to the site's public
+    URL (`https://crosswordle-staging.example.com`) and `CROSSWORDLE_CONNECT_TO` to the binding's
+    address (`192.0.2.20`, or `127.0.0.1` for `*`). The browser then connects to that address
+    while still asking for the site by name. If the certificate doesn't cover that name, also set
+    `CROSSWORDLE_IGNORE_HTTPS_ERRORS=1`.
 
 ## How it fits together
 

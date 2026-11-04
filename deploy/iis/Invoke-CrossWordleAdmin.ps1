@@ -22,22 +22,35 @@
 
     Nothing comes off the leaderboard unless you hide it.
 
-.EXAMPLE
-    Invoke-Command -Session $session -FilePath deploy\iis\Invoke-CrossWordleAdmin.ps1 `
-        -ArgumentList 'crosswordle', 'C:\inetpub\crosswordle', @('review')
+    The site is named as for Install-CrossWordleSite.ps1: -SiteName, plus '-staging' with -Staging,
+    in C:\inetpub\<site name> unless -Root says otherwise.
 
 .EXAMPLE
     Invoke-Command -Session $session -FilePath deploy\iis\Invoke-CrossWordleAdmin.ps1 `
-        -ArgumentList 'crosswordle', 'C:\inetpub\crosswordle', @('hide', '2026-11-05', '0b6f8f4e')
+        -ArgumentList 'crosswordle', $false, @('review')
+
+.EXAMPLE
+    Invoke-Command -Session $session -FilePath deploy\iis\Invoke-CrossWordleAdmin.ps1 `
+        -ArgumentList 'crosswordle', $false, @('hide', '2026-11-05', '0b6f8f4e')
+
+.EXAMPLE
+    # The staging site's health.
+    Invoke-Command -Session $session -FilePath deploy\iis\Invoke-CrossWordleAdmin.ps1 `
+        -ArgumentList 'crosswordle', $true, @('health')
 #>
 [CmdletBinding()]
 param(
+    [ValidatePattern('^[A-Za-z0-9][A-Za-z0-9_.-]*$')]
     [string] $SiteName = 'crosswordle',
-    [string] $Root = 'C:\inetpub\crosswordle',
-    [Parameter(Mandatory)] [string[]] $Arguments
+    [bool] $Staging = $false,
+    [Parameter(Mandatory)] [string[]] $Arguments,
+    [string] $Root
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ($Staging) { $SiteName = "$SiteName-staging" }
+if (-not $Root) { $Root = Join-Path $env:SystemDrive "inetpub\$SiteName" }
 
 Import-Module WebAdministration
 $site = (Get-Item "IIS:\Sites\$SiteName").physicalPath

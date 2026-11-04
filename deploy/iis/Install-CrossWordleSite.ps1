@@ -8,9 +8,13 @@
     Installs the IIS role services the site needs, then creates the app pool, the site, the release
     folders and their permissions, and a log field for the visitor's real address.
 
-    By default the site binds plain HTTP to loopback (127.0.0.1:8080), for a Cloudflare Tunnel
-    whose cloudflared runs on the same server. That needs no certificate and nothing reaches IIS
-    except through the tunnel.
+    The site is named after -SiteName: 'crosswordle' by default, or 'crosswordle-staging' for the
+    staging site (-Staging). The app pool has the same name, and the root folder is
+    C:\inetpub\<site name> unless -Root says otherwise.
+
+    By default the site binds plain HTTP to loopback (127.0.0.1:8080, or 8081 for staging), for a
+    Cloudflare Tunnel whose cloudflared runs on the same server. That needs no certificate and
+    nothing reaches IIS except through the tunnel.
 
     To serve the site some other way, pass your own binding: the protocol (http or https), address,
     port and host names, and for https a certificate in LocalMachine\My (its thumbprint, or a name
@@ -26,33 +30,43 @@
     installers (see deploy/iis/README.md). The script stops if any is missing.
 
 .EXAMPLE
-    # The default: http://127.0.0.1:8080/, for a Cloudflare Tunnel on this server.
+    # The default: the crosswordle site on http://127.0.0.1:8080/, for a Cloudflare Tunnel.
     Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1
 
 .EXAMPLE
-    # The staging site beside it, on http://127.0.0.1:8081/.
+    # The crosswordle-staging site beside it, on http://127.0.0.1:8081/.
     Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
-        'Crosswordle-Staging', 'C:\inetpub\crosswordle-staging', 8081
+        'crosswordle', $true
+
+.EXAMPLE
+    # Another name: the wordgame site in C:\inetpub\wordgame, on http://127.0.0.1:8080/.
+    Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
+        'wordgame'
 
 .EXAMPLE
     # Your own binding: HTTPS on one of the server's addresses, answering only for the given name,
     # with the certificate whose thumbprint is given.
     Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
-        'crosswordle', 'C:\inetpub\crosswordle', 443, '192.0.2.20', @('crosswordle.example.com'),
+        'crosswordle', $false, 443, '192.0.2.20', @('crosswordle.example.com'),
         'https', '0123456789ABCDEF0123456789ABCDEF01234567'
 
 .EXAMPLE
     # The same, picking the certificate by the name it covers.
     Invoke-Command -Session $session -FilePath deploy\iis\Install-CrossWordleSite.ps1 -ArgumentList `
-        'crosswordle', 'C:\inetpub\crosswordle', 443, '192.0.2.20', @('crosswordle.example.com'),
+        'crosswordle', $false, 443, '192.0.2.20', @('crosswordle.example.com'),
         'https', 'crosswordle.example.com'
 #>
 [CmdletBinding()]
 param(
+    # The site's name; the staging site adds '-staging' to it.
+    [ValidatePattern('^[A-Za-z0-9][A-Za-z0-9_.-]*$')]
     [string] $SiteName = 'crosswordle',
-    [string] $Root = 'C:\inetpub\crosswordle',
-    [ValidateRange(1, 65535)]
-    [int] $Port = 8080,
+    # The staging site: '<SiteName>-staging', on port 8081 unless -Port says otherwise. A [bool],
+    # not a switch, so it can be passed in -ArgumentList.
+    [bool] $Staging = $false,
+    # 8080 by default, or 8081 for the staging site (0 also means the default).
+    [ValidateRange(0, 65535)]
+    [int] $Port = 0,
     # The address IIS listens on: 127.0.0.1, one of the server's addresses, or * for all of them.
     [string] $IPAddress = '127.0.0.1',
     # Host names the site answers for. Empty answers for any name.
@@ -66,10 +80,16 @@ param(
     # https only: pick the certificate by host name (SNI), so sites sharing an address and port can
     # each have their own. Off by default: the certificate then belongs to the address and port, and
     # every site on them shares it (and clients needn't send SNI).
-    [bool] $RequireSni = $false
+    [bool] $RequireSni = $false,
+    # The site's folder: C:\inetpub\<site name> by default.
+    [string] $Root
 )
 
 $ErrorActionPreference = 'Stop'
+
+if ($Staging) { $SiteName = "$SiteName-staging" }
+if (-not $Root) { $Root = Join-Path $env:SystemDrive "inetpub\$SiteName" }
+if ($Port -eq 0) { $Port = if ($Staging) { 8081 } else { 8080 } }
 
 # The certificate -Certificate names: by thumbprint, or the one valid certificate covering a name.
 function Resolve-Certificate([string] $Wanted) {
