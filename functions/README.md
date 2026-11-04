@@ -42,5 +42,5 @@ project notes for the repo/deploy arrangement that keeps the answer source priva
 
 ## Testing locally
 
-`npm run preview` builds the site and runs it with the Function under Wrangler
-(`wrangler pages dev apps/web/dist`), at <http://127.0.0.1:8788>.
+`npm run preview` builds the site and runs it with these handlers on the Node server that IIS
+runs (`server/preview.ts`), at <http://127.0.0.1:4173>.
