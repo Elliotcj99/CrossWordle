@@ -59,6 +59,7 @@
   import { localDate } from './lib/dates';
   import { features } from './lib/features';
   import { guessErrorText } from './lib/messages';
+  import { endRestorePrompt } from './lib/player';
   import {
     historySent,
     loadResults,
@@ -271,6 +272,8 @@
       const scored = await scoreGuess(puzzle.id, check.entry.id, check.guess);
       if (asked !== generation) return; // Restarted meanwhile: it was the old game's guess.
       game = recordGuess(game, check.entry, scored.letters);
+      // Playing under this id now: a restored record wouldn't count this game.
+      endRestorePrompt();
       // Once every clue is solved there is no next one: stay on this clue and the game ends.
       const next = scored.solved ? nextUnsolved(puzzle, game, check.entry.id) : undefined;
       if (next !== undefined) select(next);

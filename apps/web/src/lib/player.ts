@@ -7,6 +7,13 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{1
 
 let current: string | undefined;
 
+// Whether to offer a recovery code to a browser that has just been given a new id: 'show' until
+// the player restores, dismisses it or makes their first guess, then 'done'. A browser with no id
+// is either new or one whose data was cleared (Safari clears a site's storage after 7 days without
+// a visit); nothing left in it can tell which, so the offer suits both.
+const PROMPT_KEY = 'crosswordle:restore-prompt';
+const PROMPT_ENDED = 'crosswordle:restore-prompt-ended';
+
 /**
  * This browser's player id: a random UUID made on first use and kept in localStorage, so the
  * server can tell players apart (two people may share a nickname). It's anonymous, and a new one
@@ -24,10 +31,51 @@ export function playerId(): string {
   current = crypto.randomUUID();
   try {
     localStorage.setItem(KEY, current);
+    // A deleted record's browser has 'done' already: it chose to start afresh.
+    if (localStorage.getItem(PROMPT_KEY) === null) localStorage.setItem(PROMPT_KEY, 'show');
   } catch {
-    // Blocked storage: the id isn't remembered.
+    // Blocked storage: the id isn't remembered (nor would a restored one be, so no offer).
   }
   return current;
+}
+
+/** Whether to offer this browser's new player a recovery code (see PROMPT_KEY). */
+export function restorePromptWanted(): boolean {
+  try {
+    return localStorage.getItem(PROMPT_KEY) === 'show';
+  } catch {
+    return false;
+  }
+}
+
+/** Stops offering a recovery code, for good, and tells the page (any banner showing goes). */
+export function endRestorePrompt(): void {
+  try {
+    if (localStorage.getItem(PROMPT_KEY) === 'done') return;
+    localStorage.setItem(PROMPT_KEY, 'done');
+  } catch {
+    // Blocked storage: there was no offer.
+  }
+  window.dispatchEvent(new Event(PROMPT_ENDED));
+}
+
+const OPEN_RESTORE = 'crosswordle:open-restore';
+
+/** Asks "Your record" to open at its recovery-code form (the banner's link). */
+export function openRestoreForm(): void {
+  window.dispatchEvent(new Event(OPEN_RESTORE));
+}
+
+/** Calls `open` when the restore form is asked for. Returns a function that stops listening. */
+export function onOpenRestoreForm(open: () => void): () => void {
+  window.addEventListener(OPEN_RESTORE, open);
+  return () => window.removeEventListener(OPEN_RESTORE, open);
+}
+
+/** Calls `ended` when the offer ends (endRestorePrompt). Returns a function that stops listening. */
+export function onRestorePromptEnded(ended: () => void): () => void {
+  window.addEventListener(PROMPT_ENDED, ended);
+  return () => window.removeEventListener(PROMPT_ENDED, ended);
 }
 
 /**
@@ -56,6 +104,7 @@ export function switchPlayer(id: string, nickname: string | undefined): boolean 
   clearPlayerState();
   rememberNickname(nickname);
   current = id;
+  endRestorePrompt();
   return true;
 }
 
@@ -76,6 +125,8 @@ export function forgetPlayerIfStill(id: string): void {
 /** Forgets the player in this browser (their record was deleted). The next request makes a new id. */
 export function forgetPlayer(): void {
   clearPlayerState();
+  // Deleted on purpose: the new id that follows shouldn't be offered the old record back.
+  endRestorePrompt();
   try {
     localStorage.removeItem(KEY);
   } catch {
