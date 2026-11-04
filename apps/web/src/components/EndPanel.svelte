@@ -8,9 +8,11 @@
     stats: Stats;
     /** The spoiler-free result to share. */
     share: string;
+    /** The player named themselves on the leaderboard. */
+    onnamed?: () => void;
   }
 
-  let { puzzleId, status, stats, share }: Props = $props();
+  let { puzzleId, status, stats, share, onnamed }: Props = $props();
 
   let copyState = $state<'idle' | 'copied' | 'failed'>('idle');
   let shareText: HTMLPreElement | undefined = $state();
@@ -71,7 +73,7 @@
   </div>
 
   {#if status === 'won'}
-    <NicknameForm {puzzleId} />
+    <NicknameForm {puzzleId} onsaved={onnamed} />
   {/if}
 </section>
 

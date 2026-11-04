@@ -43,7 +43,10 @@
   import EntryPanel from './components/EntryPanel.svelte';
   import Grid from './components/Grid.svelte';
   import Keyboard from './components/Keyboard.svelte';
+  import Leaderboard from './components/Leaderboard.svelte';
   import {
+    fetchGame,
+    fetchRecord,
     reportRestart,
     requestCrosswordClue,
     requestHint,
@@ -51,9 +54,11 @@
     ScoringError,
   } from './lib/api';
   import { localDate } from './lib/dates';
+  import { features } from './lib/features';
   import { guessErrorText } from './lib/messages';
-  import { loadResults, recordResult } from './lib/results';
-  import { loadGame, saveGame } from './lib/storage';
+  import { loadResults, mergeResults, recordResult } from './lib/results';
+  import { loadGame, readSavedGame, saveGame } from './lib/storage';
+  import { preferServerGame } from './lib/sync';
 
   let { puzzle, isWord }: { puzzle: ClientPuzzle; isWord: WordChecker | undefined } = $props();
 
@@ -72,6 +77,11 @@
   let revealing = $state<'crossword' | 'wordle' | null>(null);
   let results = $state.raw(loadResults());
   let boardEl = $state<HTMLElement>();
+  /** Whether this host has leaderboards, and whether the player has opened this one. */
+  let hasBoard = $state(false);
+  let boardOpen = $state(false);
+  /** Bumped when the board may have changed (the player named themselves), to fetch it again. */
+  let boardVersion = $state(0);
 
   const locks = $derived(lockedLetters(puzzle, game));
   const status = $derived(gameStatus(puzzle, game));
@@ -97,8 +107,30 @@
       wordleClueFor(game, selected) === undefined,
   );
   const secondClues = $derived(game.crosswordClues ?? {});
+  // Finished players always see the board; while playing it's opened from the puzzle bar.
+  const showBoard = $derived(hasBoard && (status !== 'playing' || boardOpen));
 
   $effect(() => saveGame(game));
+
+  // Where the server keeps records, it's the player's record across devices: carry on from its
+  // copy of this game if it's further on (played elsewhere, or a restored record), and add its
+  // finished puzzles to the stats.
+  onMount(async () => {
+    const host = await features();
+    hasBoard = host.names.has('leaderboard');
+    if (!host.names.has('records')) return;
+    const before = game;
+    const [remote, record] = await Promise.all([fetchGame(puzzle.id), fetchRecord()]);
+    results = mergeResults(
+      Object.fromEntries(record.map((r) => [r.puzzleId, { won: r.won, guesses: r.guesses }])),
+    );
+    const server = remote === undefined ? undefined : readSavedGame(remote, puzzle)?.game;
+    // Only if the player hasn't done anything meanwhile, so nothing they did is lost.
+    if (server !== undefined && game === before && preferServerGame(puzzle, game, server)) {
+      game = server;
+      select(nextUnsolved(puzzle, game) ?? order[0]!);
+    }
+  });
 
   // A game saved by an older version lists the Crossword clues it showed, without their text:
   // fetch them again, so they still show (and the server, if it keeps records, has them).
@@ -283,12 +315,33 @@
       >
     </p>
   {:else}
-    <button type="button" class="link" onclick={() => (confirmingRestart = true)}>Restart</button>
+    <div class="bar-actions">
+      {#if hasBoard && status === 'playing'}
+        <button
+          type="button"
+          class="link"
+          aria-expanded={boardOpen}
+          onclick={() => (boardOpen = !boardOpen)}
+          >{boardOpen ? 'Hide leaderboard' : 'Leaderboard'}</button
+        >
+      {/if}
+      <button type="button" class="link" onclick={() => (confirmingRestart = true)}>Restart</button>
+    </div>
   {/if}
 </div>
 
 {#if status !== 'playing'}
-  <EndPanel puzzleId={puzzle.id} {status} {stats} share={shareText(puzzle, game)} />
+  <EndPanel
+    puzzleId={puzzle.id}
+    {status}
+    {stats}
+    share={shareText(puzzle, game)}
+    onnamed={() => boardVersion++}
+  />
+{/if}
+
+{#if showBoard}
+  <Leaderboard puzzleId={puzzle.id} version={boardVersion} />
 {/if}
 
 <div class="layout">
@@ -339,6 +392,12 @@
 </div>
 
 <style>
+  .bar-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+  }
+
   .puzzle-bar {
     display: flex;
     flex-wrap: wrap;

@@ -33,3 +33,20 @@ export function recordResult(puzzleId: string, result: PuzzleResult): Record<str
   }
   return updated;
 }
+
+/**
+ * Adds the server's record of this player's finished puzzles to this browser's, and saves the
+ * result. The server's wins where both have a puzzle: it's the player's first finish anywhere,
+ * on any device that shares their player id.
+ */
+export function mergeResults(
+  server: Readonly<Record<string, PuzzleResult>>,
+): Record<string, PuzzleResult> {
+  const merged = { ...loadResults(), ...server };
+  try {
+    localStorage.setItem(KEY, JSON.stringify(merged));
+  } catch {
+    // Blocked storage: the merged stats last for this page.
+  }
+  return merged;
+}

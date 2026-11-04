@@ -222,3 +222,84 @@ export function restoreRecord(
     body: JSON.stringify({ code, turnstileToken }),
   });
 }
+
+/** One row of a puzzle's leaderboard. */
+export interface BoardEntry {
+  readonly rank: number;
+  readonly nickname: string;
+  readonly guesses: number;
+  readonly crosswordHints: number;
+  readonly wordleHints: number;
+  readonly finishedAt: string;
+  readonly isYou: boolean;
+}
+
+/** Where this player stands on a puzzle's board, if they've finished it. */
+export type YourPlace =
+  | { readonly status: 'on-board' | 'no-nickname'; readonly rank: number }
+  | { readonly status: 'not-ranked'; readonly reason: 'lost' | 'restarted' }
+  | { readonly status: 'hidden' };
+
+export interface Board {
+  readonly puzzleId: string;
+  readonly entries: readonly BoardEntry[];
+  readonly total: number;
+  readonly you?: YourPlace;
+}
+
+/** A puzzle's leaderboard, or `undefined` if it couldn't be fetched. */
+export async function fetchLeaderboard(puzzleId: string): Promise<Board | undefined> {
+  try {
+    const response = await fetch(`api/leaderboard?puzzle=${encodeURIComponent(puzzleId)}`, {
+      headers: headers(),
+    });
+    if (!response.ok) return undefined;
+    const board = (await response.json()) as Board;
+    return Array.isArray(board.entries) ? board : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** A finished puzzle in the server's record of this player. */
+export interface RecordedFinish extends RecordedResult {
+  readonly puzzleId: string;
+  readonly finishedAt: string;
+}
+
+/** Every puzzle this player has finished, as the server has it; empty if it can't be fetched. */
+export async function fetchRecord(): Promise<readonly RecordedFinish[]> {
+  try {
+    const response = await fetch('api/record', { headers: headers() });
+    if (!response.ok) return [];
+    const data = (await response.json()) as { results?: unknown };
+    return Array.isArray(data.results)
+      ? data.results.filter(
+          (r): r is RecordedFinish =>
+            typeof r === 'object' &&
+            r !== null &&
+            typeof (r as RecordedFinish).puzzleId === 'string' &&
+            typeof (r as RecordedFinish).won === 'boolean' &&
+            typeof (r as RecordedFinish).guesses === 'number',
+        )
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * This player's current game of a puzzle as the server has it (unchecked: the caller checks it
+ * against the puzzle), or `undefined` if they haven't played it there or it can't be fetched.
+ */
+export async function fetchGame(puzzleId: string): Promise<unknown> {
+  try {
+    const response = await fetch(`api/game?puzzle=${encodeURIComponent(puzzleId)}`, {
+      headers: headers(),
+    });
+    if (!response.ok) return undefined;
+    return ((await response.json()) as { game?: unknown }).game;
+  } catch {
+    return undefined;
+  }
+}
