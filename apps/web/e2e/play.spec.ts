@@ -10,6 +10,13 @@ const clue = (page: Page, text: string) =>
   page.getByRole('region', { name: 'Clues' }).getByRole('button', { name: new RegExp(text) });
 
 test.beforeEach(async ({ page }) => {
+  // Each test is its own visitor to the API. Without Cloudflare in front (staging on 127.0.0.1,
+  // npm run preview) every request would share one address, and the forms' per-address rate
+  // limits would trip across runs. Addresses are from 192.0.2.0/24, the documentation range.
+  const visitor = `192.0.2.${1 + Math.floor(Math.random() * 254)}`;
+  await page.route('**/api/**', (route) =>
+    route.continue({ headers: { ...route.request().headers(), 'cf-connecting-ip': visitor } }),
+  );
   // The sample puzzle, so the tests don't depend on today's date.
   await page.goto('/#sample');
   await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
