@@ -226,6 +226,13 @@
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
 
+  /* Wider where the game shows its clue list as a third column (Game.svelte). */
+  @media (min-width: 1280px) {
+    main {
+      max-width: 1440px;
+    }
+  }
+
   .masthead {
     display: flex;
     flex-wrap: wrap;
