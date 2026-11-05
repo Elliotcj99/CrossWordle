@@ -75,7 +75,9 @@
     markRestartPending,
     pendingRestart,
     readSavedGame,
+    resultHidden,
     saveGame,
+    setResultHidden,
   } from './lib/storage';
   import { statsFor } from './lib/stats';
   import { preferServerGame } from './lib/sync';
@@ -102,6 +104,8 @@
   let boardOpen = $state(false);
   /** Bumped when the board may have changed (the player named themselves), to fetch it again. */
   let boardVersion = $state(0);
+  /** Whether the player has hidden the result (it's large), to get at the rest of the page. */
+  let hideResult = $state(resultHidden(untrack(() => puzzle.id)));
   /**
    * Bumped by every restart. An answer from the server (a scored guess, a clue) that comes back
    * after a restart belongs to the game before it, so it's dropped.
@@ -438,13 +442,28 @@
 </div>
 
 {#if status !== 'playing'}
-  <EndPanel
-    puzzleId={puzzle.id}
-    {status}
-    {stats}
-    share={shareText(puzzle, game)}
-    onnamed={() => boardVersion++}
-  />
+  <div class="result-toggle">
+    <button
+      type="button"
+      class="link"
+      aria-expanded={!hideResult}
+      aria-controls="result"
+      onclick={() => {
+        hideResult = !hideResult;
+        setResultHidden(puzzle.id, hideResult);
+      }}>{hideResult ? 'Show result' : 'Hide result'}</button
+    >
+  </div>
+  <!-- Hidden rather than removed, so a nickname being typed isn't lost. -->
+  <div id="result" hidden={hideResult}>
+    <EndPanel
+      puzzleId={puzzle.id}
+      {status}
+      {stats}
+      share={shareText(puzzle, game)}
+      onnamed={() => boardVersion++}
+    />
+  </div>
 {/if}
 
 {#if showBoard}
@@ -546,6 +565,12 @@
     text-decoration: underline;
     text-underline-offset: 3px;
     cursor: pointer;
+  }
+
+  .result-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 8px;
   }
 
   .link.danger {

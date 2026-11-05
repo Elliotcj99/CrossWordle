@@ -671,3 +671,25 @@ test('opens How to play across the width of the page', async ({ page }) => {
   const box = (await help.boundingBox())!;
   expect(Math.abs(box.width - header.width)).toBeLessThan(2);
 });
+
+test('hides the result, and keeps it hidden on coming back', async ({ page }) => {
+  await solveSample(page);
+  const end = page.getByRole('region', { name: 'Solved. Every entry cracked.' });
+  await expect(end).toBeVisible();
+  await page.getByRole('button', { name: 'Hide result' }).click();
+  await expect(end).toBeHidden();
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Show result' })).toBeVisible();
+  await expect(end).toBeHidden();
+  await page.getByRole('button', { name: 'Show result' }).click();
+  await expect(end).toBeVisible();
+});
+
+test('opens Your record across the width of the page', async ({ page }) => {
+  await page.getByRole('button', { name: 'Your record', exact: true }).click();
+  const record = recordPanel(page);
+  await expect(record.getByRole('heading', { name: 'Keep your record' })).toBeVisible();
+  const header = (await page.locator('header.masthead').boundingBox())!;
+  const box = (await record.boundingBox())!;
+  expect(Math.abs(box.width - header.width)).toBeLessThan(2);
+});
