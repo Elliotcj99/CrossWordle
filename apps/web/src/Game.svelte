@@ -381,10 +381,20 @@
     return typeof window !== 'undefined' && window.matchMedia('(max-width: 859px)').matches;
   }
 
-  /** Moves to the next or previous clue in the list (across before down), wrapping round. */
-  function step(delta: number) {
+  /**
+   * Moves to the next or previous unsolved clue in the list (across before down), wrapping round.
+   * Once every entry is solved, it goes through them all, to look back over them.
+   */
+  function step(delta: 1 | -1) {
     const i = order.findIndex((e) => e.id === selectedId);
-    choose(order[(i + delta + order.length) % order.length]!);
+    const allSolved = order.every((e) => solvedIds.has(e.id));
+    for (let k = 1; k <= order.length; k++) {
+      const entry = order[(((i + delta * k) % order.length) + order.length) % order.length]!;
+      if (allSolved || !solvedIds.has(entry.id)) {
+        choose(entry);
+        return;
+      }
+    }
   }
 
   /** Selecting from the clue list jumps back up to the grid on a phone, to save scrolling. */

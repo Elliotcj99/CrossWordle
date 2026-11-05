@@ -693,3 +693,15 @@ test('opens Your record across the width of the page', async ({ page }) => {
   const box = (await record.boundingBox())!;
   expect(Math.abs(box.width - header.width)).toBeLessThan(2);
 });
+
+test('steps through only the unsolved clues with Next and Prev', async ({ page }) => {
+  const heading = (name: string) => panel(page).getByRole('heading', { name });
+  await guess(page, 'LEVEL');
+  // Solving moves on to the next unsolved clue.
+  await expect(heading('Bottomless pit')).toBeVisible();
+  // Back past the solved 1 Across, wrapping round to the last Down.
+  await page.getByRole('button', { name: 'Previous clue' }).click();
+  await expect(heading('Not even')).toBeVisible();
+  await page.getByRole('button', { name: 'Next clue' }).click();
+  await expect(heading('Bottomless pit')).toBeVisible();
+});
