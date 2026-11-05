@@ -467,6 +467,49 @@ test("sends the browser's finished puzzles to the server once, as history", asyn
   expect(again).toBe(false);
 });
 
+test.describe('the offer to restore a record, for a browser given a new player id', () => {
+  const banner = (page: Page) =>
+    page.getByRole('complementary', { name: 'Bring back your record' });
+
+  test('opens the recovery-code form, and once closed stays closed', async ({ page }) => {
+    // Every test starts in a fresh browser: a new player id, so the offer shows.
+    await expect(banner(page)).toContainText('Played here before?');
+    await banner(page).getByRole('button', { name: 'restore your record' }).click();
+    await expect(page.getByLabel('Recovery code', { exact: true })).toBeFocused();
+
+    await banner(page).getByRole('button', { name: 'Close' }).click();
+    await expect(banner(page)).toHaveCount(0);
+    await page.reload();
+    await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
+    await expect(banner(page)).toHaveCount(0);
+  });
+
+  test('goes for good once the player makes a guess', async ({ page }) => {
+    await expect(banner(page)).toBeVisible();
+    await guess(page, 'EMAIL');
+    await expect(banner(page)).toHaveCount(0);
+    await page.reload();
+    await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
+    await expect(banner(page)).toHaveCount(0);
+  });
+
+  test("isn't offered to a browser that already had its id", async ({ page }) => {
+    // As for everyone who played before the offer existed: an id, and no note of an offer.
+    await page.evaluate(() => localStorage.removeItem('crosswordle:restore-prompt'));
+    await page.reload();
+    await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
+    await expect(banner(page)).toHaveCount(0);
+  });
+
+  test('comes back if the browser loses its id again', async ({ page }) => {
+    await banner(page).getByRole('button', { name: 'Close' }).click();
+    // As Safari does after a week away: the site's storage is cleared.
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+    await expect(banner(page)).toBeVisible();
+  });
+});
+
 test('shows the contact address only when asked, and what the site stores', async ({ page }) => {
   // The footer is inside <main>, so it isn't a contentinfo landmark.
   const footer = page.locator('footer');

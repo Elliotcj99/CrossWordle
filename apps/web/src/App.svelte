@@ -1,5 +1,6 @@
 <script lang="ts">
   import HowToPlay from './components/HowToPlay.svelte';
+  import RestorePrompt from './components/RestorePrompt.svelte';
   import SiteInfo from './components/SiteInfo.svelte';
   import YourRecord from './components/YourRecord.svelte';
   import Game from './Game.svelte';
@@ -89,6 +90,8 @@
       <YourRecord />
     </div>
   </header>
+
+  <RestorePrompt />
 
   {#if askingNaughty}
     <div class="naughty-confirm" role="alertdialog" aria-labelledby="naughty-confirm-title">

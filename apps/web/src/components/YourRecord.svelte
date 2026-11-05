@@ -2,7 +2,7 @@
   import { onMount, tick } from 'svelte';
   import { forgetMe, makeRecoveryCode, recoveryCodeStatus, restoreRecord } from '../lib/api';
   import { features } from '../lib/features';
-  import { forgetPlayer, playerId, switchPlayer } from '../lib/player';
+  import { forgetPlayer, onOpenRestoreForm, playerId, switchPlayer } from '../lib/player';
   import TurnstileCheck from './TurnstileCheck.svelte';
 
   /**
@@ -65,6 +65,16 @@
       document.getElementById('make-code-title')?.scrollIntoView({ block: 'start' });
     }
   });
+
+  // The new-player banner's link: open at the recovery-code form, ready to type or paste into.
+  onMount(() =>
+    onOpenRestoreForm(async () => {
+      open = true;
+      await tick();
+      document.getElementById('use-code-title')?.scrollIntoView({ block: 'start' });
+      document.getElementById('recovery-code')?.focus({ preventScroll: true });
+    }),
+  );
 
   // Ask whether there's a code only once the panel is opened (and the bot check loads only then).
   $effect(() => {
