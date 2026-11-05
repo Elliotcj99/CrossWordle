@@ -167,3 +167,25 @@ function isScoredGuess(guess: unknown): boolean {
     })
   );
 }
+
+// The puzzle whose result the player hid, so it stays hidden when they come back to it. Only the
+// latest: a new puzzle's result shows when it ends.
+const RESULT_HIDDEN_KEY = 'crosswordle:result-hidden';
+
+/** Whether the player hid this puzzle's result (the end-of-game panel). */
+export function resultHidden(puzzleId: string): boolean {
+  try {
+    return localStorage.getItem(RESULT_HIDDEN_KEY) === puzzleId;
+  } catch {
+    return false;
+  }
+}
+
+export function setResultHidden(puzzleId: string, hidden: boolean): void {
+  try {
+    if (hidden) localStorage.setItem(RESULT_HIDDEN_KEY, puzzleId);
+    else localStorage.removeItem(RESULT_HIDDEN_KEY);
+  } catch {
+    // Blocked storage: it's hidden until the page closes.
+  }
+}
