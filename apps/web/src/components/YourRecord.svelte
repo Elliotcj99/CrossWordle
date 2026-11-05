@@ -11,7 +11,11 @@
    * Each part is shown only where the server offers it ('recovery', 'forget'). The code is shown
    * once, with a form a password manager can save it from; the restore form is one a password
    * manager can fill.
+   *
+   * The page opens and closes it (its toggle is in the header). It asks to be opened itself
+   * (`onopen`) when the new-player banner's link is followed, or a saved code comes back.
    */
+  let { open, onopen }: { open: boolean; onopen: () => void } = $props();
 
   // A fixed account name, so a password manager files the code under this site.
   const ACCOUNT = 'CrossWordle recovery code';
@@ -32,7 +36,6 @@
   let hasRecovery = $state(false);
   let hasForget = $state(false);
   let siteKey = $state<string | undefined>();
-  let open = $state(false);
 
   let hasCode = $state<boolean | undefined>();
   let statusFailed = $state(false);
@@ -69,7 +72,7 @@
   // The new-player banner's link: open at the recovery-code form, ready to type or paste into.
   onMount(() =>
     onOpenRestoreForm(async () => {
-      open = true;
+      onopen();
       await tick();
       document.getElementById('use-code-title')?.scrollIntoView({ block: 'start' });
       document.getElementById('recovery-code')?.focus({ preventScroll: true });
@@ -188,7 +191,7 @@
     code = kept.code;
     hasCode = true;
     offeredSave = true;
-    open = true;
+    onopen();
     return true;
   }
 
@@ -246,183 +249,169 @@
 </script>
 
 {#if hasRecovery || hasForget}
-  <details bind:open>
-    <summary>Your record</summary>
-    <div class="panel">
-      <p>
-        Your games are kept on our server under an anonymous id in this browser. A recovery code
-        brings that record back if this browser's data is cleared, or onto another device.
-      </p>
+  <div class="panel">
+    <p>
+      Your games are kept on our server under an anonymous id in this browser. A recovery code
+      brings that record back if this browser's data is cleared, or onto another device.
+    </p>
 
-      {#if hasRecovery}
-        <section aria-labelledby="make-code-title">
-          <h2 id="make-code-title">Keep your record</h2>
-          {#if code !== undefined}
-            <p>Here's your code. It's shown only this once, so keep it somewhere safe.</p>
-            <p class="code" aria-label="Your recovery code">{code}</p>
-            <div class="row">
-              <button type="button" onclick={copy}>{copied ? 'Copied' : 'Copy'}</button>
-            </div>
-            {#if !offeredSave}
-              <!-- Visible, editable fields and a real submission: Safari offers to save only
-                   then (see offerSave). -->
-              <form
-                class="save"
-                method="post"
-                action="/api/save-code"
-                onsubmit={offerSave}
-                aria-label="Save the code in a password manager"
+    {#if hasRecovery}
+      <section aria-labelledby="make-code-title">
+        <h2 id="make-code-title">Keep your record</h2>
+        {#if code !== undefined}
+          <p>Here's your code. It's shown only this once, so keep it somewhere safe.</p>
+          <p class="code" aria-label="Your recovery code">{code}</p>
+          <div class="row">
+            <button type="button" onclick={copy}>{copied ? 'Copied' : 'Copy'}</button>
+          </div>
+          {#if !offeredSave}
+            <!-- Visible, editable fields and a real submission: Safari offers to save only
+                 then (see offerSave). -->
+            <form
+              class="save"
+              method="post"
+              action="/api/save-code"
+              onsubmit={offerSave}
+              aria-label="Save the code in a password manager"
+            >
+              <label
+                >Saved as <input
+                  type="text"
+                  name="username"
+                  autocomplete="username"
+                  spellcheck="false"
+                  value={ACCOUNT}
+                /></label
               >
-                <label
-                  >Saved as <input
-                    type="text"
-                    name="username"
-                    autocomplete="username"
-                    spellcheck="false"
-                    value={ACCOUNT}
-                  /></label
-                >
-                <label
-                  >Code <input
-                    type="password"
-                    name="password"
-                    autocomplete="new-password"
-                    value={code}
-                  /></label
-                >
-                <div class="row">
-                  <button type="submit">Save in my password manager</button>
-                </div>
-              </form>
-            {:else}
-              <p class="status" role="status">
-                {#if askedToSave}
-                  Your browser has been asked to save it: choose Save when it offers. If it doesn't
-                  offer, saving passwords may be turned off, so use Copy and keep the code somewhere
-                  safe.
-                {:else}
-                  If your browser offered to save it, choose Save. If it didn't, use Copy and keep
-                  the code somewhere safe.
-                {/if}
-              </p>
-            {/if}
+              <label
+                >Code <input
+                  type="password"
+                  name="password"
+                  autocomplete="new-password"
+                  value={code}
+                /></label
+              >
+              <div class="row">
+                <button type="submit">Save in my password manager</button>
+              </div>
+            </form>
           {:else}
-            <p>
-              {#if hasCode}
-                You've made a code before. Making a new one replaces it, and the old one stops
-                working.
-              {:else if statusFailed}
-                We couldn't check whether you've made a code before. If you have, making one now
-                replaces it.
+            <p class="status" role="status">
+              {#if askedToSave}
+                Your browser has been asked to save it: choose Save when it offers. If it doesn't
+                offer, saving passwords may be turned off, so use Copy and keep the code somewhere
+                safe.
               {:else}
-                Make a code now, before you need it.
+                If your browser offered to save it, choose Save. If it didn't, use Copy and keep the
+                code somewhere safe.
               {/if}
             </p>
-            <div class="row">
-              <button
-                type="button"
-                onclick={make}
-                disabled={making || (hasCode === undefined && !statusFailed)}
-              >
-                {making ? 'Making…' : hasCode ? 'Make a new code' : 'Make a recovery code'}
-              </button>
-            </div>
           {/if}
-          <p class="status" role="status" aria-live="polite">{makeMessage}</p>
-        </section>
-
-        <section aria-labelledby="use-code-title">
-          <h2 id="use-code-title">Use a recovery code</h2>
+        {:else}
           <p>
-            This browser switches to that record. Games played here under its current one stay on
-            the server, but won't count towards it.
-          </p>
-          <form onsubmit={restore} aria-labelledby="use-code-title">
-            <input
-              class="hidden-field"
-              type="text"
-              name="username"
-              autocomplete="username"
-              value={ACCOUNT}
-              readonly
-              tabindex="-1"
-              aria-hidden="true"
-            />
-            <label for="recovery-code">Recovery code</label>
-            <div class="row">
-              <input
-                id="recovery-code"
-                name="password"
-                type={showCode ? 'text' : 'password'}
-                autocomplete="current-password"
-                spellcheck="false"
-                bind:value={entered}
-                required
-              />
-              <button type="submit" disabled={restoring || waitingForCheck}>
-                {restoring ? 'Restoring…' : 'Restore'}
-              </button>
-            </div>
-            <label class="show">
-              <input type="checkbox" bind:checked={showCode} /> Show the code
-            </label>
-            {#if open && siteKey !== undefined}
-              <TurnstileCheck
-                {siteKey}
-                ontoken={(t) => (token = t)}
-                bind:this={check}
-                onerror={(m) => (restoreMessage = m)}
-              />
+            {#if hasCode}
+              You've made a code before. Making a new one replaces it, and the old one stops
+              working.
+            {:else if statusFailed}
+              We couldn't check whether you've made a code before. If you have, making one now
+              replaces it.
+            {:else}
+              Make a code now, before you need it.
             {/if}
-            <p class="status" role="status" aria-live="polite">{restoreMessage}</p>
-          </form>
-        </section>
-      {/if}
-
-      {#if hasForget}
-        <section aria-labelledby="delete-title">
-          <h2 id="delete-title">Delete your record</h2>
-          <p>
-            Deletes your games, results, nickname, recovery code and feature requests from our
-            server and this browser. Your places on the leaderboards go too. It can't be undone.
           </p>
           <div class="row">
-            {#if confirmingDelete}
-              <button type="button" class="danger" onclick={deleteRecord} disabled={deleting}>
-                {deleting ? 'Deleting…' : 'Yes, delete everything'}
-              </button>
-              <button type="button" class="secondary" onclick={() => (confirmingDelete = false)}
-                >Keep it</button
-              >
-            {:else}
-              <button type="button" class="secondary" onclick={() => (confirmingDelete = true)}
-                >Delete my record</button
-              >
-            {/if}
+            <button
+              type="button"
+              onclick={make}
+              disabled={making || (hasCode === undefined && !statusFailed)}
+            >
+              {making ? 'Making…' : hasCode ? 'Make a new code' : 'Make a recovery code'}
+            </button>
           </div>
-          <p class="status" role="status" aria-live="polite">{deleteMessage}</p>
-        </section>
-      {/if}
-    </div>
-  </details>
+        {/if}
+        <p class="status" role="status" aria-live="polite">{makeMessage}</p>
+      </section>
+
+      <section aria-labelledby="use-code-title">
+        <h2 id="use-code-title">Use a recovery code</h2>
+        <p>
+          This browser switches to that record. Games played here under its current one stay on the
+          server, but won't count towards it.
+        </p>
+        <form onsubmit={restore} aria-labelledby="use-code-title">
+          <input
+            class="hidden-field"
+            type="text"
+            name="username"
+            autocomplete="username"
+            value={ACCOUNT}
+            readonly
+            tabindex="-1"
+            aria-hidden="true"
+          />
+          <label for="recovery-code">Recovery code</label>
+          <div class="row">
+            <input
+              id="recovery-code"
+              name="password"
+              type={showCode ? 'text' : 'password'}
+              autocomplete="current-password"
+              spellcheck="false"
+              bind:value={entered}
+              required
+            />
+            <button type="submit" disabled={restoring || waitingForCheck}>
+              {restoring ? 'Restoring…' : 'Restore'}
+            </button>
+          </div>
+          <label class="show">
+            <input type="checkbox" bind:checked={showCode} /> Show the code
+          </label>
+          {#if open && siteKey !== undefined}
+            <TurnstileCheck
+              {siteKey}
+              ontoken={(t) => (token = t)}
+              bind:this={check}
+              onerror={(m) => (restoreMessage = m)}
+            />
+          {/if}
+          <p class="status" role="status" aria-live="polite">{restoreMessage}</p>
+        </form>
+      </section>
+    {/if}
+
+    {#if hasForget}
+      <section aria-labelledby="delete-title">
+        <h2 id="delete-title">Delete your record</h2>
+        <p>
+          Deletes your games, results, nickname, recovery code and feature requests from our server
+          and this browser. Your places on the leaderboards go too. It can't be undone.
+        </p>
+        <div class="row">
+          {#if confirmingDelete}
+            <button type="button" class="danger" onclick={deleteRecord} disabled={deleting}>
+              {deleting ? 'Deleting…' : 'Yes, delete everything'}
+            </button>
+            <button type="button" class="secondary" onclick={() => (confirmingDelete = false)}
+              >Keep it</button
+            >
+          {:else}
+            <button type="button" class="secondary" onclick={() => (confirmingDelete = true)}
+              >Delete my record</button
+            >
+          {/if}
+        </div>
+        <p class="status" role="status" aria-live="polite">{deleteMessage}</p>
+      </section>
+    {/if}
+  </div>
 {/if}
 
 <style>
-  details {
-    max-width: 34rem;
-  }
-
-  summary {
-    cursor: pointer;
-    font-weight: 700;
-    text-align: right;
-  }
-
-  details[open] summary {
-    margin-bottom: 8px;
-  }
-
+  /* One column, under its toggle at the right of the header. */
   .panel {
+    max-width: 34rem;
+    margin-left: auto;
     display: grid;
     gap: 12px;
     padding: 12px 16px;

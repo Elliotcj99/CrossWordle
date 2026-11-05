@@ -1,6 +1,17 @@
 import type { PuzzleResult } from '@crosswordle/engine';
 
 const KEY = 'crosswordle:results';
+const CHANGED = 'crosswordle:results-changed';
+
+/** Calls `changed` whenever this browser's results change. Returns a function that stops listening. */
+export function onResultsChanged(changed: () => void): () => void {
+  window.addEventListener(CHANGED, changed);
+  return () => window.removeEventListener(CHANGED, changed);
+}
+
+function announceChange(): void {
+  window.dispatchEvent(new Event(CHANGED));
+}
 
 /** Finished puzzles in this browser, keyed by puzzle id. Empty if storage is unavailable. */
 export function loadResults(): Record<string, PuzzleResult> {
@@ -31,6 +42,7 @@ export function recordResult(puzzleId: string, result: PuzzleResult): Record<str
   } catch {
     // Blocked storage: stats just aren't kept.
   }
+  announceChange();
   return updated;
 }
 
@@ -49,6 +61,7 @@ export function mergeResults(
   } catch {
     // Blocked storage: the merged stats last for this page.
   }
+  announceChange();
   return merged;
 }
 
@@ -79,4 +92,5 @@ export function clearResults(): void {
   } catch {
     // Blocked storage: nothing was kept.
   }
+  announceChange();
 }
