@@ -126,7 +126,8 @@
         class="toggle"
         aria-expanded={openPanel === 'help'}
         aria-controls="help-panel"
-        onclick={() => toggle('help')}>How to play</button
+        onclick={() => toggle('help')}
+        ><span class="arrow" aria-hidden="true">▸</span>How to play</button
       >
       <button
         id="stats-toggle"
@@ -134,7 +135,7 @@
         class="toggle"
         aria-expanded={openPanel === 'stats'}
         aria-controls="stats-panel"
-        onclick={() => toggle('stats')}>Stats</button
+        onclick={() => toggle('stats')}><span class="arrow" aria-hidden="true">▸</span>Stats</button
       >
       {#if hasRecord}
         <button
@@ -143,7 +144,8 @@
           class="toggle"
           aria-expanded={openPanel === 'record'}
           aria-controls="record-panel"
-          onclick={() => toggle('record')}>Your record</button
+          onclick={() => toggle('record')}
+          ><span class="arrow" aria-hidden="true">▸</span>Your record</button
         >
       {/if}
     </div>
@@ -375,7 +377,7 @@
     gap: 8px 20px;
   }
 
-  /* How to play and Your record: bold, with an arrow that turns down while its panel is open. */
+  /* How to play, Stats and Your record: bold, with an arrow that turns down while its panel is open. */
   .toggle {
     padding: 0;
     border: 0;
@@ -386,14 +388,13 @@
     cursor: pointer;
   }
 
-  .toggle::before {
-    content: '▸';
+  .arrow {
     display: inline-block;
     margin-right: 4px;
     transition: transform 0.15s;
   }
 
-  .toggle[aria-expanded='true']::before {
+  .toggle[aria-expanded='true'] .arrow {
     transform: rotate(90deg);
   }
 
