@@ -99,6 +99,7 @@
   let revealing = $state<'crossword' | 'wordle' | null>(null);
   let results = $state.raw(loadResults());
   let boardEl = $state<HTMLElement>();
+  let cluesEl = $state<HTMLElement>();
   /** Whether this host has leaderboards, and whether the player has opened this one. */
   let hasBoard = $state(false);
   let boardOpen = $state(false);
@@ -142,6 +143,20 @@
   const showBoard = $derived(hasBoard && (status !== 'playing' || boardOpen));
 
   $effect(() => saveGame(game));
+
+  // Where the clue list is a column of its own that scrolls (wide screens), keep the selected
+  // clue in view in it. Elsewhere the list is below the game, and the page shouldn't jump there.
+  $effect(() => {
+    void selectedId;
+    if (cluesEl === undefined || cluesEl.scrollHeight <= cluesEl.clientHeight) return;
+    const button = cluesEl.querySelector<HTMLElement>('button.selected');
+    if (button === null) return;
+    const shown = cluesEl.getBoundingClientRect();
+    const clue = button.getBoundingClientRect();
+    if (clue.top < shown.top || clue.bottom > shown.bottom) {
+      cluesEl.scrollBy({ top: clue.top - shown.top - shown.height / 3 });
+    }
+  });
 
   // Where the server keeps records, it's the player's record across devices: carry on from its
   // copy of this game if it's further on (played elsewhere, or a restored record), and add its
@@ -515,7 +530,7 @@
     <Keyboard marks={bestMarks(feedback.flat())} onkey={press} />
   </section>
 
-  <section class="clues" aria-label="Clues">
+  <section class="clues" aria-label="Clues" bind:this={cluesEl}>
     <Clues
       entries={puzzle.entries}
       {selectedId}
@@ -602,6 +617,23 @@
 
     .clues {
       grid-column: 1 / -1;
+    }
+  }
+
+  /* Wide enough (a desktop at its usual zoom; zooming in narrows the page in CSS pixels, so it
+     falls back to the layout above): the clue list beside the board and the current entry, so
+     every clue is in view while playing. It scrolls on its own if it's taller than the window. */
+  @media (min-width: 1280px) {
+    .layout {
+      grid-template-columns: minmax(0, 6fr) minmax(0, 4fr) minmax(0, 4fr);
+    }
+
+    .clues {
+      grid-column: auto;
+      position: sticky;
+      top: 16px;
+      max-height: calc(100dvh - 32px);
+      overflow-y: auto;
     }
   }
 </style>

@@ -705,3 +705,21 @@ test('steps through only the unsolved clues with Next and Prev', async ({ page }
   await page.getByRole('button', { name: 'Next clue' }).click();
   await expect(heading('Bottomless pit')).toBeVisible();
 });
+
+test('puts the clue list beside the game where the screen is wide enough', async ({ page }) => {
+  const box = async (name: string) =>
+    (await page.getByRole('region', { name, exact: true }).boundingBox())!;
+
+  // A desktop at its usual zoom: three columns.
+  await page.setViewportSize({ width: 1440, height: 900 });
+  let entry = await box('Current entry');
+  let clues = await box('Clues');
+  expect(clues.x).toBeGreaterThan(entry.x + entry.width - 1);
+  expect(Math.abs(clues.y - entry.y)).toBeLessThan(2);
+
+  // Narrower, or zoomed in: the list goes back below the game.
+  await page.setViewportSize({ width: 1100, height: 900 });
+  entry = await box('Current entry');
+  clues = await box('Clues');
+  expect(clues.y).toBeGreaterThan(entry.y + entry.height - 1);
+});
