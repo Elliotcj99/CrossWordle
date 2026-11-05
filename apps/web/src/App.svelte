@@ -2,9 +2,11 @@
   import HowToPlay from './components/HowToPlay.svelte';
   import RestorePrompt from './components/RestorePrompt.svelte';
   import SiteInfo from './components/SiteInfo.svelte';
+  import StatsPanel from './components/StatsPanel.svelte';
   import YourRecord from './components/YourRecord.svelte';
   import Game from './Game.svelte';
-  import { NAUGHTY, NORMAL } from './lib/collections';
+  import { collectionOf, NAUGHTY, NORMAL } from './lib/collections';
+  import { features } from './lib/features';
   import { loadPuzzleFor } from './lib/puzzles';
   import { applySettings, loadSettings, saveSettings } from './lib/settings';
   import { loadWordChecker } from './lib/words';
@@ -28,10 +30,37 @@
     else naughty = wanted;
   }
 
+  // How to play, Stats and Your record open below the header, across the page, one at a time.
+  // Your record stays in the page while closed, so a code it's showing isn't lost, and is there
+  // only where the server offers recovery codes or deleting a record.
+  type Panel = 'help' | 'stats' | 'record';
+  let openPanel = $state<Panel | undefined>();
+  let hasRecord = $state(false);
+  void features().then((host) => {
+    hasRecord = host.names.has('recovery') || host.names.has('forget');
+  });
+
+  function toggle(panel: Panel) {
+    openPanel = openPanel === panel ? undefined : panel;
+  }
+
   /** `#2026-10-24` or `#sample` opens that puzzle; no hash opens today's. */
   const readHash = () => decodeURIComponent(location.hash.slice(1)) || undefined;
 
   let requested = $state(readHash());
+  followHash();
+
+  /**
+   * Opens the puzzle in the address (a past puzzle from Stats, say) in its own collection: a
+   * Naughty one asks first, as turning Naughty mode on always does; a daily one turns it off.
+   */
+  function followHash() {
+    requested = readHash();
+    if (requested === undefined) return;
+    const wantsNaughty = collectionOf(requested) === NAUGHTY;
+    if (wantsNaughty && !naughty) askingNaughty = true;
+    else if (!wantsNaughty && naughty) naughty = false;
+  }
   const loading = $derived(
     loadPuzzleFor(requested, collection).then(async (puzzle) => ({
       puzzle,
@@ -46,7 +75,12 @@
   );
 </script>
 
-<svelte:window onhashchange={() => (requested = readHash())} />
+<svelte:window
+  onhashchange={() => {
+    followHash();
+    if (openPanel === 'stats') openPanel = undefined;
+  }}
+/>
 
 <main class:naughty>
   <header class="masthead">
@@ -86,10 +120,55 @@
       >
         <span class="naughty-word" aria-hidden="true">Naughty</span>
       </button>
-      <HowToPlay />
-      <YourRecord />
+      <button
+        id="help-toggle"
+        type="button"
+        class="toggle"
+        aria-expanded={openPanel === 'help'}
+        aria-controls="help-panel"
+        onclick={() => toggle('help')}
+        ><span class="arrow" aria-hidden="true">▸</span>How to play</button
+      >
+      <button
+        id="stats-toggle"
+        type="button"
+        class="toggle"
+        aria-expanded={openPanel === 'stats'}
+        aria-controls="stats-panel"
+        onclick={() => toggle('stats')}><span class="arrow" aria-hidden="true">▸</span>Stats</button
+      >
+      {#if hasRecord}
+        <button
+          id="record-toggle"
+          type="button"
+          class="toggle"
+          aria-expanded={openPanel === 'record'}
+          aria-controls="record-panel"
+          onclick={() => toggle('record')}
+          ><span class="arrow" aria-hidden="true">▸</span>Your record</button
+        >
+      {/if}
     </div>
   </header>
+
+  {#if openPanel === 'help'}
+    <section id="help-panel" class="header-panel" aria-labelledby="help-toggle">
+      <HowToPlay />
+    </section>
+  {/if}
+  {#if openPanel === 'stats'}
+    <section id="stats-panel" class="header-panel" aria-labelledby="stats-toggle">
+      <StatsPanel />
+    </section>
+  {/if}
+  <section
+    id="record-panel"
+    class="header-panel"
+    aria-labelledby="record-toggle"
+    hidden={openPanel !== 'record'}
+  >
+    <YourRecord open={openPanel === 'record'} onopen={() => (openPanel = 'record')} />
+  </section>
 
   <RestorePrompt />
 
@@ -294,8 +373,38 @@
   .tools {
     display: flex;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: center;
     gap: 8px 20px;
+  }
+
+  /* How to play, Stats and Your record: bold, with an arrow that turns down while its panel is open. */
+  .toggle {
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .arrow {
+    display: inline-block;
+    margin-right: 4px;
+    transition: transform 0.15s;
+  }
+
+  .toggle[aria-expanded='true'] .arrow {
+    transform: rotate(90deg);
+  }
+
+  .toggle:focus-visible {
+    outline: 2px solid var(--cursor);
+    outline-offset: 2px;
+  }
+
+  .header-panel {
+    margin-bottom: 20px;
   }
 
   /* Settings are pill-shaped toggle buttons; aria-pressed carries state. Outlined when off,

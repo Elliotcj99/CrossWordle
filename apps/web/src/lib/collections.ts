@@ -33,3 +33,10 @@ export const NAUGHTY: Collection = {
   wordsPath: 'words-naughty',
   dateOf: trailingDate,
 };
+
+const NAUGHTY_PREFIX = 'naughty-';
+
+/** The collection a puzzle id belongs to: Naughty ids carry a prefix, the daily ones don't. */
+export function collectionOf(id: string): Collection {
+  return id.startsWith(NAUGHTY_PREFIX) ? NAUGHTY : NORMAL;
+}

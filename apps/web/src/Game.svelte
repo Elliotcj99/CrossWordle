@@ -5,7 +5,6 @@
     cellKey,
     checkGuess,
     clueOrder,
-    computeStats,
     crosswordClueFor,
     deleteLetter,
     draftCells,
@@ -56,6 +55,7 @@
     scoreGuess,
     ScoringError,
   } from './lib/api';
+  import { collectionOf } from './lib/collections';
   import { localDate } from './lib/dates';
   import { features } from './lib/features';
   import { guessErrorText } from './lib/messages';
@@ -77,6 +77,7 @@
     readSavedGame,
     saveGame,
   } from './lib/storage';
+  import { statsFor } from './lib/stats';
   import { preferServerGame } from './lib/sync';
 
   let { puzzle, isWord }: { puzzle: ClientPuzzle; isWord: WordChecker | undefined } = $props();
@@ -119,7 +120,8 @@
     new Set(puzzle.entries.filter((e) => isSolved(game, e)).map((e) => e.id)),
   );
   const guessCounts = $derived(new Map(puzzle.entries.map((e) => [e.id, guessCount(game, e)])));
-  const stats = $derived(computeStats(results, localDate()));
+  // The stats for this puzzle's collection: daily and Naughty are counted apart.
+  const stats = $derived(statsFor(results, collectionOf(puzzle.id), localDate()));
 
   // Clue hints for the selected entry (both free, and kept until restart).
   const secondClue = $derived(crosswordClueFor(game, selected));

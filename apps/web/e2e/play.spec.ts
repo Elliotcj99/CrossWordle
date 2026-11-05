@@ -6,6 +6,8 @@ async function guess(page: Page, word: string) {
 }
 
 const panel = (page: Page) => page.getByRole('region', { name: 'Current entry' });
+/** The Your record panel, which opens below the header from its toggle. */
+const recordPanel = (page: Page) => page.getByRole('region', { name: 'Your record', exact: true });
 const clue = (page: Page, text: string) =>
   page.getByRole('region', { name: 'Clues' }).getByRole('button', { name: new RegExp(text) });
 
@@ -317,12 +319,9 @@ test("carries on from the server's copy of a game this browser has lost", async 
 
 test('brings a record back with a recovery code after the browser forgets it', async ({ page }) => {
   // Only where the server keeps records (the Node server), like the nickname form.
-  // The panel titled Your record (How to play mentions it too).
-  const record = page.locator('details', {
-    has: page.locator('summary', { hasText: /^Your record$/ }),
-  });
+  const record = recordPanel(page);
   const playerId = () => page.evaluate(() => localStorage.getItem('crosswordle:player'));
-  await record.locator('summary').click();
+  await page.getByRole('button', { name: 'Your record', exact: true }).click();
   await record.getByRole('button', { name: 'Make a recovery code' }).click();
   const shown = record.getByLabel('Your recovery code');
   await expect(shown).toHaveText(/^[0-9A-Z]{5}(-[0-9A-Z]{5}){3}$/);
@@ -334,7 +333,7 @@ test('brings a record back with a recovery code after the browser forgets it', a
   // The browser's data is cleared: a new player id.
   await page.evaluate(() => localStorage.clear());
   await page.reload();
-  await record.locator('summary').click();
+  await page.getByRole('button', { name: 'Your record', exact: true }).click();
   // Opening the panel asks the server about this browser's (new) id.
   await expect.poll(playerId).not.toBeNull();
   expect(await playerId()).not.toBe(original);
@@ -369,10 +368,8 @@ for (const browserSaves of [true, false]) {
           : Promise.reject(new DOMException('No password manager', 'NotSupportedError'));
       };
     }, browserSaves);
-    const record = page.locator('details', {
-      has: page.locator('summary', { hasText: /^Your record$/ }),
-    });
-    await record.locator('summary').click();
+    const record = recordPanel(page);
+    await page.getByRole('button', { name: 'Your record', exact: true }).click();
     await record.getByRole('button', { name: 'Make a recovery code' }).click();
     const shown = record.getByLabel('Your recovery code');
     await expect(shown).toHaveText(/^[0-9A-Z]{5}(-[0-9A-Z]{5}){3}$/);
@@ -402,10 +399,8 @@ test('saves a new recovery code by submitting the form where the browser has no 
     delete (window as { PasswordCredential?: unknown }).PasswordCredential;
   });
   const hash = new URL(page.url()).hash;
-  const record = page.locator('details', {
-    has: page.locator('summary', { hasText: /^Your record$/ }),
-  });
-  await record.locator('summary').click();
+  const record = recordPanel(page);
+  await page.getByRole('button', { name: 'Your record', exact: true }).click();
   await record.getByRole('button', { name: 'Make a recovery code' }).click();
   const shown = record.getByLabel('Your recovery code');
   await expect(shown).toHaveText(/^[0-9A-Z]{5}(-[0-9A-Z]{5}){3}$/);
@@ -420,7 +415,7 @@ test('saves a new recovery code by submitting the form where the browser has no 
   ]);
   expect(new URLSearchParams(posted.postData() ?? '').get('password')).toBe(code);
 
-  await expect(record).toHaveAttribute('open', '');
+  await expect(record).toBeVisible();
   await expect(shown).toHaveText(code);
   await expect(
     record.getByText("If your browser offered to save it, choose Save. If it didn't, use Copy"),
@@ -563,10 +558,8 @@ test('deletes a record from the server and this browser', async ({ page }) => {
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
   const before = await page.evaluate(() => localStorage.getItem('crosswordle:player'));
 
-  const record = page.locator('details', {
-    has: page.locator('summary', { hasText: /^Your record$/ }),
-  });
-  await record.locator('summary').click();
+  const record = recordPanel(page);
+  await page.getByRole('button', { name: 'Your record', exact: true }).click();
   await record.getByRole('button', { name: 'Delete my record' }).click();
   await Promise.all([
     page.waitForEvent('load'),
@@ -626,4 +619,55 @@ test('works with the on-screen keyboard', async ({ page }) => {
     await keyboard.getByRole('button', { name: letter, exact: true }).click();
   await keyboard.getByRole('button', { name: 'Enter' }).click();
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
+});
+
+test.describe('the Stats panel', () => {
+  const stats = (page: Page) => page.getByRole('region', { name: 'Stats', exact: true });
+
+  test('says when there are no stats yet', async ({ page }) => {
+    await page.getByRole('button', { name: 'Stats', exact: true }).click();
+    await expect(stats(page)).toContainText("You haven't got any recorded stats yet.");
+  });
+
+  test('counts daily and Naughty puzzles apart, and opens a past one', async ({ page }) => {
+    await page.evaluate(() =>
+      localStorage.setItem(
+        'crosswordle:results',
+        JSON.stringify({
+          '2026-10-23': { won: true, guesses: 14 },
+          '2026-10-24': { won: false, guesses: 18 },
+          'naughty-2026-10-30': { won: true, guesses: 9 },
+        }),
+      ),
+    );
+    await page.reload();
+    await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
+    await page.getByRole('button', { name: 'Stats', exact: true }).click();
+
+    const daily = stats(page).getByRole('region', { name: 'Daily' });
+    await expect(daily.locator('dl')).toHaveText(/Played\s*2\s*Won\s*50%/);
+    await expect(daily.getByText('Won in 14 guesses')).toBeVisible();
+    await expect(daily.getByText('Out of guesses')).toBeVisible();
+    const naughty = stats(page).getByRole('region', { name: 'Naughty' });
+    await expect(naughty.locator('dl')).toHaveText(/Played\s*1\s*Won\s*100%/);
+
+    // Newest first: the 24th. Following it opens that puzzle and closes the panel.
+    await daily.getByRole('link').first().click();
+    await expect(page).toHaveURL(/#2026-10-24$/);
+    await expect(stats(page)).toHaveCount(0);
+
+    // A Naughty puzzle asks before turning Naughty mode on.
+    await page.getByRole('button', { name: 'Stats', exact: true }).click();
+    await naughty.getByRole('link').first().click();
+    await expect(page.getByRole('alertdialog')).toContainText('Naughty mode contains strong');
+  });
+});
+
+test('opens How to play across the width of the page', async ({ page }) => {
+  await page.getByRole('button', { name: 'How to play' }).click();
+  const help = page.getByRole('region', { name: 'How to play' });
+  await expect(help).toContainText('Every Across and Down entry is its own Wordle.');
+  const header = (await page.locator('header.masthead').boundingBox())!;
+  const box = (await help.boundingBox())!;
+  expect(Math.abs(box.width - header.width)).toBeLessThan(2);
 });
