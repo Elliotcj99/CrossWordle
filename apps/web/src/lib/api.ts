@@ -342,27 +342,6 @@ export async function fetchRecord(): Promise<FinishedRecord> {
 }
 
 /**
- * TEMPORARY, a one-off: remove by Friday 6 November 2026, with the server's endpoint.
- *
- * Sends the puzzles this browser finished to the server, to keep as the player's history from
- * before it kept records. True once the server has them (the page then never sends them again).
- */
-export async function importHistory(
-  results: Readonly<Record<string, { won: boolean; guesses: number }>>,
-): Promise<boolean> {
-  try {
-    const response = await apiFetch('api/import-history', {
-      method: 'POST',
-      headers: headers(),
-      body: JSON.stringify({ results }),
-    });
-    return response.ok;
-  } catch {
-    return false;
-  }
-}
-
-/**
  * This player's current game of a puzzle as the server has it (unchecked: the caller checks it
  * against the puzzle), or `undefined` if they haven't played it there or it can't be fetched.
  */
