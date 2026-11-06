@@ -18,17 +18,36 @@ export async function loadPuzzleFor(
   collection: Collection = NORMAL,
   today = localDate(new Date()),
 ): Promise<ClientPuzzle> {
-  const index = (await fetchJson(collection.indexPath)) as IndexItem[];
-  const dateOf = collection.dateOf;
-  const playable = index.map((item) => item.id).filter((id) => (dateOf(id) ?? '') <= today);
+  const playable = await playableIds(collection, today);
   const latest = playable
-    .filter((id) => dateOf(id) !== undefined)
+    .filter((id) => collection.dateOf(id) !== undefined)
     .sort()
     .at(-1);
   const id =
     requested !== undefined && playable.includes(requested) ? requested : (latest ?? playable[0]);
   if (id === undefined) throw new Error('There are no puzzles to play.');
   return loadClientPuzzle(parsePublicPuzzleFile(await fetchJson(collection.puzzlePath(id))));
+}
+
+/** Every puzzle in `collection` that can be played by `today`: none from a future date. */
+async function playableIds(collection: Collection, today: string): Promise<string[]> {
+  const index = (await fetchJson(collection.indexPath)) as IndexItem[];
+  return index.map((item) => item.id).filter((id) => (collection.dateOf(id) ?? '') <= today);
+}
+
+/**
+ * The days in `collection` with a puzzle, up to `today`: each date (`YYYY-MM-DD`) with its
+ * puzzle's id, oldest first. For picking a past day's leaderboard.
+ */
+export async function puzzleDays(
+  collection: Collection,
+  today = localDate(new Date()),
+): Promise<Map<string, string>> {
+  const days = (await playableIds(collection, today)).flatMap((id) => {
+    const date = collection.dateOf(id);
+    return date === undefined ? [] : [[date, id] as const];
+  });
+  return new Map(days.sort(([a], [b]) => a.localeCompare(b)));
 }
 
 async function fetchJson(path: string): Promise<unknown> {
