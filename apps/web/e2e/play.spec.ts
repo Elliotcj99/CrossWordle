@@ -307,6 +307,39 @@ test('shows the leaderboard while playing, and before anyone is on it says so', 
   await expect(board).toHaveCount(0);
 });
 
+test("picks another day's leaderboard, and goes back to this puzzle's", async ({ page }) => {
+  await page.getByRole('button', { name: 'Leaderboard' }).click();
+  const board = page.getByRole('region', { name: 'Leaderboard' });
+  const day = board.getByLabel('Day');
+  // The sample puzzle has no date of its own.
+  await expect(day).toHaveValue('');
+  const latest = (await day.getAttribute('max'))!;
+  const first = (await day.getAttribute('min'))!;
+  expect(latest).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+  expect(first <= latest).toBe(true);
+
+  // The latest day's board, asked for by its puzzle's id (a daily puzzle's id is its date).
+  const [asked] = await Promise.all([
+    page.waitForRequest((r) => new URL(r.url()).pathname === '/api/leaderboard'),
+    day.fill(latest),
+  ]);
+  expect(new URL(asked.url()).searchParams.get('puzzle')).toBe(latest);
+  await expect(
+    board.getByRole('table').or(board.getByText(/No one's on the board yet/)),
+  ).toBeVisible();
+
+  // A day with no puzzle says so.
+  await day.fill('2000-01-01');
+  await expect(board.getByText('There was no puzzle on')).toBeVisible();
+
+  await board.getByRole('button', { name: 'Back to this puzzle' }).click();
+  await expect(day).toHaveValue('');
+  await expect(board.getByRole('button', { name: 'Back to this puzzle' })).toHaveCount(0);
+  await expect(
+    board.getByRole('table').or(board.getByText(/No one's on the board yet/)),
+  ).toBeVisible();
+});
+
 test("carries on from the server's copy of a game this browser has lost", async ({ page }) => {
   await guess(page, 'LEVEL');
   await expect(clue(page, 'Flat and even')).toContainText('Solved in 1');
