@@ -6,6 +6,7 @@
   import YourRecord from './components/YourRecord.svelte';
   import Game from './Game.svelte';
   import { collectionOf, NAUGHTY, NORMAL } from './lib/collections';
+  import { localDate } from './lib/dates';
   import { features } from './lib/features';
   import { loadPuzzleFor } from './lib/puzzles';
   import { applySettings, loadSettings, saveSettings } from './lib/settings';
@@ -61,6 +62,14 @@
     if (wantsNaughty && !naughty) askingNaughty = true;
     else if (!wantsNaughty && naughty) naughty = false;
   }
+
+  /** Back from a past puzzle to today's (or the latest), in the same collection. */
+  function goToToday() {
+    // A new history entry, so Back returns to the past puzzle. (pushState fires no hashchange.)
+    history.pushState(null, '', location.pathname + location.search);
+    followHash();
+  }
+
   const loading = $derived(
     loadPuzzleFor(requested, collection).then(async (puzzle) => ({
       puzzle,
@@ -196,6 +205,12 @@
   {#await loading}
     <p class="note">Loading today's puzzle…</p>
   {:then { puzzle, isWord }}
+    {#if requested !== undefined && collection.dateOf(puzzle.id) !== localDate()}
+      <p class="elsewhere">
+        This isn't today's puzzle.
+        <button type="button" class="link" onclick={goToToday}>Go to today's puzzle</button>
+      </p>
+    {/if}
     {#key puzzle.id}
       <Game {puzzle} {isWord} />
     {/key}
@@ -375,6 +390,24 @@
 
   .note {
     color: var(--ink-muted);
+  }
+
+  .elsewhere {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 4px 12px;
+    margin: 0 0 16px;
+    padding: 10px 16px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+  }
+
+  .elsewhere .link {
+    font: inherit;
+    color: var(--ink);
+    font-weight: 700;
   }
 
   .tools {
