@@ -28,6 +28,20 @@ test.beforeEach(async ({ page, baseURL }) => {
   await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
 });
 
+test("goes from a past puzzle back to today's", async ({ page }) => {
+  // The tests start on the sample puzzle (#sample), which isn't today's.
+  const notice = page.getByText("This isn't today's puzzle.");
+  await expect(notice).toBeVisible();
+  await page.getByRole('button', { name: "Go to today's puzzle" }).click();
+  await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toHaveCount(0);
+  await expect(notice).toHaveCount(0);
+  expect(new URL(page.url()).hash).toBe('');
+  // Back returns to the past puzzle.
+  await page.goBack();
+  await expect(panel(page).getByRole('heading', { name: 'Flat and even' })).toBeVisible();
+  await expect(notice).toBeVisible();
+});
+
 test('shows every clue', async ({ page }) => {
   await expect(page.getByRole('region', { name: 'Clues' }).getByRole('button')).toHaveCount(9);
 });
