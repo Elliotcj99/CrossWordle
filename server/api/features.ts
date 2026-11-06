@@ -21,9 +21,6 @@ export const FEATURES: readonly string[] = [
   'forget',
   // Players can send a feature request.
   'feedback',
-  // TEMPORARY, a one-off: the page sends the puzzles its browser finished before the server kept
-  // records (/api/import-history). Remove by Friday 6 November 2026.
-  'import-history',
 ];
 
 /**
